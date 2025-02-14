@@ -21,7 +21,7 @@ export const HeroSection = () => {
 
   // Создаем URL для видео с оптимизацией
   const videoUrl = cld
-    .video("tea-ceremony") // Предполагаемый public_id вашего видео
+    .video("qujb4nfgqjbhkbrfcegf")
     .quality(auto())
     .resize(scale().width(1920))
     .toURL();
@@ -41,7 +41,7 @@ export const HeroSection = () => {
           type="video/mp4"
         />
       </video>
-      <div className="absolute inset-0 bg-black/40" /> {/* Затемнение 40% */}
+      <div className="absolute inset-0 bg-black/40" />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
         <h1 className="text-4xl md:text-6xl font-light mb-6 animate-fade-up">
           Искусство чайной церемонии
