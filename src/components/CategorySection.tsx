@@ -1,5 +1,5 @@
 
-import { Cup, Leaf, Package } from "lucide-react";
+import { CupSoda, Leaf, Package } from "lucide-react";
 
 const categories = [
   {
@@ -11,7 +11,7 @@ const categories = [
   {
     title: "Посуда",
     description: "Традиционная чайная посуда",
-    icon: Cup,
+    icon: CupSoda,
     link: "/teaware",
   },
   {
