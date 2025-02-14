@@ -1,5 +1,8 @@
 
 import { useEffect, useRef } from "react";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { scale } from "@cloudinary/url-gen/actions/resize";
+import { auto } from "@cloudinary/url-gen/qualifiers/quality";
 
 export const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -9,6 +12,19 @@ export const HeroSection = () => {
       videoRef.current.playbackRate = 0.7;
     }
   }, []);
+
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "drukljqft"
+    }
+  });
+
+  // Создаем URL для видео с оптимизацией
+  const videoUrl = cld
+    .video("tea-ceremony") // Предполагаемый public_id вашего видео
+    .quality(auto())
+    .resize(scale().width(1920))
+    .toURL();
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -21,7 +37,7 @@ export const HeroSection = () => {
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source
-          src="https://player.vimeo.com/external/487012658.sd.mp4?s=1d8e3da5a89fd78e98f31557408fb7ecc13c790c&profile_id=165&oauth2_token_id=57447761"
+          src={videoUrl}
           type="video/mp4"
         />
       </video>
