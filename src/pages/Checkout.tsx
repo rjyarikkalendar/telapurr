@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useNavigate } from "react-router-dom";
-import { countries, cities } from "@/lib/location-data";
+import { countries, cities } from "@/lib/locations";
 import { useState } from "react";
 
 interface CheckoutFormData {

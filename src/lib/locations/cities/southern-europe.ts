@@ -86,10 +86,17 @@ export const southernEuropeCities: CitiesByLang = {
     ],
     gr: [
       { id: "ath", name: "Atenas" },
-      { id: "the", name: "Salónica" },
+      { id: "the", name: "Tesalónica" },
       { id: "pat", name: "Patras" },
       { id: "her", name: "Heraklion" },
       { id: "lar", name: "Larisa" }
+    ],
+    bg: [
+      { id: "sof", name: "Sofía" },
+      { id: "plo", name: "Plovdiv" },
+      { id: "var", name: "Varna" },
+      { id: "bur", name: "Burgas" },
+      { id: "rus", name: "Ruse" }
     ]
   }
 };
