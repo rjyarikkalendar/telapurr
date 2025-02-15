@@ -1,6 +1,7 @@
 
 import { useRef } from "react";
 import { Cloudinary } from "@cloudinary/url-gen";
+import { scale } from "@cloudinary/url-gen/actions/resize";
 
 const cld = new Cloudinary({
   cloud: {
@@ -19,17 +20,19 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ t }: HeroSectionProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoUrl = cld.video('qujb4nfgqjbhkbrfcegf').toURL();
+  const videoUrl = cld.video('qujb4nfgqjbhkbrfcegf')
+    .resize(scale().width(1920))
+    .toURL();
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen overflow-hidden">
       <video
         ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full object-cover scale-110"
       >
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
