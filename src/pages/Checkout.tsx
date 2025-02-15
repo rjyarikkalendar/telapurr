@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/use-cart";
+import { useLanguage } from "@/hooks/use-language";
 import {
   Form,
   FormControl,
@@ -11,21 +12,33 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
+import { countries, cities } from "@/lib/location-data";
+import { useState } from "react";
 
 interface CheckoutFormData {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  address: string;
+  country: string;
   city: string;
+  address: string;
   postalCode: string;
 }
 
 const Checkout = () => {
   const navigate = useNavigate();
   const { items } = useCart();
+  const { currentLang } = useLanguage();
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
   const form = useForm<CheckoutFormData>();
 
   const handlePayment = async (data: CheckoutFormData) => {
@@ -40,8 +53,10 @@ const Checkout = () => {
     return null;
   }
 
+  const availableCities = selectedCountry ? cities[currentLang][selectedCountry as keyof typeof cities[typeof currentLang]] || [] : [];
+
   return (
-    <div className="min-h-screen bg-tea-bg py-16">
+    <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-playfair text-tea-text mb-8">Оформление заказа</h1>
         
@@ -110,6 +125,67 @@ const Checkout = () => {
 
                 <FormField
                   control={form.control}
+                  name="country"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Страна</FormLabel>
+                      <Select 
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                          setSelectedCountry(value);
+                          form.setValue('city', ''); // Сброс города при смене страны
+                        }}
+                        value={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Выберите страну" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {countries[currentLang].map((country) => (
+                            <SelectItem key={country.id} value={country.id}>
+                              {country.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="city"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Город</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                        disabled={!selectedCountry}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Выберите город" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {availableCities.map((city) => (
+                            <SelectItem key={city.id} value={city.id}>
+                              {city.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
                   name="address"
                   render={({ field }) => (
                     <FormItem>
@@ -122,34 +198,19 @@ const Checkout = () => {
                   )}
                 />
 
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Город</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Москва" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="postalCode"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Индекс</FormLabel>
-                        <FormControl>
-                          <Input placeholder="123456" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="postalCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Индекс</FormLabel>
+                      <FormControl>
+                        <Input placeholder="123456" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <Button 
                   type="submit"
