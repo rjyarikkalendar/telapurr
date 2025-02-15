@@ -46,4 +46,13 @@ describe('Cities data validation', () => {
     test.each(languages)('should have at least 20 cities for each country in %s language', (lang) => {
       countries.forEach(country => {
         const cities = easternEuropeCities[lang][country];
-        expect(cities.length).toBe
+        expect(cities.length).toBeGreaterThanOrEqual(MIN_CITIES);
+        
+        // Check for duplicate IDs
+        const ids = cities.map(city => city.id);
+        const uniqueIds = new Set(ids);
+        expect(ids.length).toBe(uniqueIds.size);
+      });
+    });
+  });
+});
