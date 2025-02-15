@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -117,9 +116,9 @@ export default {
         },
       },
       animation: {
-        "leaf-fall": "leaf-fall 4s ease-in-out infinite",
-        "liquid-wave": "liquid-wave 3s ease-in-out infinite",
-        "package-open": "package-open 3s ease-in-out infinite",
+        "leaf-fall": "leaf-fall 1.5s ease-in-out infinite",
+        "liquid-wave": "liquid-wave 1s ease-in-out infinite",
+        "package-open": "package-open 1s ease-in-out infinite",
         "slide-fade": "slide-fade 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
       },
     },

@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Tea from "./pages/Tea";
 import Teaware from "./pages/Teaware";
 import Sets from "./pages/Sets";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/tea" element={<Tea />} />
           <Route path="/teaware" element={<Teaware />} />
           <Route path="/sets" element={<Sets />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

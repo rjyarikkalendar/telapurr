@@ -38,7 +38,7 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
   ];
 
   return (
-    <section className="py-20 bg-tea-bg">
+    <section className="relative z-10 py-20 bg-[#F2FCE2]">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-16 font-light font-playfair">
           {t.categories.discover}
@@ -48,7 +48,7 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
             <a
               key={category.title}
               href={category.link}
-              className="group p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-500 animate-fade-up"
+              className="group p-8 bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex flex-col items-center text-center">
