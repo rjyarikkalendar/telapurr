@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Globe } from "lucide-react";
 import { languages, Language } from "@/lib/i18n";
 

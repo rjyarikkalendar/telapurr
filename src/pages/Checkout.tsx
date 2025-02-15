@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useNavigate } from "react-router-dom";
 import { countries, cities } from "@/lib/location-data";
 import { useState } from "react";
@@ -61,7 +62,6 @@ const Checkout = () => {
         <h1 className="text-3xl font-playfair text-tea-text mb-8">Оформление заказа</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Форма информации о получателе */}
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-xl font-medium mb-6">Информация о получателе</h2>
             <Form {...form}>
@@ -143,11 +143,13 @@ const Checkout = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {countries[currentLang].map((country) => (
-                            <SelectItem key={country.id} value={country.id}>
-                              {country.name}
-                            </SelectItem>
-                          ))}
+                          <ScrollArea className="h-[200px]">
+                            {countries[currentLang].map((country) => (
+                              <SelectItem key={country.id} value={country.id}>
+                                {country.name}
+                              </SelectItem>
+                            ))}
+                          </ScrollArea>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -172,11 +174,13 @@ const Checkout = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {availableCities.map((city) => (
-                            <SelectItem key={city.id} value={city.id}>
-                              {city.name}
-                            </SelectItem>
-                          ))}
+                          <ScrollArea className="h-[200px]">
+                            {availableCities.map((city) => (
+                              <SelectItem key={city.id} value={city.id}>
+                                {city.name}
+                              </SelectItem>
+                            ))}
+                          </ScrollArea>
                         </SelectContent>
                       </Select>
                       <FormMessage />
