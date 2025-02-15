@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartWidget } from "@/components/CartWidget";
 import { NavigationBanner } from "@/components/NavigationBanner";
 import { LanguageSelector } from "@/components/LanguageSelector";
-import { useLanguage } from "@/hooks/use-language";
+import { useLanguage, LanguageProvider } from "@/hooks/use-language";
 import Index from "./pages/Index";
 import Tea from "./pages/Tea";
 import Teaware from "./pages/Teaware";
@@ -49,7 +49,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AppContent />
+        <LanguageProvider>
+          <AppContent />
+        </LanguageProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

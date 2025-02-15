@@ -1,8 +1,16 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext, useContext, ReactNode } from 'react';
 import { Language, translations } from '@/lib/i18n';
 
-export function useLanguage() {
+interface LanguageContextType {
+  currentLang: Language;
+  setLanguage: (lang: Language) => void;
+  t: typeof translations[Language];
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
   const [currentLang, setCurrentLang] = useState<Language>('ru');
 
   useEffect(() => {
@@ -24,9 +32,23 @@ export function useLanguage() {
     setCurrentLang(lang);
   };
 
-  return {
+  const value = {
     currentLang,
     setLanguage,
     t: translations[currentLang]
   };
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
 }

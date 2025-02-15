@@ -1,18 +1,20 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useLanguage } from "@/hooks/use-language";
 
 const sections = [
-  { title: "Чай", path: "/tea", color: "bg-tea-brown/10" },
-  { title: "Посуда", path: "/teaware", color: "bg-tea-brown/20" },
-  { title: "Наборы", path: "/sets", color: "bg-tea-brown/30" },
-  { title: "Чайные церемонии", path: "/ceremonies", color: "bg-tea-brown/40" },
+  { path: "/tea", color: "bg-tea-brown/10" },
+  { path: "/teaware", color: "bg-tea-brown/20" },
+  { path: "/sets", color: "bg-tea-brown/30" },
+  { path: "/ceremonies", color: "bg-tea-brown/40" },
 ];
 
 export const NavigationBanner = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeIndex, setActiveIndex] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const currentIndex = sections.findIndex(s => s.path === location.pathname);
@@ -20,6 +22,21 @@ export const NavigationBanner = () => {
       setActiveIndex(currentIndex);
     }
   }, [location.pathname]);
+
+  const getTitleByPath = (path: string) => {
+    switch (path) {
+      case '/tea':
+        return t.categories.tea.title;
+      case '/teaware':
+        return t.categories.teaware.title;
+      case '/sets':
+        return t.categories.sets.title;
+      case '/ceremonies':
+        return t.ceremony.title;
+      default:
+        return '';
+    }
+  };
 
   return (
     <div className="bg-[#2A2A2A] text-white py-8 mt-auto">
@@ -36,7 +53,9 @@ export const NavigationBanner = () => {
                 }`}
                 onClick={() => navigate(section.path)}
               >
-                <h3 className="text-2xl font-light text-center">{section.title}</h3>
+                <h3 className="text-2xl font-light text-center">
+                  {getTitleByPath(section.path)}
+                </h3>
               </div>
             </div>
           ))}
