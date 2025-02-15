@@ -50,8 +50,8 @@ const AppContent = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster position="left" />
-      <Sonner />
+      <Toaster />
+      <Sonner position="top-left" />
       <BrowserRouter>
         <LanguageProvider>
           <AppContent />
