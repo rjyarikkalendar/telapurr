@@ -24,7 +24,7 @@ export const AuthButton = () => {
   };
 
   return (
-    <div className="absolute top-4 right-40 z-50">
+    <div className="absolute top-4 right-[100px] z-50">
       {user ? (
         <Button onClick={handleSignOut}>Выйти</Button>
       ) : (
