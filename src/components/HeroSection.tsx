@@ -1,7 +1,7 @@
 
 import { useRef } from "react";
 import { Cloudinary } from "@cloudinary/url-gen";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const cld = new Cloudinary({
   cloud: {
@@ -20,7 +20,7 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ t }: HeroSectionProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   
   const videoUrl = cld.video(isMobile ? 'refcb34z0130viqbvkh3' : 'pc-qujb4nfgqjbhkbrfcegf').toURL();
 
