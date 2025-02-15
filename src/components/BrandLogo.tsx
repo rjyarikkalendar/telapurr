@@ -8,7 +8,7 @@ export const BrandLogo = () => {
         <img
           src="/lovable-uploads/0562e1f0-b033-4094-86a6-cbf9c21240d6.png"
           alt="Milenasia Tea"
-          className="w-full h-full object-contain relative opacity-90"
+          className="w-full h-full object-contain relative opacity-75"
         />
       </div>
     </Link>
