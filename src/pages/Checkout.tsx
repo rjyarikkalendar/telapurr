@@ -38,7 +38,7 @@ interface CheckoutFormData {
 const Checkout = () => {
   const navigate = useNavigate();
   const { items } = useCart();
-  const { currentLang } = useLanguage();
+  const { currentLang, t } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const form = useForm<CheckoutFormData>();
 
@@ -59,11 +59,11 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-playfair text-tea-text mb-8">Оформление заказа</h1>
+        <h1 className="text-3xl font-playfair text-tea-text mb-8">{t.checkout.title}</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-medium mb-6">Информация о получателе</h2>
+            <h2 className="text-xl font-medium mb-6">{t.checkout.recipientInfo}</h2>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(handlePayment)} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -72,9 +72,9 @@ const Checkout = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Имя</FormLabel>
+                        <FormLabel>{t.checkout.firstName}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Иван" {...field} />
+                          <Input {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -85,9 +85,9 @@ const Checkout = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Фамилия</FormLabel>
+                        <FormLabel>{t.checkout.lastName}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Иванов" {...field} />
+                          <Input {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -100,9 +100,9 @@ const Checkout = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t.checkout.email}</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="example@mail.com" {...field} />
+                        <Input type="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -114,9 +114,9 @@ const Checkout = () => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Телефон</FormLabel>
+                      <FormLabel>{t.checkout.phone}</FormLabel>
                       <FormControl>
-                        <Input placeholder="+7 (999) 999-99-99" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -128,18 +128,18 @@ const Checkout = () => {
                   name="country"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Страна</FormLabel>
+                      <FormLabel>{t.checkout.country}</FormLabel>
                       <Select 
                         onValueChange={(value) => {
                           field.onChange(value);
                           setSelectedCountry(value);
-                          form.setValue('city', ''); // Сброс города при смене страны
+                          form.setValue('city', '');
                         }}
                         value={field.value}
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Выберите страну" />
+                            <SelectValue placeholder={t.checkout.selectCountry} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -162,7 +162,7 @@ const Checkout = () => {
                   name="city"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Город</FormLabel>
+                      <FormLabel>{t.checkout.city}</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         value={field.value}
@@ -170,7 +170,7 @@ const Checkout = () => {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Выберите город" />
+                            <SelectValue placeholder={t.checkout.selectCity} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -193,9 +193,9 @@ const Checkout = () => {
                   name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Адрес</FormLabel>
+                      <FormLabel>{t.checkout.address}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Улица, дом, квартира" {...field} />
+                        <Input placeholder={t.checkout.addressPlaceholder} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -207,9 +207,9 @@ const Checkout = () => {
                   name="postalCode"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Индекс</FormLabel>
+                      <FormLabel>{t.checkout.postalCode}</FormLabel>
                       <FormControl>
-                        <Input placeholder="123456" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -220,15 +220,14 @@ const Checkout = () => {
                   type="submit"
                   className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
                 >
-                  Оплатить {totalAmount} €
+                  {t.checkout.pay} {totalAmount} €
                 </Button>
               </form>
             </Form>
           </div>
 
-          {/* Список товаров */}
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-medium mb-6">Ваш заказ</h2>
+            <h2 className="text-xl font-medium mb-6">{t.checkout.yourOrder}</h2>
             <div className="space-y-4">
               {items.map((item) => (
                 <div 
@@ -245,7 +244,7 @@ const Checkout = () => {
                     {item.category === 'tea' && item.selectedSize && (
                       <p className="text-sm text-gray-500">{item.selectedSize} г</p>
                     )}
-                    <p className="text-sm text-gray-500">Количество: {item.quantity}</p>
+                    <p className="text-sm text-gray-500">{t.checkout.quantity}: {item.quantity}</p>
                   </div>
                   <p className="text-tea-brown">{item.price * item.quantity} €</p>
                 </div>
@@ -253,7 +252,7 @@ const Checkout = () => {
               
               <div className="pt-4 border-t">
                 <div className="flex justify-between items-center font-medium">
-                  <span>Итого:</span>
+                  <span>{t.checkout.orderTotal}:</span>
                   <span className="text-tea-brown text-lg">{totalAmount} €</span>
                 </div>
               </div>

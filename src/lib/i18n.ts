@@ -32,6 +32,25 @@ export const translations = {
     ceremony: {
       title: 'Чайные церемонии',
       learnMore: 'Узнать больше'
+    },
+    checkout: {
+      title: 'Оформление заказа',
+      recipientInfo: 'Информация о получателе',
+      firstName: 'Имя',
+      lastName: 'Фамилия',
+      email: 'Email',
+      phone: 'Телефон',
+      country: 'Страна',
+      city: 'Город',
+      address: 'Адрес',
+      postalCode: 'Индекс',
+      selectCountry: 'Выберите страну',
+      selectCity: 'Выберите город',
+      addressPlaceholder: 'Улица, дом, квартира',
+      pay: 'Оплатить',
+      orderTotal: 'Итого',
+      yourOrder: 'Ваш заказ',
+      quantity: 'Количество'
     }
   },
   en: {
@@ -58,6 +77,25 @@ export const translations = {
     ceremony: {
       title: 'Tea Ceremonies',
       learnMore: 'Learn More'
+    },
+    checkout: {
+      title: 'Checkout',
+      recipientInfo: 'Recipient Information',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      email: 'Email',
+      phone: 'Phone',
+      country: 'Country',
+      city: 'City',
+      address: 'Address',
+      postalCode: 'Postal Code',
+      selectCountry: 'Select country',
+      selectCity: 'Select city',
+      addressPlaceholder: 'Street, house, apartment',
+      pay: 'Pay',
+      orderTotal: 'Total',
+      yourOrder: 'Your Order',
+      quantity: 'Quantity'
     }
   },
   es: {
@@ -84,6 +122,25 @@ export const translations = {
     ceremony: {
       title: 'Ceremonias de Té',
       learnMore: 'Más Información'
+    },
+    checkout: {
+      title: 'Finalizar Compra',
+      recipientInfo: 'Información del Destinatario',
+      firstName: 'Nombre',
+      lastName: 'Apellido',
+      email: 'Correo electrónico',
+      phone: 'Teléfono',
+      country: 'País',
+      city: 'Ciudad',
+      address: 'Dirección',
+      postalCode: 'Código Postal',
+      selectCountry: 'Seleccionar país',
+      selectCity: 'Seleccionar ciudad',
+      addressPlaceholder: 'Calle, número, apartamento',
+      pay: 'Pagar',
+      orderTotal: 'Total',
+      yourOrder: 'Tu Pedido',
+      quantity: 'Cantidad'
     }
   }
 } as const;
