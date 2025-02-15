@@ -18,7 +18,12 @@ export const westernEuropeCities: CitiesByLang = {
       { id: "dre", name: "Дрезден" },
       { id: "han", name: "Ганновер" },
       { id: "nur", name: "Нюрнберг" },
-      { id: "boc", name: "Бохум" }
+      { id: "boc", name: "Бохум" },
+      { id: "wup", name: "Вупперталь" },
+      { id: "bil", name: "Билефельд" },
+      { id: "bon", name: "Бонн" },
+      { id: "man", name: "Маннгейм" },
+      { id: "kar", name: "Карлсруэ" }
     ],
     fr: [
       { id: "par", name: "Париж" },
@@ -35,7 +40,12 @@ export const westernEuropeCities: CitiesByLang = {
       { id: "rei", name: "Реймс" },
       { id: "hav", name: "Гавр" },
       { id: "sai", name: "Сент-Этьен" },
-      { id: "tln", name: "Тулон" }
+      { id: "tln", name: "Тулон" },
+      { id: "met", name: "Мец" },
+      { id: "gre", name: "Гренобль" },
+      { id: "dij", name: "Дижон" },
+      { id: "ang", name: "Анже" },
+      { id: "nim", name: "Ним" }
     ],
     nl: [
       { id: "ams", name: "Амстердам" },
@@ -47,19 +57,29 @@ export const westernEuropeCities: CitiesByLang = {
       { id: "gro", name: "Гронинген" },
       { id: "alm", name: "Алмере" },
       { id: "bre", name: "Бреда" },
-      { id: "nij", name: "Неймеген" }
+      { id: "nij", name: "Неймеген" },
+      { id: "ens", name: "Энсхеде" },
+      { id: "har", name: "Харлем" },
+      { id: "arn", name: "Арнем" },
+      { id: "zaa", name: "Зандам" },
+      { id: "ame", name: "Амерсфорт" }
     ],
     be: [
       { id: "bru", name: "Брюссель" },
       { id: "ant", name: "Антверпен" },
       { id: "gnt", name: "Гент" },
       { id: "lie", name: "Льеж" },
-      { id: "bru", name: "Брюгге" },
+      { id: "brg", name: "Брюгге" },
       { id: "cha", name: "Шарлеруа" },
       { id: "nam", name: "Намюр" },
       { id: "leu", name: "Лёвен" },
       { id: "mon", name: "Монс" },
-      { id: "ost", name: "Остенде" }
+      { id: "ost", name: "Остенде" },
+      { id: "has", name: "Хасселт" },
+      { id: "kor", name: "Кортрейк" },
+      { id: "sin", name: "Синт-Никлас" },
+      { id: "aud", name: "Ауденарде" },
+      { id: "gen", name: "Генк" }
     ]
   },
   en: {
@@ -68,28 +88,78 @@ export const westernEuropeCities: CitiesByLang = {
       { id: "ham", name: "Hamburg" },
       { id: "mun", name: "Munich" },
       { id: "col", name: "Cologne" },
-      { id: "fra", name: "Frankfurt" }
+      { id: "fra", name: "Frankfurt" },
+      { id: "stu", name: "Stuttgart" },
+      { id: "dus", name: "Düsseldorf" },
+      { id: "dor", name: "Dortmund" },
+      { id: "ess", name: "Essen" },
+      { id: "lei", name: "Leipzig" },
+      { id: "bre", name: "Bremen" },
+      { id: "dre", name: "Dresden" },
+      { id: "han", name: "Hanover" },
+      { id: "nur", name: "Nuremberg" },
+      { id: "boc", name: "Bochum" },
+      { id: "wup", name: "Wuppertal" },
+      { id: "bil", name: "Bielefeld" },
+      { id: "bon", name: "Bonn" },
+      { id: "man", name: "Mannheim" },
+      { id: "kar", name: "Karlsruhe" }
     ],
     fr: [
       { id: "par", name: "Paris" },
       { id: "mar", name: "Marseille" },
       { id: "lyo", name: "Lyon" },
       { id: "tou", name: "Toulouse" },
-      { id: "nic", name: "Nice" }
+      { id: "nic", name: "Nice" },
+      { id: "nan", name: "Nantes" },
+      { id: "str", name: "Strasbourg" },
+      { id: "mon", name: "Montpellier" },
+      { id: "bor", name: "Bordeaux" },
+      { id: "lil", name: "Lille" },
+      { id: "ren", name: "Rennes" },
+      { id: "rei", name: "Reims" },
+      { id: "hav", name: "Le Havre" },
+      { id: "sai", name: "Saint-Étienne" },
+      { id: "tln", name: "Toulon" },
+      { id: "met", name: "Metz" },
+      { id: "gre", name: "Grenoble" },
+      { id: "dij", name: "Dijon" },
+      { id: "ang", name: "Angers" },
+      { id: "nim", name: "Nîmes" }
     ],
     nl: [
       { id: "ams", name: "Amsterdam" },
       { id: "rot", name: "Rotterdam" },
       { id: "hag", name: "The Hague" },
       { id: "utr", name: "Utrecht" },
-      { id: "ein", name: "Eindhoven" }
+      { id: "ein", name: "Eindhoven" },
+      { id: "til", name: "Tilburg" },
+      { id: "gro", name: "Groningen" },
+      { id: "alm", name: "Almere" },
+      { id: "bre", name: "Breda" },
+      { id: "nij", name: "Nijmegen" },
+      { id: "ens", name: "Enschede" },
+      { id: "har", name: "Haarlem" },
+      { id: "arn", name: "Arnhem" },
+      { id: "zaa", name: "Zaandam" },
+      { id: "ame", name: "Amersfoort" }
     ],
     be: [
       { id: "bru", name: "Brussels" },
       { id: "ant", name: "Antwerp" },
       { id: "gnt", name: "Ghent" },
       { id: "lie", name: "Liège" },
-      { id: "bru", name: "Bruges" }
+      { id: "brg", name: "Bruges" },
+      { id: "cha", name: "Charleroi" },
+      { id: "nam", name: "Namur" },
+      { id: "leu", name: "Leuven" },
+      { id: "mon", name: "Mons" },
+      { id: "ost", name: "Ostend" },
+      { id: "has", name: "Hasselt" },
+      { id: "kor", name: "Kortrijk" },
+      { id: "sin", name: "Sint-Niklaas" },
+      { id: "aud", name: "Oudenaarde" },
+      { id: "gen", name: "Genk" }
     ]
   },
   es: {
@@ -98,28 +168,78 @@ export const westernEuropeCities: CitiesByLang = {
       { id: "ham", name: "Hamburgo" },
       { id: "mun", name: "Múnich" },
       { id: "col", name: "Colonia" },
-      { id: "fra", name: "Fráncfort" }
+      { id: "fra", name: "Fráncfort" },
+      { id: "stu", name: "Stuttgart" },
+      { id: "dus", name: "Düsseldorf" },
+      { id: "dor", name: "Dortmund" },
+      { id: "ess", name: "Essen" },
+      { id: "lei", name: "Leipzig" },
+      { id: "bre", name: "Bremen" },
+      { id: "dre", name: "Dresde" },
+      { id: "han", name: "Hannover" },
+      { id: "nur", name: "Núremberg" },
+      { id: "boc", name: "Bochum" },
+      { id: "wup", name: "Wuppertal" },
+      { id: "bil", name: "Bielefeld" },
+      { id: "bon", name: "Bonn" },
+      { id: "man", name: "Mannheim" },
+      { id: "kar", name: "Karlsruhe" }
     ],
     fr: [
       { id: "par", name: "París" },
       { id: "mar", name: "Marsella" },
       { id: "lyo", name: "Lyon" },
       { id: "tou", name: "Toulouse" },
-      { id: "nic", name: "Niza" }
+      { id: "nic", name: "Niza" },
+      { id: "nan", name: "Nantes" },
+      { id: "str", name: "Estrasburgo" },
+      { id: "mon", name: "Montpellier" },
+      { id: "bor", name: "Burdeos" },
+      { id: "lil", name: "Lille" },
+      { id: "ren", name: "Rennes" },
+      { id: "rei", name: "Reims" },
+      { id: "hav", name: "Le Havre" },
+      { id: "sai", name: "Saint-Étienne" },
+      { id: "tln", name: "Tolón" },
+      { id: "met", name: "Metz" },
+      { id: "gre", name: "Grenoble" },
+      { id: "dij", name: "Dijon" },
+      { id: "ang", name: "Angers" },
+      { id: "nim", name: "Nimes" }
     ],
     nl: [
       { id: "ams", name: "Ámsterdam" },
       { id: "rot", name: "Róterdam" },
       { id: "hag", name: "La Haya" },
       { id: "utr", name: "Utrecht" },
-      { id: "ein", name: "Eindhoven" }
+      { id: "ein", name: "Eindhoven" },
+      { id: "til", name: "Tilburg" },
+      { id: "gro", name: "Groninga" },
+      { id: "alm", name: "Almere" },
+      { id: "bre", name: "Breda" },
+      { id: "nij", name: "Nimega" },
+      { id: "ens", name: "Enschede" },
+      { id: "har", name: "Haarlem" },
+      { id: "arn", name: "Arnhem" },
+      { id: "zaa", name: "Zaandam" },
+      { id: "ame", name: "Amersfoort" }
     ],
     be: [
       { id: "bru", name: "Bruselas" },
       { id: "ant", name: "Amberes" },
       { id: "gnt", name: "Gante" },
       { id: "lie", name: "Lieja" },
-      { id: "bru", name: "Brujas" }
+      { id: "brg", name: "Brujas" },
+      { id: "cha", name: "Charleroi" },
+      { id: "nam", name: "Namur" },
+      { id: "leu", name: "Lovaina" },
+      { id: "mon", name: "Mons" },
+      { id: "ost", name: "Ostende" },
+      { id: "has", name: "Hasselt" },
+      { id: "kor", name: "Cortrique" },
+      { id: "sin", name: "Sint-Niklaas" },
+      { id: "aud", name: "Oudenaarde" },
+      { id: "gen", name: "Genk" }
     ]
   }
 };
