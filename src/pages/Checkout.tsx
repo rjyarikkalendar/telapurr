@@ -52,7 +52,6 @@ const CheckoutForm = () => {
   const { currentLang, t } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
-  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
   const { toast } = useToast();
   const stripe = useStripe();
   const elements = useElements();
@@ -101,8 +100,6 @@ const CheckoutForm = () => {
         throw new Error('Не удалось получить данные для оплаты');
       }
 
-      setPaymentIntent(response.data.clientSecret);
-
       const { error } = await stripe.confirmPayment({
         elements,
         clientSecret: response.data.clientSecret,
@@ -115,7 +112,6 @@ const CheckoutForm = () => {
         throw error;
       }
 
-      // Очищаем корзину только после успешной оплаты
       clearCart();
       navigate(`/order/${response.data.orderId}`);
     } catch (error) {
@@ -297,23 +293,21 @@ const CheckoutForm = () => {
           )}
         />
 
-        {paymentIntent && (
-          <div className="relative">
-            <PaymentElement 
-              options={{
-                layout: {
-                  type: 'tabs',
-                  defaultCollapsed: false,
-                },
-              }}
-            />
-          </div>
-        )}
+        <div className="relative">
+          <PaymentElement 
+            options={{
+              layout: {
+                type: 'tabs',
+                defaultCollapsed: false,
+              },
+            }}
+          />
+        </div>
 
         <Button 
           type="submit"
           className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
-          disabled={isLoading || !stripe || !elements || !paymentIntent}
+          disabled={isLoading || !stripe || !elements}
         >
           {isLoading ? "Обработка..." : `${t.checkout.pay} ${totalAmount} €`}
         </Button>
