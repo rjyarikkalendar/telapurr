@@ -1,4 +1,3 @@
-
 import { CitiesByLang } from '../types';
 
 export const northernEuropeCities: CitiesByLang = {
@@ -493,4 +492,32 @@ export const northernEuropeCities: CitiesByLang = {
       { id: "gli", name: "Gliwice" },
       { id: "rze", name: "Rzeszow" },
       { id: "zab", name: "Zabrze" },
-      { id: "wal", name: "Walbrzych
+      { id: "wal", name: "Walbrzych" },
+      { id: "plo", name: "Płock" }
+    ],
+    at: [
+      { id: "vie", name: "Viena" },
+      { id: "gra", name: "Graz" },
+      { id: "lin", name: "Linz" },
+      { id: "sal", name: "Salzburgo" },
+      { id: "inn", name: "Innsbruck" },
+      { id: "kla", name: "Klagenfurt" },
+      { id: "vil", name: "Villach" },
+      { id: "wel", name: "Wels" },
+      { id: "don", name: "Dornbirn" },
+      { id: "wne", name: "Wiener Neustadt" },
+      { id: "ste", name: "Steyr" },
+      { id: "fel", name: "Feldkirch" },
+      { id: "bra", name: "Bregenz" },
+      { id: "leo", name: "Leonding" },
+      { id: "bad", name: "Baden" },
+      { id: "wol", name: "Wolfsberg" },
+      { id: "lus", name: "Lustenau" },
+      { id: "kun", name: "Kufstein" },
+      { id: "kre", name: "Krems" },
+      { id: "tra", name: "Traun" },
+      { id: "san", name: "Sankt Pölten" },
+      { id: "mod", name: "Mödling" }
+    ]
+  }
+};
