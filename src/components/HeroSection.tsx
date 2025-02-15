@@ -1,5 +1,12 @@
 
 import { useRef } from "react";
+import { Cloudinary } from "@cloudinary/url-gen";
+
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: 'lovable'
+  }
+});
 
 interface HeroSectionProps {
   t: {
@@ -12,6 +19,7 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ t }: HeroSectionProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoUrl = cld.video('tea-ceremony').toURL();
 
   return (
     <div className="relative w-full h-screen">
@@ -23,7 +31,7 @@ export const HeroSection = ({ t }: HeroSectionProps) => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/tea-ceremony.mp4" type="video/mp4" />
+        <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">

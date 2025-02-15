@@ -5,7 +5,6 @@ import { CeremonySection } from "@/components/CeremonySection";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { CartWidget } from "@/components/CartWidget";
 import { useLanguage } from "@/hooks/use-language";
-import { NavigationBanner } from "@/components/NavigationBanner";
 
 const Index = () => {
   const { currentLang, setLanguage, t } = useLanguage();
@@ -19,9 +18,6 @@ const Index = () => {
         <CategorySection t={t} />
         <CeremonySection t={t} />
       </main>
-      <div className="mt-20">
-        <NavigationBanner />
-      </div>
     </div>
   );
 };
