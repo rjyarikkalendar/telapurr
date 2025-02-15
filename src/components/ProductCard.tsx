@@ -52,8 +52,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           />
         </div>
         <CardContent className="p-4">
-          <h3 className="text-xl font-light text-tea-text mb-2">{product.title}</h3>
-          <p className="text-gray-600 text-sm">{product.description}</p>
+          <div className="space-y-1">
+            <h3 className="text-xl font-light text-tea-text">{product.title}</h3>
+            <p className="text-gray-600 text-sm">{product.description}</p>
+          </div>
         </CardContent>
         <CardFooter className="p-4 pt-0 flex justify-between items-center">
           <span className="text-tea-brown text-lg">{product.price} €</span>
