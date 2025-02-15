@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Product, CartItem } from '@/types/products';
 import { v4 as uuidv4 } from 'uuid';
+import { supabase } from "@/integrations/supabase/client";
 
 interface CartStore {
   sessionId: string;
@@ -15,7 +16,8 @@ interface CartStore {
   itemCount: number;
 }
 
-const SESSION_TIMEOUT = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+const GUEST_SESSION_TIMEOUT = 3 * 60 * 60 * 1000; // 3 hours
+const AUTH_SESSION_TIMEOUT = 60 * 24 * 60 * 60 * 1000; // 2 months
 
 export const useCart = create<CartStore>()(
   persist(
@@ -28,7 +30,10 @@ export const useCart = create<CartStore>()(
         const currentTime = Date.now();
         const lastUpdated = get().lastUpdated;
         
-        if (currentTime - lastUpdated > SESSION_TIMEOUT) {
+        const user = supabase.auth.getUser();
+        const sessionTimeout = user ? AUTH_SESSION_TIMEOUT : GUEST_SESSION_TIMEOUT;
+        
+        if (currentTime - lastUpdated > sessionTimeout) {
           set({ items: [], sessionId: uuidv4() });
         }
         
