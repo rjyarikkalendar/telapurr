@@ -1,15 +1,16 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Product } from '@/types/products';
+import { Product, CartItem } from '@/types/products';
 import { v4 as uuidv4 } from 'uuid';
 
 interface CartStore {
   sessionId: string;
-  items: Product[];
+  items: CartItem[];
   lastUpdated: number;
-  addItem: (item: Product) => void;
-  removeItem: (itemId: string) => void;
+  addItem: (item: Product, size?: number) => void;
+  removeItem: (itemId: string, size?: number) => void;
+  updateQuantity: (itemId: string, quantity: number, size?: number) => void;
   clearCart: () => void;
   itemCount: number;
 }
@@ -23,27 +24,60 @@ export const useCart = create<CartStore>()(
       items: [],
       lastUpdated: Date.now(),
       itemCount: 0,
-      addItem: (item) => {
+      addItem: (item, size) => {
         const currentTime = Date.now();
         const lastUpdated = get().lastUpdated;
         
-        // Check session timeout
         if (currentTime - lastUpdated > SESSION_TIMEOUT) {
           set({ items: [], sessionId: uuidv4() });
         }
         
-        set((state) => ({
-          items: [...state.items, item],
-          lastUpdated: currentTime,
-          itemCount: state.items.length + 1
-        }));
+        set((state) => {
+          const existingItemIndex = state.items.findIndex(
+            (i) => i.id === item.id && i.selectedSize === size
+          );
+
+          let newItems;
+          if (existingItemIndex > -1) {
+            newItems = [...state.items];
+            newItems[existingItemIndex].quantity += 1;
+          } else {
+            newItems = [...state.items, { ...item, quantity: 1, selectedSize: size }];
+          }
+
+          return {
+            items: newItems,
+            lastUpdated: currentTime,
+            itemCount: newItems.reduce((acc, item) => acc + item.quantity, 0)
+          };
+        });
       },
-      removeItem: (itemId) => {
-        set((state) => ({
-          items: state.items.filter((item) => item.id !== itemId),
-          lastUpdated: Date.now(),
-          itemCount: state.items.length - 1
-        }));
+      removeItem: (itemId, size) => {
+        set((state) => {
+          const newItems = state.items.filter(
+            (item) => !(item.id === itemId && item.selectedSize === size)
+          );
+          return {
+            items: newItems,
+            lastUpdated: Date.now(),
+            itemCount: newItems.reduce((acc, item) => acc + item.quantity, 0)
+          };
+        });
+      },
+      updateQuantity: (itemId, quantity, size) => {
+        set((state) => {
+          const newItems = state.items.map((item) => {
+            if (item.id === itemId && item.selectedSize === size) {
+              return { ...item, quantity };
+            }
+            return item;
+          });
+          return {
+            items: newItems,
+            lastUpdated: Date.now(),
+            itemCount: newItems.reduce((acc, item) => acc + item.quantity, 0)
+          };
+        });
       },
       clearCart: () => {
         set({ items: [], lastUpdated: Date.now(), itemCount: 0 });
