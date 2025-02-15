@@ -18,20 +18,26 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Ceremonies from "./pages/Ceremonies";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
 const AppContent = () => {
   const location = useLocation();
   const isCartOrCheckout = ['/cart', '/checkout'].includes(location.pathname);
+  const isAuth = location.pathname === '/auth';
   const { currentLang, setLanguage } = useLanguage();
 
   return (
     <>
-      <BrandLogo />
-      <CartWidget />
-      <ScrollToTopButton />
-      <LanguageSelector currentLang={currentLang} onLanguageChange={setLanguage} />
+      {!isAuth && (
+        <>
+          <BrandLogo />
+          <CartWidget />
+          <ScrollToTopButton />
+          <LanguageSelector currentLang={currentLang} onLanguageChange={setLanguage} />
+        </>
+      )}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/tea" element={<Tea />} />
@@ -40,9 +46,10 @@ const AppContent = () => {
         <Route path="/ceremonies" element={<Ceremonies />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isCartOrCheckout && <NavigationBanner />}
+      {!isCartOrCheckout && !isAuth && <NavigationBanner />}
     </>
   );
 };
