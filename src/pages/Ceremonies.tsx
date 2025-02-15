@@ -8,7 +8,7 @@ const Ceremonies = () => {
   const ceremonyProducts = products.filter((p) => p.category === "ceremony");
 
   return (
-    <main className="min-h-screen bg-tea-bg py-20">
+    <main className="min-h-screen bg-[#D3E4E0] py-20 pb-40">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-light text-tea-text mb-8 text-center">
           Чайные церемонии
