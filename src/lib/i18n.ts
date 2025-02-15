@@ -29,9 +29,9 @@ export const translations = {
         description: 'Наборы для чайной церемонии'
       }
     },
-    ceremony: {
+    ceremonies: {
       title: 'Чайные церемонии',
-      learnMore: 'Узнать больше'
+      description: 'Откройте для себя традиционные чайные церемонии'
     }
   },
   en: {
@@ -55,9 +55,9 @@ export const translations = {
         description: 'Tea ceremony sets'
       }
     },
-    ceremony: {
+    ceremonies: {
       title: 'Tea Ceremonies',
-      learnMore: 'Learn More'
+      description: 'Discover traditional tea ceremonies'
     }
   },
   es: {
@@ -81,9 +81,9 @@ export const translations = {
         description: 'Sets para la ceremonia del té'
       }
     },
-    ceremony: {
+    ceremonies: {
       title: 'Ceremonias de Té',
-      learnMore: 'Más Información'
+      description: 'Descubre las ceremonias tradicionales del té'
     }
   }
 } as const;
