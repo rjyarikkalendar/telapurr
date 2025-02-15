@@ -22,15 +22,15 @@ serve(async (req) => {
   }
 
   try {
-    const { items, deliveryInfo, userId } = await req.json();
+    const { items, userId } = await req.json();
     
-    console.log('Received request:', { items, deliveryInfo, userId });
+    console.log('Received request:', { items, userId });
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       throw new Error('Invalid items data');
     }
 
-    // Создаем или получаем customer в Stripe
+    // Получаем профиль пользователя
     const { data: profiles, error: profileError } = await supabase
       .from('profiles')
       .select('*')
@@ -44,6 +44,7 @@ serve(async (req) => {
 
     console.log('Found profile:', profiles);
 
+    // Создаем или получаем customer в Stripe
     let customerId = null;
 
     if (profiles?.email) {
@@ -66,13 +67,14 @@ serve(async (req) => {
       }
     }
 
-    // Создаем платежное намерение
+    // Рассчитываем общую сумму
     const totalAmount = items.reduce((sum: number, item: any) => 
       sum + item.price * item.quantity, 0
     );
 
     console.log('Calculated total amount:', totalAmount);
 
+    // Создаем платежное намерение
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(totalAmount * 100), // Конвертируем в центы
       currency: 'eur',
@@ -84,41 +86,9 @@ serve(async (req) => {
 
     console.log('Created payment intent:', paymentIntent.id);
 
-    // Создаем заказ в базе данных
-    const { data: order, error: orderError } = await supabase
-      .from('orders')
-      .insert({
-        user_id: userId,
-        total_amount: totalAmount,
-        currency: 'EUR',
-        payment_intent_id: paymentIntent.id,
-        shipping_address: deliveryInfo,
-        items: items,
-        status: 'pending',
-      })
-      .select()
-      .single();
-
-    if (orderError) {
-      console.error('Order creation error:', orderError);
-      throw new Error('Failed to create order');
-    }
-
-    console.log('Created order:', order.id);
-
-    // Обновляем metadata в платежном намерении
-    await stripe.paymentIntents.update(paymentIntent.id, {
-      metadata: {
-        orderId: order.id,
-      },
-    });
-
-    console.log('Updated payment intent metadata');
-
     return new Response(
       JSON.stringify({
         clientSecret: paymentIntent.client_secret,
-        orderId: order.id,
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

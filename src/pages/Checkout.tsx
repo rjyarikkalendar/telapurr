@@ -308,29 +308,79 @@ const Checkout = () => {
   const { items } = useCart();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const { t } = useLanguage();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchClientSecret = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      try {
+        console.log('Fetching client secret...');
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
 
-      if (!user) return;
+        if (!user) {
+          console.log('No user found');
+          toast({
+            title: "Ошибка",
+            description: "Необходимо войти в систему",
+            variant: "destructive",
+          });
+          navigate('/auth');
+          return;
+        }
 
-      const response = await supabase.functions.invoke('create-payment-intent', {
-        body: {
-          items,
-          userId: user.id,
-        },
-      });
+        console.log('Creating payment intent for user:', user.id);
+        const response = await supabase.functions.invoke('create-payment-intent', {
+          body: {
+            items,
+            userId: user.id,
+          },
+        });
 
-      if (response.data?.clientSecret) {
-        setClientSecret(response.data.clientSecret);
+        console.log('Payment intent response:', response);
+
+        if (response.error) {
+          console.error('Error creating payment intent:', response.error);
+          toast({
+            title: "Ошибка",
+            description: "Не удалось создать платёж",
+            variant: "destructive",
+          });
+          return;
+        }
+
+        if (response.data?.clientSecret) {
+          console.log('Client secret received');
+          setClientSecret(response.data.clientSecret);
+        } else {
+          console.error('No client secret in response');
+          toast({
+            title: "Ошибка",
+            description: "Не удалось получить данные для оплаты",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Fetch client secret error:', error);
+        toast({
+          title: "Ошибка",
+          description: "Произошла ошибка при подготовке платежа",
+          variant: "destructive",
+        });
       }
     };
 
-    fetchClientSecret();
-  }, [items]);
+    if (items.length > 0) {
+      fetchClientSecret();
+    }
+  }, [items, toast, navigate]);
+
+  // Проверяем, есть ли товары в корзине
+  if (items.length === 0) {
+    navigate('/cart');
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
@@ -342,11 +392,25 @@ const Checkout = () => {
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-xl font-medium mb-6">{t.checkout.recipientInfo}</h2>
             {clientSecret ? (
-              <Elements stripe={stripePromise} options={{ clientSecret }}>
+              <Elements 
+                stripe={stripePromise} 
+                options={{
+                  clientSecret,
+                  appearance: {
+                    theme: 'stripe',
+                    variables: {
+                      colorPrimary: '#8B4513',
+                    },
+                  },
+                }}
+              >
                 <CheckoutForm />
               </Elements>
             ) : (
-              <div>Загрузка...</div>
+              <div className="flex items-center justify-center p-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-tea-brown"></div>
+                <span className="ml-3">Загрузка платёжной формы...</span>
+              </div>
             )}
           </div>
 
