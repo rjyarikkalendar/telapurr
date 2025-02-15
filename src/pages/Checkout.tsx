@@ -52,7 +52,7 @@ const CheckoutForm = () => {
   const { currentLang, t } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
   const { toast } = useToast();
   const stripe = useStripe();
   const elements = useElements();
@@ -61,17 +61,10 @@ const CheckoutForm = () => {
     resolver: zodResolver(checkoutSchema),
   });
 
-  useEffect(() => {
-    if (!stripe || !elements) {
-      return;
-    }
-    setIsReady(true);
-  }, [stripe, elements]);
-
   const handlePayment = async (data: CheckoutFormData) => {
     try {
-      if (!stripe || !elements || !isReady) {
-        console.error('Stripe не инициализирован или форма не готова');
+      if (!stripe || !elements) {
+        console.error('Stripe не инициализирован');
         return;
       }
 
@@ -90,6 +83,7 @@ const CheckoutForm = () => {
         return;
       }
 
+      // Создаем платежное намерение
       const response = await supabase.functions.invoke('create-payment-intent', {
         body: {
           items,
@@ -103,21 +97,27 @@ const CheckoutForm = () => {
         throw new Error(response.error.message || 'Ошибка при создании платежа');
       }
 
-      const { orderId } = response.data;
+      if (!response.data?.clientSecret) {
+        throw new Error('Не удалось получить данные для оплаты');
+      }
 
-      const result = await stripe.confirmPayment({
+      setPaymentIntent(response.data.clientSecret);
+
+      const { error } = await stripe.confirmPayment({
         elements,
+        clientSecret: response.data.clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/order/${orderId}`,
+          return_url: `${window.location.origin}/order/${response.data.orderId}`,
         },
       });
 
-      if (result.error) {
-        throw new Error(result.error.message || 'Ошибка при подтверждении платежа');
+      if (error) {
+        throw error;
       }
 
+      // Очищаем корзину только после успешной оплаты
       clearCart();
-      navigate(`/order/${orderId}`);
+      navigate(`/order/${response.data.orderId}`);
     } catch (error) {
       console.error('Payment error:', error);
       toast({
@@ -297,22 +297,23 @@ const CheckoutForm = () => {
           )}
         />
 
-        <div className="relative">
-          <PaymentElement 
-            onReady={() => setIsReady(true)}
-            options={{
-              layout: {
-                type: 'tabs',
-                defaultCollapsed: false,
-              },
-            }}
-          />
-        </div>
+        {paymentIntent && (
+          <div className="relative">
+            <PaymentElement 
+              options={{
+                layout: {
+                  type: 'tabs',
+                  defaultCollapsed: false,
+                },
+              }}
+            />
+          </div>
+        )}
 
         <Button 
           type="submit"
           className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
-          disabled={isLoading || !stripe || !elements || !isReady}
+          disabled={isLoading || !stripe || !elements || !paymentIntent}
         >
           {isLoading ? "Обработка..." : `${t.checkout.pay} ${totalAmount} €`}
         </Button>
@@ -331,13 +332,11 @@ const Checkout = () => {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        console.log('Fetching client secret...');
         const {
           data: { user },
         } = await supabase.auth.getUser();
 
         if (!user) {
-          console.log('No user found');
           toast({
             title: "Ошибка",
             description: "Необходимо войти в систему",
@@ -347,7 +346,6 @@ const Checkout = () => {
           return;
         }
 
-        console.log('Creating payment intent for user:', user.id);
         const response = await supabase.functions.invoke('create-payment-intent', {
           body: {
             items,
@@ -355,34 +353,20 @@ const Checkout = () => {
           },
         });
 
-        console.log('Payment intent response:', response);
-
         if (response.error) {
-          console.error('Error creating payment intent:', response.error);
-          toast({
-            title: "Ошибка",
-            description: "Не удалось создать платёж",
-            variant: "destructive",
-          });
-          return;
+          throw new Error(response.error.message || 'Не удалось создать платёж');
         }
 
         if (response.data?.clientSecret) {
-          console.log('Client secret received');
           setClientSecret(response.data.clientSecret);
         } else {
-          console.error('No client secret in response');
-          toast({
-            title: "Ошибка",
-            description: "Не удалось получить данные для оплаты",
-            variant: "destructive",
-          });
+          throw new Error('Не удалось получить данные для оплаты');
         }
       } catch (error) {
         console.error('Fetch client secret error:', error);
         toast({
           title: "Ошибка",
-          description: "Произошла ошибка при подготовке платежа",
+          description: error instanceof Error ? error.message : 'Произошла ошибка при подготовке платежа',
           variant: "destructive",
         });
       }
@@ -393,7 +377,6 @@ const Checkout = () => {
     }
   }, [items, toast, navigate]);
 
-  // Проверяем, есть ли товары в корзине
   if (items.length === 0) {
     navigate('/cart');
     return null;
