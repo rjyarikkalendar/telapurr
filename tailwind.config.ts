@@ -19,6 +19,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        playfair: ['Playfair Display', 'serif'],
+        cormorant: ['Cormorant Garamond', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -66,8 +70,11 @@ export default {
           "0%": {
             transform: "translateY(0) rotate(0deg)",
           },
-          "50%": {
-            transform: "translateY(10px) rotate(8deg)",
+          "33%": {
+            transform: "translateY(6px) rotate(5deg)",
+          },
+          "66%": {
+            transform: "translateY(10px) rotate(-3deg)",
           },
           "100%": {
             transform: "translateY(0) rotate(0deg)",
@@ -77,8 +84,11 @@ export default {
           "0%": {
             transform: "translateX(0)",
           },
-          "50%": {
-            transform: "translateX(2px) skewX(-3deg)",
+          "33%": {
+            transform: "translateX(2px) skewX(-2deg)",
+          },
+          "66%": {
+            transform: "translateX(-1px) skewX(1deg)",
           },
           "100%": {
             transform: "translateX(0)",
@@ -89,7 +99,7 @@ export default {
             transform: "scaleY(1)",
           },
           "50%": {
-            transform: "scaleY(0.9)",
+            transform: "scaleY(0.95)",
           },
           "100%": {
             transform: "scaleY(1)",
@@ -98,7 +108,7 @@ export default {
         "slide-fade": {
           "0%": {
             opacity: "0",
-            transform: "translateX(100%)",
+            transform: "translateX(50%)",
           },
           "100%": {
             opacity: "1",
@@ -107,10 +117,10 @@ export default {
         },
       },
       animation: {
-        "leaf-fall": "leaf-fall 3s ease-in-out infinite",
-        "liquid-wave": "liquid-wave 2s ease-in-out infinite",
-        "package-open": "package-open 2s ease-in-out infinite",
-        "slide-fade": "slide-fade 0.5s ease-out",
+        "leaf-fall": "leaf-fall 4s ease-in-out infinite",
+        "liquid-wave": "liquid-wave 3s ease-in-out infinite",
+        "package-open": "package-open 3s ease-in-out infinite",
+        "slide-fade": "slide-fade 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
       },
     },
   },

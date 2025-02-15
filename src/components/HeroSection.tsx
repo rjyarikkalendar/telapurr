@@ -54,10 +54,10 @@ export const HeroSection = ({ t }: HeroSectionProps) => {
       </video>
       <div className="absolute inset-0 bg-black/40" />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
-        <h1 className="text-4xl md:text-6xl font-light mb-6 animate-fade-up">
+        <h1 className="text-4xl md:text-6xl font-light mb-6 animate-fade-up font-playfair">
           {t.hero.title}
         </h1>
-        <p className="text-lg md:text-xl text-center max-w-2xl animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <p className="text-lg md:text-xl text-center max-w-2xl animate-fade-up font-cormorant" style={{ animationDelay: "0.2s" }}>
           {t.hero.subtitle}
         </p>
       </div>

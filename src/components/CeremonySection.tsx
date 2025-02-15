@@ -15,12 +15,17 @@ interface CeremonySectionProps {
 
 export const CeremonySection = ({ t }: CeremonySectionProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const images = ["openart-tea", "vDQRHmiV", "cJGAbcz", "bGO4w3zL"];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((current) => (current + 1) % images.length);
-    }, 3000);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex((current) => (current + 1) % images.length);
+        setIsTransitioning(false);
+      }, 600);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -41,24 +46,26 @@ export const CeremonySection = ({ t }: CeremonySectionProps) => {
     <section className="py-20 bg-cream">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-16 font-light animate-fade-up">
+          <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-16 font-light font-playfair">
             {t.ceremony.title}
           </h2>
-          <div className="relative aspect-video rounded-lg overflow-hidden animate-fade-up">
+          <div className="relative aspect-video rounded-lg overflow-hidden">
             <img
               src={imageUrl}
               alt="Чайная церемония"
-              className="w-full h-full object-cover transition-all duration-500 animate-slide-fade"
+              className={`w-full h-full object-cover transition-all duration-1000 ${
+                isTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+              }`}
               style={{
-                maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
+                maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)'
               }}
             />
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/20 transition-opacity duration-1000" />
             <div className="absolute inset-0 flex items-center justify-center">
               <a
                 href="/ceremonies"
-                className="px-8 py-3 bg-white/90 text-tea-text rounded-full hover:bg-white transition-colors duration-300"
+                className="px-8 py-3 bg-white/90 text-tea-text rounded-full hover:bg-white transition-all duration-500 font-cormorant text-lg"
               >
                 {t.ceremony.learnMore}
               </a>
