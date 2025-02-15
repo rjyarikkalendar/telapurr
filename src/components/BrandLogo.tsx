@@ -5,7 +5,7 @@ export const BrandLogo = () => {
   return (
     <Link to="/" className="absolute top-4 left-32 z-50 w-24 h-24 transition-transform hover:scale-105">
       <div className="relative w-full h-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-tea-bg/80 via-transparent to-tea-bg/80 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/40 pointer-events-none z-10" />
         <img
           src="/lovable-uploads/0562e1f0-b033-4094-86a6-cbf9c21240d6.png"
           alt="Milenasia Tea"
