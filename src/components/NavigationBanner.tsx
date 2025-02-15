@@ -23,6 +23,17 @@ export const NavigationBanner = () => {
     }
   }, [location.pathname]);
 
+  useEffect(() => {
+    // Только если мы на главной странице, запускаем автоматическое переключение
+    if (location.pathname === '/') {
+      const interval = setInterval(() => {
+        setActiveIndex((current) => (current + 1) % sections.length);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [location.pathname]);
+
   const getTitleByPath = (path: string) => {
     switch (path) {
       case '/tea':
@@ -45,7 +56,9 @@ export const NavigationBanner = () => {
           {sections.map((section, index) => (
             <div 
               key={section.path}
-              className={`${index === activeIndex ? 'block' : 'hidden'}`}
+              className={`transition-opacity duration-300 ${
+                index === activeIndex ? 'opacity-100' : 'opacity-0 hidden'
+              }`}
             >
               <div 
                 className={`cursor-pointer p-6 rounded-lg transition-all ${section.color} ${
