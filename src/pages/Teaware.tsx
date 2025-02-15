@@ -7,7 +7,7 @@ const Teaware = () => {
   const teawareProducts = products.filter((p) => p.category === "teaware");
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#D3E4E0]">
+    <div className="flex flex-col min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm">
       <BackButton />
       <main className="flex-grow pt-20 px-4">
         <div className="container mx-auto">

@@ -17,7 +17,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="min-h-screen bg-tea-bg py-16">
+    <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-playfair text-tea-text mb-8">Корзина</h1>
         
