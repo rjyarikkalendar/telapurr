@@ -9,12 +9,19 @@ interface CeremonySectionProps {
 }
 
 export const CeremonySection = ({ t }: CeremonySectionProps) => {
+  const bannerImages = [
+    "openart-tea",
+    "vDQRHmiV",
+    "cJGAbcz",
+    "bGO4w3zL"
+  ];
+
   return (
-    <section className="bg-[#B8A99B] relative">
+    <section className="py-16 bg-[#B8A99B]">
       <div className="container mx-auto px-4">
         <div className="relative h-[400px] rounded-lg overflow-hidden">
           <img 
-            src="/photo-1472396961693-142e6e269027" 
+            src={`/${bannerImages[0]}`} 
             alt="Tea Ceremony" 
             className="w-full h-full object-cover"
           />

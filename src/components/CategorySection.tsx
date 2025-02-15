@@ -38,9 +38,9 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
   ];
 
   return (
-    <section className="relative z-10 -mt-32 h-[100px] bg-[#D3E4E0] transform transition-transform duration-700 ease-out">
+    <section className="py-16 bg-[#D3E4E0]">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-8 font-light font-playfair">
+        <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-12 font-light font-playfair">
           {t.categories.discover}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
