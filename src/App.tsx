@@ -8,6 +8,7 @@ import { CartWidget } from "@/components/CartWidget";
 import { NavigationBanner } from "@/components/NavigationBanner";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { BrandLogo } from "@/components/BrandLogo";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { useLanguage, LanguageProvider } from "@/hooks/use-language";
 import Index from "./pages/Index";
 import Tea from "./pages/Tea";
@@ -29,6 +30,7 @@ const AppContent = () => {
     <>
       <BrandLogo />
       <CartWidget />
+      <ScrollToTopButton />
       <LanguageSelector currentLang={currentLang} onLanguageChange={setLanguage} />
       <Routes>
         <Route path="/" element={<Index />} />
@@ -48,7 +50,7 @@ const AppContent = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
+      <Toaster position="left" />
       <Sonner />
       <BrowserRouter>
         <LanguageProvider>

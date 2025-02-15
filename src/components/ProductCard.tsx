@@ -18,7 +18,7 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const [open, setOpen] = useState(false);
-  const { addItem } = useCart();
+  const { addItem, removeItem } = useCart();
   const sizes = product.category === 'tea' ? [25, 50, 100, 200, 350] : undefined;
 
   const handleAddToCart = (size?: number) => {
@@ -26,8 +26,18 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     setOpen(false);
     toast({
       title: "Товар добавлен в корзину",
-      description: product.title,
-      duration: 3000,
+      description: (
+        <div className="flex flex-col gap-2">
+          <p>{product.title}</p>
+          <Button 
+            variant="destructive" 
+            onClick={() => removeItem(product.id, size)}
+          >
+            Отменить
+          </Button>
+        </div>
+      ),
+      duration: 5000,
     });
   };
 
