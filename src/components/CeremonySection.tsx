@@ -14,7 +14,7 @@ export const CeremonySection = ({ t }: CeremonySectionProps) => {
       <div className="container mx-auto px-4">
         <div className="relative h-[400px] rounded-lg overflow-hidden">
           <img 
-            src="/ceremony-banner.jpg" 
+            src="/photo-1472396961693-142e6e269027" 
             alt="Tea Ceremony" 
             className="w-full h-full object-cover"
           />
