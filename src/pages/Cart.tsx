@@ -46,7 +46,7 @@ const Cart = () => {
                     {item.category === 'tea' && item.selectedSize && (
                       <p className="text-gray-500">{item.selectedSize} г</p>
                     )}
-                    <p className="text-tea-brown">{item.price} ₽</p>
+                    <p className="text-tea-brown">{item.price} €</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Button

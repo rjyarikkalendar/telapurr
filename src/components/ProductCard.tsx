@@ -46,7 +46,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <p className="text-gray-600 text-sm">{product.description}</p>
         </CardContent>
         <CardFooter className="p-4 pt-0 flex justify-between items-center">
-          <span className="text-tea-brown text-lg">{product.price} ₽</span>
+          <span className="text-tea-brown text-lg">{product.price} €</span>
           <Button
             onClick={() => sizes ? setOpen(true) : handleAddToCart()}
             className="bg-tea-brown hover:bg-tea-brown/90"
