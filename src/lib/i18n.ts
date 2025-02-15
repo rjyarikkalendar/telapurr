@@ -11,7 +11,8 @@ export const translations = {
   ru: {
     hero: {
       title: 'Искусство чайной церемонии',
-      subtitle: 'Погрузитесь в мир традиционной китайской чайной культуры'
+      subtitle: 'Погрузитесь в мир традиционной китайской чайной культуры',
+      cta: 'Начать путешествие'
     },
     categories: {
       discover: 'Откройте для себя',
@@ -36,7 +37,8 @@ export const translations = {
   en: {
     hero: {
       title: 'The Art of Tea Ceremony',
-      subtitle: 'Immerse yourself in the world of traditional Chinese tea culture'
+      subtitle: 'Immerse yourself in the world of traditional Chinese tea culture',
+      cta: 'Start the Journey'
     },
     categories: {
       discover: 'Discover',
@@ -61,7 +63,8 @@ export const translations = {
   es: {
     hero: {
       title: 'El Arte de la Ceremonia del Té',
-      subtitle: 'Sumérgete en el mundo de la cultura tradicional china del té'
+      subtitle: 'Sumérgete en el mundo de la cultura tradicional china del té',
+      cta: 'Comenzar el Viaje'
     },
     categories: {
       discover: 'Descubre',
@@ -84,4 +87,3 @@ export const translations = {
     }
   }
 } as const;
-
