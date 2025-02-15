@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,6 +22,9 @@ export default {
       fontFamily: {
         playfair: ['Playfair Display', 'serif'],
         cormorant: ['Cormorant Garamond', 'serif'],
+      },
+      backgroundImage: {
+        'radial-gradient': 'radial-gradient(circle, var(--tw-gradient-stops))',
       },
       colors: {
         border: "hsl(var(--border))",
