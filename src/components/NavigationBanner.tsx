@@ -30,7 +30,7 @@ export const NavigationBanner = () => {
   }, [location.pathname]);
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-[#2A2A2A] text-white py-8">
+    <div className="bg-[#2A2A2A] text-white py-8 mt-auto">
       <div className="container mx-auto px-4">
         <Carousel className="max-w-xl mx-auto">
           <CarouselContent>
