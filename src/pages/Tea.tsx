@@ -17,7 +17,7 @@ const Tea = () => {
       <BackButton />
       <main className="flex-grow pt-20 px-4">
         <div className="container mx-auto">
-          <div className="flex flex-col items-center gap-2 mb-8">
+          <div className="flex flex-col items-center gap-6 mb-8">
             <img
               src="/lovable-uploads/a014fe1e-efdf-4460-b58b-605bd8addaf6.png"
               alt="Milena Asia Tea"
