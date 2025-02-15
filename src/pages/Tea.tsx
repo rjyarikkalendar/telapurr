@@ -6,6 +6,7 @@ import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronRight } from "lucide-react";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
 
 const Tea = () => {
   const { currentLang } = useLanguage();
@@ -29,7 +30,7 @@ const Tea = () => {
           
           <Tabs defaultValue={teaCatalogs[0].id} className="w-full">
             <div className="relative">
-              <div className="overflow-x-auto pb-4 scrollbar-hide">
+              <div id="tea-categories" className="overflow-x-auto pb-4 scrollbar-hide">
                 <TabsList className="w-max flex space-x-2 bg-transparent">
                   {teaCatalogs.map((catalog) => (
                     <TabsTrigger
@@ -42,6 +43,7 @@ const Tea = () => {
                   ))}
                 </TabsList>
               </div>
+              <ScrollIndicator elementId="tea-categories" />
               <div className="absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-[#D3E4E0]/50 to-transparent pointer-events-none">
                 <ChevronRight className="absolute right-0 top-1/2 -translate-y-1/2 text-tea-brown/70" />
               </div>
