@@ -19,21 +19,21 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
       description: t.categories.tea.description,
       icon: Leaf,
       link: "/tea",
-      iconClassName: "animate-leaf-fall",
+      iconClassName: "group-hover:animate-leaf-fall",
     },
     {
       title: t.categories.teaware.title,
       description: t.categories.teaware.description,
       icon: CupSoda,
       link: "/teaware",
-      iconClassName: "animate-liquid-wave",
+      iconClassName: "group-hover:animate-liquid-wave",
     },
     {
       title: t.categories.sets.title,
       description: t.categories.sets.description,
       icon: Package,
       link: "/sets",
-      iconClassName: "animate-package-open",
+      iconClassName: "group-hover:animate-package-open",
     },
   ];
 
@@ -56,7 +56,7 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
                   <category.icon
                     size={64}
                     strokeWidth={1}
-                    className={`transform-gpu group-hover:${category.iconClassName}`}
+                    className={category.iconClassName}
                   />
                 </div>
                 <h3 className="text-2xl font-light text-tea-text mb-2">
