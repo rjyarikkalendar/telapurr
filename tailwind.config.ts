@@ -62,37 +62,55 @@ export default {
         },
       },
       keyframes: {
-        "fade-up": {
+        "leaf-fall": {
           "0%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-        },
-        "fade-in": {
-          "0%": {
-            opacity: "0",
-          },
-          "100%": {
-            opacity: "1",
-          },
-        },
-        float: {
-          "0%, 100%": {
-            transform: "translateY(0)",
+            transform: "translateY(0) rotate(0deg)",
           },
           "50%": {
-            transform: "translateY(-10px)",
+            transform: "translateY(10px) rotate(8deg)",
+          },
+          "100%": {
+            transform: "translateY(0) rotate(0deg)",
+          },
+        },
+        "liquid-wave": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "50%": {
+            transform: "translateX(2px) skewX(-3deg)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
+        "package-open": {
+          "0%": {
+            transform: "scaleY(1)",
+          },
+          "50%": {
+            transform: "scaleY(0.9)",
+          },
+          "100%": {
+            transform: "scaleY(1)",
+          },
+        },
+        "slide-fade": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(100%)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
           },
         },
       },
       animation: {
-        "fade-up": "fade-up 0.8s ease-out",
-        "fade-in": "fade-in 1s ease-out",
-        float: "float 6s ease-in-out infinite",
+        "leaf-fall": "leaf-fall 3s ease-in-out infinite",
+        "liquid-wave": "liquid-wave 2s ease-in-out infinite",
+        "package-open": "package-open 2s ease-in-out infinite",
+        "slide-fade": "slide-fade 0.5s ease-out",
       },
     },
   },

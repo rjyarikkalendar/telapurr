@@ -19,18 +19,21 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
       description: t.categories.tea.description,
       icon: Leaf,
       link: "/tea",
+      iconClassName: "animate-leaf-fall",
     },
     {
       title: t.categories.teaware.title,
       description: t.categories.teaware.description,
       icon: CupSoda,
       link: "/teaware",
+      iconClassName: "animate-liquid-wave",
     },
     {
       title: t.categories.sets.title,
       description: t.categories.sets.description,
       icon: Package,
       link: "/sets",
+      iconClassName: "animate-package-open",
     },
   ];
 
@@ -49,8 +52,12 @@ export const CategorySection = ({ t }: CategorySectionProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-6 text-tea-brown group-hover:animate-float">
-                  <category.icon size={64} strokeWidth={1} />
+                <div className="w-16 h-16 mb-6 text-tea-brown">
+                  <category.icon
+                    size={64}
+                    strokeWidth={1}
+                    className={`transform-gpu group-hover:${category.iconClassName}`}
+                  />
                 </div>
                 <h3 className="text-2xl font-light text-tea-text mb-2">
                   {category.title}

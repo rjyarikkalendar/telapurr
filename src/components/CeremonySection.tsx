@@ -48,7 +48,11 @@ export const CeremonySection = ({ t }: CeremonySectionProps) => {
             <img
               src={imageUrl}
               alt="Чайная церемония"
-              className="w-full h-full object-cover transition-opacity duration-500"
+              className="w-full h-full object-cover transition-all duration-500 animate-slide-fade"
+              style={{
+                maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
+              }}
             />
             <div className="absolute inset-0 bg-black/20" />
             <div className="absolute inset-0 flex items-center justify-center">
