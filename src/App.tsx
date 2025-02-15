@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartWidget } from "@/components/CartWidget";
 import { NavigationBanner } from "@/components/NavigationBanner";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguage } from "@/hooks/use-language";
 import Index from "./pages/Index";
 import Tea from "./pages/Tea";
 import Teaware from "./pages/Teaware";
@@ -20,10 +22,12 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   const location = useLocation();
   const isCartOrCheckout = ['/cart', '/checkout'].includes(location.pathname);
+  const { currentLang, setLanguage } = useLanguage();
 
   return (
     <>
       <CartWidget />
+      <LanguageSelector currentLang={currentLang} onLanguageChange={setLanguage} />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/tea" element={<Tea />} />
