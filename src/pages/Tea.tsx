@@ -18,11 +18,6 @@ const Tea = () => {
       <main className="flex-grow pt-20 px-4">
         <div className="container mx-auto">
           <div className="flex flex-col items-center gap-6 mb-8">
-            <img
-              src="/lovable-uploads/a014fe1e-efdf-4460-b58b-605bd8addaf6.png"
-              alt="Milena Asia Tea"
-              className="w-24 h-24 object-contain"
-            />
             <h1 className="text-4xl font-light text-tea-text text-center">
               {catalogs[currentLang].tea.title}
             </h1>
