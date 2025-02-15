@@ -1,4 +1,11 @@
 
+export interface Catalog {
+  id: string;
+  title: string;
+  description?: string;
+  parentId?: string;
+}
+
 export interface Product {
   id: string;
   title: string;
@@ -6,6 +13,7 @@ export interface Product {
   price: number;
   image: string;
   category: 'tea' | 'teaware' | 'sets' | 'ceremony';
+  catalogId: string;
   sizes?: number[];
   quantity?: number;
 }
