@@ -1,13 +1,11 @@
 
 import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   t: {
     hero: {
       title: string;
       subtitle: string;
-      cta: string;
     };
   };
 }
@@ -38,6 +36,7 @@ export const HeroSection = ({ t }: HeroSectionProps) => {
         autoPlay
         muted
         loop
+        playsInline
         className="absolute top-0 left-0 w-full h-full object-cover transition-transform"
         style={{ willChange: 'transform' }}
       >
@@ -47,12 +46,9 @@ export const HeroSection = ({ t }: HeroSectionProps) => {
         <h1 className="text-4xl md:text-6xl font-light mb-4 font-playfair">
           {t.hero.title}
         </h1>
-        <p className="text-xl md:text-2xl mb-8 font-light max-w-2xl">
+        <p className="text-xl md:text-2xl font-light max-w-2xl">
           {t.hero.subtitle}
         </p>
-        <Button size="lg" className="bg-tea-brown hover:bg-tea-brown/90">
-          {t.hero.cta}
-        </Button>
       </div>
     </section>
   );

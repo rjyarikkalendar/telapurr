@@ -3,12 +3,14 @@ import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info } from "lucide-react";
+import { BackButton } from "@/components/BackButton";
 
 const Ceremonies = () => {
   const ceremonyProducts = products.filter((p) => p.category === "ceremony");
 
   return (
-    <main className="min-h-screen bg-[#D3E4E0] py-20 pb-40">
+    <main className="relative min-h-screen bg-[#D3E4E0] pt-20 pb-40">
+      <BackButton />
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-light text-tea-text mb-8 text-center">
           Чайные церемонии
