@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartWidget } from "@/components/CartWidget";
 import { NavigationBanner } from "@/components/NavigationBanner";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { BrandLogo } from "@/components/BrandLogo";
 import { useLanguage, LanguageProvider } from "@/hooks/use-language";
 import Index from "./pages/Index";
 import Tea from "./pages/Tea";
@@ -26,6 +27,7 @@ const AppContent = () => {
 
   return (
     <>
+      <BrandLogo />
       <CartWidget />
       <LanguageSelector currentLang={currentLang} onLanguageChange={setLanguage} />
       <Routes>
