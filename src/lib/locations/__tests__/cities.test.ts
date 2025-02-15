@@ -1,4 +1,5 @@
 
+import { describe, expect, test } from '@jest/globals';
 import { westernEuropeCities } from '../cities/western-europe';
 import { southernEuropeCities } from '../cities/southern-europe';
 
