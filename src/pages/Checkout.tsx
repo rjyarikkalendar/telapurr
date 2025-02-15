@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -57,71 +56,78 @@ const Checkout = () => {
     resolver: zodResolver(checkoutSchema),
   });
 
-  const handlePayment = async (data: CheckoutFormData) => {
-    try {
-      setIsLoading(true);
+const handlePayment = async (data: CheckoutFormData) => {
+  try {
+    setIsLoading(true);
 
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-      if (!user) {
-        toast({
-          title: "Ошибка",
-          description: "Необходимо войти в систему",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      const stripe = await stripePromise;
-      if (!stripe) {
-        throw new Error("Stripe не загружен");
-      }
-
-      const response = await supabase.functions.invoke('create-payment-intent', {
-        body: {
-          items,
-          deliveryInfo: data,
-          userId: user.id,
-        },
-      });
-
-      if (response.error) {
-        throw new Error(response.error.message);
-      }
-
-      const { clientSecret, orderId } = response.data;
-
-      const result = await stripe.confirmPayment({
-        elements: await stripe.elements({
-          clientSecret,
-          appearance: {
-            theme: 'stripe',
-          },
-        }),
-        confirmParams: {
-          return_url: `${window.location.origin}/order/${orderId}`,
-        },
-      });
-
-      if (result.error) {
-        throw new Error(result.error.message);
-      }
-
-      clearCart();
-      navigate(`/order/${orderId}`);
-    } catch (error) {
-      console.error('Payment error:', error);
+    if (!user) {
       toast({
-        title: "Ошибка оплаты",
-        description: error.message,
+        title: "Ошибка",
+        description: "Необходимо войти в систему",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
+      return;
     }
-  };
+
+    const stripe = await stripePromise;
+    if (!stripe) {
+      throw new Error("Stripe не загружен");
+    }
+
+    const response = await supabase.functions.invoke('create-payment-intent', {
+      body: {
+        items,
+        deliveryInfo: data,
+        userId: user.id,
+      },
+    });
+
+    if (response.error) {
+      console.error('Payment intent error:', response.error);
+      throw new Error(response.error.message || 'Ошибка при создании платежа');
+    }
+
+    const { clientSecret, orderId } = response.data;
+
+    if (!clientSecret) {
+      throw new Error('Не получен ключ для оплаты');
+    }
+
+    const elements = stripe.elements({
+      clientSecret,
+      appearance: {
+        theme: 'stripe',
+      },
+    });
+
+    const result = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/order/${orderId}`,
+      },
+    });
+
+    if (result.error) {
+      throw new Error(result.error.message || 'Ошибка при подтверждении платежа');
+    }
+
+    clearCart();
+    navigate(`/order/${orderId}`);
+  } catch (error) {
+    console.error('Payment error:', error);
+    toast({
+      title: "Ошибка оплаты",
+      description: error instanceof Error ? error.message : 'Произошла неожиданная ошибка',
+      variant: "destructive",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 

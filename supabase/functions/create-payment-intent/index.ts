@@ -24,14 +24,26 @@ serve(async (req) => {
   try {
     const { items, deliveryInfo, userId } = await req.json();
     
+    console.log('Received request:', { items, deliveryInfo, userId });
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      throw new Error('Invalid items data');
+    }
+
     // Создаем или получаем customer в Stripe
-    const { data: profiles } = await supabase
+    const { data: profiles, error: profileError } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', userId)
       .single();
 
-    let customer;
+    if (profileError) {
+      console.error('Profile error:', profileError);
+      throw new Error('Error fetching user profile');
+    }
+
+    console.log('Found profile:', profiles);
+
     let customerId = null;
 
     if (profiles?.email) {
@@ -42,6 +54,7 @@ serve(async (req) => {
 
       if (customers.data.length > 0) {
         customerId = customers.data[0].id;
+        console.log('Found existing customer:', customerId);
       } else {
         const newCustomer = await stripe.customers.create({
           email: profiles.email,
@@ -49,6 +62,7 @@ serve(async (req) => {
           phone: profiles.phone,
         });
         customerId = newCustomer.id;
+        console.log('Created new customer:', customerId);
       }
     }
 
@@ -57,6 +71,8 @@ serve(async (req) => {
       sum + item.price * item.quantity, 0
     );
 
+    console.log('Calculated total amount:', totalAmount);
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(totalAmount * 100), // Конвертируем в центы
       currency: 'eur',
@@ -64,10 +80,9 @@ serve(async (req) => {
       automatic_payment_methods: {
         enabled: true,
       },
-      metadata: {
-        orderId: '', // Будет обновлено после создания заказа
-      },
     });
+
+    console.log('Created payment intent:', paymentIntent.id);
 
     // Создаем заказ в базе данных
     const { data: order, error: orderError } = await supabase
@@ -85,8 +100,11 @@ serve(async (req) => {
       .single();
 
     if (orderError) {
-      throw new Error(orderError.message);
+      console.error('Order creation error:', orderError);
+      throw new Error('Failed to create order');
     }
+
+    console.log('Created order:', order.id);
 
     // Обновляем metadata в платежном намерении
     await stripe.paymentIntents.update(paymentIntent.id, {
@@ -95,6 +113,8 @@ serve(async (req) => {
       },
     });
 
+    console.log('Updated payment intent metadata');
+
     return new Response(
       JSON.stringify({
         clientSecret: paymentIntent.client_secret,
@@ -102,14 +122,17 @@ serve(async (req) => {
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200,
       },
     );
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error processing request:', error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error instanceof Error ? error.message : 'An unexpected error occurred',
+      }),
       {
-        status: 500,
+        status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       },
     );
