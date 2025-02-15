@@ -52,6 +52,7 @@ const CheckoutForm = () => {
   const { currentLang, t } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isElementMounted, setIsElementMounted] = useState(false);
   const { toast } = useToast();
   const stripe = useStripe();
   const elements = useElements();
@@ -62,8 +63,8 @@ const CheckoutForm = () => {
 
   const handlePayment = async (data: CheckoutFormData) => {
     try {
-      if (!stripe || !elements) {
-        console.error('Stripe не инициализирован');
+      if (!stripe || !elements || !isElementMounted) {
+        console.error('Stripe не инициализирован или элемент не готов');
         return;
       }
 
@@ -100,6 +101,7 @@ const CheckoutForm = () => {
         throw new Error('Не удалось получить данные для оплаты');
       }
 
+      console.log('Подтверждение платежа...');
       const { error } = await stripe.confirmPayment({
         elements,
         clientSecret: response.data.clientSecret,
@@ -109,6 +111,7 @@ const CheckoutForm = () => {
       });
 
       if (error) {
+        console.error('Ошибка подтверждения:', error);
         throw error;
       }
 
@@ -295,6 +298,10 @@ const CheckoutForm = () => {
 
         <div className="relative">
           <PaymentElement 
+            onReady={() => {
+              console.log('PaymentElement готов');
+              setIsElementMounted(true);
+            }}
             options={{
               layout: {
                 type: 'tabs',
@@ -307,7 +314,7 @@ const CheckoutForm = () => {
         <Button 
           type="submit"
           className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
-          disabled={isLoading || !stripe || !elements}
+          disabled={isLoading || !stripe || !elements || !isElementMounted}
         >
           {isLoading ? "Обработка..." : `${t.checkout.pay} ${totalAmount} €`}
         </Button>
