@@ -43,10 +43,13 @@ export const CeremonySection = ({ t }: CeremonySectionProps) => {
     .toURL();
 
   return (
-    <section className="relative z-20 py-20 bg-[#FEF7CD]">
+    <section className="relative z-20 py-20 bg-[#8B7355]" style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E")`,
+      backgroundBlendMode: 'overlay'
+    }}>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-16 font-light font-playfair">
+          <h2 className="text-3xl md:text-4xl text-center text-white mb-16 font-light font-playfair">
             {t.ceremony.title}
           </h2>
           <div className="relative aspect-video rounded-lg overflow-hidden">
