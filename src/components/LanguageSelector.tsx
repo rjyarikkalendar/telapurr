@@ -1,6 +1,11 @@
 
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Globe } from "lucide-react";
 import { languages, Language } from "@/lib/i18n";
 
@@ -11,18 +16,26 @@ interface LanguageSelectorProps {
 
 export const LanguageSelector = ({ currentLang, onLanguageChange }: LanguageSelectorProps) => {
   return (
-    <div className="fixed top-4 right-4 z-50 flex gap-1">
-      {Object.entries(languages).map(([code, name]) => (
-        <Button
-          key={code}
-          variant={currentLang === code ? "default" : "outline"}
-          size="sm"
-          onClick={() => onLanguageChange(code as Language)}
-          className="w-12 h-8 text-sm flex items-center justify-center"
-        >
-          {code.toUpperCase()}
-        </Button>
-      ))}
+    <div className="fixed top-4 right-4 z-50">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="sm" className="w-[70px] flex items-center gap-2">
+            <Globe className="h-4 w-4" />
+            {currentLang.toUpperCase()}
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          {Object.entries(languages).map(([code, name]) => (
+            <DropdownMenuItem
+              key={code}
+              onClick={() => onLanguageChange(code as Language)}
+              className="cursor-pointer"
+            >
+              {name}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };
