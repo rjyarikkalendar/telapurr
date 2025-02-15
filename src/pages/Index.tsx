@@ -2,13 +2,18 @@
 import { HeroSection } from "@/components/HeroSection";
 import { CategorySection } from "@/components/CategorySection";
 import { CeremonySection } from "@/components/CeremonySection";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguage } from "@/hooks/use-language";
 
 const Index = () => {
+  const { currentLang, setLanguage, t } = useLanguage();
+
   return (
     <main className="min-h-screen bg-tea-bg">
-      <HeroSection />
-      <CategorySection />
-      <CeremonySection />
+      <LanguageSelector currentLang={currentLang} onLanguageChange={setLanguage} />
+      <HeroSection t={t} />
+      <CategorySection t={t} />
+      <CeremonySection t={t} />
     </main>
   );
 };

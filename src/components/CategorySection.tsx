@@ -1,33 +1,44 @@
 
 import { CupSoda, Leaf, Package } from "lucide-react";
 
-const categories = [
-  {
-    title: "Чай",
-    description: "Коллекция изысканных сортов чая",
-    icon: Leaf,
-    link: "/tea",
-  },
-  {
-    title: "Посуда",
-    description: "Традиционная чайная посуда",
-    icon: CupSoda,
-    link: "/teaware",
-  },
-  {
-    title: "Наборы",
-    description: "Наборы для чайной церемонии",
-    icon: Package,
-    link: "/sets",
-  },
-];
+interface CategorySectionProps {
+  t: {
+    categories: {
+      discover: string;
+      tea: { title: string; description: string };
+      teaware: { title: string; description: string };
+      sets: { title: string; description: string };
+    };
+  };
+}
 
-export const CategorySection = () => {
+export const CategorySection = ({ t }: CategorySectionProps) => {
+  const categories = [
+    {
+      title: t.categories.tea.title,
+      description: t.categories.tea.description,
+      icon: Leaf,
+      link: "/tea",
+    },
+    {
+      title: t.categories.teaware.title,
+      description: t.categories.teaware.description,
+      icon: CupSoda,
+      link: "/teaware",
+    },
+    {
+      title: t.categories.sets.title,
+      description: t.categories.sets.description,
+      icon: Package,
+      link: "/sets",
+    },
+  ];
+
   return (
     <section className="py-20 bg-tea-bg">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl text-center text-tea-text mb-16 font-light">
-          Откройте для себя
+          {t.categories.discover}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((category, index) => (
