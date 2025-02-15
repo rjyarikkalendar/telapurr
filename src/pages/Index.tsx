@@ -32,7 +32,7 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen bg-tea-bg">
       <CartWidget />
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-4 right-20 z-50">
         {user ? (
           <Button onClick={handleSignOut}>Выйти</Button>
         ) : (
