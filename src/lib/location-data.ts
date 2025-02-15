@@ -1,81 +1,108 @@
 
 export const countries = {
   ru: [
-    { id: "ru", name: "Россия" },
-    { id: "kz", name: "Казахстан" },
-    { id: "by", name: "Беларусь" },
-    { id: "ua", name: "Украина" },
-    { id: "uz", name: "Узбекистан" },
+    { id: "de", name: "Германия" },
+    { id: "fr", name: "Франция" },
+    { id: "it", name: "Италия" },
+    { id: "es", name: "Испания" },
+    { id: "nl", name: "Нидерланды" },
   ],
   en: [
-    { id: "ru", name: "Russia" },
-    { id: "kz", name: "Kazakhstan" },
-    { id: "by", name: "Belarus" },
-    { id: "ua", name: "Ukraine" },
-    { id: "uz", name: "Uzbekistan" },
+    { id: "de", name: "Germany" },
+    { id: "fr", name: "France" },
+    { id: "it", name: "Italy" },
+    { id: "es", name: "Spain" },
+    { id: "nl", name: "Netherlands" },
   ],
   es: [
-    { id: "ru", name: "Rusia" },
-    { id: "kz", name: "Kazajistán" },
-    { id: "by", name: "Bielorrusia" },
-    { id: "ua", name: "Ucrania" },
-    { id: "uz", name: "Uzbekistán" },
+    { id: "de", name: "Alemania" },
+    { id: "fr", name: "Francia" },
+    { id: "it", name: "Italia" },
+    { id: "es", name: "España" },
+    { id: "nl", name: "Países Bajos" },
   ],
 };
 
 export const cities = {
   ru: {
-    ru: [
-      { id: "msk", name: "Москва" },
-      { id: "spb", name: "Санкт-Петербург" },
-      { id: "nsk", name: "Новосибирск" },
-      { id: "ekb", name: "Екатеринбург" },
+    de: [
+      { id: "ber", name: "Берлин" },
+      { id: "mun", name: "Мюнхен" },
+      { id: "ham", name: "Гамбург" },
     ],
-    kz: [
-      { id: "alm", name: "Алматы" },
-      { id: "nur", name: "Нур-Султан" },
-      { id: "krg", name: "Караганда" },
+    fr: [
+      { id: "par", name: "Париж" },
+      { id: "lyo", name: "Лион" },
+      { id: "mar", name: "Марсель" },
     ],
-    by: [
-      { id: "min", name: "Минск" },
-      { id: "brs", name: "Брест" },
-      { id: "grd", name: "Гродно" },
+    it: [
+      { id: "rom", name: "Рим" },
+      { id: "mil", name: "Милан" },
+      { id: "nap", name: "Неаполь" },
+    ],
+    es: [
+      { id: "mad", name: "Мадрид" },
+      { id: "bcn", name: "Барселона" },
+      { id: "val", name: "Валенсия" },
+    ],
+    nl: [
+      { id: "ams", name: "Амстердам" },
+      { id: "rot", name: "Роттердам" },
+      { id: "hag", name: "Гаага" },
     ],
   },
   en: {
-    ru: [
-      { id: "msk", name: "Moscow" },
-      { id: "spb", name: "Saint Petersburg" },
-      { id: "nsk", name: "Novosibirsk" },
-      { id: "ekb", name: "Yekaterinburg" },
+    de: [
+      { id: "ber", name: "Berlin" },
+      { id: "mun", name: "Munich" },
+      { id: "ham", name: "Hamburg" },
     ],
-    kz: [
-      { id: "alm", name: "Almaty" },
-      { id: "nur", name: "Nur-Sultan" },
-      { id: "krg", name: "Karaganda" },
+    fr: [
+      { id: "par", name: "Paris" },
+      { id: "lyo", name: "Lyon" },
+      { id: "mar", name: "Marseille" },
     ],
-    by: [
-      { id: "min", name: "Minsk" },
-      { id: "brs", name: "Brest" },
-      { id: "grd", name: "Grodno" },
+    it: [
+      { id: "rom", name: "Rome" },
+      { id: "mil", name: "Milan" },
+      { id: "nap", name: "Naples" },
+    ],
+    es: [
+      { id: "mad", name: "Madrid" },
+      { id: "bcn", name: "Barcelona" },
+      { id: "val", name: "Valencia" },
+    ],
+    nl: [
+      { id: "ams", name: "Amsterdam" },
+      { id: "rot", name: "Rotterdam" },
+      { id: "hag", name: "The Hague" },
     ],
   },
   es: {
-    ru: [
-      { id: "msk", name: "Moscú" },
-      { id: "spb", name: "San Petersburgo" },
-      { id: "nsk", name: "Novosibirsk" },
-      { id: "ekb", name: "Ekaterimburgo" },
+    de: [
+      { id: "ber", name: "Berlín" },
+      { id: "mun", name: "Múnich" },
+      { id: "ham", name: "Hamburgo" },
     ],
-    kz: [
-      { id: "alm", name: "Almaty" },
-      { id: "nur", name: "Nur-Sultán" },
-      { id: "krg", name: "Karagandá" },
+    fr: [
+      { id: "par", name: "París" },
+      { id: "lyo", name: "Lyon" },
+      { id: "mar", name: "Marsella" },
     ],
-    by: [
-      { id: "min", name: "Minsk" },
-      { id: "brs", name: "Brest" },
-      { id: "grd", name: "Grodno" },
+    it: [
+      { id: "rom", name: "Roma" },
+      { id: "mil", name: "Milán" },
+      { id: "nap", name: "Nápoles" },
+    ],
+    es: [
+      { id: "mad", name: "Madrid" },
+      { id: "bcn", name: "Barcelona" },
+      { id: "val", name: "Valencia" },
+    ],
+    nl: [
+      { id: "ams", name: "Ámsterdam" },
+      { id: "rot", name: "Róterdam" },
+      { id: "hag", name: "La Haya" },
     ],
   },
 };
