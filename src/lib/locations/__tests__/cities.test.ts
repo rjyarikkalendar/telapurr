@@ -2,6 +2,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { westernEuropeCities } from '../cities/western-europe';
 import { southernEuropeCities } from '../cities/southern-europe';
+import { easternEuropeCities } from '../cities/eastern-europe';
 
 describe('Cities data validation', () => {
   const MIN_CITIES = 20;
@@ -38,4 +39,11 @@ describe('Cities data validation', () => {
       });
     });
   });
-});
+
+  describe('Eastern Europe cities', () => {
+    const countries = ['bg', 'hr', 'sk', 'ro', 'hu', 'cz'] as const;
+    
+    test.each(languages)('should have at least 20 cities for each country in %s language', (lang) => {
+      countries.forEach(country => {
+        const cities = easternEuropeCities[lang][country];
+        expect(cities.length).toBe
