@@ -21,7 +21,7 @@ interface HeroSectionProps {
 export const HeroSection = ({ t }: HeroSectionProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoUrl = cld.video('qujb4nfgqjbhkbrfcegf')
-    .resize(scale().width(2304)) // 1920 * 1.2 = 2304 (увеличиваем на 20%)
+    .resize(scale().width(2400)) // 1920 * 1.25 = 2400 (увеличиваем на 25%)
     .toURL();
 
   return (
@@ -32,11 +32,12 @@ export const HeroSection = ({ t }: HeroSectionProps) => {
         muted
         loop
         playsInline
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-[120%] min-h-[120%] object-cover"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-[125%] min-h-[125%] object-cover"
       >
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
         <div className="text-center px-4">
           <h1 className="text-4xl md:text-6xl font-light mb-4 font-playfair text-white">
