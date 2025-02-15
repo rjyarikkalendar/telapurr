@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/use-cart";
 import { useLanguage } from "@/hooks/use-language";
+import { BackButton } from "@/components/BackButton";
 import {
   Form,
   FormControl,
@@ -58,6 +59,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
+      <BackButton />
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-playfair text-tea-text mb-8">{t.checkout.title}</h1>
         
@@ -174,7 +176,7 @@ const Checkout = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <ScrollArea className="h-[200px]">
+                          <ScrollArea className="h-[200px] overflow-y-auto">
                             {availableCities.map((city) => (
                               <SelectItem key={city.id} value={city.id}>
                                 {city.name}
