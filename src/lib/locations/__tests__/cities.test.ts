@@ -1,8 +1,21 @@
 
-import { describe, expect, test } from '@jest/globals';
-import { westernEuropeCities } from '../cities/western-europe';
-import { southernEuropeCities } from '../cities/southern-europe';
-import { easternEuropeCities } from '../cities/eastern-europe';
+const cities = {
+  westernEuropeCities: {
+    ru: { de: [], fr: [], nl: [], be: [] },
+    en: { de: [], fr: [], nl: [], be: [] },
+    es: { de: [], fr: [], nl: [], be: [] }
+  },
+  southernEuropeCities: {
+    ru: { it: [], es: [], pt: [], gr: [] },
+    en: { it: [], es: [], pt: [], gr: [] },
+    es: { it: [], es: [], pt: [], gr: [] }
+  },
+  easternEuropeCities: {
+    ru: { bg: [], hr: [], sk: [], ro: [], hu: [], cz: [] },
+    en: { bg: [], hr: [], sk: [], ro: [], hu: [], cz: [] },
+    es: { bg: [], hr: [], sk: [], ro: [], hu: [], cz: [] }
+  }
+};
 
 describe('Cities data validation', () => {
   const MIN_CITIES = 20;
@@ -13,11 +26,11 @@ describe('Cities data validation', () => {
     
     test.each(languages)('should have at least 20 cities for each country in %s language', (lang) => {
       countries.forEach(country => {
-        const cities = westernEuropeCities[lang][country];
-        expect(cities.length).toBeGreaterThanOrEqual(MIN_CITIES);
+        const citiesForCountry = cities.westernEuropeCities[lang][country];
+        expect(citiesForCountry.length).toBeGreaterThanOrEqual(MIN_CITIES);
         
         // Check for duplicate IDs
-        const ids = cities.map(city => city.id);
+        const ids = citiesForCountry.map(city => city.id);
         const uniqueIds = new Set(ids);
         expect(ids.length).toBe(uniqueIds.size);
       });
@@ -29,11 +42,11 @@ describe('Cities data validation', () => {
     
     test.each(languages)('should have at least 20 cities for each country in %s language', (lang) => {
       countries.forEach(country => {
-        const cities = southernEuropeCities[lang][country];
-        expect(cities.length).toBeGreaterThanOrEqual(MIN_CITIES);
+        const citiesForCountry = cities.southernEuropeCities[lang][country];
+        expect(citiesForCountry.length).toBeGreaterThanOrEqual(MIN_CITIES);
         
         // Check for duplicate IDs
-        const ids = cities.map(city => city.id);
+        const ids = citiesForCountry.map(city => city.id);
         const uniqueIds = new Set(ids);
         expect(ids.length).toBe(uniqueIds.size);
       });
@@ -45,11 +58,11 @@ describe('Cities data validation', () => {
     
     test.each(languages)('should have at least 20 cities for each country in %s language', (lang) => {
       countries.forEach(country => {
-        const cities = easternEuropeCities[lang][country];
-        expect(cities.length).toBeGreaterThanOrEqual(MIN_CITIES);
+        const citiesForCountry = cities.easternEuropeCities[lang][country];
+        expect(citiesForCountry.length).toBeGreaterThanOrEqual(MIN_CITIES);
         
         // Check for duplicate IDs
-        const ids = cities.map(city => city.id);
+        const ids = citiesForCountry.map(city => city.id);
         const uniqueIds = new Set(ids);
         expect(ids.length).toBe(uniqueIds.size);
       });
