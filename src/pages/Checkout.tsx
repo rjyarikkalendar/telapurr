@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,6 +52,7 @@ const CheckoutForm = () => {
   const { currentLang, t } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const { toast } = useToast();
   const stripe = useStripe();
   const elements = useElements();
@@ -61,10 +61,17 @@ const CheckoutForm = () => {
     resolver: zodResolver(checkoutSchema),
   });
 
+  useEffect(() => {
+    if (!stripe || !elements) {
+      return;
+    }
+    setIsReady(true);
+  }, [stripe, elements]);
+
   const handlePayment = async (data: CheckoutFormData) => {
     try {
-      if (!stripe || !elements) {
-        console.error('Stripe не инициализирован');
+      if (!stripe || !elements || !isReady) {
+        console.error('Stripe не инициализирован или форма не готова');
         return;
       }
 
@@ -290,12 +297,22 @@ const CheckoutForm = () => {
           )}
         />
 
-        <PaymentElement />
+        <div className="relative">
+          <PaymentElement 
+            onReady={() => setIsReady(true)}
+            options={{
+              layout: {
+                type: 'tabs',
+                defaultCollapsed: false,
+              },
+            }}
+          />
+        </div>
 
         <Button 
           type="submit"
           className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
-          disabled={isLoading || !stripe || !elements}
+          disabled={isLoading || !stripe || !elements || !isReady}
         >
           {isLoading ? "Обработка..." : `${t.checkout.pay} ${totalAmount} €`}
         </Button>
