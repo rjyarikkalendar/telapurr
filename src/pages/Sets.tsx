@@ -2,7 +2,6 @@
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { BackButton } from "@/components/BackButton";
-import { NavigationBanner } from "@/components/NavigationBanner";
 
 const Sets = () => {
   const setProducts = products.filter((p) => p.category === "sets");
@@ -20,7 +19,6 @@ const Sets = () => {
           </div>
         </div>
       </main>
-      <NavigationBanner />
     </div>
   );
 };

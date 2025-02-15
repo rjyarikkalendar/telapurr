@@ -2,7 +2,6 @@
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { BackButton } from "@/components/BackButton";
-import { NavigationBanner } from "@/components/NavigationBanner";
 
 const Tea = () => {
   const teaProducts = products.filter((p) => p.category === "tea");
@@ -20,7 +19,6 @@ const Tea = () => {
           </div>
         </div>
       </main>
-      <NavigationBanner />
     </div>
   );
 };
