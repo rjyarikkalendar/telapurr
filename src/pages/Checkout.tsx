@@ -176,9 +176,13 @@ const Checkout = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <ScrollArea className="h-[200px] overflow-y-auto">
+                          <ScrollArea className="h-[300px] max-h-[50vh] overflow-y-auto">
                             {availableCities.map((city) => (
-                              <SelectItem key={city.id} value={city.id}>
+                              <SelectItem 
+                                key={city.id} 
+                                value={city.id}
+                                className="cursor-pointer hover:bg-gray-100"
+                              >
                                 {city.name}
                               </SelectItem>
                             ))}

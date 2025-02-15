@@ -8,28 +8,58 @@ export const westernEuropeCities: CitiesByLang = {
       { id: "ham", name: "Гамбург" },
       { id: "mun", name: "Мюнхен" },
       { id: "col", name: "Кёльн" },
-      { id: "fra", name: "Франкфурт-на-Майне" }
+      { id: "fra", name: "Франкфурт-на-Майне" },
+      { id: "stu", name: "Штутгарт" },
+      { id: "dus", name: "Дюссельдорф" },
+      { id: "dor", name: "Дортмунд" },
+      { id: "ess", name: "Эссен" },
+      { id: "lei", name: "Лейпциг" },
+      { id: "bre", name: "Бремен" },
+      { id: "dre", name: "Дрезден" },
+      { id: "han", name: "Ганновер" },
+      { id: "nur", name: "Нюрнберг" },
+      { id: "boc", name: "Бохум" }
     ],
     fr: [
       { id: "par", name: "Париж" },
       { id: "mar", name: "Марсель" },
       { id: "lyo", name: "Лион" },
       { id: "tou", name: "Тулуза" },
-      { id: "nic", name: "Ницца" }
+      { id: "nic", name: "Ницца" },
+      { id: "nan", name: "Нант" },
+      { id: "str", name: "Страсбург" },
+      { id: "mon", name: "Монпелье" },
+      { id: "bor", name: "Бордо" },
+      { id: "lil", name: "Лилль" },
+      { id: "ren", name: "Ренн" },
+      { id: "rei", name: "Реймс" },
+      { id: "hav", name: "Гавр" },
+      { id: "sai", name: "Сент-Этьен" },
+      { id: "tln", name: "Тулон" }
     ],
     nl: [
       { id: "ams", name: "Амстердам" },
       { id: "rot", name: "Роттердам" },
       { id: "hag", name: "Гаага" },
       { id: "utr", name: "Утрехт" },
-      { id: "ein", name: "Эйндховен" }
+      { id: "ein", name: "Эйндховен" },
+      { id: "til", name: "Тилбург" },
+      { id: "gro", name: "Гронинген" },
+      { id: "alm", name: "Алмере" },
+      { id: "bre", name: "Бреда" },
+      { id: "nij", name: "Неймеген" }
     ],
     be: [
       { id: "bru", name: "Брюссель" },
       { id: "ant", name: "Антверпен" },
       { id: "gnt", name: "Гент" },
       { id: "lie", name: "Льеж" },
-      { id: "bru", name: "Брюгге" }
+      { id: "bru", name: "Брюгге" },
+      { id: "cha", name: "Шарлеруа" },
+      { id: "nam", name: "Намюр" },
+      { id: "leu", name: "Лёвен" },
+      { id: "mon", name: "Монс" },
+      { id: "ost", name: "Остенде" }
     ]
   },
   en: {
