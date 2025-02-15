@@ -56,6 +56,36 @@ export type Database = {
           },
         ]
       }
+      payment: {
+        Row: {
+          amount: number | null
+          attrs: Json | null
+          created: string | null
+          currency: string | null
+          customer: string | null
+          id: string | null
+          payment_method: string | null
+        }
+        Insert: {
+          amount?: number | null
+          attrs?: Json | null
+          created?: string | null
+          currency?: string | null
+          customer?: string | null
+          id?: string | null
+          payment_method?: string | null
+        }
+        Update: {
+          amount?: number | null
+          attrs?: Json | null
+          created?: string | null
+          currency?: string | null
+          customer?: string | null
+          id?: string | null
+          payment_method?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

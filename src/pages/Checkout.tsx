@@ -24,28 +24,103 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useNavigate } from "react-router-dom";
 import { countries, cities } from "@/lib/locations";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useToast } from "@/components/ui/use-toast";
+import { loadStripe } from "@stripe/stripe-js";
 
-interface CheckoutFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  country: string;
-  city: string;
-  address: string;
-  postalCode: string;
-}
+const stripePromise = loadStripe('pk_test_51Ow8kpHhvUXfFCfBwDSdJgVkLLpYcC71Z4nS0RH6kcwR4lmV2YRk6MpR0f13uHHGPBH3QkC9hoFW55G8hxFQKB8X00Tz2AGrjH');
+
+const checkoutSchema = z.object({
+  firstName: z.string().min(1, "Обязательное поле"),
+  lastName: z.string().min(1, "Обязательное поле"),
+  email: z.string().email("Некорректный email"),
+  phone: z.string().min(1, "Обязательное поле"),
+  country: z.string().min(1, "Выберите страну"),
+  city: z.string().min(1, "Выберите город"),
+  address: z.string().min(1, "Обязательное поле"),
+  postalCode: z.string().min(1, "Обязательное поле"),
+});
+
+type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const { items } = useCart();
+  const { items, clearCart } = useCart();
   const { currentLang, t } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
-  const form = useForm<CheckoutFormData>();
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  
+  const form = useForm<CheckoutFormData>({
+    resolver: zodResolver(checkoutSchema),
+  });
 
   const handlePayment = async (data: CheckoutFormData) => {
-    console.log("Order data:", { items, deliveryInfo: data });
-    // Здесь будет интеграция с платежной системой
+    try {
+      setIsLoading(true);
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        toast({
+          title: "Ошибка",
+          description: "Необходимо войти в систему",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const stripe = await stripePromise;
+      if (!stripe) {
+        throw new Error("Stripe не загружен");
+      }
+
+      const response = await supabase.functions.invoke('create-payment-intent', {
+        body: {
+          items,
+          deliveryInfo: data,
+          userId: user.id,
+        },
+      });
+
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      const { clientSecret, orderId } = response.data;
+
+      const result = await stripe.confirmPayment({
+        elements: await stripe.elements({
+          clientSecret,
+          appearance: {
+            theme: 'stripe',
+          },
+        }),
+        confirmParams: {
+          return_url: `${window.location.origin}/order/${orderId}`,
+        },
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+
+      clearCart();
+      navigate(`/order/${orderId}`);
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Ошибка оплаты",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -55,7 +130,9 @@ const Checkout = () => {
     return null;
   }
 
-  const availableCities = selectedCountry ? cities[currentLang][selectedCountry as keyof typeof cities[typeof currentLang]] || [] : [];
+  const availableCities = selectedCountry 
+    ? cities[currentLang][selectedCountry as keyof typeof cities[typeof currentLang]] || [] 
+    : [];
 
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
@@ -225,8 +302,9 @@ const Checkout = () => {
                 <Button 
                   type="submit"
                   className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
+                  disabled={isLoading}
                 >
-                  {t.checkout.pay} {totalAmount} €
+                  {isLoading ? "Обработка..." : `${t.checkout.pay} ${totalAmount} €`}
                 </Button>
               </form>
             </Form>
