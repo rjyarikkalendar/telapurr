@@ -1,4 +1,3 @@
-
 type CityData = { id: string; name: string; }[];
 type CitiesType = {
   [key in 'ru' | 'en' | 'es']: {
@@ -79,27 +78,37 @@ export const cities: CitiesType = {
   ru: {
     de: [
       { id: "ber", name: "Берлин" },
-      { id: "mun", name: "Мюнхен" },
       { id: "ham", name: "Гамбург" },
-      { id: "fra", name: "Франкфурт" },
+      { id: "mun", name: "Мюнхен" },
       { id: "col", name: "Кёльн" },
+      { id: "fra", name: "Франкфурт-на-Майне" },
       { id: "stu", name: "Штутгарт" },
       { id: "dus", name: "Дюссельдорф" },
-      { id: "dre", name: "Дрезден" },
+      { id: "dor", name: "Дортмунд" },
+      { id: "ess", name: "Эссен" },
       { id: "lei", name: "Лейпциг" },
-      { id: "han", name: "Ганновер" }
+      { id: "bre", name: "Бремен" },
+      { id: "dre", name: "Дрезден" },
+      { id: "han", name: "Ганновер" },
+      { id: "nur", name: "Нюрнберг" },
+      { id: "boc", name: "Бохум" }
     ],
     fr: [
       { id: "par", name: "Париж" },
-      { id: "lyo", name: "Лион" },
       { id: "mar", name: "Марсель" },
-      { id: "bor", name: "Бордо" },
-      { id: "tls", name: "Тулуза" },
-      { id: "lil", name: "Лилль" },
+      { id: "lyo", name: "Лион" },
+      { id: "tou", name: "Тулуза" },
       { id: "nic", name: "Ницца" },
       { id: "nan", name: "Нант" },
       { id: "str", name: "Страсбург" },
-      { id: "ren", name: "Ренн" }
+      { id: "mon", name: "Монпелье" },
+      { id: "bor", name: "Бордо" },
+      { id: "lil", name: "Лилль" },
+      { id: "ren", name: "Ренн" },
+      { id: "rei", name: "Реймс" },
+      { id: "hav", name: "Гавр" },
+      { id: "sai", name: "Сент-Этьен" },
+      { id: "tou", name: "Тулон" }
     ],
     it: [
       { id: "rom", name: "Рим" },
@@ -107,11 +116,16 @@ export const cities: CitiesType = {
       { id: "nap", name: "Неаполь" },
       { id: "tur", name: "Турин" },
       { id: "pal", name: "Палермо" },
+      { id: "gen", name: "Генуя" },
       { id: "bol", name: "Болонья" },
       { id: "flo", name: "Флоренция" },
+      { id: "bar", name: "Бари" },
       { id: "cat", name: "Катания" },
       { id: "ven", name: "Венеция" },
-      { id: "ver", name: "Верона" }
+      { id: "ver", name: "Верона" },
+      { id: "mes", name: "Мессина" },
+      { id: "pad", name: "Падуя" },
+      { id: "tri", name: "Триест" }
     ],
     es: [
       { id: "mad", name: "Мадрид" },
@@ -239,35 +253,337 @@ export const cities: CitiesType = {
     ]
   },
   en: {
-    // Аналогичная структура для английского языка
     de: [
       { id: "ber", name: "Berlin" },
-      { id: "mun", name: "Munich" },
       { id: "ham", name: "Hamburg" },
-      { id: "fra", name: "Frankfurt" },
+      { id: "mun", name: "Munich" },
       { id: "col", name: "Cologne" },
+      { id: "fra", name: "Frankfurt" },
       { id: "stu", name: "Stuttgart" },
       { id: "dus", name: "Düsseldorf" },
-      { id: "dre", name: "Dresden" },
+      { id: "dor", name: "Dortmund" },
+      { id: "ess", name: "Essen" },
       { id: "lei", name: "Leipzig" },
-      { id: "han", name: "Hannover" }
+      { id: "bre", name: "Bremen" },
+      { id: "dre", name: "Dresden" },
+      { id: "han", name: "Hanover" },
+      { id: "nur", name: "Nuremberg" },
+      { id: "boc", name: "Bochum" }
     ],
-    // ... остальные страны для английского языка
+    fr: [
+      { id: "par", name: "Paris" },
+      { id: "mar", name: "Marseille" },
+      { id: "lyo", name: "Lyon" },
+      { id: "tou", name: "Toulouse" },
+      { id: "nic", name: "Nice" },
+      { id: "nan", name: "Nantes" },
+      { id: "str", name: "Strasbourg" },
+      { id: "mon", name: "Montpellier" },
+      { id: "bor", name: "Bordeaux" },
+      { id: "lil", name: "Lille" },
+      { id: "ren", name: "Rennes" },
+      { id: "rei", name: "Reims" },
+      { id: "hav", name: "Le Havre" },
+      { id: "sai", name: "Saint-Étienne" },
+      { id: "tou", name: "Toulon" }
+    ],
+    it: [
+      { id: "rom", name: "Rome" },
+      { id: "mil", name: "Milan" },
+      { id: "nap", name: "Naples" },
+      { id: "tur", name: "Turin" },
+      { id: "pal", name: "Palermo" },
+      { id: "gen", name: "Genoa" },
+      { id: "bol", name: "Bologna" },
+      { id: "flo", name: "Florence" },
+      { id: "bar", name: "Bari" },
+      { id: "cat", name: "Catania" },
+      { id: "ven", name: "Venice" },
+      { id: "ver", name: "Verona" },
+      { id: "mes", name: "Messina" },
+      { id: "pad", name: "Padua" },
+      { id: "tri", name: "Trieste" }
+    ],
+    es: [
+      { id: "mad", name: "Madrid" },
+      { id: "bcn", name: "Barcelona" },
+      { id: "val", name: "Valencia" },
+      { id: "sev", name: "Seville" },
+      { id: "zar", name: "Zaragoza" },
+      { id: "mal", name: "Málaga" },
+      { id: "mur", name: "Murcia" },
+      { id: "pma", name: "Palma" },
+      { id: "lpa", name: "Las Palmas" },
+      { id: "bil", name: "Bilbao" }
+    ],
+    nl: [
+      { id: "ams", name: "Amsterdam" },
+      { id: "rot", name: "Rotterdam" },
+      { id: "hag", name: "The Hague" },
+      { id: "utr", name: "Utrecht" },
+      { id: "ein", name: "Eindhoven" }
+    ],
+    be: [
+      { id: "bru", name: "Brussels" },
+      { id: "ant", name: "Antwerp" },
+      { id: "gnt", name: "Ghent" },
+      { id: "lie", name: "Liège" },
+      { id: "bru", name: "Bruges" }
+    ],
+    pt: [
+      { id: "lis", name: "Lisbon" },
+      { id: "por", name: "Porto" },
+      { id: "far", name: "Faro" },
+      { id: "coi", name: "Coimbra" },
+      { id: "bra", name: "Braga" }
+    ],
+    at: [
+      { id: "vie", name: "Vienna" },
+      { id: "grz", name: "Graz" },
+      { id: "lin", name: "Linz" },
+      { id: "sal", name: "Salzburg" },
+      { id: "inn", name: "Innsbruck" }
+    ],
+    pl: [
+      { id: "war", name: "Warsaw" },
+      { id: "kra", name: "Kraków" },
+      { id: "wro", name: "Wrocław" },
+      { id: "poz", name: "Poznań" },
+      { id: "gdansk", name: "Gdańsk" }
+    ],
+    dk: [
+      { id: "cop", name: "Copenhagen" },
+      { id: "aar", name: "Aarhus" },
+      { id: "ode", name: "Odense" },
+      { id: "aal", name: "Aalborg" },
+      { id: "esbj", name: "Esbjerg" }
+    ],
+    se: [
+      { id: "sto", name: "Stockholm" },
+      { id: "got", name: "Gothenburg" },
+      { id: "mal", name: "Malmö" },
+      { id: "upp", name: "Uppsala" },
+      { id: "vas", name: "Västerås" }
+    ],
+    fi: [
+      { id: "hel", name: "Helsinki" },
+      { id: "esp", name: "Espoo" },
+      { id: "tam", name: "Tampere" },
+      { id: "van", name: "Vantaa" },
+      { id: "tur", name: "Turku" }
+    ],
+    ie: [
+      { id: "dub", name: "Dublin" },
+      { id: "cor", name: "Cork" },
+      { id: "gal", name: "Galway" },
+      { id: "lim", name: "Limerick" },
+      { id: "wat", name: "Waterford" }
+    ],
+    gr: [
+      { id: "ath", name: "Athens" },
+      { id: "the", name: "Thessaloniki" },
+      { id: "pat", name: "Patras" },
+      { id: "her", name: "Heraklion" },
+      { id: "lar", name: "Larissa" }
+    ],
+    cz: [
+      { id: "pra", name: "Prague" },
+      { id: "brn", name: "Brno" },
+      { id: "ost", name: "Ostrava" },
+      { id: "pls", name: "Plzeň" },
+      { id: "lib", name: "Liberec" }
+    ],
+    hu: [
+      { id: "bud", name: "Budapest" },
+      { id: "deb", name: "Debrecen" },
+      { id: "sze", name: "Szeged" },
+      { id: "mis", name: "Miskolc" },
+      { id: "pec", name: "Pécs" }
+    ],
+    ro: [
+      { id: "buc", name: "Bucharest" },
+      { id: "clu", name: "Cluj-Napoca" },
+      { id: "tim", name: "Timișoara" },
+      { id: "ias", name: "Iași" },
+      { id: "con", name: "Constanța" }
+    ],
+    bg: [
+      { id: "sof", name: "Sofia" },
+      { id: "plo", name: "Plovdiv" },
+      { id: "var", name: "Varna" },
+      { id: "bur", name: "Burgas" },
+      { id: "rus", name: "Ruse" }
+    ],
+    hr: [
+      { id: "zag", name: "Zagreb" },
+      { id: "spl", name: "Split" },
+      { id: "rij", name: "Rijeka" },
+      { id: "osi", name: "Osijek" },
+      { id: "zad", name: "Zadar" }
+    ],
+    sk: [
+      { id: "bra", name: "Bratislava" },
+      { id: "kos", name: "Košice" },
+      { id: "pre", name: "Prešov" },
+      { id: "nit", name: "Nitra" },
+      { id: "zil", name: "Žilina" }
+    ]
   },
   es: {
-    // Аналогичная структура для испанского языка
     de: [
       { id: "ber", name: "Berlín" },
-      { id: "mun", name: "Múnich" },
       { id: "ham", name: "Hamburgo" },
-      { id: "fra", name: "Fráncfort" },
+      { id: "mun", name: "Múnich" },
       { id: "col", name: "Colonia" },
+      { id: "fra", name: "Fráncfort" },
       { id: "stu", name: "Stuttgart" },
       { id: "dus", name: "Düsseldorf" },
-      { id: "dre", name: "Dresde" },
+      { id: "dor", name: "Dortmund" },
+      { id: "ess", name: "Essen" },
       { id: "lei", name: "Leipzig" },
-      { id: "han", name: "Hannover" }
+      { id: "bre", name: "Bremen" },
+      { id: "dre", name: "Dresde" },
+      { id: "han", name: "Hannover" },
+      { id: "nur", name: "Núremberg" },
+      { id: "boc", name: "Bochum" }
     ],
-    // ... остальные страны для испанского языка
-  }
-} as const;
+    fr: [
+      { id: "par", name: "París" },
+      { id: "mar", name: "Marsella" },
+      { id: "lyo", name: "Lyon" },
+      { id: "tou", name: "Toulouse" },
+      { id: "nic", name: "Niza" },
+      { id: "nan", name: "Nantes" },
+      { id: "str", name: "Estrasburgo" },
+      { id: "mon", name: "Montpellier" },
+      { id: "bor", name: "Burdeos" },
+      { id: "lil", name: "Lille" },
+      { id: "ren", name: "Rennes" },
+      { id: "rei", name: "Reims" },
+      { id: "hav", name: "Le Havre" },
+      { id: "sai", name: "Saint-Étienne" },
+      { id: "tou", name: "Tolón" }
+    ],
+    it: [
+      { id: "rom", name: "Roma" },
+      { id: "mil", name: "Milán" },
+      { id: "nap", name: "Nápoles" },
+      { id: "tur", name: "Turín" },
+      { id: "pal", name: "Palermo" },
+      { id: "gen", name: "Génova" },
+      { id: "bol", name: "Bolonia" },
+      { id: "flo", name: "Florencia" },
+      { id: "bar", name: "Bari" },
+      { id: "cat", name: "Catania" },
+      { id: "ven", name: "Venecia" },
+      { id: "ver", name: "Verona" },
+      { id: "mes", name: "Mesina" },
+      { id: "pad", name: "Padua" },
+      { id: "tri", name: "Trieste" }
+    ],
+    es: [
+      { id: "mad", name: "Madrid" },
+      { id: "bcn", name: "Barcelona" },
+      { id: "val", name: "Valencia" },
+      { id: "sev", name: "Sevilla" },
+      { id: "zar", name: "Zaragoza" },
+      { id: "mal", name: "Málaga" },
+      { id: "mur", name: "Murcia" },
+      { id: "pma", name: "Palma" },
+      { id: "lpa", name: "Las Palmas" },
+      { id: "bil", name: "Bilbao" }
+    ],
+    nl: [
+      { id: "ams", name: "Ámsterdam" },
+      { id: "rot", name: "Róterdam" },
+      { id: "hag", name: "La Haya" },
+      { id: "utr", name: "Utrecht" },
+      { id: "ein", name: "Eindhoven" }
+    ],
+    be: [
+      { id: "bru", name: "Bruselas" },
+      { id: "ant", name: "Amberes" },
+      { id: "gnt", name: "Gante" },
+      { id: "lie", name: "Lieja" },
+      { id: "bru", name: "Brujas" }
+    ],
+    pt: [
+      { id: "lis", name: "Lisboa" },
+      { id: "por", name: "Oporto" },
+      { id: "far", name: "Faro" },
+      { id: "coi", name: "Coímbra" },
+      { id: "bra", name: "Braga" }
+    ],
+    at: [
+      { id: "vie", name: "Viena" },
+      { id: "grz", name: "Graz" },
+      { id: "lin", name: "Linz" },
+      { id: "sal", name: "Salzburgo" },
+      { id: "inn", name: "Innsbruck" }
+    ],
+    pl: [
+      { id: "war", name: "Varsovia" },
+      { id: "kra", name: "Cracovia" },
+      { id: "wro", name: "Breslavia" },
+      { id: "poz", name: "Poznań" },
+      { id: "gdansk", name: "Gdańsk" }
+    ],
+    dk: [
+      { id: "cop", name: "Copenhague" },
+      { id: "aar", name: "Aarhus" },
+      { id: "ode", name: "Odense" },
+      { id: "aal", name: "Aalborg" },
+      { id: "esbj", name: "Esbjerg" }
+    ],
+    se: [
+      { id: "sto", name: "Estocolmo" },
+      { id: "got", name: "Gotemburgo" },
+      { id: "mal", name: "Malmö" },
+      { id: "upp", name: "Uppsala" },
+      { id: "vas", name: "Västerås" }
+    ],
+    fi: [
+      { id: "hel", name: "Helsinki" },
+      { id: "esp", name: "Espoo" },
+      { id: "tam", name: "Tampere" },
+      { id: "van", name: "Vantaa" },
+      { id: "tur", name: "Turku" }
+    ],
+    ie: [
+      { id: "dub", name: "Dublín" },
+      { id: "cor", name: "Cork" },
+      { id: "gal", name: "Galway" },
+      { id: "lim", name: "Limerick" },
+      { id: "wat", name: "Waterford" }
+    ],
+    gr: [
+      { id: "ath", name: "Atenas" },
+      { id: "the", name: "Tesalónica" },
+      { id: "pat", name: "Patras" },
+      { id: "her", name: "Heraklion" },
+      { id: "lar", name: "Larisa" }
+    ],
+    cz: [
+      { id: "pra", name: "Praga" },
+      { id: "brn", name: "Brno" },
+      { id: "ost", name: "Ostrava" },
+      { id: "pls", name: "Pilsen" },
+      { id: "lib", name: "Liberec" }
+    ],
+    hu: [
+      { id: "bud", name: "Budapest" },
+      { id: "deb", name: "Debrecen" },
+      { id: "sze", name: "Szeged" },
+      { id: "mis", name: "Miskolc" },
+      { id: "pec", name: "Pécs" }
+    ],
+    ro: [
+      { id: "buc", name: "Bucarest" },
+      { id: "clu", name: "Cluj-Napoca" },
+      { id: "tim", name: "Timișoara" },
+      { id: "ias", name: "Iași" },
+      { id: "con", name: "Constanța" }
+    ],
+    bg: [
+      { id: "sof", name: "Sofía" },
+      { id: "
