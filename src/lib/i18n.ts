@@ -1,4 +1,3 @@
-
 export type Language = 'ru' | 'en' | 'es';
 
 export const languages: Record<Language, string> = {
@@ -103,7 +102,7 @@ export const translations = {
         },
         step3: {
           title: 'Приготовление коктейля',
-          description: 'В течение первого месяца наш сотрудник будет присутствовать на открытии каждый день и будет готовить заготовки на весь день. Затем, перед подачей гостю, все, что нужно сделать, это налить смесь коктейля в стакан, добавить лед и украсить коктейль для гостя.'
+          description: 'Мы предоставим вам заготовки для коктейлей. И мы будем готовы научить вас, как приготовить графин коктейлей за 10 минут, используя заготовки для коктейлей. Из 1 графина можно разлить 4 готовых коктейля, останется только добавить лед в стакан.'
         },
         step4: {
           title: 'Анализ',
@@ -112,7 +111,7 @@ export const translations = {
       },
       agreement: {
         title: 'Финальное соглашение',
-        description: 'Если после первого месяца вы и мы удовлетворены, вам нужно будет оплатить только расходные материалы за первый месяц, сохранить оборудование, рецепты и маркетинговые материалы. В дальнейшем мы будем поставлять вам чай, ингредиенты для коктейлей и бутылки с чаем. Также мы продолжим оказывать маркетинговую поддержку, обновлять рецепты, создавать новые продукты и поставлять расходные материалы.',
+        description: 'Если пос��е первого месяца вы и мы удовлетворены, вам нужно будет оплатить только расходные материалы за первый месяц, сохранить оборудование, рецепты и маркетинговые материалы. В дальнейшем мы будем поставлять вам чай, ингредиенты для коктейлей и бутылки с чаем. Также мы продолжим оказывать маркетинговую поддержку, обновлять рецепты, создавать новые продукты и поставлять расходные материалы.',
         unsatisfied: 'Если кто-то не удовлетворен результатом сотрудничества, вам также придется оплатить только расходные материалы, и на этом наше сотрудничество заканчивается.'
       },
       sales: {
@@ -233,7 +232,7 @@ export const translations = {
         },
         step3: {
           title: 'Preparing a Cocktail',
-          description: 'During the first month, our employee will be present at the opening every day and will prepare blanks for the whole day. Then, before serving the guest, all that needs to be done is to pour the cocktail mixture into a glass, add ice, and decorate the cocktail for the guest.'
+          description: 'We will provide you with cocktail blanks. And we\'ll be ready to teach you how to make a decanter of cocktails in 10 minutes using cocktail blanks. 1 decanter can be poured over 4 ready cocktails, all that will be left is to add ice to the glass.'
         },
         step4: {
           title: 'Analysis',
@@ -363,7 +362,7 @@ export const translations = {
         },
         step3: {
           title: 'Preparando un cóctel',
-          description: 'Durante el primer mes, nuestro empleado estará presente en la inauguración todos los días y preparará los blankos para todo el día. Luego, antes de servir al invitado, todo lo que hay que hacer es verter la mezcla del cóctel en un vaso, agregar hielo y decorar el cóctel para el invitado.'
+          description: 'Le proporcionaremos mezclas para cócteles. Y estaremos listos para enseñarle cómo hacer una jarra de cócteles en 10 minutos usando las mezclas para cócteles. Con 1 jarra se pueden servir 4 cócteles listos, sólo quedará añadir hielo al vaso.'
         },
         step4: {
           title: 'Análisis',
