@@ -4,6 +4,7 @@ import { CategorySection } from "@/components/CategorySection";
 import { CeremonySection } from "@/components/CeremonySection";
 import { CartWidget } from "@/components/CartWidget";
 import { useLanguage } from "@/hooks/use-language";
+import { PartnershipButton } from "@/components/PartnershipButton";
 
 const Index = () => {
   const { t } = useLanguage();
@@ -15,6 +16,7 @@ const Index = () => {
         <HeroSection t={t} />
         <CategorySection t={t} />
         <CeremonySection t={t} />
+        <PartnershipButton />
       </main>
     </div>
   );

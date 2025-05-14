@@ -20,6 +20,7 @@ import Checkout from "./pages/Checkout";
 import Ceremonies from "./pages/Ceremonies";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import Partnership from "./pages/Partnership";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const AppContent = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/partnership" element={<Partnership />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isCartOrCheckout && !isAuth && <NavigationBanner />}
