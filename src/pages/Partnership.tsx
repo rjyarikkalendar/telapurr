@@ -8,8 +8,8 @@ const Partnership = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-tea-bg">
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <section className="mb-12 text-center">
+      <main className="flex-grow container mx-auto px-4 py-16">
+        <section className="mb-12 text-center pt-12">
           <h1 className="text-4xl md:text-6xl font-light mb-4 font-playfair text-tea-text">
             {t.partnership.title}
           </h1>

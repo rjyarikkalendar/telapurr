@@ -54,7 +54,7 @@ export const translations = {
     partnership: {
       title: 'Партнерство с нами',
       subtitle: 'Предлагаем возможность создать дополнительный источник дохода',
-      intro: 'Мы предлагаем вам возможность создать дополнительный источник дохода для вашего клуба и добавить уютную атмосферу, предлагая горячие и холодные напитки на основе чая, упакованные для потребителя, и продукты, которые не требуют дополнительной работы персонала клуба.',
+      intro: 'Мы предлагаем вам возможность создать дополнительный источник дохода для вашего места продаж и добавить уютную атмосферу, предлагая горячие и холодные напитки на основе чая, упакованные для потребителя, и продукты, которые не требуют дополнительной работы персонала вашего места продаж.',
       team: {
         title: 'Наша команда',
         person1: {
@@ -72,7 +72,7 @@ export const translations = {
         product1: {
           name: 'Чай в термосе с чашкой',
           price: '4 евро',
-          description: '5 минут на приготовление 1 литра чая у барной стойки, разливаем в термос для удобного перемещения по клубу.'
+          description: '5 минут на приготовление 1 литра чая у барной стойки, разливаем в термос для удобного перемещения по вашему месту продаж.'
         },
         product2: {
           name: 'Чай, приготовленный через сифон',
@@ -94,11 +94,11 @@ export const translations = {
         title: 'Интеграция продуктов в ваше заведение',
         step1: {
           title: 'Скажите "Хорошо, сделка заключена" и выберите варианты продукта',
-          description: 'Вы выбираете, какие коктейли/чаи/бутылки с чаем вы хотели бы видеть в своем социальном клубе. После пробного месяца вы можете добавить больше оговоренных вариантов в свое летнее меню или акции.'
+          description: 'Вы выбираете, какие коктейли/чаи/бутылки с чаем вы хотели бы видеть в вашем месте продаж. После пробного месяца вы можете добавить больше оговоренных вариантов в свое летнее меню или акции.'
         },
         step2: {
           title: 'Интеграция оборудования (1 месяц)',
-          description: 'Мы предоставляем оборудование, маркетинговые материалы для размещения в клубе и для социальных сетей или вашего веб-сайта. И мы сами скоординируем размеры с вами, подстроим фон и стиль под ваш клуб, даже распечатаем и доставим вам.'
+          description: 'Мы предоставляем оборудование, маркетинговые материалы для размещения в вашем месте продаж и для социальных сетей или вашего веб-сайта. И мы сами скоординируем размеры с вами, подстроим фон и стиль под ваше место продаж, даже распечатаем и доставим вам.'
         },
         step3: {
           title: 'Приготовление коктейля',
@@ -111,7 +111,7 @@ export const translations = {
       },
       agreement: {
         title: 'Финальное соглашение',
-        description: 'Если пос��е первого месяца вы и мы удовлетворены, вам нужно будет оплатить только расходные материалы за первый месяц, сохранить оборудование, рецепты и маркетинговые материалы. В дальнейшем мы будем поставлять вам чай, ингредиенты для коктейлей и бутылки с чаем. Также мы продолжим оказывать маркетинговую поддержку, обновлять рецепты, создавать новые продукты и поставлять расходные материалы.',
+        description: 'Первый месяц - это проба для обеих сторон, по итогам которой мы решаем, продолжаем мы сотрудничество или нет. В течение этого месяца мы предоставим вам маркетинговые материалы, оборудование, чай, заготовки для коктейлей, обучение и сделаем все возможное, чтобы максимизировать ваши продажи чайных продуктов. Вам нужно будет оплатить только стоимость расходных материалов для приготовления напитка, что означает, что в конце месяца вы оплатите только затраты, и только если вы продаете напиток в заведении.',
         unsatisfied: 'Если кто-то не удовлетворен результатом сотрудничества, вам также придется оплатить только расходные материалы, и на этом наше сотрудничество заканчивается.'
       },
       sales: {
@@ -184,7 +184,7 @@ export const translations = {
     partnership: {
       title: 'Partnership with us',
       subtitle: 'We offer the opportunity to create an additional source of income',
-      intro: 'We offer you the opportunity to create an additional source of income for your club and add a cozy atmosphere by offering hot and cold tea-based drinks, packaged for the consumer, and products that do not require extra work from the club staff.',
+      intro: 'We offer you the opportunity to create an additional source of income for your sales venue and add a cozy atmosphere by offering hot and cold tea-based drinks, packaged for the consumer, and products that do not require extra work from the sales venue staff.',
       team: {
         title: 'Our Team',
         person1: {
@@ -202,7 +202,7 @@ export const translations = {
         product1: {
           name: 'Tea in a thermos with a cup',
           price: '4 euros',
-          description: '5 minutes to prepare 1 liter of tea at the bar, pour it into a thermos for convenient movement around the club.'
+          description: '5 minutes to prepare 1 liter of tea at the bar, pour it into a thermos for convenient movement around your sales venue.'
         },
         product2: {
           name: 'Tea prepared with a siphon',
@@ -224,11 +224,11 @@ export const translations = {
         title: 'Integrating Products into Your Venue',
         step1: {
           title: 'Say, "Okay, deal done" and choose product options',
-          description: 'You choose which cocktails/tea/bottled tea you would like to see in your social club. After the trial month, you can add more stipulated variants to your summer menu or promotions.'
+          description: 'You choose which cocktails/tea/bottled tea you would like to see in your sales venue. After the trial month, you can add more stipulated variants to your summer menu or promotions.'
         },
         step2: {
           title: 'Equipment Integration (1 month)',
-          description: 'We provide equipment, product marketing materials for placement in the club premises and for social networks or your website. And we ourselves will coordinate the dimensions with you, adjust the background and style for your club, even print it out and bring it to you.'
+          description: 'We provide equipment, product marketing materials for placement in your sales venue premises and for social networks or your website. And we ourselves will coordinate the dimensions with you, adjust the background and style for your sales venue, even print it out and bring it to you.'
         },
         step3: {
           title: 'Preparing a Cocktail',
@@ -241,7 +241,7 @@ export const translations = {
       },
       agreement: {
         title: 'Final Agreement',
-        description: 'If after the first month you and we are satisfied, you will only have to pay for the consumables for the first month, keep the equipment, recipes, and marketing materials. Subsequently, we will supply you with tea, cocktail ingredients, and bottles of tea. We will also continue to provide marketing support, update recipes, create new products, and supply consumables.',
+        description: 'The first month is a trial for both parties, at the end of which we decide whether we continue our cooperation or not. During this month, we will provide you with marketing materials, equipment, tea, cocktail preparations, training, and we will do our best to maximize your sales of tea products. You will only have to pay the cost of consumables to prepare the drink, which means that at the end of the month you will only pay the costs, and only if you sell the drink in the venue.',
         unsatisfied: 'If someone is not satisfied with the result of the collaboration, you will also have to pay only for the consumables, and here our collaboration ends.'
       },
       sales: {
@@ -314,7 +314,7 @@ export const translations = {
     partnership: {
       title: 'Colaboración con nosotros',
       subtitle: 'Le ofrecemos la oportunidad de crear una fuente adicional de ingresos',
-      intro: 'Le ofrecemos la oportunidad de crear una fuente adicional de ingresos para su club y agregar un ambiente acogedor ofreciendo bebidas frías y calientes a base de té, envasadas para el consumidor, y productos que no requieren trabajo extra del personal del club.',
+      intro: 'Le ofrecemos la oportunidad de crear una fuente adicional de ingresos para su punto de venta y agregar un ambiente acogedor ofreciendo bebidas frías y calientes a base de té, envasadas para el consumidor, y productos que no requieren trabajo extra del personal de su punto de venta.',
       team: {
         title: 'Nuestro Equipo',
         person1: {
@@ -332,7 +332,7 @@ export const translations = {
         product1: {
           name: 'Termo de té con taza',
           price: '4 euros',
-          description: '5 minutos para preparar 1 litro de té en el bar, verterlo en un termo para facilitar su traslado por el club.'
+          description: '5 minutos para preparar 1 litro de té en el bar, verterlo en un termo para facilitar su traslado por su punto de venta.'
         },
         product2: {
           name: 'Preparación de té con sifón',
@@ -354,11 +354,11 @@ export const translations = {
         title: 'Integrar productos en su local',
         step1: {
           title: 'Diga, "Vale, trato hecho" , y elija las opciones de producto',
-          description: 'Tú eliges qué cócteles/té/botellas de té te gustaría ver en tu club social. Después del mes de prueba, puedes añadir más variantes estipuladas a tu menú de verano o promociones.'
+          description: 'Tú eliges qué cócteles/té/botellas de té te gustaría ver en tu punto de venta. Después del mes de prueba, puedes añadir más variantes estipuladas a tu menú de verano o promociones.'
         },
         step2: {
           title: 'Integración de equipos (1 mes)',
-          description: 'Proporcionamos equipos, materiales de marketing de productos para colocar en la sede del club y para las redes sociales o su sitio web. Y nosotros mismos coordinaremos las dimensiones contigo, ajustaremos el fondo y el estilo para tu club, incluso lo imprimiremos y te lo llevaremos.'
+          description: 'Proporcionamos equipos, materiales de marketing de productos para colocar en su punto de venta y para las redes sociales o su sitio web. Y nosotros mismos coordinaremos las dimensiones contigo, ajustaremos el fondo y el estilo para tu punto de venta, incluso lo imprimiremos y te lo llevaremos.'
         },
         step3: {
           title: 'Preparando un cóctel',
@@ -371,7 +371,7 @@ export const translations = {
       },
       agreement: {
         title: 'Final agreement',
-        description: 'Si después del primer mes usted y nosotros estamos satisfechos, solo tendrá que pagar los consumibles del primer mes, conservar el equipo, las recetas y el material de marketing. Posteriormente, le proporcionaremos té, ingredientes para cócteles y botellas de té. También seguiremos brindándole apoyo de marketing, actualizando recetas, creando nuevos productos y suministrando consumibles.',
+        description: 'El primer mes es una prueba para ambas partes, al final de la cual decidimos si continuamos o no nuestra cooperación. Durante este mes te proporcionaremos material de marketing, equipamiento, té, preparaciones de cócteles, formación y haremos todo lo posible para maximizar tus ventas de productos de té. Sólo tendrás que pagar el coste de los consumibles para preparar la bebida, lo que significa que al final del mes sólo pagarás los costes, y sólo si vendes la bebida en el local.',
         unsatisfied: 'Si alguien no está satisfecho con el resultado de la colaboración, también tendrá que pagar solo los consumibles, y aquí termina nuestra colaboración.'
       },
       sales: {
