@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
@@ -140,70 +139,88 @@ const Partnership = () => {
           </div>
         </section>
 
-        <section className="mb-16 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
-            {t.partnership.integration.title}
-          </h2>
-          <div className="space-y-8">
-            <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
-                {t.partnership.integration.step1.title}
-              </h3>
-              <p className="text-tea-text/80">
-                {t.partnership.integration.step1.description}
-              </p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
-                {t.partnership.integration.step2.title}
-              </h3>
-              <p className="text-tea-text/80">
-                {t.partnership.integration.step2.description}
-              </p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
-                {t.partnership.integration.step3.title}
-              </h3>
-              <p className="text-tea-text/80">
-                {t.partnership.integration.step3.description}
-              </p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
-                {t.partnership.integration.step4.title}
-              </h3>
-              <p className="text-tea-text/80">
-                {t.partnership.integration.step4.description}
-              </p>
+        <section 
+          className="mb-16 max-w-4xl mx-auto relative"
+          style={{
+            backgroundImage: `url('/lovable-uploads/10e6c719-3f6f-4091-ba8b-9f9d385bc724.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg">
+            <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
+              {t.partnership.integration.title}
+            </h2>
+            <div className="space-y-8">
+              <div className="bg-white/80 p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
+                  {t.partnership.integration.step1.title}
+                </h3>
+                <p className="text-tea-text/80">
+                  {t.partnership.integration.step1.description}
+                </p>
+              </div>
+              <div className="bg-white/80 p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
+                  {t.partnership.integration.step2.title}
+                </h3>
+                <p className="text-tea-text/80">
+                  {t.partnership.integration.step2.description}
+                </p>
+              </div>
+              <div className="bg-white/80 p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
+                  {t.partnership.integration.step3.title}
+                </h3>
+                <p className="text-tea-text/80">
+                  {t.partnership.integration.step3.description}
+                </p>
+              </div>
+              <div className="bg-white/80 p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
+                  {t.partnership.integration.step4.title}
+                </h3>
+                <p className="text-tea-text/80">
+                  {t.partnership.integration.step4.description}
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="mb-16 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
-            {t.partnership.agreement.title}
-          </h2>
-          <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-            <p className="text-tea-text/80">
-              {t.partnership.agreement.description}
+        <section 
+          className="mb-16 max-w-4xl mx-auto relative"
+          style={{
+            backgroundImage: `url('/lovable-uploads/3efb7d91-3fff-483e-bfe6-76973bc18040.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg">
+            <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
+              {t.partnership.agreement.title}
+            </h2>
+            <div className="bg-white/80 p-6 rounded-lg shadow-sm mb-8">
+              <p className="text-tea-text/80">
+                {t.partnership.agreement.description}
+              </p>
+            </div>
+
+            <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
+              {t.partnership.sales.title}
+            </h2>
+            <p className="mb-4 text-tea-text/90">
+              {t.partnership.sales.description}
             </p>
-          </div>
-        </section>
-
-        <section className="mb-16 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
-            {t.partnership.sales.title}
-          </h2>
-          <p className="mb-4 text-tea-text/90">
-            {t.partnership.sales.description}
-          </p>
-          <div className="bg-white/50 p-6 rounded-lg shadow-sm mb-6">
-            <ul className="list-disc pl-5 space-y-2 text-tea-text/80">
-              {t.partnership.sales.marketingPoints.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+            <div className="bg-white/80 p-6 rounded-lg shadow-sm mb-6">
+              <ul className="list-disc pl-5 space-y-2 text-tea-text/80">
+                {t.partnership.sales.marketingPoints.map((point, index) => (
+                  <li key={index}>{point}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
