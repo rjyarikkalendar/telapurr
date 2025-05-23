@@ -111,8 +111,7 @@ export const translations = {
       },
       agreement: {
         title: 'Финальное соглашение',
-        description: 'Первый месяц - это проба для обеих сторон, по итогам которой мы решаем, продолжаем мы сотрудничество или нет. В течение этого месяца мы предоставим вам маркетинговые материалы, оборудование, чай, заготовки для коктейлей, обучение и сделаем все возможное, чтобы максимизировать ваши продажи чайных продуктов. Вам нужно будет оплатить только стоимость расходных материалов для приготовления напитка, что означает, что в конце месяца вы оплатите только затраты, и только если вы продаете напиток в заведении.',
-        unsatisfied: 'Если кто-то не удовлетворен результатом сотрудничества, вам также придется оплатить только расходные материалы, и на этом наше сотрудничество заканчивается.'
+        description: 'Первый месяц - это проба для обеих сторон, по итогам которой мы решаем, продолжаем мы сотрудничество или нет. В течение этого месяца мы предоставим вам маркетинговые материалы, оборудование, чай, заготовки для коктейлей, обучение и сделаем все возможное, чтобы максимизировать ваши продажи чайных продуктов. Вам нужно будет оплатить только стоимость расходных материалов для приготовления напитка, что означает, что в конце месяца вы оплатите только затраты, и только если вы продаете напиток в заведении.'
       },
       sales: {
         title: 'Продажи',
@@ -241,8 +240,7 @@ export const translations = {
       },
       agreement: {
         title: 'Final Agreement',
-        description: 'The first month is a trial for both parties, at the end of which we decide whether we continue our cooperation or not. During this month, we will provide you with marketing materials, equipment, tea, cocktail preparations, training, and we will do our best to maximize your sales of tea products. You will only have to pay the cost of consumables to prepare the drink, which means that at the end of the month you will only pay the costs, and only if you sell the drink in the venue.',
-        unsatisfied: 'If someone is not satisfied with the result of the collaboration, you will also have to pay only for the consumables, and here our collaboration ends.'
+        description: 'The first month is a trial for both parties, at the end of which we decide whether we continue our cooperation or not. During this month, we will provide you with marketing materials, equipment, tea, cocktail preparations, training, and we will do our best to maximize your sales of tea products. You will only have to pay the cost of consumables to prepare the drink, which means that at the end of the month you will only pay the costs, and only if you sell the drink in the venue.'
       },
       sales: {
         title: 'Sales',
@@ -371,8 +369,7 @@ export const translations = {
       },
       agreement: {
         title: 'Final agreement',
-        description: 'El primer mes es una prueba para ambas partes, al final de la cual decidimos si continuamos o no nuestra cooperación. Durante este mes te proporcionaremos material de marketing, equipamiento, té, preparaciones de cócteles, formación y haremos todo lo posible para maximizar tus ventas de productos de té. Sólo tendrás que pagar el coste de los consumibles para preparar la bebida, lo que significa que al final del mes sólo pagarás los costes, y sólo si vendes la bebida en el local.',
-        unsatisfied: 'Si alguien no está satisfecho con el resultado de la colaboración, también tendrá que pagar solo los consumibles, y aquí termina nuestra colaboración.'
+        description: 'El primer mes es una prueba para ambas partes, al final de la cual decidimos si continuamos o no nuestra cooperación. Durante este mes te proporcionaremos material de marketing, equipamiento, té, preparaciones de cócteles, formación y haremos todo lo posible para maximizar tus ventas de productos de té. Sólo tendrás que pagar el coste de los consumibles para preparar la bebida, lo que significa que al final del mes sólo pagarás los costes, y sólo si vendes la bebida en el local.'
       },
       sales: {
         title: 'Ventas',

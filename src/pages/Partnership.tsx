@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
@@ -8,8 +7,8 @@ const Partnership = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-tea-bg">
-      <main className="flex-grow container mx-auto px-4 py-16">
-        <section className="mb-12 text-center pt-12">
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <section className="mb-12 text-center mt-20">
           <h1 className="text-4xl md:text-6xl font-light mb-4 font-playfair text-tea-text">
             {t.partnership.title}
           </h1>
@@ -149,11 +148,8 @@ const Partnership = () => {
             {t.partnership.agreement.title}
           </h2>
           <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-            <p className="text-tea-text/80 mb-4">
-              {t.partnership.agreement.description}
-            </p>
             <p className="text-tea-text/80">
-              {t.partnership.agreement.unsatisfied}
+              {t.partnership.agreement.description}
             </p>
           </div>
         </section>
