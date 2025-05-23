@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
@@ -148,7 +149,7 @@ const Partnership = () => {
             backgroundRepeat: 'no-repeat'
           }}
         >
-          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg">
+          <div className="bg-white/30 backdrop-blur-sm p-8 rounded-lg">
             <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
               {t.partnership.integration.title}
             </h2>
@@ -198,7 +199,7 @@ const Partnership = () => {
             backgroundRepeat: 'no-repeat'
           }}
         >
-          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg">
+          <div className="bg-white/30 backdrop-blur-sm p-8 rounded-lg">
             <h2 className="text-3xl font-light mb-6 font-playfair text-tea-text">
               {t.partnership.agreement.title}
             </h2>
