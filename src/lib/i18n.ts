@@ -1,3 +1,4 @@
+
 export type Language = 'ru' | 'en' | 'es';
 
 export const languages: Record<Language, string> = {
@@ -93,7 +94,7 @@ export const translations = {
           description: 'Вы выбираете, какие коктейли/чаи/бутылки с чаем вы хотели бы видеть в вашем месте продаж. После пробного месяца вы можете добавить больше оговоренных вариантов в свое летнее меню или акции.'
         },
         step2: {
-          title: 'Интеграция оборудования (1 месяц)',
+          title: 'Интеграция оборудования (1 неделя)',
           description: 'Мы предоставляем оборудование, маркетинговые материалы для размещения в вашем месте продаж и для социальных сетей или вашего веб-сайта. И мы сами скоординируем размеры с вами, подстроим фон и стиль под ваше место продаж, даже распечатаем и доставим вам.'
         },
         step3: {
@@ -217,7 +218,7 @@ export const translations = {
           description: 'You choose which cocktails/tea/bottled tea you would like to see in your sales venue. After the trial month, you can add more stipulated variants to your summer menu or promotions.'
         },
         step2: {
-          title: 'Equipment Integration (1 month)',
+          title: 'Equipment Integration (1 week)',
           description: 'We provide equipment, product marketing materials for placement in your sales venue premises and for social networks or your website. And we ourselves will coordinate the dimensions with you, adjust the background and style for your sales venue, even print it out and bring it to you.'
         },
         step3: {
@@ -341,7 +342,7 @@ export const translations = {
           description: 'Tú eliges qué cócteles/té/botellas de té te gustaría ver en tu punto de venta. Después del mes de prueba, puedes añadir más variantes estipuladas a tu menú de verano o promociones.'
         },
         step2: {
-          title: 'Integración de equipos (1 mes)',
+          title: 'Integración de equipos (1 semana)',
           description: 'Proporcionamos equipos, materiales de marketing de productos para colocar en su punto de venta y para las redes sociales o su sitio web. Y nosotros mismos coordinaremos las dimensiones contigo, ajustaremos el fondo y el estilo para tu punto de venta, incluso lo imprimiremos y te lo llevaremos.'
         },
         step3: {

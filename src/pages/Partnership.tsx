@@ -78,6 +78,13 @@ const Partnership = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white/50 p-6 rounded-lg shadow-sm">
+              <div className="mb-4 h-48 overflow-hidden rounded-lg">
+                <img 
+                  src="/lovable-uploads/f97ef576-e95d-4a95-ae12-4453470a49fd.png" 
+                  alt={t.partnership.products.product1.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product1.name}
               </h3>
@@ -86,6 +93,13 @@ const Partnership = () => {
               </p>
             </div>
             <div className="bg-white/50 p-6 rounded-lg shadow-sm">
+              <div className="mb-4 h-48 overflow-hidden rounded-lg">
+                <img 
+                  src="/lovable-uploads/8a97ac59-43cb-43b7-8728-f9dc3c8fc653.png" 
+                  alt={t.partnership.products.product2.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product2.name}
               </h3>
@@ -94,6 +108,13 @@ const Partnership = () => {
               </p>
             </div>
             <div className="bg-white/50 p-6 rounded-lg shadow-sm">
+              <div className="mb-4 h-48 overflow-hidden rounded-lg">
+                <img 
+                  src="/lovable-uploads/2f3df9e9-de0e-4b10-b51b-9aa99f987b7e.png" 
+                  alt={t.partnership.products.product3.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product3.name}
               </h3>
@@ -102,6 +123,13 @@ const Partnership = () => {
               </p>
             </div>
             <div className="bg-white/50 p-6 rounded-lg shadow-sm">
+              <div className="mb-4 h-48 overflow-hidden rounded-lg">
+                <img 
+                  src="/lovable-uploads/20702705-9983-42c2-bd80-ea93ee93a103.png" 
+                  alt={t.partnership.products.product4.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product4.name}
               </h3>
