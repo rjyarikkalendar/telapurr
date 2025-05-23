@@ -71,22 +71,18 @@ export const translations = {
         description: 'Клиент выбирает чай из каталога для сифона и термоса.',
         product1: {
           name: 'Чай в термосе с чашкой',
-          price: '4 евро',
           description: '5 минут на приготовление 1 литра чая у барной стойки, разливаем в термос для удобного перемещения по вашему месту продаж.'
         },
         product2: {
           name: 'Чай, приготовленный через сифон',
-          price: '8 евро',
           description: 'Выглядит как 10-минутное шоу, дает 250 мл очень питкого чая.'
         },
         product3: {
           name: 'Освежающий чайный коктейль',
-          price: '5 евро',
           description: 'Готовьте освежающие тонизирующие чайные коктейли с травами и фруктами за барной стойкой, не теряя ни минуты.'
         },
         product4: {
           name: 'Освежающий чай в бутылке',
-          price: '2 евро - бутылка 0,5 мл',
           description: 'Для любителей освежающих напитков без сахара, содержащих только чай и воду, приготовленных по технике холодного заваривания для получения мягкого вкуса и тонизирующего эффекта.'
         }
       },
@@ -116,7 +112,6 @@ export const translations = {
       sales: {
         title: 'Продажи',
         description: 'Все маркетинговые материалы будут предоставлены нами.',
-        targetAudience: 'Целевая аудитория: Испанцы и латиноамериканцы (только холодные напитки), все люди из бывшего Советского Союза, стран Восточной Европы и Африки, стран Азии, Северной и Восточной Европы, британцы и французы (все, кто любит горячий чай, а также пьют холодные напитки), те, кто любит курить каннабис, а затем наслаждаться опьяняющим эффектом китайского чая.',
         marketingPoints: [
           'Мини-меню в баре, на столах, в социальных сетях и на веб-сайте;',
           'Дегустации чая и методы приготовления;',
@@ -200,22 +195,18 @@ export const translations = {
         description: 'The customer selects tea from the catalog for the siphon and thermos.',
         product1: {
           name: 'Tea in a thermos with a cup',
-          price: '4 euros',
           description: '5 minutes to prepare 1 liter of tea at the bar, pour it into a thermos for convenient movement around your sales venue.'
         },
         product2: {
           name: 'Tea prepared with a siphon',
-          price: '8 euros',
           description: 'Looks like a 10-minute show, makes 250 ml of very drinkable tea.'
         },
         product3: {
           name: 'Refreshing tea cocktail',
-          price: '5 euros',
           description: 'Prepare refreshing tonic tea cocktails with herbs and fruits behind the bar, without losing a minute.'
         },
         product4: {
           name: 'Refreshing tea in a bottle',
-          price: '2 euros - 0.5 ml bottle',
           description: 'For lovers of refreshing sugar-free drinks that contain only tea and water, made with a cold brewing technique to achieve a mild taste and tonic effect.'
         }
       },
@@ -245,7 +236,6 @@ export const translations = {
       sales: {
         title: 'Sales',
         description: 'All marketing materials will be provided by us.',
-        targetAudience: 'Target audience: Spaniards and Latin Americans (cold drinks only), all people from the former Soviet Union, Eastern Europe and Africa, Asian countries, Northern and Eastern Europe, British and French (all those who like hot tea and also drink cold drinks), those who like to smoke cannabis and then enjoy the intoxicating effect of Chinese tea.',
         marketingPoints: [
           'Mini-menu at the bar, on tables, on social media, and on the web;',
           'Tea tastings and preparation methods;',
@@ -329,22 +319,18 @@ export const translations = {
         description: 'El cliente elige el té del catálogo para el sifón y el termo.',
         product1: {
           name: 'Termo de té con taza',
-          price: '4 euros',
           description: '5 minutos para preparar 1 litro de té en el bar, verterlo en un termo para facilitar su traslado por su punto de venta.'
         },
         product2: {
           name: 'Preparación de té con sifón',
-          price: '8 euros',
           description: 'Parece un espectáculo de 10 minutos, hace 250 ml de té muy bebible.'
         },
         product3: {
           name: 'Cóctel refrescante de té',
-          price: '5 euros',
           description: 'Prepare refrescantes cócteles de té tónico con hierbas y frutas detrás de la barra, sin perder ni un minuto.'
         },
         product4: {
           name: 'Té refrescante en botella',
-          price: '2 euros - botella de 0,5 ml',
           description: 'Para los amantes de las bebidas refrescantes sin azúcar, que sólo contienen té y agua, elaboradas con una técnica de infusión en frío para conseguir un sabor suave y un efecto tonificante.'
         }
       },
@@ -374,7 +360,6 @@ export const translations = {
       sales: {
         title: 'Ventas',
         description: 'Todos los materiales de marketing serán proporcionados por nosotros.',
-        targetAudience: 'Público objetivo: Españoles y latinoamericanos (sólo bebidas frías), todas las personas de la ex Unión Soviética, países del Este y África, países de Asia, Europa del Norte y del Este, británicos y franceses (todos aquellos que les gusta el té caliente y también toman bebidas frías), aquellos a los que les gusta fumar cannabis y luego disfrutar del efecto embriagador del té chino.',
         marketingPoints: [
           'Mini-menú en la barra, en las mesas, en las redes sociales y en la web;',
           'Catas de té y métodos de preparación;',

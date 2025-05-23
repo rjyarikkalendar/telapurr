@@ -81,9 +81,6 @@ const Partnership = () => {
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product1.name}
               </h3>
-              <div className="text-tea-brown font-medium mb-3">
-                {t.partnership.products.product1.price}
-              </div>
               <p className="text-tea-text/80">
                 {t.partnership.products.product1.description}
               </p>
@@ -92,9 +89,6 @@ const Partnership = () => {
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product2.name}
               </h3>
-              <div className="text-tea-brown font-medium mb-3">
-                {t.partnership.products.product2.price}
-              </div>
               <p className="text-tea-text/80">
                 {t.partnership.products.product2.description}
               </p>
@@ -103,9 +97,6 @@ const Partnership = () => {
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product3.name}
               </h3>
-              <div className="text-tea-brown font-medium mb-3">
-                {t.partnership.products.product3.price}
-              </div>
               <p className="text-tea-text/80">
                 {t.partnership.products.product3.description}
               </p>
@@ -114,9 +105,6 @@ const Partnership = () => {
               <h3 className="text-xl font-medium mb-2 font-playfair text-tea-text">
                 {t.partnership.products.product4.name}
               </h3>
-              <div className="text-tea-brown font-medium mb-3">
-                {t.partnership.products.product4.price}
-              </div>
               <p className="text-tea-text/80">
                 {t.partnership.products.product4.description}
               </p>
@@ -183,9 +171,6 @@ const Partnership = () => {
             {t.partnership.sales.description}
           </p>
           <div className="bg-white/50 p-6 rounded-lg shadow-sm mb-6">
-            <p className="text-tea-text/80 mb-4 font-medium">
-              {t.partnership.sales.targetAudience}
-            </p>
             <ul className="list-disc pl-5 space-y-2 text-tea-text/80">
               {t.partnership.sales.marketingPoints.map((point, index) => (
                 <li key={index}>{point}</li>
