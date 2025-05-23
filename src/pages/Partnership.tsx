@@ -1,6 +1,9 @@
+
 import React from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Partnership = () => {
   const { t } = useLanguage();
@@ -8,7 +11,7 @@ const Partnership = () => {
   return (
     <div className="flex flex-col min-h-screen bg-tea-bg">
       <main className="flex-grow container mx-auto px-4 py-8">
-        <section className="mb-12 text-center mt-20">
+        <section className="mb-12 text-center">
           <h1 className="text-4xl md:text-6xl font-light mb-4 font-playfair text-tea-text">
             {t.partnership.title}
           </h1>
@@ -28,22 +31,40 @@ const Partnership = () => {
             {t.partnership.team.title}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
-                {t.partnership.team.person1.name}
-              </h3>
-              <p className="text-tea-text/80">
-                {t.partnership.team.person1.description}
-              </p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
-                {t.partnership.team.person2.name}
-              </h3>
-              <p className="text-tea-text/80">
-                {t.partnership.team.person2.description}
-              </p>
-            </div>
+            <Card className="bg-white/50 shadow-sm overflow-hidden">
+              <div className="flex flex-col items-center p-6">
+                <div className="w-48 h-48 rounded-full overflow-hidden mb-4">
+                  <img 
+                    src="/lovable-uploads/9347f81b-36ca-461e-ab6e-cf6838eb6dc5.png" 
+                    alt={t.partnership.team.person1.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
+                  {t.partnership.team.person1.name}
+                </h3>
+                <p className="text-tea-text/80 text-center">
+                  {t.partnership.team.person1.description}
+                </p>
+              </div>
+            </Card>
+            <Card className="bg-white/50 shadow-sm overflow-hidden">
+              <div className="flex flex-col items-center p-6">
+                <div className="w-48 h-48 rounded-full overflow-hidden mb-4">
+                  <img 
+                    src="/lovable-uploads/af522d7f-1156-4d42-a136-f13eca6d7297.png" 
+                    alt={t.partnership.team.person2.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-medium mb-3 font-playfair text-tea-text">
+                  {t.partnership.team.person2.name}
+                </h3>
+                <p className="text-tea-text/80 text-center">
+                  {t.partnership.team.person2.description}
+                </p>
+              </div>
+            </Card>
           </div>
         </section>
 
