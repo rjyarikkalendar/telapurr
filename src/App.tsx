@@ -11,6 +11,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { useLanguage, LanguageProvider } from "@/hooks/use-language";
 import { AuthButton } from "@/components/AuthButton";
+import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Tea from "./pages/Tea";
 import Teaware from "./pages/Teaware";
@@ -64,9 +65,11 @@ const App = () => (
       <Toaster />
       <Sonner position="top-left" />
       <BrowserRouter>
-        <LanguageProvider>
-          <AppContent />
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <AppContent />
+          </LanguageProvider>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

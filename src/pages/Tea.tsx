@@ -1,59 +1,94 @@
 
-import { products } from "@/data/products";
-import { catalogs } from "@/data/catalogs";
-import { ProductCard } from "@/components/ProductCard";
+import { useApiData } from "@/hooks/useApiData";
+import { teaService, TeaFilters } from "@/services/teaService";
+import { ProductList } from "@/components/ProductList";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ScrollIndicator } from "@/components/ScrollIndicator";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const Tea = () => {
   const { currentLang } = useLanguage();
-  const isMobile = useIsMobile();
-  const teaCatalogs = Object.values(catalogs[currentLang]).filter(cat => cat.parentId === "tea");
   
+  const {
+    data,
+    loading,
+    error,
+    pagination,
+    updatePagination,
+    updateFilters,
+    updateSort,
+  } = useApiData({
+    fetchFunction: teaService.getList.bind(teaService),
+    initialPagination: { page: 1, limit: 12 },
+  });
+
+  const renderFilters = () => (
+    <div className="flex flex-wrap gap-4">
+      <div className="w-48">
+        <Select onValueChange={(value) => updateFilters({ tea_type: value || undefined })}>
+          <SelectTrigger>
+            <SelectValue placeholder="Тип чая" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="">Все типы</SelectItem>
+            <SelectItem value="green">Зеленый</SelectItem>
+            <SelectItem value="black">Черный</SelectItem>
+            <SelectItem value="white">Белый</SelectItem>
+            <SelectItem value="oolong">Улун</SelectItem>
+            <SelectItem value="pu_erh">Пуэр</SelectItem>
+            <SelectItem value="herbal">Травяной</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <div className="w-48">
+        <Select onValueChange={(value) => updateFilters({ caffeine_level: value || undefined })}>
+          <SelectTrigger>
+            <SelectValue placeholder="Уровень кофеина" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="">Любой</SelectItem>
+            <SelectItem value="none">Без кофеина</SelectItem>
+            <SelectItem value="low">Низкий</SelectItem>
+            <SelectItem value="medium">Средний</SelectItem>
+            <SelectItem value="high">Высокий</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <Checkbox
+          id="in_stock"
+          onCheckedChange={(checked) => 
+            updateFilters({ in_stock: checked ? true : undefined })
+          }
+        />
+        <Label htmlFor="in_stock">Только в наличии</Label>
+      </div>
+    </div>
+  );
+
   return (
     <div className="flex flex-col min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm">
       <BackButton />
       <main className="flex-grow pt-20 px-4">
         <div className="container mx-auto">
-          <div className="flex flex-col items-center gap-6 mb-8">
-            <h1 className="text-4xl font-light text-tea-text text-center">
-              {catalogs[currentLang].tea.title}
-            </h1>
-          </div>
+          <h1 className="text-4xl font-light text-tea-text mb-8 text-center">
+            Чай
+          </h1>
           
-          <Tabs defaultValue={teaCatalogs[0].id} className="w-full">
-            <div className="relative">
-              <div id="tea-categories" className={`${isMobile ? 'overflow-x-auto pb-4 scrollbar-hide' : 'flex justify-center'}`}>
-                <TabsList className={`${isMobile ? 'w-max' : ''} flex space-x-2 bg-transparent`}>
-                  {teaCatalogs.map((catalog) => (
-                    <TabsTrigger
-                      key={catalog.id}
-                      value={catalog.id}
-                      className="data-[state=active]:bg-tea-brown data-[state=active]:text-white whitespace-nowrap px-4"
-                    >
-                      {catalog.title}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </div>
-              {isMobile && <ScrollIndicator elementId="tea-categories" />}
-            </div>
-
-            {teaCatalogs.map((catalog) => (
-              <TabsContent key={catalog.id} value={catalog.id}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                  {products
-                    .filter((p) => p.catalogId === catalog.id)
-                    .map((product) => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-              </TabsContent>
-            ))}
-          </Tabs>
+          <ProductList
+            data={data}
+            loading={loading}
+            error={error}
+            pagination={pagination}
+            onPageChange={(page) => updatePagination({ page })}
+            onFilterChange={updateFilters}
+            onSortChange={updateSort}
+            renderFilters={renderFilters}
+          />
         </div>
       </main>
     </div>
