@@ -93,12 +93,12 @@ class ApiService {
     });
   }
 
-  async getList(
+  async getList<T>(
     table: TableName,
     pagination?: PaginationParams,
     filters?: FilterParams,
     sortString?: string
-  ): Promise<ApiResponse<any>> {
+  ): Promise<ApiResponse<T>> {
     const sort = this.parseSortString(sortString);
     const query = this.buildQuery(table, pagination, filters, sort);
     
@@ -115,7 +115,7 @@ class ApiService {
     const totalPages = Math.ceil(total / limit);
 
     return {
-      data: (data || []) as any[],
+      data: (data || []) as T[],
       pagination: {
         page,
         limit,
@@ -127,7 +127,7 @@ class ApiService {
     };
   }
 
-  async getById(table: TableName, id: string): Promise<any | null> {
+  async getById<T>(table: TableName, id: string): Promise<T | null> {
     const { data, error } = await supabase
       .from(table)
       .select('*')
@@ -139,10 +139,10 @@ class ApiService {
       throw error;
     }
 
-    return data;
+    return data as T;
   }
 
-  async create(table: TableName, item: any): Promise<any> {
+  async create<T>(table: TableName, item: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .insert(item)
@@ -154,10 +154,10 @@ class ApiService {
       throw error;
     }
 
-    return data;
+    return data as T;
   }
 
-  async update(table: TableName, id: string, updates: any): Promise<any> {
+  async update<T>(table: TableName, id: string, updates: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .update(updates)
@@ -170,7 +170,7 @@ class ApiService {
       throw error;
     }
 
-    return data;
+    return data as T;
   }
 
   async delete(table: TableName, id: string): Promise<void> {
