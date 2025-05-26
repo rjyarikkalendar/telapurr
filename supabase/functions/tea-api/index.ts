@@ -26,25 +26,42 @@ serve(async (req) => {
     if (method === 'GET') {
       const page = parseInt(url.searchParams.get('page') || '1')
       const limit = parseInt(url.searchParams.get('limit') || '12')
-      const tea_type = url.searchParams.get('tea_type')
-      const caffeine_level = url.searchParams.get('caffeine_level')
+      const type = url.searchParams.get('type')
+      const kind = url.searchParams.get('kind')
+      const age_min = url.searchParams.get('age_min')
+      const age_max = url.searchParams.get('age_max')
+      const yearbirth_min = url.searchParams.get('yearbirth_min')
+      const yearbirth_max = url.searchParams.get('yearbirth_max')
       const in_stock = url.searchParams.get('in_stock')
       const price_min = url.searchParams.get('price_min')
       const price_max = url.searchParams.get('price_max')
       const sort = url.searchParams.get('sort') || 'created_at_desc'
 
       console.log('Tea API - GET request with params:', {
-        page, limit, tea_type, caffeine_level, in_stock, price_min, price_max, sort
+        page, limit, type, kind, age_min, age_max, yearbirth_min, yearbirth_max, 
+        in_stock, price_min, price_max, sort
       })
 
-      let query = supabase.from('teas').select('*', { count: 'exact' })
+      let query = supabase.from('teas').select('*, tea_prices(id, weight_type, price, price_index)', { count: 'exact' })
 
       // Применяем фильтры
-      if (tea_type) {
-        query = query.eq('tea_type', tea_type)
+      if (type) {
+        query = query.eq('type', type)
       }
-      if (caffeine_level) {
-        query = query.eq('caffeine_level', caffeine_level)
+      if (kind) {
+        query = query.eq('kind', kind)
+      }
+      if (age_min) {
+        query = query.gte('age', parseInt(age_min))
+      }
+      if (age_max) {
+        query = query.lte('age', parseInt(age_max))
+      }
+      if (yearbirth_min) {
+        query = query.gte('yearbirth', parseInt(yearbirth_min))
+      }
+      if (yearbirth_max) {
+        query = query.lte('yearbirth', parseInt(yearbirth_max))
       }
       if (in_stock === 'true') {
         query = query.eq('in_stock', true)
@@ -63,6 +80,14 @@ serve(async (req) => {
         query = query.order('price', { ascending: false })
       } else if (sort === 'title_asc') {
         query = query.order('title', { ascending: true })
+      } else if (sort === 'age_asc') {
+        query = query.order('age', { ascending: true })
+      } else if (sort === 'age_desc') {
+        query = query.order('age', { ascending: false })
+      } else if (sort === 'yearbirth_asc') {
+        query = query.order('yearbirth', { ascending: true })
+      } else if (sort === 'yearbirth_desc') {
+        query = query.order('yearbirth', { ascending: false })
       } else if (sort === 'created_at_asc') {
         query = query.order('created_at', { ascending: true })
       } else {
@@ -90,8 +115,14 @@ serve(async (req) => {
       const total = count || 0
       const totalPages = Math.ceil(total / limit)
 
+      // Преобразуем данные, добавляя цены как массив
+      const processedData = (data || []).map(tea => ({
+        ...tea,
+        prices: tea.tea_prices || []
+      }))
+
       const response = {
-        data: data || [],
+        data: processedData,
         pagination: {
           page,
           limit,

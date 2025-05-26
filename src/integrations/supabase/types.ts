@@ -36,6 +36,44 @@ export type Database = {
         }
         Relationships: []
       }
+      tea_prices: {
+        Row: {
+          created_at: string
+          id: string
+          price: number
+          price_index: number
+          tea_id: string
+          updated_at: string
+          weight_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          price: number
+          price_index?: number
+          tea_id: string
+          updated_at?: string
+          weight_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          price?: number
+          price_index?: number
+          tea_id?: string
+          updated_at?: string
+          weight_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tea_prices_tea_id_fkey"
+            columns: ["tea_id"]
+            isOneToOne: false
+            referencedRelation: "teas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tea_sets: {
         Row: {
           created_at: string | null
@@ -80,54 +118,62 @@ export type Database = {
       }
       teas: {
         Row: {
-          brewing_temperature: number | null
-          brewing_time: number | null
-          caffeine_level: string | null
+          age: number | null
           created_at: string | null
           description: string | null
           id: string
           image_url: string | null
           in_stock: boolean | null
-          origin_country: string | null
+          kind: string | null
+          multilingual: Json | null
           price: number
-          tea_type: Database["public"]["Enums"]["tea_type"]
+          price_id: string | null
           title: string
+          type: string | null
           updated_at: string | null
-          weight_options: number[] | null
+          yearbirth: number | null
         }
         Insert: {
-          brewing_temperature?: number | null
-          brewing_time?: number | null
-          caffeine_level?: string | null
+          age?: number | null
           created_at?: string | null
           description?: string | null
           id?: string
           image_url?: string | null
           in_stock?: boolean | null
-          origin_country?: string | null
+          kind?: string | null
+          multilingual?: Json | null
           price: number
-          tea_type: Database["public"]["Enums"]["tea_type"]
+          price_id?: string | null
           title: string
+          type?: string | null
           updated_at?: string | null
-          weight_options?: number[] | null
+          yearbirth?: number | null
         }
         Update: {
-          brewing_temperature?: number | null
-          brewing_time?: number | null
-          caffeine_level?: string | null
+          age?: number | null
           created_at?: string | null
           description?: string | null
           id?: string
           image_url?: string | null
           in_stock?: boolean | null
-          origin_country?: string | null
+          kind?: string | null
+          multilingual?: Json | null
           price?: number
-          tea_type?: Database["public"]["Enums"]["tea_type"]
+          price_id?: string | null
           title?: string
+          type?: string | null
           updated_at?: string | null
-          weight_options?: number[] | null
+          yearbirth?: number | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "teas_price_id_fkey"
+            columns: ["price_id"]
+            isOneToOne: false
+            referencedRelation: "tea_prices"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       teaware: {
         Row: {

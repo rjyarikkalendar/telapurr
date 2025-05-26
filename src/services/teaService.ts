@@ -3,16 +3,24 @@ import { PaginationParams, FilterParams, ApiResponse } from './api';
 import { Tables } from '@/integrations/supabase/types';
 
 export type Tea = Tables<'teas'>;
+export type TeaPrice = Tables<'tea_prices'>;
 export type TeaCreate = Omit<Tea, 'id' | 'created_at' | 'updated_at'>;
 export type TeaUpdate = Partial<TeaCreate>;
 
 export interface TeaFilters extends FilterParams {
-  tea_type?: string;
-  origin_country?: string;
-  caffeine_level?: string;
+  type?: string;
+  kind?: string;
+  age_min?: number;
+  age_max?: number;
+  yearbirth_min?: number;
+  yearbirth_max?: number;
   in_stock?: boolean;
   price_min?: number;
   price_max?: number;
+}
+
+export interface TeaWithPrices extends Tea {
+  prices?: TeaPrice[];
 }
 
 export class TeaService {
@@ -22,7 +30,7 @@ export class TeaService {
     pagination?: PaginationParams,
     filters?: TeaFilters,
     sort?: string
-  ): Promise<ApiResponse<Tea>> {
+  ): Promise<ApiResponse<TeaWithPrices>> {
     const params = new URLSearchParams();
 
     // Добавляем параметры пагинации
@@ -68,17 +76,40 @@ export class TeaService {
     return result;
   }
 
-  async getById(id: string): Promise<Tea | null> {
-    // Для детальной информации все еще используем прямой доступ к Supabase
-    const response = await fetch(`https://zsvcpormtqkiyijapqfa.supabase.co/rest/v1/teas?id=eq.${id}&select=*`, {
-      headers: {
-        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4',
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4`
-      }
-    });
+  async getById(id: string): Promise<TeaWithPrices | null> {
+    try {
+      // Получаем чай с его ценами
+      const [teaResponse, pricesResponse] = await Promise.all([
+        fetch(`https://zsvcpormtqkiyijapqfa.supabase.co/rest/v1/teas?id=eq.${id}&select=*`, {
+          headers: {
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4',
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4`
+          }
+        }),
+        fetch(`https://zsvcpormtqkiyijapqfa.supabase.co/rest/v1/tea_prices?tea_id=eq.${id}&select=*&order=price_index.asc`, {
+          headers: {
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4',
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4`
+          }
+        })
+      ]);
 
-    const data = await response.json();
-    return data.length > 0 ? data[0] : null;
+      const teaData = await teaResponse.json();
+      const pricesData = await pricesResponse.json();
+
+      if (!teaData || teaData.length === 0) {
+        return null;
+      }
+
+      const tea = teaData[0];
+      return {
+        ...tea,
+        prices: pricesData || []
+      };
+    } catch (error) {
+      console.error('Error fetching tea by id:', error);
+      return null;
+    }
   }
 
   async create(tea: TeaCreate): Promise<Tea> {
