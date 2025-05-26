@@ -27,12 +27,12 @@ const TeaPage = () => {
   const renderFilters = () => (
     <div className="flex flex-wrap gap-4">
       <div className="w-48">
-        <Select onValueChange={(value) => updateFilters({ tea_type: value || undefined })}>
+        <Select onValueChange={(value) => updateFilters({ tea_type: value === "all" ? undefined : value })}>
           <SelectTrigger>
             <SelectValue placeholder="Тип чая" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Все типы</SelectItem>
+            <SelectItem value="all">Все типы</SelectItem>
             <SelectItem value="green">Зеленый</SelectItem>
             <SelectItem value="black">Черный</SelectItem>
             <SelectItem value="white">Белый</SelectItem>
@@ -44,12 +44,12 @@ const TeaPage = () => {
       </div>
       
       <div className="w-48">
-        <Select onValueChange={(value) => updateFilters({ caffeine_level: value || undefined })}>
+        <Select onValueChange={(value) => updateFilters({ caffeine_level: value === "all" ? undefined : value })}>
           <SelectTrigger>
             <SelectValue placeholder="Уровень кофеина" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Любой</SelectItem>
+            <SelectItem value="all">Любой</SelectItem>
             <SelectItem value="none">Без кофеина</SelectItem>
             <SelectItem value="low">Низкий</SelectItem>
             <SelectItem value="medium">Средний</SelectItem>

@@ -31,12 +31,12 @@ const TeawarePage = () => {
   const renderFilters = () => (
     <div className="flex flex-wrap gap-4">
       <div className="w-48">
-        <Select onValueChange={(value) => updateFilters({ material: value || undefined })}>
+        <Select onValueChange={(value) => updateFilters({ material: value === "all" ? undefined : value })}>
           <SelectTrigger>
             <SelectValue placeholder="Материал" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Все материалы</SelectItem>
+            <SelectItem value="all">Все материалы</SelectItem>
             <SelectItem value="ceramic">Керамика</SelectItem>
             <SelectItem value="porcelain">Фарфор</SelectItem>
             <SelectItem value="glass">Стекло</SelectItem>
