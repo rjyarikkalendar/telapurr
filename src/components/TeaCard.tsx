@@ -13,18 +13,10 @@ import {
 import { Button } from "./ui/button";
 import { TeaWithPrices } from "@/services/teaService";
 import { useLanguage } from "@/hooks/use-language";
-import { AdvancedImage } from '@cloudinary/react';
-import { Cloudinary } from "@cloudinary/url-gen";
 
 interface TeaCardProps {
   tea: TeaWithPrices;
 }
-
-const cld = new Cloudinary({
-  cloud: {
-    cloudName: 'your-cloud-name' // Замените на ваш Cloudinary cloud name
-  }
-});
 
 export const TeaCard = ({ tea }: TeaCardProps) => {
   const [open, setOpen] = useState(false);
@@ -60,25 +52,23 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   const localizedData = getLocalizedData();
 
-  // Генерируем URL для изображения чая на основе типа
+  // Используем изображения из image_url или дефолтные из Cloudinary
   const getTeaImageUrl = () => {
-    const teaTypes: { [key: string]: string } = {
-      'shen': 'tea/puer-shen',
-      'shu': 'tea/puer-shu', 
-      'green': 'tea/green-tea',
-      'black': 'tea/black-tea',
-      'white': 'tea/white-tea',
-      'oolong': 'tea/oolong-tea'
+    if (tea.image_url) {
+      return tea.image_url;
+    }
+
+    // Дефолтные изображения для разных типов чая
+    const defaultImages = {
+      'shen': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
+      'shu': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
+      'green': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
+      'black': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
+      'white': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
+      'oolong': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic'
     };
     
-    const imageId = teaTypes[tea.type] || 'tea/default-tea';
-    
-    try {
-      const myImage = cld.image(imageId);
-      return myImage.toURL();
-    } catch (error) {
-      return '/placeholder.svg';
-    }
+    return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
   };
 
   const handleAddToCart = (weightType?: string, price?: number) => {
