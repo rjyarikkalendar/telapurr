@@ -9,6 +9,81 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      prices: {
+        Row: {
+          created_at: string
+          currency: string | null
+          id: string
+          price: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string | null
+          id?: string
+          price: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string | null
+          id?: string
+          price?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_sku_prices: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean | null
+          price_id: string
+          price_index: number
+          product_id: string
+          product_type: string
+          sku_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          price_id: string
+          price_index?: number
+          product_id: string
+          product_type: string
+          sku_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          price_id?: string
+          price_index?: number
+          product_id?: string
+          product_type?: string
+          sku_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_sku_prices_price_id_fkey"
+            columns: ["price_id"]
+            isOneToOne: false
+            referencedRelation: "prices"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "product_sku_prices_sku_id_fkey"
+            columns: ["sku_id"]
+            isOneToOne: false
+            referencedRelation: "skus"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -33,6 +108,36 @@ export type Database = {
           full_name?: string | null
           id?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      skus: {
+        Row: {
+          created_at: string
+          id: string
+          sku_code: string
+          updated_at: string
+          weight_type: string
+          weight_unit: string | null
+          weight_value: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          sku_code: string
+          updated_at?: string
+          weight_type: string
+          weight_unit?: string | null
+          weight_value?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          sku_code?: string
+          updated_at?: string
+          weight_type?: string
+          weight_unit?: string | null
+          weight_value?: number | null
         }
         Relationships: []
       }
@@ -127,7 +232,6 @@ export type Database = {
           kind: string | null
           multilingual: Json | null
           price: number
-          price_id: string | null
           title: string
           type: string | null
           updated_at: string | null
@@ -143,7 +247,6 @@ export type Database = {
           kind?: string | null
           multilingual?: Json | null
           price: number
-          price_id?: string | null
           title: string
           type?: string | null
           updated_at?: string | null
@@ -159,21 +262,12 @@ export type Database = {
           kind?: string | null
           multilingual?: Json | null
           price?: number
-          price_id?: string | null
           title?: string
           type?: string | null
           updated_at?: string | null
           yearbirth?: number | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "teas_price_id_fkey"
-            columns: ["price_id"]
-            isOneToOne: false
-            referencedRelation: "tea_prices"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       teaware: {
         Row: {

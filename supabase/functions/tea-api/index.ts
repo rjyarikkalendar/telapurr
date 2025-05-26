@@ -42,8 +42,29 @@ serve(async (req) => {
         in_stock, price_min, price_max, sort
       })
 
-      // Используем явную связь через tea_id для избежания неоднозначности
-      let query = supabase.from('teas').select('*, tea_prices!tea_prices_tea_id_fkey(id, weight_type, price, price_index)', { count: 'exact' })
+      // Используем новую структуру с product_sku_prices
+      let query = supabase
+        .from('teas')
+        .select(`
+          *,
+          product_sku_prices!inner(
+            id,
+            price_index,
+            is_active,
+            skus!inner(
+              id,
+              sku_code,
+              weight_type,
+              weight_value,
+              weight_unit
+            ),
+            prices!inner(
+              id,
+              price,
+              currency
+            )
+          )
+        `, { count: 'exact' })
 
       // Применяем фильтры
       if (type) {
@@ -67,11 +88,16 @@ serve(async (req) => {
       if (in_stock === 'true') {
         query = query.eq('in_stock', true)
       }
+
+      // Фильтры по цене применяем к связанной таблице
+      query = query.eq('product_sku_prices.product_type', 'tea')
+      query = query.eq('product_sku_prices.is_active', true)
+
       if (price_min) {
-        query = query.gte('price', parseFloat(price_min))
+        query = query.gte('product_sku_prices.prices.price', parseFloat(price_min))
       }
       if (price_max) {
-        query = query.lte('price', parseFloat(price_max))
+        query = query.lte('product_sku_prices.prices.price', parseFloat(price_max))
       }
 
       // Применяем сортировку
@@ -116,11 +142,29 @@ serve(async (req) => {
       const total = count || 0
       const totalPages = Math.ceil(total / limit)
 
-      // Преобразуем данные, добавляя цены как массив
-      const processedData = (data || []).map(tea => ({
-        ...tea,
-        prices: tea.tea_prices || []
-      }))
+      // Преобразуем данные для совместимости с фронтендом
+      const processedData = (data || []).map(tea => {
+        // Группируем данные по чаю и извлекаем цены
+        const prices = tea.product_sku_prices?.map(psp => ({
+          id: psp.id,
+          weight_type: psp.skus.weight_type,
+          price: psp.prices.price,
+          price_index: psp.price_index,
+          tea_id: tea.id,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })).sort((a, b) => a.price_index - b.price_index) || []
+
+        // Находим минимальную цену для отображения
+        const minPrice = prices.length > 0 ? Math.min(...prices.map(p => p.price)) : tea.price || 0
+
+        return {
+          ...tea,
+          price: minPrice,
+          prices: prices,
+          product_sku_prices: undefined // Убираем сырые данные
+        }
+      })
 
       const response = {
         data: processedData,
