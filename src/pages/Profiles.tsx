@@ -140,6 +140,9 @@ const Profiles = () => {
                   size="sm"
                   onClick={() => updatePagination({ page: pagination.page + 1 })}
                   disabled={!pagination.hasNext}
+                >
+                  Следующая
+                  <ChevronRight className="h-4 w-4 ml-2" />
                 </Button>
               </div>
             )}
