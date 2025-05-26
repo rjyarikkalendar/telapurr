@@ -29,6 +29,80 @@ export const translations = {
         description: 'Наборы для чайной церемонии'
       }
     },
+    tea: {
+      categories: {
+        all: 'Все чаи',
+        allDesc: 'Вся коллекция',
+        shen: 'Шен Пуэр',
+        shenDesc: 'Сырой пуэр',
+        shu: 'Шу Пуэр',
+        shuDesc: 'Готовый пуэр',
+        white: 'Белый',
+        whiteDesc: 'Белый чай',
+        green: 'Зеленый',
+        greenDesc: 'Зеленый чай',
+        black: 'Красный',
+        blackDesc: 'Красный чай',
+        oolong: 'Улун',
+        oolongDesc: 'Улун'
+      },
+      filters: {
+        title: 'Фильтры',
+        kind: 'Вид',
+        allKinds: 'Все виды',
+        aged: 'Выдержанный',
+        young: 'Молодой',
+        premium: 'Премиум',
+        age: 'Возраст (лет)',
+        from: 'От',
+        to: 'До',
+        sort: 'Сортировка',
+        sortBy: 'Сортировать по',
+        priceAsc: 'Цена: по возрастанию',
+        priceDesc: 'Цена: по убыванию',
+        inStock: 'Только в наличии'
+      },
+      pagination: {
+        prev: 'Предыдущая',
+        next: 'Следующая',
+        page: 'Страница',
+        of: 'из'
+      },
+      error: 'Ошибка загрузки данных'
+    },
+    teaware: {
+      filters: {
+        title: 'Фильтры',
+        material: 'Материал',
+        allMaterials: 'Все материалы',
+        dishwasherSafe: 'Можно мыть в посудомойке',
+        microwaveSafe: 'Можно в микроволновку',
+        inStock: 'Только в наличии'
+      },
+      materials: {
+        ceramic: 'Керамика',
+        porcelain: 'Фарфор',
+        glass: 'Стекло',
+        clay: 'Глина',
+        bamboo: 'Бамбук',
+        metal: 'Металл'
+      }
+    },
+    sets: {
+      filters: {
+        title: 'Фильтры',
+        people: 'Количество человек',
+        anyAmount: 'Любое количество',
+        onePlus: '1+ человек',
+        twoPlus: '2+ человека',
+        fourPlus: '4+ человека',
+        sixPlus: '6+ человек',
+        priceFrom: 'Цена от',
+        priceTo: 'Цена до',
+        giftPackaging: 'Подарочная упаковка',
+        inStock: 'Только в наличии'
+      }
+    },
     ceremony: {
       title: 'Чайные церемонии',
       learnMore: 'Узнать больше'
