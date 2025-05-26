@@ -42,28 +42,11 @@ serve(async (req) => {
         in_stock, price_min, price_max, sort
       })
 
-      // Получаем чаи с их ценами через новую структуру
+      // Получаем чаи с их ценами через правильные внешние ключи
       let query = supabase
         .from('teas')
         .select(`
-          *,
-          product_sku_prices!inner(
-            id,
-            price_index,
-            is_active,
-            skus!inner(
-              id,
-              sku_code,
-              weight_type,
-              weight_value,
-              weight_unit
-            ),
-            prices!inner(
-              id,
-              price,
-              currency
-            )
-          )
+          *
         `, { count: 'exact' })
 
       // Применяем фильтры к чаям
@@ -89,14 +72,8 @@ serve(async (req) => {
         query = query.eq('in_stock', true)
       }
 
-      // Фильтры для связанных таблиц
-      query = query.eq('product_sku_prices.product_type', 'tea')
-      query = query.eq('product_sku_prices.is_active', true)
-
-      // Применяем сортировку
-      if (sort === 'price_asc' || sort === 'price_desc') {
-        // Для сортировки по цене сначала получим данные, потом отсортируем
-      } else if (sort === 'title_asc') {
+      // Применяем сортировку для основного запроса
+      if (sort === 'title_asc') {
         query = query.order('title', { ascending: true })
       } else if (sort === 'age_asc') {
         query = query.order('age', { ascending: true })
@@ -112,12 +89,12 @@ serve(async (req) => {
         query = query.order('created_at', { ascending: false })
       }
 
-      const { data, error, count } = await query
+      const { data: teasData, error: teasError, count } = await query
 
-      if (error) {
-        console.error('Tea API error:', error)
+      if (teasError) {
+        console.error('Tea API error:', teasError)
         return new Response(
-          JSON.stringify({ error: error.message }),
+          JSON.stringify({ error: teasError.message }),
           { 
             status: 400,
             headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -125,64 +102,73 @@ serve(async (req) => {
         )
       }
 
-      // Группируем данные по чаям и обрабатываем цены
-      const teaMap = new Map()
+      // Получаем цены для каждого чая отдельным запросом
+      const processedData = []
       
-      if (data) {
-        for (const row of data) {
-          const teaId = row.id
-          
-          if (!teaMap.has(teaId)) {
-            teaMap.set(teaId, {
-              ...row,
-              prices: [],
-              product_sku_prices: undefined
+      if (teasData && teasData.length > 0) {
+        for (const tea of teasData) {
+          // Получаем цены и SKU для каждого чая
+          const { data: priceData, error: priceError } = await supabase
+            .from('product_sku_prices')
+            .select(`
+              id,
+              price_index,
+              is_active,
+              skus!inner(
+                id,
+                sku_code,
+                weight_type,
+                weight_value,
+                weight_unit
+              ),
+              prices!inner(
+                id,
+                price,
+                currency
+              )
+            `)
+            .eq('product_id', tea.id)
+            .eq('product_type', 'tea')
+            .eq('is_active', true)
+            .order('price_index', { ascending: true })
+
+          if (priceError) {
+            console.error('Price fetch error for tea:', tea.id, priceError)
+            continue
+          }
+
+          // Преобразуем данные в формат совместимый с фронтендом
+          const prices = priceData?.map(psp => ({
+            id: psp.id,
+            weight_type: psp.skus.weight_type,
+            price: psp.prices.price,
+            price_index: psp.price_index,
+            tea_id: tea.id,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          })) || []
+
+          // Фильтрация по цене
+          let filteredPrices = prices
+          if (price_min || price_max) {
+            filteredPrices = prices.filter(p => {
+              if (price_min && p.price < parseFloat(price_min)) return false
+              if (price_max && p.price > parseFloat(price_max)) return false
+              return true
             })
+            if (filteredPrices.length === 0) continue // Исключаем чай если нет подходящих цен
           }
-          
-          const tea = teaMap.get(teaId)
-          
-          // Добавляем цены если есть product_sku_prices
-          if (row.product_sku_prices && Array.isArray(row.product_sku_prices)) {
-            for (const psp of row.product_sku_prices) {
-              tea.prices.push({
-                id: psp.id,
-                weight_type: psp.skus.weight_type,
-                price: psp.prices.price,
-                price_index: psp.price_index,
-                tea_id: tea.id,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString()
-              })
-            }
-          }
+
+          // Находим минимальную цену для отображения
+          const minPrice = filteredPrices.length > 0 ? Math.min(...filteredPrices.map(p => p.price)) : tea.price || 0
+
+          processedData.push({
+            ...tea,
+            price: minPrice,
+            prices: filteredPrices
+          })
         }
       }
-
-      let processedData = Array.from(teaMap.values())
-
-      // Обрабатываем каждый чай
-      processedData = processedData.map(tea => {
-        // Сортируем цены по price_index
-        tea.prices.sort((a, b) => a.price_index - b.price_index)
-        
-        // Фильтрация по цене
-        if (price_min || price_max) {
-          const prices = tea.prices.filter(p => {
-            if (price_min && p.price < parseFloat(price_min)) return false
-            if (price_max && p.price > parseFloat(price_max)) return false
-            return true
-          })
-          if (prices.length === 0) return null // Исключаем чай если нет подходящих цен
-          tea.prices = prices
-        }
-
-        // Находим минимальную цену для отображения
-        const minPrice = tea.prices.length > 0 ? Math.min(...tea.prices.map(p => p.price)) : tea.price || 0
-        tea.price = minPrice
-
-        return tea
-      }).filter(tea => tea !== null) // Убираем null значения
 
       // Сортировка по цене если нужно
       if (sort === 'price_asc') {
