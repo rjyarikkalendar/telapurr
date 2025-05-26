@@ -43,7 +43,7 @@ export function useApiData<T>({
       const response = await fetchFunction(pagination, filters, sort);
       console.log('API response:', response);
       
-      setData(response.data);
+      setData(response.data || []);
       setPaginationMeta(response.pagination);
     } catch (err) {
       console.error('Error fetching data:', err);
