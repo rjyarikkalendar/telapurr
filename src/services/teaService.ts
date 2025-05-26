@@ -1,4 +1,3 @@
-
 import { PaginationParams, FilterParams, ApiResponse } from './api';
 import { Tables } from '@/integrations/supabase/types';
 
@@ -19,9 +18,9 @@ export interface TeaFilters extends FilterParams {
   price_max?: number;
 }
 
-export interface TeaWithPrices extends Tea {
+export interface TeaWithPrices extends Omit<Tea, 'image_url'> {
   prices?: TeaPrice[];
-  image_url?: string[] | null; // Обновляем тип для массива изображений
+  image_url?: string[] | null; // Переопределяем как массив строк
 }
 
 export class TeaService {
