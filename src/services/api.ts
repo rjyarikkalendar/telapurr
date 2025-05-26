@@ -36,6 +36,12 @@ class ApiService {
     filters?: FilterParams,
     sort?: SortParams[]
   ) {
+    // Check if supabase client is properly initialized
+    if (!supabase) {
+      console.error('Supabase client is not initialized');
+      throw new Error('Supabase client is not initialized');
+    }
+
     let query: any = supabase.from(table).select('*', { count: 'exact' });
 
     console.log(`Building query for table: ${table}`);
@@ -114,6 +120,8 @@ class ApiService {
   ): Promise<ApiResponse<T>> {
     try {
       console.log(`Starting getList for table: ${table}`);
+      console.log('Supabase client status:', !!supabase);
+      
       const sort = this.parseSortString(sortString);
       const query = this.buildQuery(table, pagination, filters, sort);
       
@@ -122,7 +130,7 @@ class ApiService {
       
       if (error) {
         console.error(`Error fetching ${table}:`, error);
-        throw error;
+        throw new Error(`Database error: ${error.message}`);
       }
 
       console.log(`Query successful. Got ${data?.length || 0} records, total count: ${count}`);

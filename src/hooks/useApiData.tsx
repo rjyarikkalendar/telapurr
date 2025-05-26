@@ -39,13 +39,17 @@ export function useApiData<T>({
       setLoading(true);
       setError(null);
       console.log('Fetching data with params:', { pagination, filters, sort });
+      
       const response = await fetchFunction(pagination, filters, sort);
       console.log('API response:', response);
+      
       setData(response.data);
       setPaginationMeta(response.pagination);
     } catch (err) {
       console.error('Error fetching data:', err);
-      setError(err as Error);
+      const error = err instanceof Error ? err : new Error('Unknown error occurred');
+      setError(error);
+      setData([]);
     } finally {
       setLoading(false);
     }
