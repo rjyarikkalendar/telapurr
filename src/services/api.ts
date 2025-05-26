@@ -81,16 +81,21 @@ class ApiService {
   private parseSortString(sortString?: string): SortParams[] {
     if (!sortString) return [];
     
-    return sortString.split(',').map(item => {
+    const sortItems: SortParams[] = [];
+    const items = sortString.split(',');
+    
+    for (const item of items) {
       const trimmed = item.trim();
       if (trimmed.endsWith('_desc')) {
-        return { field: trimmed.replace('_desc', ''), direction: 'desc' as const };
+        sortItems.push({ field: trimmed.replace('_desc', ''), direction: 'desc' });
       } else if (trimmed.endsWith('_asc')) {
-        return { field: trimmed.replace('_asc', ''), direction: 'asc' as const };
+        sortItems.push({ field: trimmed.replace('_asc', ''), direction: 'asc' });
       } else {
-        return { field: trimmed, direction: 'asc' as const };
+        sortItems.push({ field: trimmed, direction: 'asc' });
       }
-    });
+    }
+    
+    return sortItems;
   }
 
   async getList<T = any>(
