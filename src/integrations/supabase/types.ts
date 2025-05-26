@@ -227,7 +227,7 @@ export type Database = {
           created_at: string | null
           description: string | null
           id: string
-          image_url: string | null
+          image_url: Json | null
           in_stock: boolean | null
           kind: string | null
           multilingual: Json | null
@@ -242,7 +242,7 @@ export type Database = {
           created_at?: string | null
           description?: string | null
           id?: string
-          image_url?: string | null
+          image_url?: Json | null
           in_stock?: boolean | null
           kind?: string | null
           multilingual?: Json | null
@@ -257,7 +257,7 @@ export type Database = {
           created_at?: string | null
           description?: string | null
           id?: string
-          image_url?: string | null
+          image_url?: Json | null
           in_stock?: boolean | null
           kind?: string | null
           multilingual?: Json | null

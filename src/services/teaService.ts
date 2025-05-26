@@ -21,6 +21,7 @@ export interface TeaFilters extends FilterParams {
 
 export interface TeaWithPrices extends Tea {
   prices?: TeaPrice[];
+  image_url?: string[] | null; // Обновляем тип для массива изображений
 }
 
 export class TeaService {

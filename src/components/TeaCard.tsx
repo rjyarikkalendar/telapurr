@@ -52,10 +52,11 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   const localizedData = getLocalizedData();
 
-  // Используем изображения из image_url или дефолтные из Cloudinary
+  // Получаем изображения из JSON массива или используем дефолтные
   const getTeaImageUrl = () => {
-    if (tea.image_url) {
-      return tea.image_url;
+    // Проверяем, есть ли изображения в JSON массиве
+    if (tea.image_url && Array.isArray(tea.image_url) && tea.image_url.length > 0) {
+      return tea.image_url[0]; // Используем первое изображение из массива
     }
 
     // Дефолтные изображения для разных типов чая
