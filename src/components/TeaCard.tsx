@@ -56,7 +56,8 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
   const getTeaImageUrl = () => {
     // Проверяем, есть ли изображения в JSON массиве
     if (tea.image_url && Array.isArray(tea.image_url) && tea.image_url.length > 0) {
-      return tea.image_url[0]; // Используем первое изображение из массива
+      // Возвращаем первое изображение из массива
+      return tea.image_url[0];
     }
 
     // Дефолтные изображения для разных типов чая
@@ -112,6 +113,19 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             src={getTeaImageUrl()}
             alt={localizedData.name}
             className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            onError={(e) => {
+              // Если изображение не загружается, используем дефолтное
+              const target = e.target as HTMLImageElement;
+              const defaultImages = {
+                'shen': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
+                'shu': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
+                'green': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
+                'black': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
+                'white': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
+                'oolong': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic'
+              };
+              target.src = defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
+            }}
           />
           {tea.age && (
             <Badge className="absolute top-2 right-2 bg-tea-brown text-white text-xs">
