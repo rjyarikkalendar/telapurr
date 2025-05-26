@@ -53,30 +53,36 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   const localizedData = getLocalizedData();
 
-  // Получаем изображения из JSON массива или используем дефолтные
+  // Получаем изображения из JSON массива, теперь приоритет данным из БД
   const getTeaImageUrl = () => {
-    // Дефолтные изображения для разных типов чая (используем JPEG/PNG)
+    // Дефолтные изображения как запасной вариант
     const defaultImages = {
-      'shen': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop',
-      'shu': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
-      'green': 'https://images.unsplash.com/photo-1627595231616-3ab7c7faa8b2?w=400&h=400&fit=crop',
-      'black': 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&h=400&fit=crop',
-      'white': 'https://images.unsplash.com/photo-1564890275246-de3e0b17bff8?w=400&h=400&fit=crop',
-      'oolong': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'
+      'shen': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_6128_n2uthq.jpg',
+      'shu': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_8194_ywgiux.jpg',
+      'green': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_6128_n2uthq.jpg',
+      'black': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_8194_ywgiux.jpg',
+      'white': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_6128_n2uthq.jpg',
+      'oolong': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_8194_ywgiux.jpg',
+      'red': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_8194_ywgiux.jpg',
+      'gabba': 'https://res.cloudinary.com/drukljqft/image/upload/v1748278963/IMG_8194_ywgiux.jpg'
     };
 
-    // Если есть ошибка загрузки или нет изображений, используем дефолтное
-    if (imageError || !tea.image_url || !Array.isArray(tea.image_url) || tea.image_url.length === 0) {
+    // Если есть ошибка загрузки, используем дефолтное
+    if (imageError) {
       return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
     }
 
-    // Проверяем первое изображение на совместимость с браузером
-    const firstImage = tea.image_url[0];
-    if (firstImage && !firstImage.includes('.heic')) {
-      return firstImage;
+    // Проверяем, есть ли изображения в БД
+    if (tea.image_url && Array.isArray(tea.image_url) && tea.image_url.length > 0) {
+      const firstImage = tea.image_url[0];
+      if (firstImage) {
+        console.log('Using image from database for tea:', tea.id, 'URL:', firstImage);
+        return firstImage;
+      }
     }
 
-    // Если первое изображение в формате .heic, используем дефолтное
+    // Если в БД нет изображений, используем дефолтное
+    console.log('No image in database for tea:', tea.id, 'using default for type:', tea.type);
     return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
   };
 
@@ -164,28 +170,26 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
       {tea.prices && tea.prices.length > 0 && (
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Выберите размер упаковки</DialogTitle>
-            </DialogHeader>
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              {tea.prices.map((priceOption) => (
-                <Button
-                  key={priceOption.id}
-                  onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
-                  variant="outline"
-                  className="flex flex-col h-auto p-4"
-                >
-                  <span className="text-lg font-medium">
-                    {priceOption.weight_type.replace('_', ' ')}
-                  </span>
-                  <span className="text-tea-brown font-semibold">
-                    {priceOption.price} €
-                  </span>
-                </Button>
-              ))}
-            </div>
-          </DialogContent>
+          <DialogHeader>
+            <DialogTitle>Выберите размер упаковки</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            {tea.prices.map((priceOption) => (
+              <Button
+                key={priceOption.id}
+                onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
+                variant="outline"
+                className="flex flex-col h-auto p-4"
+              >
+                <span className="text-lg font-medium">
+                  {priceOption.weight_type.replace('_', ' ')}
+                </span>
+                <span className="text-tea-brown font-semibold">
+                  {priceOption.price} €
+                </span>
+              </Button>
+            ))}
+          </div>
         </Dialog>
       )}
     </>
