@@ -7,9 +7,12 @@ import { useLanguage } from "@/hooks/use-language";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { DatabaseTest } from "@/components/DatabaseTest";
 
 const TeawarePage = () => {
   const { currentLang } = useLanguage();
+  
+  console.log('TeawarePage rendering...');
   
   const {
     data,
@@ -23,6 +26,8 @@ const TeawarePage = () => {
     fetchFunction: teawareService.getList.bind(teawareService),
     initialPagination: { page: 1, limit: 12 },
   });
+
+  console.log('TeawarePage state:', { data, loading, error, pagination });
 
   const renderFilters = () => (
     <div className="flex flex-wrap gap-4">
@@ -83,6 +88,11 @@ const TeawarePage = () => {
           <h1 className="text-4xl font-light text-tea-text mb-8 text-center">
             Посуда
           </h1>
+          
+          {/* Add database test component for debugging */}
+          <div className="mb-8">
+            <DatabaseTest />
+          </div>
           
           <ProductList
             data={data}

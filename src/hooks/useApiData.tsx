@@ -38,12 +38,14 @@ export function useApiData<T>({
     try {
       setLoading(true);
       setError(null);
+      console.log('Fetching data with params:', { pagination, filters, sort });
       const response = await fetchFunction(pagination, filters, sort);
+      console.log('API response:', response);
       setData(response.data);
       setPaginationMeta(response.pagination);
     } catch (err) {
-      setError(err as Error);
       console.error('Error fetching data:', err);
+      setError(err as Error);
     } finally {
       setLoading(false);
     }
@@ -59,13 +61,13 @@ export function useApiData<T>({
 
   const updateFilters = (newFilters: Partial<FilterParams>) => {
     setFilters(prev => ({ ...prev, ...newFilters }));
-    // Сбрасываем на первую страницу при изменении фильтров
+    // Reset to first page when filters change
     setPagination(prev => ({ ...prev, page: 1 }));
   };
 
   const updateSort = (newSort: string) => {
     setSort(newSort);
-    // Сбрасываем на первую страницу при изменении сортировки
+    // Reset to first page when sort changes
     setPagination(prev => ({ ...prev, page: 1 }));
   };
 

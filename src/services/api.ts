@@ -38,10 +38,16 @@ class ApiService {
   ) {
     let query: any = supabase.from(table).select('*', { count: 'exact' });
 
+    console.log(`Building query for table: ${table}`);
+    console.log('Filters:', filters);
+    console.log('Sort:', sort);
+    console.log('Pagination:', pagination);
+
     // Apply filters
     if (filters) {
       Object.entries(filters).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== '') {
+          console.log(`Applying filter: ${key} = ${value}`);
           if (key.endsWith('_min')) {
             const field = key.replace('_min', '');
             query = query.gte(field, value);
@@ -60,6 +66,7 @@ class ApiService {
     // Apply sorting
     if (sort && sort.length > 0) {
       sort.forEach(({ field, direction }) => {
+        console.log(`Applying sort: ${field} ${direction}`);
         query = query.order(field, { ascending: direction === 'asc' });
       });
     } else {
@@ -72,6 +79,7 @@ class ApiService {
       const { page = 1, limit = 20 } = pagination;
       const from = (page - 1) * limit;
       const to = from + limit - 1;
+      console.log(`Applying pagination: from ${from} to ${to}`);
       query = query.range(from, to);
     }
 
@@ -104,88 +112,121 @@ class ApiService {
     filters?: FilterParams,
     sortString?: string
   ): Promise<ApiResponse<T>> {
-    const sort = this.parseSortString(sortString);
-    const query = this.buildQuery(table, pagination, filters, sort);
-    
-    const { data, error, count } = await query;
-    
-    if (error) {
-      console.error(`Error fetching ${table}:`, error);
+    try {
+      console.log(`Starting getList for table: ${table}`);
+      const sort = this.parseSortString(sortString);
+      const query = this.buildQuery(table, pagination, filters, sort);
+      
+      console.log('Executing query...');
+      const { data, error, count } = await query;
+      
+      if (error) {
+        console.error(`Error fetching ${table}:`, error);
+        throw error;
+      }
+
+      console.log(`Query successful. Got ${data?.length || 0} records, total count: ${count}`);
+
+      const page = pagination?.page || 1;
+      const limit = pagination?.limit || 20;
+      const total = count || 0;
+      const totalPages = Math.ceil(total / limit);
+
+      return {
+        data: (data || []) as T[],
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages,
+          hasNext: page < totalPages,
+          hasPrev: page > 1,
+        },
+      };
+    } catch (error) {
+      console.error(`Failed to fetch ${table}:`, error);
       throw error;
     }
-
-    const page = pagination?.page || 1;
-    const limit = pagination?.limit || 20;
-    const total = count || 0;
-    const totalPages = Math.ceil(total / limit);
-
-    return {
-      data: (data || []) as T[],
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages,
-        hasNext: page < totalPages,
-        hasPrev: page > 1,
-      },
-    };
   }
 
   async getById<T = any>(table: TableName, id: string): Promise<T | null> {
-    const { data, error } = await supabase
-      .from(table)
-      .select('*')
-      .eq('id', id)
-      .maybeSingle();
+    try {
+      console.log(`Getting ${table} by id: ${id}`);
+      const { data, error } = await supabase
+        .from(table)
+        .select('*')
+        .eq('id', id)
+        .maybeSingle();
 
-    if (error) {
-      console.error(`Error fetching ${table} by id:`, error);
+      if (error) {
+        console.error(`Error fetching ${table} by id:`, error);
+        throw error;
+      }
+
+      return data as T | null;
+    } catch (error) {
+      console.error(`Failed to fetch ${table} by id:`, error);
       throw error;
     }
-
-    return data as T | null;
   }
 
   async create<T = any>(table: TableName, item: any): Promise<T> {
-    const { data, error } = await supabase
-      .from(table)
-      .insert(item)
-      .select()
-      .single();
+    try {
+      console.log(`Creating ${table}:`, item);
+      const { data, error } = await supabase
+        .from(table)
+        .insert(item)
+        .select()
+        .single();
 
-    if (error) {
-      console.error(`Error creating ${table}:`, error);
+      if (error) {
+        console.error(`Error creating ${table}:`, error);
+        throw error;
+      }
+
+      return data as T;
+    } catch (error) {
+      console.error(`Failed to create ${table}:`, error);
       throw error;
     }
-
-    return data as T;
   }
 
   async update<T = any>(table: TableName, id: string, updates: any): Promise<T> {
-    const { data, error } = await supabase
-      .from(table)
-      .update(updates)
-      .eq('id', id)
-      .select()
-      .single();
+    try {
+      console.log(`Updating ${table} ${id}:`, updates);
+      const { data, error } = await supabase
+        .from(table)
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
 
-    if (error) {
-      console.error(`Error updating ${table}:`, error);
+      if (error) {
+        console.error(`Error updating ${table}:`, error);
+        throw error;
+      }
+
+      return data as T;
+    } catch (error) {
+      console.error(`Failed to update ${table}:`, error);
       throw error;
     }
-
-    return data as T;
   }
 
   async delete(table: TableName, id: string): Promise<void> {
-    const { error } = await supabase
-      .from(table)
-      .delete()
-      .eq('id', id);
+    try {
+      console.log(`Deleting ${table} ${id}`);
+      const { error } = await supabase
+        .from(table)
+        .delete()
+        .eq('id', id);
 
-    if (error) {
-      console.error(`Error deleting ${table}:`, error);
+      if (error) {
+        console.error(`Error deleting ${table}:`, error);
+        throw error;
+      }
+    } catch (error) {
+      console.error(`Failed to delete ${table}:`, error);
       throw error;
     }
   }
