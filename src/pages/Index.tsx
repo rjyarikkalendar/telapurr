@@ -1,7 +1,6 @@
 
 import { HeroSection } from "@/components/HeroSection";
 import { CategorySection } from "@/components/CategorySection";
-import { CeremonySection } from "@/components/CeremonySection";
 import { CartWidget } from "@/components/CartWidget";
 import { useLanguage } from "@/hooks/use-language";
 import { PartnershipButton } from "@/components/PartnershipButton";
@@ -15,7 +14,6 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection t={t} />
         <CategorySection t={t} />
-        <CeremonySection t={t} />
         <PartnershipButton />
       </main>
     </div>

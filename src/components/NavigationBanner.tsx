@@ -7,7 +7,6 @@ const sections = [
   { path: "/tea", color: "bg-tea-brown/10" },
   { path: "/teaware", color: "bg-tea-brown/20" },
   { path: "/sets", color: "bg-tea-brown/30" },
-  { path: "/ceremonies", color: "bg-tea-brown/40" },
 ];
 
 export const NavigationBanner = () => {
@@ -42,8 +41,6 @@ export const NavigationBanner = () => {
         return t.categories.teaware.title;
       case '/sets':
         return t.categories.sets.title;
-      case '/ceremonies':
-        return t.ceremony.title;
       default:
         return '';
     }

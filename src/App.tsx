@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,7 +17,6 @@ import Teaware from "./pages/Teaware";
 import Sets from "./pages/Sets";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import Ceremonies from "./pages/Ceremonies";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Partnership from "./pages/Partnership";
@@ -47,7 +45,6 @@ const AppContent = () => {
         <Route path="/tea" element={<Tea />} />
         <Route path="/teaware" element={<Teaware />} />
         <Route path="/sets" element={<Sets />} />
-        <Route path="/ceremonies" element={<Ceremonies />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/auth" element={<Auth />} />
