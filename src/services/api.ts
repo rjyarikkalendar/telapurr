@@ -48,7 +48,7 @@ class ApiService {
           } else if (key.endsWith('_max')) {
             const field = key.replace('_max', '');
             query = query.lte(field, value);
-          } else if (typeof value === 'string' && key === 'title') {
+          } else if (typeof value === 'string' && (key === 'title' || key === 'full_name')) {
             query = query.ilike(key, `%${value}%`);
           } else {
             query = query.eq(key, value);
@@ -93,7 +93,7 @@ class ApiService {
     });
   }
 
-  async getList<T>(
+  async getList<T = any>(
     table: TableName,
     pagination?: PaginationParams,
     filters?: FilterParams,
@@ -115,7 +115,7 @@ class ApiService {
     const totalPages = Math.ceil(total / limit);
 
     return {
-      data: data as T[],
+      data: (data || []) as T[],
       pagination: {
         page,
         limit,
@@ -127,7 +127,7 @@ class ApiService {
     };
   }
 
-  async getById<T>(table: TableName, id: string): Promise<T | null> {
+  async getById<T = any>(table: TableName, id: string): Promise<T | null> {
     const { data, error } = await supabase
       .from(table)
       .select('*')
@@ -142,7 +142,7 @@ class ApiService {
     return data as T;
   }
 
-  async create<T>(table: TableName, item: any): Promise<T> {
+  async create<T = any>(table: TableName, item: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .insert(item)
@@ -157,7 +157,7 @@ class ApiService {
     return data as T;
   }
 
-  async update<T>(table: TableName, id: string, updates: any): Promise<T> {
+  async update<T = any>(table: TableName, id: string, updates: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .update(updates)

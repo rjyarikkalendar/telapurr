@@ -1,6 +1,6 @@
 
 import { useApiData } from "@/hooks/useApiData";
-import { teaSetService, TeaSetFilters } from "@/services/teaSetService";
+import { teaSetService, TeaSetFilters, TeaSet } from "@/services/teaSetService";
 import { ProductList } from "@/components/ProductList";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-const Sets = () => {
+const SetsPage = () => {
   const { currentLang } = useLanguage();
   
   const {
@@ -20,7 +20,7 @@ const Sets = () => {
     updatePagination,
     updateFilters,
     updateSort,
-  } = useApiData({
+  } = useApiData<TeaSet>({
     fetchFunction: teaSetService.getList.bind(teaSetService),
     initialPagination: { page: 1, limit: 12 },
   });
@@ -114,4 +114,4 @@ const Sets = () => {
   );
 };
 
-export default Sets;
+export default SetsPage;

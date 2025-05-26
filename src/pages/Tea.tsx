@@ -1,6 +1,6 @@
 
 import { useApiData } from "@/hooks/useApiData";
-import { teaService, TeaFilters } from "@/services/teaService";
+import { teaService, TeaFilters, Tea } from "@/services/teaService";
 import { ProductList } from "@/components/ProductList";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-const Tea = () => {
+const TeaPage = () => {
   const { currentLang } = useLanguage();
   
   const {
@@ -19,7 +19,7 @@ const Tea = () => {
     updatePagination,
     updateFilters,
     updateSort,
-  } = useApiData({
+  } = useApiData<Tea>({
     fetchFunction: teaService.getList.bind(teaService),
     initialPagination: { page: 1, limit: 12 },
   });
@@ -95,4 +95,4 @@ const Tea = () => {
   );
 };
 
-export default Tea;
+export default TeaPage;

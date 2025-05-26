@@ -1,6 +1,6 @@
 
 import { useApiData } from "@/hooks/useApiData";
-import { teawareService, TeawareFilters } from "@/services/teawareService";
+import { teawareService, TeawareFilters, Teaware } from "@/services/teawareService";
 import { ProductList } from "@/components/ProductList";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-const Teaware = () => {
+const TeawarePage = () => {
   const { currentLang } = useLanguage();
   
   const {
@@ -19,7 +19,7 @@ const Teaware = () => {
     updatePagination,
     updateFilters,
     updateSort,
-  } = useApiData({
+  } = useApiData<Teaware>({
     fetchFunction: teawareService.getList.bind(teawareService),
     initialPagination: { page: 1, limit: 12 },
   });
@@ -100,4 +100,4 @@ const Teaware = () => {
   );
 };
 
-export default Teaware;
+export default TeawarePage;

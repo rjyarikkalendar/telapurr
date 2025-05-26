@@ -1,6 +1,6 @@
 
 import { useApiData } from "@/hooks/useApiData";
-import { profileService, ProfileFilters } from "@/services/profileService";
+import { profileService, ProfileFilters, Profile } from "@/services/profileService";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
 import { Input } from "@/components/ui/input";
@@ -24,7 +24,7 @@ const Profiles = () => {
     updatePagination,
     updateFilters,
     updateSort,
-  } = useApiData({
+  } = useApiData<Profile>({
     fetchFunction: profileService.getList.bind(profileService),
     initialPagination: { page: 1, limit: 12 },
   });
