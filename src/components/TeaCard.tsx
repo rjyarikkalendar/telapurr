@@ -13,10 +13,18 @@ import {
 import { Button } from "./ui/button";
 import { TeaWithPrices } from "@/services/teaService";
 import { useLanguage } from "@/hooks/use-language";
+import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from "@cloudinary/url-gen";
 
 interface TeaCardProps {
   tea: TeaWithPrices;
 }
+
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: 'your-cloud-name' // Замените на ваш Cloudinary cloud name
+  }
+});
 
 export const TeaCard = ({ tea }: TeaCardProps) => {
   const [open, setOpen] = useState(false);
@@ -52,6 +60,27 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   const localizedData = getLocalizedData();
 
+  // Генерируем URL для изображения чая на основе типа
+  const getTeaImageUrl = () => {
+    const teaTypes: { [key: string]: string } = {
+      'shen': 'tea/puer-shen',
+      'shu': 'tea/puer-shu', 
+      'green': 'tea/green-tea',
+      'black': 'tea/black-tea',
+      'white': 'tea/white-tea',
+      'oolong': 'tea/oolong-tea'
+    };
+    
+    const imageId = teaTypes[tea.type] || 'tea/default-tea';
+    
+    try {
+      const myImage = cld.image(imageId);
+      return myImage.toURL();
+    } catch (error) {
+      return '/placeholder.svg';
+    }
+  };
+
   const handleAddToCart = (weightType?: string, price?: number) => {
     // Создаем объект продукта, совместимый с существующей системой корзины
     const product = {
@@ -59,7 +88,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
       title: localizedData.name,
       description: localizedData.description,
       price: price || tea.price,
-      image: tea.image_url || '/placeholder.svg',
+      image: getTeaImageUrl(),
       category: 'tea' as const,
       catalogId: 'tea',
       selectedWeight: weightType
@@ -86,43 +115,40 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   return (
     <>
-      <Card className="overflow-hidden group">
+      <Card className="overflow-hidden group h-full flex flex-col">
         <div className="relative aspect-square overflow-hidden">
           <img
-            src={tea.image_url || '/placeholder.svg'}
+            src={getTeaImageUrl()}
             alt={localizedData.name}
             className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
           />
           {tea.age && (
-            <Badge className="absolute top-2 right-2 bg-tea-brown text-white">
+            <Badge className="absolute top-2 right-2 bg-tea-brown text-white text-xs">
               {tea.age} лет
             </Badge>
           )}
         </div>
-        <CardContent className="p-4">
-          <div className="space-y-2">
+        <CardContent className="p-3 flex-1">
+          <div className="space-y-1">
             <div>
-              <h3 className="text-xl font-light text-tea-text">{localizedData.name}</h3>
+              <h3 className="text-sm font-medium text-tea-text line-clamp-2">{localizedData.name}</h3>
               {localizedData.subname && (
-                <p className="text-sm text-tea-brown font-medium">{localizedData.subname}</p>
-              )}
-              {localizedData.subtitle && (
-                <p className="text-xs text-gray-500">{localizedData.subtitle}</p>
+                <p className="text-xs text-tea-brown font-medium">{localizedData.subname}</p>
               )}
             </div>
-            <p className="text-gray-600 text-sm line-clamp-2">{localizedData.description}</p>
+            <p className="text-gray-600 text-xs line-clamp-2">{localizedData.description}</p>
             {tea.yearbirth && (
-              <p className="text-xs text-gray-500">Год урожая: {tea.yearbirth}</p>
+              <p className="text-xs text-gray-500">Урожай: {tea.yearbirth}</p>
             )}
           </div>
         </CardContent>
-        <CardFooter className="p-4 pt-0 flex justify-between items-center">
-          <span className="text-tea-brown text-lg font-semibold">
+        <CardFooter className="p-3 pt-0 flex justify-between items-center">
+          <span className="text-tea-brown text-sm font-semibold">
             от {tea.price} €
           </span>
           <Button
             onClick={() => tea.prices && tea.prices.length > 0 ? setOpen(true) : handleAddToCart()}
-            className="bg-tea-brown hover:bg-tea-brown/90"
+            className="bg-tea-brown hover:bg-tea-brown/90 text-xs px-2 py-1 h-auto"
             disabled={!tea.in_stock}
           >
             {tea.in_stock ? 'В корзину' : 'Нет в наличии'}
