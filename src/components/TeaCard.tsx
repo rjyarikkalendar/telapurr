@@ -170,26 +170,28 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
       {tea.prices && tea.prices.length > 0 && (
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogHeader>
-            <DialogTitle>Выберите размер упаковки</DialogTitle>
-          </DialogHeader>
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            {tea.prices.map((priceOption) => (
-              <Button
-                key={priceOption.id}
-                onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
-                variant="outline"
-                className="flex flex-col h-auto p-4"
-              >
-                <span className="text-lg font-medium">
-                  {priceOption.weight_type.replace('_', ' ')}
-                </span>
-                <span className="text-tea-brown font-semibold">
-                  {priceOption.price} €
-                </span>
-              </Button>
-            ))}
-          </div>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Выберите размер упаковки</DialogTitle>
+            </DialogHeader>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              {tea.prices.map((priceOption) => (
+                <Button
+                  key={priceOption.id}
+                  onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
+                  variant="outline"
+                  className="flex flex-col h-auto p-4"
+                >
+                  <span className="text-lg font-medium">
+                    {priceOption.weight_type.replace('_', ' ')}
+                  </span>
+                  <span className="text-tea-brown font-semibold">
+                    {priceOption.price} €
+                  </span>
+                </Button>
+              ))}
+            </div>
+          </DialogContent>
         </Dialog>
       )}
     </>
