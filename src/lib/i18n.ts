@@ -440,6 +440,222 @@ export const translations = {
     }
   },
   
+  es: {
+    nav: {
+      home: 'Inicio',
+      about: 'Nosotros',
+      contact: 'Contacto',
+      login: 'Iniciar sesión',
+      register: 'Registrarse',
+      logout: 'Cerrar sesión'
+    },
+    hero: {
+      title: 'El Arte de la Ceremonia del Té',
+      subtitle: 'Sumérgete en el mundo de la cultura tradicional china del té',
+      cta: 'Comenzar el Viaje'
+    },
+    categories: {
+      discover: 'Descubrir',
+      tea: {
+        title: 'Té',
+        description: 'Colección de variedades exquisitas de té'
+      },
+      teaware: {
+        title: 'Utensilios',
+        description: 'Utensilios tradicionales de té'
+      },
+      sets: {
+        title: 'Juegos',
+        description: 'Juegos de ceremonia de té'
+      }
+    },
+    tea: {
+      categories: {
+        all: 'Todos los Tés',
+        shen: 'Sheng Pu\'er',
+        shu: 'Shu Pu\'er',
+        white: 'Blanco',
+        gabba: 'Gabba',
+        red: 'Oolongs Rojos',
+        green: 'Oolongs Verdes'
+      },
+      filters: {
+        title: 'Filtros',
+        kind: 'Tipo',
+        allKinds: 'Todos los tipos',
+        aged: 'Añejado',
+        young: 'Joven',
+        premium: 'Premium',
+        age: 'Edad (años)',
+        from: 'Desde',
+        to: 'Hasta',
+        sort: 'Ordenar',
+        sortBy: {
+          newest: 'Más nuevo primero',
+          oldest: 'Más viejo primero',
+          priceAsc: 'Precio de menor a mayor',
+          priceDesc: 'Precio de mayor a menor',
+          alphabetical: 'Alfabético'
+        },
+        search: 'Buscar por título...',
+        inStock: 'En Stock',
+        outOfStock: 'Agotado'
+      },
+      pagination: {
+        prev: 'Anterior',
+        next: 'Siguiente',
+        page: 'Página',
+        of: 'de',
+        total: 'total',
+        records: 'registros'
+      },
+      details: 'Detalles',
+      error: 'Error al cargar datos'
+    },
+    teaware: {
+      filters: {
+        title: 'Filtros',
+        type: 'Tipo',
+        material: 'Material',
+        inStock: 'En Stock'
+      },
+      types: {
+        all: 'Todos',
+        chabu: 'Chabu',
+        set: 'Juego de Utensilios',
+        cups: 'Tazas',
+        teapots: 'Teteras',
+        gaiwan: 'Gaiwan',
+        pets: 'Mascotas y Juguetes de Té',
+        siphon: 'Sifón',
+        fairnessCups: 'Tazas de Justicia',
+        thermos: 'Termos',
+        other: 'Otro'
+      },
+      materials: {
+        all: 'Todos',
+        ceramic: 'Cerámica',
+        porcelain: 'Porcelana',
+        glass: 'Vidrio',
+        clay: 'Arcilla',
+        wood: 'Madera',
+        bamboo: 'Bambú',
+        metal: 'Metal'
+      }
+    },
+    sets: {
+      filters: {
+        title: 'Filtros',
+        people: 'Personas',
+        anyAmount: 'Cualquier cantidad',
+        giftPackaging: 'Empaque de regalo',
+        inStock: 'En Stock'
+      }
+    },
+    ceremony: {
+      title: 'Ceremonias de Té',
+      learnMore: 'Aprender Más'
+    },
+    checkout: {
+      title: 'Finalizar Compra',
+      recipientInfo: 'Información del Destinatario',
+      firstName: 'Nombre',
+      lastName: 'Apellido',
+      email: 'Email',
+      phone: 'Teléfono',
+      country: 'País',
+      city: 'Ciudad',
+      address: 'Dirección',
+      postalCode: 'Código Postal',
+      selectCountry: 'Seleccionar país',
+      selectCity: 'Seleccionar ciudad',
+      addressPlaceholder: 'Calle, número, apartamento',
+      pay: 'Pagar',
+      orderTotal: 'Total',
+      yourOrder: 'Tu Pedido',
+      quantity: 'Cantidad'
+    },
+    partnership: {
+      title: 'Asociación con nosotros',
+      subtitle: 'Ofrecemos la oportunidad de crear una fuente adicional de ingresos',
+      intro: 'Te ofrecemos la oportunidad de crear una fuente adicional de ingresos para tu punto de venta y agregar un ambiente acogedor ofreciendo bebidas calientes y frías a base de té, empaquetadas para el consumidor, y productos que no requieren trabajo extra del personal de tu punto de venta.',
+      team: {
+        title: 'Nuestro Equipo',
+        person1: {
+          name: 'Raspopov Yaroslav (27 años)',
+          description: 'La persona que sabe mucho sobre ventas e ingeniería de productos en línea/fuera de línea. Responsable de ventas, empaque, cálculos, regulaciones. Interesado en té. 4 años en ventas y marketing; 5 años en IT, desarrollando y alineando proyectos con negocio y desarrollo.'
+        },
+        person2: {
+          name: 'Khairulina Milen (26 años)',
+          description: 'Gatita no identificada que está profundamente inmersa en tés y hierbas asiáticas, así como productos de té. Responsable de tés, productos de té y preparación de materiales para socios. Pasó 5 años viajando y estudiando cultura asiática e india, tés, hierbas y costumbres; 1 año diseñando para materiales de marketing de Soshal Clubs.'
+        }
+      },
+      products: {
+        title: 'Nuestros Productos',
+        description: 'El cliente selecciona té del catálogo para el sifón y termo.',
+        product1: {
+          name: 'Té en termo con taza',
+          description: '5 minutos para preparar 1 litro de té en la barra, verterlo en un termo para movimiento conveniente por tu punto de venta.'
+        },
+        product2: {
+          name: 'Té preparado con sifón',
+          description: 'Parece un show de 10 minutos, hace 250 ml de té muy bebible.'
+        },
+        product3: {
+          name: 'Cóctel refrescante de té',
+          description: 'Prepara cócteles tónicos refrescantes de té con hierbas y frutas detrás de la barra, sin perder un minuto.'
+        },
+        product4: {
+          name: 'Té refrescante en botella',
+          description: 'Para amantes de bebidas refrescantes sin azúcar que contienen solo té y agua, hechas con técnica de preparación en frío para lograr un sabor suave y efecto tónico.'
+        }
+      },
+      integration: {
+        title: 'Integrando Productos en tu Local',
+        step1: {
+          title: 'Di "Okay, trato hecho" y elige opciones de producto',
+          description: 'Eliges qué cócteles/té/té embotellado te gustaría ver en tu punto de venta. Después del mes de prueba, puedes agregar más variantes estipuladas a tu menú de verano o promociones.'
+        },
+        step2: {
+          title: 'Integración de Equipo (1 semana)',
+          description: 'Proporcionamos equipo, materiales de marketing de producto para colocación en las instalaciones de tu punto de venta y para redes sociales o tu sitio web. Y nosotros mismos coordinaremos las dimensiones contigo, ajustaremos el fondo y estilo para tu punto de venta, incluso lo imprimiremos y te lo llevaremos.'
+        },
+        step3: {
+          title: 'Preparando un Cóctel',
+          description: 'Te proporcionaremos espacios en blanco para cócteles. Y estaremos listos para enseñarte cómo hacer una jarra de cócteles en 10 minutos usando espacios en blanco para cócteles. 1 jarra puede verterse en 4 cócteles listos, todo lo que quedará es agregar hielo al vaso.'
+        },
+        step4: {
+          title: 'Análisis',
+          description: 'Después del primer mes de integración y prueba de productos de té en tu establecimiento, te proporcionaremos análisis sobre qué productos se vendieron bien durante ese mes y cuántos recursos se gastaron y cuánto se ganó del té.'
+        }
+      },
+      agreement: {
+        title: 'Acuerdo Final',
+        description: 'El primer mes es una prueba para ambas partes, al final del cual decidimos si continuamos nuestra cooperación o no. Durante este mes, te proporcionaremos materiales de marketing, equipo, té, preparaciones de cócteles, entrenamiento, y haremos todo lo posible para maximizar tus ventas de productos de té. Solo tendrás que pagar el costo de consumibles para preparar la bebida, lo que significa que al final del mes solo pagarás los costos, y solo si vendes la bebida en el local.'
+      },
+      sales: {
+        title: 'Ventas',
+        description: 'Todos los materiales de marketing serán proporcionados por nosotros.',
+        marketingPoints: [
+          'Mini-menú en la barra, en mesas, en redes sociales y en la web;',
+          'Degustaciones de té y métodos de preparación;',
+          'El efecto sorpresa del té en sifón y la intoxicación del té;',
+          'Un menú separado para té helado de verano y bebidas a base de frutas, así como cócteles estacionales;',
+          'En verano, vendemos cócteles con hielo para aquellos que no les gusta la cola y similares;',
+          'Para atraer clientes conscientes de la salud que buscan alternativas sofisticadas;',
+          'Para aquellos que prefieren bebidas sin azúcar, ofrecemos té embotellado.'
+        ]
+      },
+      contacts: {
+        title: 'Contactos',
+        phone: '+34 641 959 330 o +7 707 903 3663 - WhatsApp',
+        instagram: 'telapurr - Instagram',
+        email: 'telapurr@gmail.com'
+      },
+      buttonText: 'Asociación con nosotros'
+    }
+  },
+  
   zh: {
     nav: {
       home: '首页',
@@ -613,7 +829,7 @@ export const translations = {
       integration: {
         title: '将产品集成到您的场所',
         step1: {
-          title: '说“好，交易完成”并选择产品选项',
+          title: '说"好，交易完成"并选择产品选项',
           description: '您选择在您的销售场所看到的茶、茶或茶瓶。在试用期结束后，您可以将更多指定的选项添加到您的夏季菜单或促销活动中。'
         },
         step2: {

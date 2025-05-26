@@ -130,8 +130,12 @@ const CheckoutForm = () => {
   };
 
   const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  
+  // Fix: Only access cities if the current language is supported in the cities data
+  const supportedCityLanguages = ['ru', 'en', 'es'] as const;
+  const cityLanguage = supportedCityLanguages.includes(currentLang as any) ? currentLang as 'ru' | 'en' | 'es' : 'en';
   const availableCities = selectedCountry 
-    ? cities[currentLang][selectedCountry as keyof typeof cities[typeof currentLang]] || [] 
+    ? cities[cityLanguage][selectedCountry as keyof typeof cities[typeof cityLanguage]] || [] 
     : [];
 
   if (items.length === 0) {
@@ -220,7 +224,7 @@ const CheckoutForm = () => {
                 </FormControl>
                 <SelectContent>
                   <ScrollArea className="h-[200px]">
-                    {countries[currentLang].map((country) => (
+                    {countries[cityLanguage].map((country) => (
                       <SelectItem key={country.id} value={country.id}>
                         {country.name}
                       </SelectItem>
