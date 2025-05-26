@@ -4,7 +4,6 @@ import { teaSetService, TeaSetFilters, TeaSet } from "@/services/teaSetService";
 import { ProductList } from "@/components/ProductList";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -27,59 +26,61 @@ const SetsPage = () => {
   });
 
   const renderFilters = () => (
-    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-tea-brown/10">
+    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-tea-brown/10">
       <div className="flex items-center gap-2 mb-4">
-        <Filter className="h-5 w-5 text-tea-brown" />
-        <h3 className="text-lg font-medium text-tea-text">{t.sets?.filters?.title || 'Фильтры'}</h3>
+        <Filter className="h-4 w-4 text-tea-brown" />
+        <h3 className="text-sm font-medium text-tea-text">{t.sets?.filters?.title || 'Фильтры'}</h3>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-tea-text">{t.sets?.filters?.people || 'Количество человек'}</Label>
-          <Select onValueChange={(value) => {
-            const numValue = value ? parseInt(value) : undefined;
-            updateFilters({ serves_people_min: numValue });
-          }}>
-            <SelectTrigger className="bg-white border-tea-brown/20 focus:border-tea-brown rounded-lg">
-              <SelectValue placeholder={t.sets?.filters?.people || "Количество человек"} />
-            </SelectTrigger>
-            <SelectContent className="bg-white border-tea-brown/20 rounded-lg shadow-xl">
-              <SelectItem value="">{t.sets?.filters?.anyAmount || 'Любое количество'}</SelectItem>
-              <SelectItem value="1">{t.sets?.filters?.onePlus || '1+ человек'}</SelectItem>
-              <SelectItem value="2">{t.sets?.filters?.twoPlus || '2+ человека'}</SelectItem>
-              <SelectItem value="4">{t.sets?.filters?.fourPlus || '4+ человека'}</SelectItem>
-              <SelectItem value="6">{t.sets?.filters?.sixPlus || '6+ человек'}</SelectItem>
-            </SelectContent>
-          </Select>
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2">
+          <label className="text-xs font-medium text-tea-text">{t.sets?.filters?.people || 'Люди'}:</label>
+          <div className="flex gap-1">
+            {[
+              { value: '', label: t.sets?.filters?.anyAmount || 'Все' },
+              { value: '1', label: '1+' },
+              { value: '2', label: '2+' },
+              { value: '4', label: '4+' },
+              { value: '6', label: '6+' }
+            ].map((option) => (
+              <button
+                key={option.value}
+                onClick={() => {
+                  const numValue = option.value ? parseInt(option.value) : undefined;
+                  updateFilters({ serves_people_min: numValue });
+                }}
+                className="px-2 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded transition-colors"
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-tea-text">{t.sets?.filters?.priceFrom || 'Цена от'}</Label>
+        <div className="flex items-center gap-2">
+          <label className="text-xs font-medium text-tea-text">{t.sets?.filters?.priceFrom || 'Цена'}:</label>
           <Input
             type="number"
-            placeholder={t.sets?.filters?.priceFrom || "Цена от"}
+            placeholder={t.sets?.filters?.priceFrom || "От"}
             onChange={(e) => {
               const value = e.target.value ? parseFloat(e.target.value) : undefined;
               updateFilters({ price_min: value });
             }}
-            className="bg-white border-tea-brown/20 focus:border-tea-brown rounded-lg"
+            className="w-20 h-8 text-xs"
           />
-        </div>
-
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-tea-text">{t.sets?.filters?.priceTo || 'Цена до'}</Label>
+          <span className="text-xs text-gray-400">-</span>
           <Input
             type="number"
-            placeholder={t.sets?.filters?.priceTo || "Цена до"}
+            placeholder={t.sets?.filters?.priceTo || "До"}
             onChange={(e) => {
               const value = e.target.value ? parseFloat(e.target.value) : undefined;
               updateFilters({ price_max: value });
             }}
-            className="bg-white border-tea-brown/20 focus:border-tea-brown rounded-lg"
+            className="w-20 h-8 text-xs"
           />
         </div>
 
-        <div className="flex items-center space-x-2 bg-tea-brown/5 p-3 rounded-lg">
+        <div className="flex items-center space-x-2">
           <Checkbox
             id="gift_packaging"
             onCheckedChange={(checked) => 
@@ -87,12 +88,12 @@ const SetsPage = () => {
             }
             className="border-tea-brown data-[state=checked]:bg-tea-brown"
           />
-          <Label htmlFor="gift_packaging" className="text-sm font-medium text-tea-text cursor-pointer">
+          <Label htmlFor="gift_packaging" className="text-xs font-medium text-tea-text cursor-pointer">
             {t.sets?.filters?.giftPackaging || 'Подарочная упаковка'}
           </Label>
         </div>
 
-        <div className="flex items-center space-x-2 bg-tea-brown/5 p-3 rounded-lg">
+        <div className="flex items-center space-x-2">
           <Checkbox
             id="in_stock"
             onCheckedChange={(checked) => 
@@ -100,8 +101,8 @@ const SetsPage = () => {
             }
             className="border-tea-brown data-[state=checked]:bg-tea-brown"
           />
-          <Label htmlFor="in_stock" className="text-sm font-medium text-tea-text cursor-pointer">
-            {t.sets?.filters?.inStock || 'Только в наличии'}
+          <Label htmlFor="in_stock" className="text-xs font-medium text-tea-text cursor-pointer">
+            {t.sets?.filters?.inStock || 'В наличии'}
           </Label>
         </div>
       </div>

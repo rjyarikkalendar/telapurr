@@ -4,7 +4,6 @@ import { teawareService, TeawareFilters, Teaware } from "@/services/teawareServi
 import { ProductList } from "@/components/ProductList";
 import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Filter } from "lucide-react";
@@ -30,32 +29,37 @@ const TeawarePage = () => {
   console.log('TeawarePage state:', { data, loading, error, pagination });
 
   const renderFilters = () => (
-    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-tea-brown/10">
+    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-tea-brown/10">
       <div className="flex items-center gap-2 mb-4">
-        <Filter className="h-5 w-5 text-tea-brown" />
-        <h3 className="text-lg font-medium text-tea-text">{t.teaware?.filters?.title || 'Фильтры'}</h3>
+        <Filter className="h-4 w-4 text-tea-brown" />
+        <h3 className="text-sm font-medium text-tea-text">{t.teaware?.filters?.title || 'Фильтры'}</h3>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-tea-text">{t.teaware?.filters?.material || 'Материал'}</Label>
-          <Select onValueChange={(value) => updateFilters({ material: value === "all" ? undefined : value })}>
-            <SelectTrigger className="bg-white border-tea-brown/20 focus:border-tea-brown rounded-lg">
-              <SelectValue placeholder={t.teaware?.filters?.material || "Материал"} />
-            </SelectTrigger>
-            <SelectContent className="bg-white border-tea-brown/20 rounded-lg shadow-xl">
-              <SelectItem value="all">{t.teaware?.filters?.allMaterials || 'Все материалы'}</SelectItem>
-              <SelectItem value="ceramic">{t.teaware?.materials?.ceramic || 'Керамика'}</SelectItem>
-              <SelectItem value="porcelain">{t.teaware?.materials?.porcelain || 'Фарфор'}</SelectItem>
-              <SelectItem value="glass">{t.teaware?.materials?.glass || 'Стекло'}</SelectItem>
-              <SelectItem value="clay">{t.teaware?.materials?.clay || 'Глина'}</SelectItem>
-              <SelectItem value="bamboo">{t.teaware?.materials?.bamboo || 'Бамбук'}</SelectItem>
-              <SelectItem value="metal">{t.teaware?.materials?.metal || 'Металл'}</SelectItem>
-            </SelectContent>
-          </Select>
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2">
+          <label className="text-xs font-medium text-tea-text">{t.teaware?.filters?.material || 'Материал'}:</label>
+          <div className="flex flex-wrap gap-1">
+            {[
+              { value: 'all', label: t.teaware?.filters?.allMaterials || 'Все' },
+              { value: 'ceramic', label: t.teaware?.materials?.ceramic || 'Керамика' },
+              { value: 'porcelain', label: t.teaware?.materials?.porcelain || 'Фарфор' },
+              { value: 'glass', label: t.teaware?.materials?.glass || 'Стекло' },
+              { value: 'clay', label: t.teaware?.materials?.clay || 'Глина' },
+              { value: 'bamboo', label: t.teaware?.materials?.bamboo || 'Бамбук' },
+              { value: 'metal', label: t.teaware?.materials?.metal || 'Металл' }
+            ].map((material) => (
+              <button
+                key={material.value}
+                onClick={() => updateFilters({ material: material.value === "all" ? undefined : material.value })}
+                className="px-2 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded transition-colors"
+              >
+                {material.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="flex items-center space-x-2 bg-tea-brown/5 p-3 rounded-lg">
+        <div className="flex items-center space-x-2">
           <Checkbox
             id="dishwasher_safe"
             onCheckedChange={(checked) => 
@@ -63,12 +67,12 @@ const TeawarePage = () => {
             }
             className="border-tea-brown data-[state=checked]:bg-tea-brown"
           />
-          <Label htmlFor="dishwasher_safe" className="text-sm font-medium text-tea-text cursor-pointer">
-            {t.teaware?.filters?.dishwasherSafe || 'Можно мыть в посудомойке'}
+          <Label htmlFor="dishwasher_safe" className="text-xs font-medium text-tea-text cursor-pointer">
+            {t.teaware?.filters?.dishwasherSafe || 'Посудомойка'}
           </Label>
         </div>
 
-        <div className="flex items-center space-x-2 bg-tea-brown/5 p-3 rounded-lg">
+        <div className="flex items-center space-x-2">
           <Checkbox
             id="microwave_safe"
             onCheckedChange={(checked) => 
@@ -76,12 +80,12 @@ const TeawarePage = () => {
             }
             className="border-tea-brown data-[state=checked]:bg-tea-brown"
           />
-          <Label htmlFor="microwave_safe" className="text-sm font-medium text-tea-text cursor-pointer">
-            {t.teaware?.filters?.microwaveSafe || 'Можно в микроволновку'}
+          <Label htmlFor="microwave_safe" className="text-xs font-medium text-tea-text cursor-pointer">
+            {t.teaware?.filters?.microwaveSafe || 'Микроволновка'}
           </Label>
         </div>
 
-        <div className="flex items-center space-x-2 bg-tea-brown/5 p-3 rounded-lg">
+        <div className="flex items-center space-x-2">
           <Checkbox
             id="in_stock"
             onCheckedChange={(checked) => 
@@ -89,8 +93,8 @@ const TeawarePage = () => {
             }
             className="border-tea-brown data-[state=checked]:bg-tea-brown"
           />
-          <Label htmlFor="in_stock" className="text-sm font-medium text-tea-text cursor-pointer">
-            {t.teaware?.filters?.inStock || 'Только в наличии'}
+          <Label htmlFor="in_stock" className="text-xs font-medium text-tea-text cursor-pointer">
+            {t.teaware?.filters?.inStock || 'В наличии'}
           </Label>
         </div>
       </div>

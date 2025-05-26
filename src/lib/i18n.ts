@@ -32,19 +32,12 @@ export const translations = {
     tea: {
       categories: {
         all: 'Все чаи',
-        allDesc: 'Вся коллекция',
         shen: 'Шен Пуэр',
-        shenDesc: 'Сырой пуэр',
         shu: 'Шу Пуэр',
-        shuDesc: 'Готовый пуэр',
         white: 'Белый',
-        whiteDesc: 'Белый чай',
-        green: 'Зеленый',
-        greenDesc: 'Зеленый чай',
-        black: 'Красный',
-        blackDesc: 'Красный чай',
-        oolong: 'Улун',
-        oolongDesc: 'Улун'
+        gabba: 'Габба',
+        red: 'Красные улуны',
+        green: 'Зеленые улуны'
       },
       filters: {
         title: 'Фильтры',
@@ -58,9 +51,9 @@ export const translations = {
         to: 'До',
         sort: 'Сортировка',
         sortBy: 'Сортировать по',
-        priceAsc: 'Цена: по возрастанию',
-        priceDesc: 'Цена: по убыванию',
-        inStock: 'Только в наличии'
+        priceAsc: 'Цена ↑',
+        priceDesc: 'Цена ↓',
+        inStock: 'В наличии'
       },
       pagination: {
         prev: 'Предыдущая',
@@ -77,7 +70,7 @@ export const translations = {
         allMaterials: 'Все материалы',
         dishwasherSafe: 'Можно мыть в посудомойке',
         microwaveSafe: 'Можно в микроволновку',
-        inStock: 'Только в наличии'
+        inStock: 'В наличии'
       },
       materials: {
         ceramic: 'Керамика',
@@ -100,7 +93,7 @@ export const translations = {
         priceFrom: 'Цена от',
         priceTo: 'Цена до',
         giftPackaging: 'Подарочная упаковка',
-        inStock: 'Только в наличии'
+        inStock: 'В наличии'
       }
     },
     ceremony: {
@@ -227,6 +220,73 @@ export const translations = {
         description: 'Tea ceremony sets'
       }
     },
+    tea: {
+      categories: {
+        all: 'All Teas',
+        shen: 'Sheng Pu\'er',
+        shu: 'Shu Pu\'er',
+        white: 'White',
+        gabba: 'Gabba',
+        red: 'Red Oolongs',
+        green: 'Green Oolongs'
+      },
+      filters: {
+        title: 'Filters',
+        kind: 'Kind',
+        allKinds: 'All kinds',
+        aged: 'Aged',
+        young: 'Young',
+        premium: 'Premium',
+        age: 'Age (years)',
+        from: 'From',
+        to: 'To',
+        sort: 'Sort',
+        sortBy: 'Sort by',
+        priceAsc: 'Price ↑',
+        priceDesc: 'Price ↓',
+        inStock: 'In Stock'
+      },
+      pagination: {
+        prev: 'Previous',
+        next: 'Next',
+        page: 'Page',
+        of: 'of'
+      },
+      error: 'Data loading error'
+    },
+    teaware: {
+      filters: {
+        title: 'Filters',
+        material: 'Material',
+        allMaterials: 'All materials',
+        dishwasherSafe: 'Dishwasher safe',
+        microwaveSafe: 'Microwave safe',
+        inStock: 'In Stock'
+      },
+      materials: {
+        ceramic: 'Ceramic',
+        porcelain: 'Porcelain',
+        glass: 'Glass',
+        clay: 'Clay',
+        bamboo: 'Bamboo',
+        metal: 'Metal'
+      }
+    },
+    sets: {
+      filters: {
+        title: 'Filters',
+        people: 'Number of people',
+        anyAmount: 'Any amount',
+        onePlus: '1+ person',
+        twoPlus: '2+ people',
+        fourPlus: '4+ people',
+        sixPlus: '6+ people',
+        priceFrom: 'Price from',
+        priceTo: 'Price to',
+        giftPackaging: 'Gift packaging',
+        inStock: 'In Stock'
+      }
+    },
     ceremony: {
       title: 'Tea Ceremonies',
       learnMore: 'Learn More'
@@ -349,6 +409,73 @@ export const translations = {
       sets: {
         title: 'Sets',
         description: 'Sets para la ceremonia del té'
+      }
+    },
+    tea: {
+      categories: {
+        all: 'Todos los Tés',
+        shen: 'Sheng Pu\'er',
+        shu: 'Shu Pu\'er',
+        white: 'Blanco',
+        gabba: 'Gabba',
+        red: 'Oolongs Rojos',
+        green: 'Oolongs Verdes'
+      },
+      filters: {
+        title: 'Filtros',
+        kind: 'Tipo',
+        allKinds: 'Todos los tipos',
+        aged: 'Envejecido',
+        young: 'Joven',
+        premium: 'Premium',
+        age: 'Edad (años)',
+        from: 'Desde',
+        to: 'Hasta',
+        sort: 'Ordenar',
+        sortBy: 'Ordenar por',
+        priceAsc: 'Precio ↑',
+        priceDesc: 'Precio ↓',
+        inStock: 'En Stock'
+      },
+      pagination: {
+        prev: 'Anterior',
+        next: 'Siguiente',
+        page: 'Página',
+        of: 'de'
+      },
+      error: 'Error al cargar datos'
+    },
+    teaware: {
+      filters: {
+        title: 'Filtros',
+        material: 'Material',
+        allMaterials: 'Todos los materiales',
+        dishwasherSafe: 'Apto para lavavajillas',
+        microwaveSafe: 'Apto para microondas',
+        inStock: 'En Stock'
+      },
+      materials: {
+        ceramic: 'Cerámica',
+        porcelain: 'Porcelana',
+        glass: 'Vidrio',
+        clay: 'Arcilla',
+        bamboo: 'Bambú',
+        metal: 'Metal'
+      }
+    },
+    sets: {
+      filters: {
+        title: 'Filtros',
+        people: 'Número de personas',
+        anyAmount: 'Cualquier cantidad',
+        onePlus: '1+ persona',
+        twoPlus: '2+ personas',
+        fourPlus: '4+ personas',
+        sixPlus: '6+ personas',
+        priceFrom: 'Precio desde',
+        priceTo: 'Precio hasta',
+        giftPackaging: 'Empaque de regalo',
+        inStock: 'En Stock'
       }
     },
     ceremony: {
