@@ -36,7 +36,7 @@ class ApiService {
     filters?: FilterParams,
     sort?: SortParams[]
   ) {
-    let query = supabase.from(table).select('*', { count: 'exact' });
+    let query: any = supabase.from(table).select('*', { count: 'exact' });
 
     // Apply filters
     if (filters) {
