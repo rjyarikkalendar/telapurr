@@ -1,13 +1,22 @@
-export type Language = 'ru' | 'en' | 'es';
+export type Language = 'ru' | 'en' | 'es' | 'zh';
 
 export const languages: Record<Language, string> = {
   ru: 'Русский',
   en: 'English',
-  es: 'Español'
+  es: 'Español',
+  zh: '中文'
 };
 
 export const translations = {
   ru: {
+    nav: {
+      home: 'Главная',
+      about: 'О нас',
+      contact: 'Контакты',
+      login: 'Войти',
+      register: 'Регистрация',
+      logout: 'Выйти'
+    },
     hero: {
       title: 'Искусство чайной церемонии',
       subtitle: 'Погрузитесь в мир традиционной китайской чайной культуры',
@@ -75,6 +84,7 @@ export const translations = {
       filters: {
         title: 'Фильтры',
         type: 'Тип',
+        material: 'Материал',
         inStock: 'В наличии'
       },
       types: {
@@ -89,6 +99,16 @@ export const translations = {
         fairnessCups: 'Чаши справедливости',
         thermos: 'Термосы',
         other: 'Другое'
+      },
+      materials: {
+        all: 'Все',
+        ceramic: 'Керамика',
+        porcelain: 'Фарфор',
+        glass: 'Стекло',
+        clay: 'Глина',
+        wood: 'Дерево',
+        bamboo: 'Бамбук',
+        metal: 'Металл'
       }
     },
     sets: {
@@ -203,7 +223,16 @@ export const translations = {
       buttonText: 'Партнерство с нами'
     }
   },
+  
   en: {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      contact: 'Contact',
+      login: 'Login',
+      register: 'Register',
+      logout: 'Logout'
+    },
     hero: {
       title: 'The Art of Tea Ceremony',
       subtitle: 'Immerse yourself in the world of traditional Chinese tea culture',
@@ -271,6 +300,7 @@ export const translations = {
       filters: {
         title: 'Filters',
         type: 'Type',
+        material: 'Material',
         inStock: 'In Stock'
       },
       types: {
@@ -280,11 +310,21 @@ export const translations = {
         cups: 'Cups',
         teapots: 'Teapots',
         gaiwan: 'Gaiwan',
-        pets: 'Tea Pets',
+        pets: 'Tea Pets & Toys',
         siphon: 'Siphon',
         fairnessCups: 'Fairness Cups',
         thermos: 'Thermos',
         other: 'Other'
+      },
+      materials: {
+        all: 'All',
+        ceramic: 'Ceramic',
+        porcelain: 'Porcelain',
+        glass: 'Glass',
+        clay: 'Clay',
+        wood: 'Wood',
+        bamboo: 'Bamboo',
+        metal: 'Metal'
       }
     },
     sets: {
@@ -399,200 +439,220 @@ export const translations = {
       buttonText: 'Partnership with us'
     }
   },
-  es: {
+  
+  zh: {
+    nav: {
+      home: '首页',
+      about: '关于我们',
+      contact: '联系我们',
+      login: '登录',
+      register: '注册',
+      logout: '退出'
+    },
     hero: {
-      title: 'El Arte de la Ceremonia del Té',
-      subtitle: 'Sumérgete en el mundo de la cultura tradicional china del té',
-      cta: 'Comenzar el Viaje'
+      title: '茶艺',
+      subtitle: '沉浸于传统中国茶文化的海洋',
+      cta: '开始旅程'
     },
     categories: {
-      discover: 'Descubre',
+      discover: '发现',
       tea: {
-        title: 'Té',
-        description: 'Colección de exquisitas variedades de té'
+        title: '茶',
+        description: '精选茶种的集合'
       },
       teaware: {
-        title: 'Utensilios',
-        description: 'Utensilios tradicionales para el té'
+        title: '茶具',
+        description: '传统茶具'
       },
       sets: {
-        title: 'Sets',
-        description: 'Sets para la ceremonia del té'
+        title: '套装',
+        description: '茶艺套装'
       }
     },
     tea: {
       categories: {
-        all: 'Todos los Tés',
-        shen: 'Sheng Pu\'er',
-        shu: 'Shu Pu\'er',
-        white: 'Blanco',
-        gabba: 'Gabba',
-        red: 'Oolongs Rojos',
-        green: 'Oolongs Verdes'
+        all: '所有茶',
+        shen: '生普',
+        shu: '熟普',
+        white: '白茶',
+        gabba: '加巴',
+        red: '红茶',
+        green: '绿茶'
       },
       filters: {
-        title: 'Filtros',
-        kind: 'Tipo',
-        allKinds: 'Todos los tipos',
-        aged: 'Envejecido',
-        young: 'Joven',
-        premium: 'Premium',
-        age: 'Edad (años)',
-        from: 'Desde',
-        to: 'Hasta',
-        sort: 'Ordenar',
+        title: '筛选',
+        kind: '类型',
+        allKinds: '所有类型',
+        aged: '陈年',
+        young: '年轻',
+        premium: '高端',
+        age: '年龄（年）',
+        from: '从',
+        to: '到',
+        sort: '排序',
         sortBy: {
-          newest: 'Más nuevos primero',
-          oldest: 'Más antiguos primero',
-          priceAsc: 'Precio menor a mayor',
-          priceDesc: 'Precio mayor a menor',
-          alphabetical: 'Alfabéticamente'
+          newest: '最新',
+          oldest: '最旧',
+          priceAsc: '价格升序',
+          priceDesc: '价格降序',
+          alphabetical: '按字母排序'
         },
-        search: 'Buscar por título...',
-        inStock: 'En Stock',
-        outOfStock: 'Agotado'
+        search: '按标题搜索...',
+        inStock: '有货',
+        outOfStock: '无货'
       },
       pagination: {
-        prev: 'Anterior',
-        next: 'Siguiente',
-        page: 'Página',
-        of: 'de',
-        total: 'total',
-        records: 'registros'
+        prev: '上一页',
+        next: '下一页',
+        page: '页',
+        of: '共',
+        total: '总数',
+        records: '条记录'
       },
-      details: 'Detalles',
-      error: 'Error al cargar datos'
+      details: '详情',
+      error: '数据加载错误'
     },
     teaware: {
       filters: {
-        title: 'Filtros',
-        type: 'Tipo',
-        inStock: 'En Stock'
+        title: '筛选',
+        type: '类型',
+        material: '材质',
+        inStock: '有货'
       },
       types: {
-        all: 'Todos',
-        chabu: 'Chabu',
-        set: 'Set de Utensilios',
-        cups: 'Tazas',
-        teapots: 'Teteras',
-        gaiwan: 'Gaiwan',
-        pets: 'Mascotas de Té',
-        siphon: 'Sifón',
-        fairnessCups: 'Tazas de Justicia',
-        thermos: 'Termos',
-        other: 'Otro'
+        all: '全部',
+        chabu: '茶盘',
+        set: '茶具套装',
+        cups: '茶杯',
+        teapots: '茶壶',
+        gaiwan: '盖碗',
+        pets: '茶宠',
+        siphon: '虹吸壶',
+        fairnessCups: '公道杯',
+        thermos: '保温杯',
+        other: '其他'
+      },
+      materials: {
+        all: '全部',
+        ceramic: '陶瓷',
+        porcelain: '瓷器',
+        glass: '玻璃',
+        clay: '紫砂',
+        wood: '木质',
+        bamboo: '竹质',
+        metal: '金属'
       }
     },
     sets: {
       filters: {
-        title: 'Filtros',
-        people: 'Personas',
-        anyAmount: 'Cualquier cantidad',
-        giftPackaging: 'Empaque de regalo',
-        inStock: 'En Stock'
+        title: '筛选',
+        people: '人',
+        anyAmount: '任意数量',
+        giftPackaging: '礼品包装',
+        inStock: '有货'
       }
     },
     ceremony: {
-      title: 'Ceremonias de Té',
-      learnMore: 'Más Información'
+      title: '茶艺',
+      learnMore: '了解更多'
     },
     checkout: {
-      title: 'Finalizar Compra',
-      recipientInfo: 'Información del Destinatario',
-      firstName: 'Nombre',
-      lastName: 'Apellido',
-      email: 'Correo electrónico',
-      phone: 'Teléfono',
-      country: 'País',
-      city: 'Ciudad',
-      address: 'Dirección',
-      postalCode: 'Código Postal',
-      selectCountry: 'Seleccionar país',
-      selectCity: 'Seleccionar ciudad',
-      addressPlaceholder: 'Calle, número, apartamento',
-      pay: 'Pagar',
-      orderTotal: 'Total',
-      yourOrder: 'Tu Pedido',
-      quantity: 'Cantidad'
+      title: '结账',
+      recipientInfo: '收件人信息',
+      firstName: '姓名',
+      lastName: '姓氏',
+      email: '邮箱',
+      phone: '电话',
+      country: '国家',
+      city: '城市',
+      address: '地址',
+      postalCode: '邮政编码',
+      selectCountry: '选择国家',
+      selectCity: '选择城市',
+      addressPlaceholder: '街道、号码、公寓',
+      pay: '支付',
+      orderTotal: '总价',
+      yourOrder: '您的订单',
+      quantity: '数量'
     },
     partnership: {
-      title: 'Colaboración con nosotros',
-      subtitle: 'Le ofrecemos la oportunidad de crear una fuente adicional de ingresos',
-      intro: 'Le ofrecemos la oportunidad de crear una fuente adicional de ingresos para su punto de venta y agregar un ambiente acogedor ofreciendo bebidas frías y calientes a base de té, envasadas para el consumidor, y productos que no requieren trabajo extra del personal de su punto de venta.',
+      title: '与我们合作',
+      subtitle: '我们提供创建额外收入来源的机会',
+      intro: '我们为您提供创建额外收入来源的机会，为您的销售场所增添温馨的氛围，通过提供热饮和冷饮茶，以及不含额外人力成本的茶产品。',
       team: {
-        title: 'Nuestro Equipo',
+        title: '我们的团队',
         person1: {
-          name: 'Raspopov Yaroslav (27 años)',
-          description: 'El tipo que sabe mucho de ventas e ingeniería de productos online/offline. Responsable de ventas, envasado, cálculos, normativa. Interesado en el té. 4 años en ventas y marketing; 5 años en TI, desarrollando y alineando proyectos con el negocio y el desarrollo.'
+          name: '拉斯波夫·雅罗斯拉夫（27岁）',
+          description: '了解销售和在线/线下产品工程的人。负责销售、包装、计算、法规。对茶感兴趣。4年销售和营销；5年IT，开发和与业务和开发对项目进行对齐。'
         },
         person2: {
-          name: 'Khairulina Milen (26 años)',
-          description: 'Gatita no identificada que está profundamente inmersa en los tés y hierbas asiáticos, así como en los productos del té. Responsable de tés, productos de té y preparación de materiales para socios. Pasó 5 años viajando y estudiando la cultura asiática e india, los tés, las hierbas y las costumbres; 1 año diseñando para los materiales de marketing de Soshal Clubs.'
+          name: '哈伊鲁林·米伦（26岁）',
+          description: '一只未识别的猫，对亚洲茶和草本植物，以及茶产品有着深刻的理解。负责茶、茶产品和合作伙伴的材料准备。花了5年旅行和研究亚洲和印度文化、茶、草本植物和习俗；1年为Soshal Clubs的营销材料设计。'
         }
       },
       products: {
-        title: 'Nuestros Productos',
-        description: 'El cliente elige el té del catálogo para el sifón y el termo.',
+        title: '我们的产品',
+        description: '客户从目录中选择用于siphon和thermos的茶。',
         product1: {
-          name: 'Termo de té con taza',
-          description: '5 minutos para preparar 1 litro de té en el bar, verterlo en un termo para facilitar su traslado por su punto de venta.'
+          name: '茶在thermos中带有茶杯',
+          description: '在酒吧准备1升茶，将其倒入thermos以方便在您的销售场所移动。'
         },
         product2: {
-          name: 'Preparación de té con sifón',
-          description: 'Parece un espectáculo de 10 minutos, hace 250 ml de té muy bebible.'
+          name: '通过siphon准备的茶',
+          description: '看起来像10分钟的表演，制作250毫升非常可口的茶。'
         },
         product3: {
-          name: 'Cóctel refrescante de té',
-          description: 'Prepare refrescantes cócteles de té tónico con hierbas y frutas detrás de la barra, sin perder ni un minuto.'
+          name: '茶的清新鸡尾酒',
+          description: '在酒吧后准备清新提神的茶鸡尾酒，不浪费任何时间。'
         },
         product4: {
-          name: 'Té refrescante en botella',
-          description: 'Para los amantes de las bebidas refrescantes sin azúcar, que sólo contienen té y agua, elaboradas con una técnica de infusión en frío para conseguir un sabor suave y un efecto tonificante.'
+          name: '茶的清新瓶装',
+          description: '为喜欢无糖清新饮料的爱好者准备的茶，使用冷浸法制作，以获得温和的口感和提神效果。'
         }
       },
       integration: {
-        title: 'Integrar productos en su local',
+        title: '将产品集成到您的场所',
         step1: {
-          title: 'Diga, "Vale, trato hecho" , y elija las opciones de producto',
-          description: 'Tú eliges qué cócteles/té/botellas de té te gustaría ver en tu punto de venta. Después del mes de prueba, puedes añadir más variantes estipuladas a tu menú de verano o promociones.'
+          title: '说“好，交易完成”并选择产品选项',
+          description: '您选择在您的销售场所看到的茶、茶或茶瓶。在试用期结束后，您可以将更多指定的选项添加到您的夏季菜单或促销活动中。'
         },
         step2: {
-          title: 'Integración de equipos (1 semana)',
-          description: 'Proporcionamos equipos, materiales de marketing de productos para colocar en su punto de venta y para las redes sociales o su sitio web. Y nosotros mismos coordinaremos las dimensiones contigo, ajustaremos el fondo y el estilo para tu punto de venta, incluso lo imprimiremos y te lo llevaremos.'
+          title: '设备集成（1周）',
+          description: '我们提供设备、产品营销材料，放置在您的销售场所，以及社交媒体或您的网站。我们自己将与您协调尺寸，调整背景和风格，甚至打印并为您带来。'
         },
         step3: {
-          title: 'Preparando un cóctel',
-          description: 'Le proporcionaremos mezclas para cócteles. Y estaremos listos para enseñarle cómo hacer una jarra de cócteles en 10 minutos usando las mezclas para cócteles. Con 1 jarra se pueden servir 4 cócteles listos, sólo quedará añadir hielo al vaso.'
+          title: '准备鸡尾酒',
+          description: '我们将为您提供鸡尾酒模板。我们将准备好教您如何在10分钟内使用鸡尾酒模板制作鸡尾酒。1个模板可以装4个准备好的鸡尾酒，剩下的只是在杯子中添加冰。'
         },
         step4: {
-          title: 'Análisis',
-          description: 'Tras el primer mes de integración y prueba de los productos de té en su establecimiento, le proporcionaremos análisis sobre qué productos se vendieron bien durante ese mes y cuántos recursos se gastaron y cuánto se ganó con el té.'
+          title: '分析',
+          description: '在您的场所整合和测试茶产品后，我们将为您提供关于该月销售良好产品、花费了多少资源以及从茶中赚取了多少的分析。'
         }
       },
       agreement: {
-        title: 'Final agreement',
-        description: 'El primer mes es una prueba para ambas partes, al final de la cual decidimos si continuamos o no nuestra cooperación. Durante este mes te proporcionaremos material de marketing, equipamiento, té, preparaciones de cócteles, formación y haremos todo lo posible para maximizar tus ventas de productos de té. Sólo tendrás que pagar el coste de los consumibles para preparar la bebida, lo que significa que al final del mes sólo pagarás los costes, y sólo si vendes la bebida en el local.'
+        title: '最终协议',
+        description: '第一个月是双方的试用期，试用结束后，我们将决定是否继续合作。在这一月，我们将为您提供营销材料、设备、茶、鸡尾酒准备、培训，并尽最大努力最大化您的茶产品销售。您只需支付准备饮料所需的消耗品的成本，这意味着在月底，您只需支付成本，只有在您的场所销售饮料时，您才会支付成本。'
       },
       sales: {
-        title: 'Ventas',
-        description: 'Todos los materiales de marketing serán proporcionados por nosotros.',
+        title: '销售',
+        description: '所有营销材料将由我们提供。',
         marketingPoints: [
-          'Mini-menú en la barra, en las mesas, en las redes sociales y en la web;',
-          'Catas de té y métodos de preparación;',
-          'El efecto sorpresa del té en un sifón y la embriaguez del té;',
-          'Un menú separado para té helado de verano y bebidas a base de frutas, así como cócteles de temporada;',
-          'En verano vendemos cócteles con hielo para aquellos a los que no les gusta la cola y similares;',
-          'Para atraer a clientes preocupados por la salud que buscan alternativas sofisticadas;',
-          'Para quienes prefieren bebidas sin azúcar, ofrecemos té embotellado.'
+          '酒吧、桌子、社交媒体和网站上的迷你菜单；',
+          '茶品尝和准备方法；',
+          '茶在siphon中的惊喜效果和茶的醉人效果；',
+          '夏季提供凉茶和水果饮料的单独菜单，以及季节性鸡尾酒；',
+          '夏天，我们提供带有冰的鸡尾酒，那些不喜欢可乐和类似的东西的人；',
+          '吸引健康意识的客户，寻找高级替代品；',
+          '那些喜欢无糖饮料的人，我们提供瓶装茶。'
         ]
       },
       contacts: {
-        title: 'Contactos',
-        phone: '+34 641 959 330 or +7 707 903 3663 - WhatsApp',
+        title: '联系方式',
+        phone: '+34 641 959 330或+7 707 903 3663 - WhatsApp',
         instagram: 'telapurr - Instagram',
         email: 'telapurr@gmail.com'
       },
-      buttonText: 'Colaboración con nosotros'
+      buttonText: '与我们合作'
     }
   }
 } as const;

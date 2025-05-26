@@ -35,7 +35,7 @@ const TeawarePage = () => {
         <h3 className="text-sm font-medium text-tea-text">{t.teaware?.filters?.title || 'Фильтры'}</h3>
       </div>
       
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-wrap items-center gap-6">
         <div className="flex items-center gap-2">
           <label className="text-xs font-medium text-tea-text">{t.teaware?.filters?.type || 'Тип'}:</label>
           <div className="flex flex-wrap gap-1">
@@ -58,6 +58,30 @@ const TeawarePage = () => {
                 className="px-3 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded-full transition-colors"
               >
                 {type.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <label className="text-xs font-medium text-tea-text">{t.teaware?.filters?.material || 'Материал'}:</label>
+          <div className="flex flex-wrap gap-1">
+            {[
+              { value: 'all', label: t.teaware?.materials?.all || 'Все' },
+              { value: 'ceramic', label: t.teaware?.materials?.ceramic || 'Керамика' },
+              { value: 'porcelain', label: t.teaware?.materials?.porcelain || 'Фарфор' },
+              { value: 'glass', label: t.teaware?.materials?.glass || 'Стекло' },
+              { value: 'clay', label: t.teaware?.materials?.clay || 'Глина' },
+              { value: 'wood', label: t.teaware?.materials?.wood || 'Дерево' },
+              { value: 'bamboo', label: t.teaware?.materials?.bamboo || 'Бамбук' },
+              { value: 'metal', label: t.teaware?.materials?.metal || 'Металл' }
+            ].map((material) => (
+              <button
+                key={material.value}
+                onClick={() => updateFilters({ material: material.value === "all" ? undefined : material.value })}
+                className="px-3 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded-full transition-colors"
+              >
+                {material.label}
               </button>
             ))}
           </div>
