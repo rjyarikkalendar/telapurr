@@ -6,7 +6,6 @@ import { BackButton } from "@/components/BackButton";
 import { useLanguage } from "@/hooks/use-language";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Filter } from "lucide-react";
 
 const SetsPage = () => {
@@ -34,7 +33,7 @@ const SetsPage = () => {
       
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2">
-          <label className="text-xs font-medium text-tea-text">{t.sets?.filters?.people || 'Люди'}:</label>
+          <label className="text-xs font-medium text-tea-text">{t.sets?.filters?.people || 'Людей'}:</label>
           <div className="flex gap-1">
             {[
               { value: '', label: t.sets?.filters?.anyAmount || 'Все' },
@@ -49,35 +48,12 @@ const SetsPage = () => {
                   const numValue = option.value ? parseInt(option.value) : undefined;
                   updateFilters({ serves_people_min: numValue });
                 }}
-                className="px-2 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded transition-colors"
+                className="px-3 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded-full transition-colors"
               >
                 {option.label}
               </button>
             ))}
           </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <label className="text-xs font-medium text-tea-text">{t.sets?.filters?.priceFrom || 'Цена'}:</label>
-          <Input
-            type="number"
-            placeholder={t.sets?.filters?.priceFrom || "От"}
-            onChange={(e) => {
-              const value = e.target.value ? parseFloat(e.target.value) : undefined;
-              updateFilters({ price_min: value });
-            }}
-            className="w-20 h-8 text-xs"
-          />
-          <span className="text-xs text-gray-400">-</span>
-          <Input
-            type="number"
-            placeholder={t.sets?.filters?.priceTo || "До"}
-            onChange={(e) => {
-              const value = e.target.value ? parseFloat(e.target.value) : undefined;
-              updateFilters({ price_max: value });
-            }}
-            className="w-20 h-8 text-xs"
-          />
         </div>
 
         <div className="flex items-center space-x-2">
@@ -127,6 +103,7 @@ const SetsPage = () => {
             onFilterChange={updateFilters}
             onSortChange={updateSort}
             renderFilters={renderFilters}
+            hideSearch={true}
           />
         </div>
       </main>

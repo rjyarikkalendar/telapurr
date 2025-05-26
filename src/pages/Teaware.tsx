@@ -37,52 +37,30 @@ const TeawarePage = () => {
       
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2">
-          <label className="text-xs font-medium text-tea-text">{t.teaware?.filters?.material || 'Материал'}:</label>
+          <label className="text-xs font-medium text-tea-text">{t.teaware?.filters?.type || 'Тип'}:</label>
           <div className="flex flex-wrap gap-1">
             {[
-              { value: 'all', label: t.teaware?.filters?.allMaterials || 'Все' },
-              { value: 'ceramic', label: t.teaware?.materials?.ceramic || 'Керамика' },
-              { value: 'porcelain', label: t.teaware?.materials?.porcelain || 'Фарфор' },
-              { value: 'glass', label: t.teaware?.materials?.glass || 'Стекло' },
-              { value: 'clay', label: t.teaware?.materials?.clay || 'Глина' },
-              { value: 'bamboo', label: t.teaware?.materials?.bamboo || 'Бамбук' },
-              { value: 'metal', label: t.teaware?.materials?.metal || 'Металл' }
-            ].map((material) => (
+              { value: 'all', label: t.teaware?.types?.all || 'Все' },
+              { value: 'chabu', label: t.teaware?.types?.chabu || 'Чабань' },
+              { value: 'set', label: t.teaware?.types?.set || 'Набор посуды' },
+              { value: 'cups', label: t.teaware?.types?.cups || 'Пиалы' },
+              { value: 'teapots', label: t.teaware?.types?.teapots || 'Типоды и чайники' },
+              { value: 'gaiwan', label: t.teaware?.types?.gaiwan || 'Гайвань' },
+              { value: 'pets', label: t.teaware?.types?.pets || 'Питомцы и чайные игрушки' },
+              { value: 'siphon', label: t.teaware?.types?.siphon || 'Сифон' },
+              { value: 'fairness_cups', label: t.teaware?.types?.fairnessCups || 'Чаши справедливости' },
+              { value: 'thermos', label: t.teaware?.types?.thermos || 'Термосы' },
+              { value: 'other', label: t.teaware?.types?.other || 'Другое' }
+            ].map((type) => (
               <button
-                key={material.value}
-                onClick={() => updateFilters({ material: material.value === "all" ? undefined : material.value })}
-                className="px-2 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded transition-colors"
+                key={type.value}
+                onClick={() => updateFilters({ type: type.value === "all" ? undefined : type.value })}
+                className="px-3 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded-full transition-colors"
               >
-                {material.label}
+                {type.label}
               </button>
             ))}
           </div>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="dishwasher_safe"
-            onCheckedChange={(checked) => 
-              updateFilters({ dishwasher_safe: checked ? true : undefined })
-            }
-            className="border-tea-brown data-[state=checked]:bg-tea-brown"
-          />
-          <Label htmlFor="dishwasher_safe" className="text-xs font-medium text-tea-text cursor-pointer">
-            {t.teaware?.filters?.dishwasherSafe || 'Посудомойка'}
-          </Label>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="microwave_safe"
-            onCheckedChange={(checked) => 
-              updateFilters({ microwave_safe: checked ? true : undefined })
-            }
-            className="border-tea-brown data-[state=checked]:bg-tea-brown"
-          />
-          <Label htmlFor="microwave_safe" className="text-xs font-medium text-tea-text cursor-pointer">
-            {t.teaware?.filters?.microwaveSafe || 'Микроволновка'}
-          </Label>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -119,6 +97,7 @@ const TeawarePage = () => {
             onFilterChange={updateFilters}
             onSortChange={updateSort}
             renderFilters={renderFilters}
+            hideSearch={true}
           />
         </div>
       </main>

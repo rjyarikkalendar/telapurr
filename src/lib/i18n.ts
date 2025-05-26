@@ -1,4 +1,3 @@
-
 export type Language = 'ru' | 'en' | 'es';
 
 export const languages: Record<Language, string> = {
@@ -50,48 +49,53 @@ export const translations = {
         from: 'От',
         to: 'До',
         sort: 'Сортировка',
-        sortBy: 'Сортировать по',
-        priceAsc: 'Цена ↑',
-        priceDesc: 'Цена ↓',
-        inStock: 'В наличии'
+        sortBy: {
+          newest: 'Новые первыми',
+          oldest: 'Старые первыми',
+          priceAsc: 'Цена по возрастанию',
+          priceDesc: 'Цена по убыванию',
+          alphabetical: 'По алфавиту'
+        },
+        search: 'Поиск по названию...',
+        inStock: 'В наличии',
+        outOfStock: 'Нет в наличии'
       },
       pagination: {
         prev: 'Предыдущая',
         next: 'Следующая',
         page: 'Страница',
-        of: 'из'
+        of: 'из',
+        total: 'всего',
+        records: 'записей'
       },
+      details: 'Подробнее',
       error: 'Ошибка загрузки данных'
     },
     teaware: {
       filters: {
         title: 'Фильтры',
-        material: 'Материал',
-        allMaterials: 'Все материалы',
-        dishwasherSafe: 'Можно мыть в посудомойке',
-        microwaveSafe: 'Можно в микроволновку',
+        type: 'Тип',
         inStock: 'В наличии'
       },
-      materials: {
-        ceramic: 'Керамика',
-        porcelain: 'Фарфор',
-        glass: 'Стекло',
-        clay: 'Глина',
-        bamboo: 'Бамбук',
-        metal: 'Металл'
+      types: {
+        all: 'Все',
+        chabu: 'Чабань',
+        set: 'Набор посуды',
+        cups: 'Пиалы',
+        teapots: 'Типоды и чайники',
+        gaiwan: 'Гайвань',
+        pets: 'Питомцы и чайные игрушки',
+        siphon: 'Сифон',
+        fairnessCups: 'Чаши справедливости',
+        thermos: 'Термосы',
+        other: 'Другое'
       }
     },
     sets: {
       filters: {
         title: 'Фильтры',
-        people: 'Количество человек',
-        anyAmount: 'Любое количество',
-        onePlus: '1+ человек',
-        twoPlus: '2+ человека',
-        fourPlus: '4+ человека',
-        sixPlus: '6+ человек',
-        priceFrom: 'Цена от',
-        priceTo: 'Цена до',
+        people: 'Людей',
+        anyAmount: 'Все',
         giftPackaging: 'Подарочная упаковка',
         inStock: 'В наличии'
       }
@@ -241,48 +245,53 @@ export const translations = {
         from: 'From',
         to: 'To',
         sort: 'Sort',
-        sortBy: 'Sort by',
-        priceAsc: 'Price ↑',
-        priceDesc: 'Price ↓',
-        inStock: 'In Stock'
+        sortBy: {
+          newest: 'Newest first',
+          oldest: 'Oldest first',
+          priceAsc: 'Price low to high',
+          priceDesc: 'Price high to low',
+          alphabetical: 'Alphabetical'
+        },
+        search: 'Search by title...',
+        inStock: 'In Stock',
+        outOfStock: 'Out of Stock'
       },
       pagination: {
         prev: 'Previous',
         next: 'Next',
         page: 'Page',
-        of: 'of'
+        of: 'of',
+        total: 'total',
+        records: 'records'
       },
+      details: 'Details',
       error: 'Data loading error'
     },
     teaware: {
       filters: {
         title: 'Filters',
-        material: 'Material',
-        allMaterials: 'All materials',
-        dishwasherSafe: 'Dishwasher safe',
-        microwaveSafe: 'Microwave safe',
+        type: 'Type',
         inStock: 'In Stock'
       },
-      materials: {
-        ceramic: 'Ceramic',
-        porcelain: 'Porcelain',
-        glass: 'Glass',
-        clay: 'Clay',
-        bamboo: 'Bamboo',
-        metal: 'Metal'
+      types: {
+        all: 'All',
+        chabu: 'Chabu',
+        set: 'Teaware Set',
+        cups: 'Cups',
+        teapots: 'Teapots',
+        gaiwan: 'Gaiwan',
+        pets: 'Tea Pets',
+        siphon: 'Siphon',
+        fairnessCups: 'Fairness Cups',
+        thermos: 'Thermos',
+        other: 'Other'
       }
     },
     sets: {
       filters: {
         title: 'Filters',
-        people: 'Number of people',
+        people: 'People',
         anyAmount: 'Any amount',
-        onePlus: '1+ person',
-        twoPlus: '2+ people',
-        fourPlus: '4+ people',
-        sixPlus: '6+ people',
-        priceFrom: 'Price from',
-        priceTo: 'Price to',
         giftPackaging: 'Gift packaging',
         inStock: 'In Stock'
       }
@@ -432,48 +441,53 @@ export const translations = {
         from: 'Desde',
         to: 'Hasta',
         sort: 'Ordenar',
-        sortBy: 'Ordenar por',
-        priceAsc: 'Precio ↑',
-        priceDesc: 'Precio ↓',
-        inStock: 'En Stock'
+        sortBy: {
+          newest: 'Más nuevos primero',
+          oldest: 'Más antiguos primero',
+          priceAsc: 'Precio menor a mayor',
+          priceDesc: 'Precio mayor a menor',
+          alphabetical: 'Alfabéticamente'
+        },
+        search: 'Buscar por título...',
+        inStock: 'En Stock',
+        outOfStock: 'Agotado'
       },
       pagination: {
         prev: 'Anterior',
         next: 'Siguiente',
         page: 'Página',
-        of: 'de'
+        of: 'de',
+        total: 'total',
+        records: 'registros'
       },
+      details: 'Detalles',
       error: 'Error al cargar datos'
     },
     teaware: {
       filters: {
         title: 'Filtros',
-        material: 'Material',
-        allMaterials: 'Todos los materiales',
-        dishwasherSafe: 'Apto para lavavajillas',
-        microwaveSafe: 'Apto para microondas',
+        type: 'Tipo',
         inStock: 'En Stock'
       },
-      materials: {
-        ceramic: 'Cerámica',
-        porcelain: 'Porcelana',
-        glass: 'Vidrio',
-        clay: 'Arcilla',
-        bamboo: 'Bambú',
-        metal: 'Metal'
+      types: {
+        all: 'Todos',
+        chabu: 'Chabu',
+        set: 'Set de Utensilios',
+        cups: 'Tazas',
+        teapots: 'Teteras',
+        gaiwan: 'Gaiwan',
+        pets: 'Mascotas de Té',
+        siphon: 'Sifón',
+        fairnessCups: 'Tazas de Justicia',
+        thermos: 'Termos',
+        other: 'Otro'
       }
     },
     sets: {
       filters: {
         title: 'Filtros',
-        people: 'Número de personas',
+        people: 'Personas',
         anyAmount: 'Cualquier cantidad',
-        onePlus: '1+ persona',
-        twoPlus: '2+ personas',
-        fourPlus: '4+ personas',
-        sixPlus: '6+ personas',
-        priceFrom: 'Precio desde',
-        priceTo: 'Precio hasta',
         giftPackaging: 'Empaque de regalo',
         inStock: 'En Stock'
       }
