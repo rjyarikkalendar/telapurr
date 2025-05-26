@@ -93,7 +93,7 @@ class ApiService {
     });
   }
 
-  async getList<T>(
+  async getList<T = any>(
     table: TableName,
     pagination?: PaginationParams,
     filters?: FilterParams,
@@ -127,7 +127,7 @@ class ApiService {
     };
   }
 
-  async getById<T>(table: TableName, id: string): Promise<T | null> {
+  async getById<T = any>(table: TableName, id: string): Promise<T | null> {
     const { data, error } = await supabase
       .from(table)
       .select('*')
@@ -142,7 +142,7 @@ class ApiService {
     return data as T;
   }
 
-  async create<T>(table: TableName, item: any): Promise<T> {
+  async create<T = any>(table: TableName, item: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .insert(item)
@@ -157,7 +157,7 @@ class ApiService {
     return data as T;
   }
 
-  async update<T>(table: TableName, id: string, updates: any): Promise<T> {
+  async update<T = any>(table: TableName, id: string, updates: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .update(updates)
