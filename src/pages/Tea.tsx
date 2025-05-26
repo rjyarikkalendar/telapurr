@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useApiData } from '@/hooks/useApiData';
-import { teaService, TeaFilters } from '@/services/teaService';
+import { teaService, TeaFilters, TeaWithPrices } from '@/services/teaService';
 import { ProductList } from '@/components/ProductList';
 import { TeaCard } from '@/components/TeaCard';
 import { BackButton } from '@/components/BackButton';
@@ -21,7 +20,7 @@ const Tea = () => {
     updatePagination,
     updateFilters,
     updateSort,
-  } = useApiData({
+  } = useApiData<TeaWithPrices>({
     fetchFunction: teaService.getList.bind(teaService),
     initialPagination: { page: 1, limit: 12 },
   });
