@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useApiData } from '@/hooks/useApiData';
 import { teaService, TeaFilters, TeaWithPrices } from '@/services/teaService';
@@ -35,14 +36,14 @@ const Tea = () => {
       <div className="flex-1">
         <Label htmlFor="type">Тип чая</Label>
         <Select
-          value={filters.type || ''}
-          onValueChange={(value) => handleFilterChange({ ...filters, type: value || undefined })}
+          value={filters.type || 'all'}
+          onValueChange={(value) => handleFilterChange({ ...filters, type: value === 'all' ? undefined : value })}
         >
           <SelectTrigger>
             <SelectValue placeholder="Все типы" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Все типы</SelectItem>
+            <SelectItem value="all">Все типы</SelectItem>
             <SelectItem value="shen">Шен</SelectItem>
             <SelectItem value="shu">Шу</SelectItem>
             <SelectItem value="green">Зеленый</SelectItem>
@@ -56,14 +57,14 @@ const Tea = () => {
       <div className="flex-1">
         <Label htmlFor="kind">Вид</Label>
         <Select
-          value={filters.kind || ''}
-          onValueChange={(value) => handleFilterChange({ ...filters, kind: value || undefined })}
+          value={filters.kind || 'all'}
+          onValueChange={(value) => handleFilterChange({ ...filters, kind: value === 'all' ? undefined : value })}
         >
           <SelectTrigger>
             <SelectValue placeholder="Все виды" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Все виды</SelectItem>
+            <SelectItem value="all">Все виды</SelectItem>
             <SelectItem value="old">Выдержанный</SelectItem>
             <SelectItem value="young">Молодой</SelectItem>
             <SelectItem value="premium">Премиум</SelectItem>
