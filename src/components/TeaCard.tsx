@@ -20,6 +20,7 @@ interface TeaCardProps {
 
 export const TeaCard = ({ tea }: TeaCardProps) => {
   const [open, setOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const { addItem, removeItem } = useCart();
   const { currentLang } = useLanguage();
 
@@ -54,22 +55,28 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   // Получаем изображения из JSON массива или используем дефолтные
   const getTeaImageUrl = () => {
-    // Проверяем, есть ли изображения в JSON массиве
-    if (tea.image_url && Array.isArray(tea.image_url) && tea.image_url.length > 0) {
-      // Возвращаем первое изображение из массива
-      return tea.image_url[0];
+    // Дефолтные изображения для разных типов чая (используем JPEG/PNG)
+    const defaultImages = {
+      'shen': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop',
+      'shu': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
+      'green': 'https://images.unsplash.com/photo-1627595231616-3ab7c7faa8b2?w=400&h=400&fit=crop',
+      'black': 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&h=400&fit=crop',
+      'white': 'https://images.unsplash.com/photo-1564890275246-de3e0b17bff8?w=400&h=400&fit=crop',
+      'oolong': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'
+    };
+
+    // Если есть ошибка загрузки или нет изображений, используем дефолтное
+    if (imageError || !tea.image_url || !Array.isArray(tea.image_url) || tea.image_url.length === 0) {
+      return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
     }
 
-    // Дефолтные изображения для разных типов чая
-    const defaultImages = {
-      'shen': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
-      'shu': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
-      'green': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
-      'black': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
-      'white': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
-      'oolong': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic'
-    };
-    
+    // Проверяем первое изображение на совместимость с браузером
+    const firstImage = tea.image_url[0];
+    if (firstImage && !firstImage.includes('.heic')) {
+      return firstImage;
+    }
+
+    // Если первое изображение в формате .heic, используем дефолтное
     return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
   };
 
@@ -105,6 +112,11 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     });
   };
 
+  const handleImageError = () => {
+    console.log('Image loading error for tea:', tea.id, 'URL:', getTeaImageUrl());
+    setImageError(true);
+  };
+
   return (
     <>
       <Card className="overflow-hidden group h-full flex flex-col">
@@ -113,19 +125,8 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             src={getTeaImageUrl()}
             alt={localizedData.name}
             className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-            onError={(e) => {
-              // Если изображение не загружается, используем дефолтное
-              const target = e.target as HTMLImageElement;
-              const defaultImages = {
-                'shen': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
-                'shu': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
-                'green': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
-                'black': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic',
-                'white': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_6128_rfbhdg.heic',
-                'oolong': 'https://res.cloudinary.com/drukljqft/image/upload/v1748273736/IMG_8194_gjyckd.heic'
-              };
-              target.src = defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
-            }}
+            onError={handleImageError}
+            loading="lazy"
           />
           {tea.age && (
             <Badge className="absolute top-2 right-2 bg-tea-brown text-white text-xs">
