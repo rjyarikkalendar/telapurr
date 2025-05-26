@@ -42,7 +42,8 @@ serve(async (req) => {
         in_stock, price_min, price_max, sort
       })
 
-      let query = supabase.from('teas').select('*, tea_prices(id, weight_type, price, price_index)', { count: 'exact' })
+      // Используем явную связь через tea_id для избежания неоднозначности
+      let query = supabase.from('teas').select('*, tea_prices!tea_prices_tea_id_fkey(id, weight_type, price, price_index)', { count: 'exact' })
 
       // Применяем фильтры
       if (type) {
