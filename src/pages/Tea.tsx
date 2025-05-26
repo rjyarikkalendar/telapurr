@@ -99,13 +99,13 @@ const Tea = () => {
             onClick={() => updateSort('price_asc')}
             className="px-3 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded-lg transition-colors"
           >
-            {t.tea?.filters?.priceAsc || 'Цена ↑'}
+            {t.tea?.filters?.sortBy?.priceAsc || 'Цена ↑'}
           </button>
           <button
             onClick={() => updateSort('price_desc')}
             className="px-3 py-1 text-xs bg-tea-brown/10 hover:bg-tea-brown/20 rounded-lg transition-colors"
           >
-            {t.tea?.filters?.priceDesc || 'Цена ↓'}
+            {t.tea?.filters?.sortBy?.priceDesc || 'Цена ↓'}
           </button>
         </div>
       </div>
