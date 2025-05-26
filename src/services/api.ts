@@ -38,7 +38,7 @@ class ApiService {
   ) {
     let query = supabase.from(table).select('*', { count: 'exact' });
 
-    // Применяем фильтры
+    // Apply filters
     if (filters) {
       Object.entries(filters).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== '') {
@@ -57,17 +57,17 @@ class ApiService {
       });
     }
 
-    // Применяем сортировку
+    // Apply sorting
     if (sort && sort.length > 0) {
       sort.forEach(({ field, direction }) => {
         query = query.order(field, { ascending: direction === 'asc' });
       });
     } else {
-      // Сортировка по умолчанию
+      // Default sorting
       query = query.order('created_at', { ascending: false });
     }
 
-    // Применяем пагинацию
+    // Apply pagination
     if (pagination) {
       const { page = 1, limit = 20 } = pagination;
       const from = (page - 1) * limit;
@@ -93,7 +93,7 @@ class ApiService {
     });
   }
 
-  async getList<T>(
+  async getList<T = any>(
     table: TableName,
     pagination?: PaginationParams,
     filters?: FilterParams,
@@ -127,7 +127,7 @@ class ApiService {
     };
   }
 
-  async getById<T>(table: TableName, id: string): Promise<T | null> {
+  async getById<T = any>(table: TableName, id: string): Promise<T | null> {
     const { data, error } = await supabase
       .from(table)
       .select('*')
@@ -139,10 +139,10 @@ class ApiService {
       throw error;
     }
 
-    return data as T;
+    return data as T | null;
   }
 
-  async create<T>(table: TableName, item: any): Promise<T> {
+  async create<T = any>(table: TableName, item: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .insert(item)
@@ -157,7 +157,7 @@ class ApiService {
     return data as T;
   }
 
-  async update<T>(table: TableName, id: string, updates: any): Promise<T> {
+  async update<T = any>(table: TableName, id: string, updates: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .update(updates)
