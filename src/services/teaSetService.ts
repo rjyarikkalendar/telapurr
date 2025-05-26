@@ -7,12 +7,18 @@ export type TeaSetCreate = Omit<TeaSet, 'id' | 'created_at' | 'updated_at'>;
 export type TeaSetUpdate = Partial<TeaSetCreate>;
 
 export interface TeaSetFilters extends FilterParams {
+  title?: string;
   gift_packaging?: boolean;
   in_stock?: boolean;
   price_min?: number;
   price_max?: number;
+  serves_people?: number;
   serves_people_min?: number;
   serves_people_max?: number;
+  created_at_min?: string;
+  created_at_max?: string;
+  updated_at_min?: string;
+  updated_at_max?: string;
 }
 
 export class TeaSetService {

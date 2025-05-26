@@ -7,6 +7,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 const Sets = () => {
   const { currentLang } = useLanguage();
@@ -36,12 +37,34 @@ const Sets = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="">Любое количество</SelectItem>
-            <SelectItem value="1">1 человек</SelectItem>
+            <SelectItem value="1">1+ человек</SelectItem>
             <SelectItem value="2">2+ человека</SelectItem>
             <SelectItem value="4">4+ человека</SelectItem>
             <SelectItem value="6">6+ человек</SelectItem>
           </SelectContent>
         </Select>
+      </div>
+
+      <div className="w-32">
+        <Input
+          type="number"
+          placeholder="Цена от"
+          onChange={(e) => {
+            const value = e.target.value ? parseFloat(e.target.value) : undefined;
+            updateFilters({ price_min: value });
+          }}
+        />
+      </div>
+
+      <div className="w-32">
+        <Input
+          type="number"
+          placeholder="Цена до"
+          onChange={(e) => {
+            const value = e.target.value ? parseFloat(e.target.value) : undefined;
+            updateFilters({ price_max: value });
+          }}
+        />
       </div>
 
       <div className="flex items-center space-x-2">

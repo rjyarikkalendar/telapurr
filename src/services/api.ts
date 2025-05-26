@@ -27,9 +27,11 @@ export interface ApiResponse<T> {
   };
 }
 
+type TableName = 'teas' | 'teaware' | 'tea_sets' | 'profiles';
+
 class ApiService {
   private buildQuery(
-    table: string,
+    table: TableName,
     pagination?: PaginationParams,
     filters?: FilterParams,
     sort?: SortParams[]
@@ -46,6 +48,8 @@ class ApiService {
           } else if (key.endsWith('_max')) {
             const field = key.replace('_max', '');
             query = query.lte(field, value);
+          } else if (typeof value === 'string' && key === 'title') {
+            query = query.ilike(key, `%${value}%`);
           } else {
             query = query.eq(key, value);
           }
@@ -90,7 +94,7 @@ class ApiService {
   }
 
   async getList<T>(
-    table: string,
+    table: TableName,
     pagination?: PaginationParams,
     filters?: FilterParams,
     sortString?: string
@@ -123,7 +127,7 @@ class ApiService {
     };
   }
 
-  async getById<T>(table: string, id: string): Promise<T | null> {
+  async getById<T>(table: TableName, id: string): Promise<T | null> {
     const { data, error } = await supabase
       .from(table)
       .select('*')
@@ -138,7 +142,7 @@ class ApiService {
     return data as T;
   }
 
-  async create<T>(table: string, item: Omit<T, 'id' | 'created_at' | 'updated_at'>): Promise<T> {
+  async create<T>(table: TableName, item: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .insert(item)
@@ -153,7 +157,7 @@ class ApiService {
     return data as T;
   }
 
-  async update<T>(table: string, id: string, updates: Partial<T>): Promise<T> {
+  async update<T>(table: TableName, id: string, updates: any): Promise<T> {
     const { data, error } = await supabase
       .from(table)
       .update(updates)
@@ -169,7 +173,7 @@ class ApiService {
     return data as T;
   }
 
-  async delete(table: string, id: string): Promise<void> {
+  async delete(table: TableName, id: string): Promise<void> {
     const { error } = await supabase
       .from(table)
       .delete()

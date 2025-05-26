@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface Product {
+interface BaseProduct {
   id: string;
   title: string;
   description?: string;
@@ -17,7 +17,7 @@ interface Product {
   created_at: string;
 }
 
-interface ProductListProps<T extends Product> {
+interface ProductListProps<T extends BaseProduct> {
   data: T[];
   loading: boolean;
   error: Error | null;
@@ -35,7 +35,7 @@ interface ProductListProps<T extends Product> {
   renderFilters?: () => React.ReactNode;
 }
 
-export function ProductList<T extends Product>({
+export function ProductList<T extends BaseProduct>({
   data,
   loading,
   error,
