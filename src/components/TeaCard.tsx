@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -22,7 +21,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
   const [open, setOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { addItem, removeItem } = useCart();
-  const { currentLang } = useLanguage();
+  const { currentLang, t } = useLanguage();
 
   // Получаем данные на текущем языке из multilingual поля
   const getLocalizedData = () => {
@@ -102,7 +101,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     addItem(product);
     setOpen(false);
     toast({
-      title: "Товар добавлен в корзину",
+      title: t.cart.addedToCart,
       description: (
         <div className="flex flex-col gap-2">
           <p>{localizedData.name} {weightType ? `(${weightType})` : ''}</p>
@@ -110,7 +109,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             variant="destructive" 
             onClick={() => removeItem(tea.id)}
           >
-            Отменить
+            {t.cart.cancel}
           </Button>
         </div>
       ),
@@ -136,7 +135,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
           />
           {tea.age && (
             <Badge className="absolute top-2 right-2 bg-tea-brown text-white text-xs">
-              {tea.age} лет
+              {tea.age} {t.cart.yearsOld}
             </Badge>
           )}
         </div>
@@ -163,7 +162,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             className="bg-tea-brown hover:bg-tea-brown/90 text-xs px-2 py-1 h-auto"
             disabled={!tea.in_stock}
           >
-            {tea.in_stock ? 'В корзину' : 'Нет в наличии'}
+            {tea.in_stock ? t.cart.addToCart : t.cart.outOfStock}
           </Button>
         </CardFooter>
       </Card>
@@ -172,7 +171,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Выберите размер упаковки</DialogTitle>
+              <DialogTitle>{t.cart.selectSize}</DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-4 mt-4">
               {tea.prices.map((priceOption) => (

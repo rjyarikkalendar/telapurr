@@ -1,3 +1,4 @@
+
 export type Language = 'ru' | 'en' | 'es' | 'zh';
 
 export const languages: Record<Language, string> = {
@@ -120,9 +121,13 @@ export const translations = {
         inStock: 'В наличии'
       }
     },
-    ceremony: {
-      title: 'Чайные церемонии',
-      learnMore: 'Узнать больше'
+    cart: {
+      addToCart: 'В корзину',
+      outOfStock: 'Нет в наличии',
+      addedToCart: 'Товар добавлен в корзину',
+      cancel: 'Отменить',
+      selectSize: 'Выберите размер упаковки',
+      yearsOld: 'лет'
     },
     checkout: {
       title: 'Оформление заказа',
@@ -336,9 +341,13 @@ export const translations = {
         inStock: 'In Stock'
       }
     },
-    ceremony: {
-      title: 'Tea Ceremonies',
-      learnMore: 'Learn More'
+    cart: {
+      addToCart: 'Add to Cart',
+      outOfStock: 'Out of Stock',
+      addedToCart: 'Item added to cart',
+      cancel: 'Cancel',
+      selectSize: 'Select package size',
+      yearsOld: 'years old'
     },
     checkout: {
       title: 'Checkout',
@@ -552,9 +561,13 @@ export const translations = {
         inStock: 'En Stock'
       }
     },
-    ceremony: {
-      title: 'Ceremonias de Té',
-      learnMore: 'Aprender Más'
+    cart: {
+      addToCart: 'Añadir al Carrito',
+      outOfStock: 'Agotado',
+      addedToCart: 'Artículo añadido al carrito',
+      cancel: 'Cancelar',
+      selectSize: 'Seleccionar tamaño del paquete',
+      yearsOld: 'años'
     },
     checkout: {
       title: 'Finalizar Compra',
@@ -768,9 +781,13 @@ export const translations = {
         inStock: '有货'
       }
     },
-    ceremony: {
-      title: '茶艺',
-      learnMore: '了解更多'
+    cart: {
+      addToCart: '加入购物车',
+      outOfStock: '缺货',
+      addedToCart: '商品已加入购物车',
+      cancel: '取消',
+      selectSize: '选择包装规格',
+      yearsOld: '年'
     },
     checkout: {
       title: '结账',
