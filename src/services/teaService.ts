@@ -1,3 +1,4 @@
+
 import { PaginationParams, FilterParams, ApiResponse } from './api';
 import { Tables } from '@/integrations/supabase/types';
 
@@ -18,9 +19,20 @@ export interface TeaFilters extends FilterParams {
   price_max?: number;
 }
 
+// Новый интерфейс для цен с новой структурой
+export interface TeaPriceWithSku {
+  id: string;
+  weight_type: string;
+  price: number;
+  price_index: number;
+  tea_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface TeaWithPrices extends Omit<Tea, 'image_url'> {
-  prices?: TeaPrice[];
-  image_url?: string[] | null; // Переопределяем как массив строк
+  prices?: TeaPriceWithSku[];
+  image_url?: string[] | null;
 }
 
 export class TeaService {
@@ -78,7 +90,7 @@ export class TeaService {
 
   async getById(id: string): Promise<TeaWithPrices | null> {
     try {
-      // Получаем чай с его ценами через новую структуру
+      // Получаем чай с новой структурой цен через product_sku_prices
       const response = await fetch(`https://zsvcpormtqkiyijapqfa.supabase.co/rest/v1/teas?id=eq.${id}&select=*,product_sku_prices!inner(id,price_index,is_active,skus!inner(id,sku_code,weight_type,weight_value,weight_unit),prices!inner(id,price,currency))`, {
         headers: {
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdmNwb3JtdHFraXlpamFwcWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzkzNjIsImV4cCI6MjA2MjgxNTM2Mn0._AlpOYclNN02L2mJblqHDnqVnR7cmlLXfy2Ras5ufX4',

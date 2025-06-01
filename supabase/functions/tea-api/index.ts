@@ -88,12 +88,11 @@ serve(async (req) => {
       query = query.lte('price', parseFloat(priceMax));
     }
 
-    // Применение сортировки - исправлено имя поля
+    // Применение сортировки
     if (sort) {
       const [field, direction] = sort.split('_');
       const ascending = direction === 'asc';
       
-      // Исправляем сортировку по created на created_at
       const sortField = field === 'created' ? 'created_at' : field;
       query = query.order(sortField, { ascending });
     }
@@ -109,22 +108,52 @@ serve(async (req) => {
       throw new Error(`Error fetching teas: ${teasError.message}`);
     }
 
-    // Получаем цены для чаев
+    // Получаем цены для чаев через новую структуру product_sku_prices
     const teaIds = teas?.map(tea => tea.id) || [];
-    const { data: prices, error: pricesError } = await supabase
-      .from('tea_prices')
-      .select('*')
-      .in('tea_id', teaIds);
+    const { data: productSkuPrices, error: pricesError } = await supabase
+      .from('product_sku_prices')
+      .select(`
+        id,
+        price_index,
+        skus (
+          id,
+          weight_type,
+          weight_value,
+          weight_unit
+        ),
+        prices (
+          id,
+          price,
+          currency
+        )
+      `)
+      .eq('product_type', 'tea')
+      .in('product_id', teaIds);
 
     if (pricesError) {
       console.error('Error fetching prices:', pricesError);
     }
 
     // Добавляем цены к чаям
-    const teasWithPrices = teas?.map(tea => ({
-      ...tea,
-      prices: prices?.filter(price => price.tea_id === tea.id).sort((a, b) => a.price_index - b.price_index) || []
-    })) || [];
+    const teasWithPrices = teas?.map(tea => {
+      const teaPrices = productSkuPrices
+        ?.filter(psp => psp.product_id === tea.id)
+        ?.map(psp => ({
+          id: psp.id,
+          weight_type: psp.skus.weight_type,
+          price: psp.prices.price,
+          price_index: psp.price_index,
+          tea_id: tea.id,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }))
+        ?.sort((a, b) => a.price_index - b.price_index) || [];
+
+      return {
+        ...tea,
+        prices: teaPrices
+      };
+    }) || [];
 
     const totalPages = Math.ceil((count || 0) / limit);
 
