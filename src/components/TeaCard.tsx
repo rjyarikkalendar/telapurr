@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -85,6 +86,11 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
   };
 
+  // Определяем, нужно ли показывать модальное окно - для всех чаев показываем выбор веса
+  const shouldShowModal = () => {
+    return tea.category === 'tea' || (tea.prices && tea.prices.length > 0);
+  };
+
   const handleAddToCart = (weightType?: string, price?: number) => {
     // Создаем объект продукта, совместимый с существующей системой корзины
     const product = {
@@ -122,6 +128,17 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     setImageError(true);
   };
 
+  // Стандартные варианты веса для чая
+  const defaultWeightOptions = [
+    { weight_type: '25_g', price: tea.price * 0.25, id: 'default-25' },
+    { weight_type: '50_g', price: tea.price * 0.5, id: 'default-50' },
+    { weight_type: '100_g', price: tea.price, id: 'default-100' },
+    { weight_type: '200_g', price: tea.price * 2, id: 'default-200' },
+    { weight_type: '350_g', price: tea.price * 3.5, id: 'default-350' }
+  ];
+
+  const weightOptions = tea.prices && tea.prices.length > 0 ? tea.prices : defaultWeightOptions;
+
   return (
     <>
       <Card className="overflow-hidden group h-full flex flex-col">
@@ -149,7 +166,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             </div>
             <p className="text-gray-600 text-xs line-clamp-2">{localizedData.description}</p>
             {tea.yearbirth && (
-              <p className="text-xs text-gray-500">Урожай: {tea.yearbirth}</p>
+              <p className="text-xs text-gray-500">{tea.yearbirth}</p>
             )}
           </div>
         </CardContent>
@@ -158,7 +175,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             от {tea.price} €
           </span>
           <Button
-            onClick={() => tea.prices && tea.prices.length > 0 ? setOpen(true) : handleAddToCart()}
+            onClick={() => shouldShowModal() ? setOpen(true) : handleAddToCart()}
             className="bg-tea-brown hover:bg-tea-brown/90 text-xs px-2 py-1 h-auto"
             disabled={!tea.in_stock}
           >
@@ -167,14 +184,14 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
         </CardFooter>
       </Card>
 
-      {tea.prices && tea.prices.length > 0 && (
+      {shouldShowModal() && (
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>{t.cart.selectSize}</DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-4 mt-4">
-              {tea.prices.map((priceOption) => (
+              {weightOptions.map((priceOption) => (
                 <Button
                   key={priceOption.id}
                   onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
