@@ -16,6 +16,21 @@ const Cart = () => {
     }
   };
 
+  // Helper function to display weight for tea items
+  const getWeightDisplay = (item: any) => {
+    if (item.category === 'tea' && item.selectedWeight) {
+      // Convert weight_type to readable format
+      const weightMap: { [key: string]: string } = {
+        '50_gramm': '50 г',
+        '100_gramm': '100 г',
+        '200_gramm': '200 г',
+        '357_gramm': '357 г'
+      };
+      return weightMap[item.selectedWeight] || item.selectedWeight;
+    }
+    return null;
+  };
+
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
       <div className="container mx-auto px-4">
@@ -43,8 +58,8 @@ const Cart = () => {
                   />
                   <div className="flex-1">
                     <h3 className="text-lg font-medium">{item.title}</h3>
-                    {item.category === 'tea' && item.selectedSize && (
-                      <p className="text-gray-500 text-sm">{item.selectedSize} г</p>
+                    {getWeightDisplay(item) && (
+                      <p className="text-gray-500 text-sm">{getWeightDisplay(item)}</p>
                     )}
                     <p className="text-tea-brown font-semibold">{item.price} €</p>
                   </div>

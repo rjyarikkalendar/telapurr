@@ -38,8 +38,12 @@ export const useCart = create<CartStore>()(
         }
         
         set((state) => {
+          // For tea items, use selectedWeight as the key, for others use selectedSize
+          const keyField = item.category === 'tea' ? 'selectedWeight' : 'selectedSize';
+          const keyValue = item.category === 'tea' ? item.selectedWeight : size;
+          
           const existingItemIndex = state.items.findIndex(
-            (i) => i.id === item.id && i.selectedSize === size
+            (i) => i.id === item.id && i[keyField as keyof CartItem] === keyValue
           );
 
           let newItems;
@@ -47,7 +51,13 @@ export const useCart = create<CartStore>()(
             newItems = [...state.items];
             newItems[existingItemIndex].quantity += 1;
           } else {
-            newItems = [...state.items, { ...item, quantity: 1, selectedSize: size }];
+            const cartItem = { 
+              ...item, 
+              quantity: 1, 
+              selectedSize: item.category !== 'tea' ? size : undefined,
+              selectedWeight: item.category === 'tea' ? item.selectedWeight : undefined
+            };
+            newItems = [...state.items, cartItem];
           }
 
           return {
@@ -60,7 +70,7 @@ export const useCart = create<CartStore>()(
       removeItem: (itemId, size) => {
         set((state) => {
           const newItems = state.items.filter(
-            (item) => !(item.id === itemId && item.selectedSize === size)
+            (item) => !(item.id === itemId && (item.selectedSize === size || item.selectedWeight))
           );
           return {
             items: newItems,
@@ -72,7 +82,7 @@ export const useCart = create<CartStore>()(
       updateQuantity: (itemId, quantity, size) => {
         set((state) => {
           const newItems = state.items.map((item) => {
-            if (item.id === itemId && item.selectedSize === size) {
+            if (item.id === itemId && (item.selectedSize === size || item.selectedWeight)) {
               return { ...item, quantity };
             }
             return item;

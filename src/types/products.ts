@@ -16,9 +16,11 @@ export interface Product {
   catalogId: string;
   sizes?: number[];
   quantity?: number;
+  selectedWeight?: string;
 }
 
 export interface CartItem extends Product {
   quantity: number;
   selectedSize?: number;
+  selectedWeight?: string;
 }
