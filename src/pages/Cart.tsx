@@ -44,9 +44,9 @@ const Cart = () => {
                   <div className="flex-1">
                     <h3 className="text-lg font-medium">{item.title}</h3>
                     {item.category === 'tea' && item.selectedSize && (
-                      <p className="text-gray-500">{item.selectedSize} г</p>
+                      <p className="text-gray-500 text-sm">{item.selectedSize} г</p>
                     )}
-                    <p className="text-tea-brown">{item.price} €</p>
+                    <p className="text-tea-brown font-semibold">{item.price} €</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Button
