@@ -108,18 +108,9 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     setOpen(false);
     toast({
       title: t.cart.addedToCart,
-      description: (
-        <div className="flex flex-col gap-2">
-          <p>{localizedData.name} {weightType ? `(${weightType})` : ''}</p>
-          <Button 
-            variant="destructive" 
-            onClick={() => removeItem(tea.id)}
-          >
-            {t.cart.cancel}
-          </Button>
-        </div>
-      ),
-      duration: 5000,
+      description: `${localizedData.name} ${weightType ? `(${weightType})` : ''}`,
+      duration: 2000,
+      className: "max-w-xs"
     });
   };
 
