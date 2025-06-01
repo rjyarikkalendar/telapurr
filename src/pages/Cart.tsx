@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/hooks/use-cart";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -18,8 +19,21 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
+      {/* Логотип по центру сверху */}
+      <div className="flex justify-center mb-8">
+        <Link to="/" className="w-24 h-24 transition-transform hover:scale-105">
+          <div className="relative w-full h-full">
+            <img
+              src="/lovable-uploads/004faa27-58f7-44a5-a5ee-4efc14bf128a.png"
+              alt="Milenasia Tea"
+              className="w-full h-full object-contain relative opacity-70"
+            />
+          </div>
+        </Link>
+      </div>
+
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-playfair text-tea-text mb-8">Корзина</h1>
+        <h1 className="text-3xl font-playfair text-tea-text mb-8 text-center">Корзина</h1>
         
         {items.length === 0 ? (
           <div className="text-center py-8">

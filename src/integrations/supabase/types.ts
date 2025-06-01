@@ -15,6 +15,7 @@ export type Database = {
           currency: string | null
           id: string
           price: number
+          product_name: string
           updated_at: string
         }
         Insert: {
@@ -22,6 +23,7 @@ export type Database = {
           currency?: string | null
           id?: string
           price: number
+          product_name?: string
           updated_at?: string
         }
         Update: {
@@ -29,6 +31,7 @@ export type Database = {
           currency?: string | null
           id?: string
           price?: number
+          product_name?: string
           updated_at?: string
         }
         Relationships: []
@@ -141,44 +144,6 @@ export type Database = {
         }
         Relationships: []
       }
-      tea_prices: {
-        Row: {
-          created_at: string
-          id: string
-          price: number
-          price_index: number
-          tea_id: string
-          updated_at: string
-          weight_type: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          price: number
-          price_index?: number
-          tea_id: string
-          updated_at?: string
-          weight_type: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          price?: number
-          price_index?: number
-          tea_id?: string
-          updated_at?: string
-          weight_type?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tea_prices_tea_id_fkey"
-            columns: ["tea_id"]
-            isOneToOne: false
-            referencedRelation: "teas"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       tea_sets: {
         Row: {
           created_at: string | null
@@ -225,13 +190,13 @@ export type Database = {
         Row: {
           age: number | null
           created_at: string | null
-          description: string | null
           id: string
           image_url: Json | null
           in_stock: boolean | null
           kind: string | null
           multilingual: Json | null
           price: number
+          sku_weight_types: Json[] | null
           title: string
           type: string | null
           updated_at: string | null
@@ -240,13 +205,13 @@ export type Database = {
         Insert: {
           age?: number | null
           created_at?: string | null
-          description?: string | null
           id?: string
           image_url?: Json | null
           in_stock?: boolean | null
           kind?: string | null
           multilingual?: Json | null
           price: number
+          sku_weight_types?: Json[] | null
           title: string
           type?: string | null
           updated_at?: string | null
@@ -255,13 +220,13 @@ export type Database = {
         Update: {
           age?: number | null
           created_at?: string | null
-          description?: string | null
           id?: string
           image_url?: Json | null
           in_stock?: boolean | null
           kind?: string | null
           multilingual?: Json | null
           price?: number
+          sku_weight_types?: Json[] | null
           title?: string
           type?: string | null
           updated_at?: string | null
