@@ -85,9 +85,10 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     return defaultImages[tea.type as keyof typeof defaultImages] || defaultImages.shen;
   };
 
-  // Определяем, нужно ли показывать модальное окно - для всех чаев показываем выбор веса
+  // Определяем, нужно ли показывать модальное окно - показываем если есть цены из БД или всегда
   const shouldShowModal = () => {
-    return tea.prices && tea.prices.length > 0;
+    console.log('Tea prices check:', tea.id, tea.prices);
+    return true; // Всегда показываем модальное окно для выбора веса
   };
 
   const handleAddToCart = (weightType?: string, price?: number) => {
@@ -127,16 +128,28 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     setImageError(true);
   };
 
-  // Стандартные варианты веса для чая
-  const defaultWeightOptions = [
-    { weight_type: '25_g', price: tea.price * 0.25, id: 'default-25' },
-    { weight_type: '50_g', price: tea.price * 0.5, id: 'default-50' },
-    { weight_type: '100_g', price: tea.price, id: 'default-100' },
-    { weight_type: '200_g', price: tea.price * 2, id: 'default-200' },
-    { weight_type: '350_g', price: tea.price * 3.5, id: 'default-350' }
-  ];
+  // Получаем варианты веса - используем данные из БД или дефолтные
+  const getWeightOptions = () => {
+    if (tea.prices && tea.prices.length > 0) {
+      console.log('Using prices from database:', tea.prices);
+      return tea.prices.map(priceOption => ({
+        id: priceOption.id,
+        weight_type: priceOption.weight_type,
+        price: priceOption.price
+      }));
+    }
 
-  const weightOptions = tea.prices && tea.prices.length > 0 ? tea.prices : defaultWeightOptions;
+    // Стандартные варианты веса для чая если нет цен из БД
+    console.log('Using default weight options for tea:', tea.id);
+    return [
+      { weight_type: '50_gramm', price: tea.price * 0.5, id: 'default-50' },
+      { weight_type: '100_gramm', price: tea.price, id: 'default-100' },
+      { weight_type: '200_gramm', price: tea.price * 2, id: 'default-200' },
+      { weight_type: '357_gramm', price: tea.price * 3.57, id: 'default-357' }
+    ];
+  };
+
+  const weightOptions = getWeightOptions();
 
   return (
     <>
@@ -171,7 +184,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
         </CardContent>
         <CardFooter className="p-3 pt-0 flex justify-between items-center">
           <span className="text-tea-brown text-sm font-semibold">
-            от {tea.price} €
+            от {weightOptions[0]?.price || tea.price} €
           </span>
           <Button
             onClick={() => shouldShowModal() ? setOpen(true) : handleAddToCart()}
@@ -183,32 +196,30 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
         </CardFooter>
       </Card>
 
-      {shouldShowModal() && (
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{t.cart.selectSize}</DialogTitle>
-            </DialogHeader>
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              {weightOptions.map((priceOption) => (
-                <Button
-                  key={priceOption.id}
-                  onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
-                  variant="outline"
-                  className="flex flex-col h-auto p-4"
-                >
-                  <span className="text-lg font-medium">
-                    {priceOption.weight_type.replace('_', ' ')}
-                  </span>
-                  <span className="text-tea-brown font-semibold">
-                    {priceOption.price} €
-                  </span>
-                </Button>
-              ))}
-            </div>
-          </DialogContent>
-        </Dialog>
-      )}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t.cart.selectSize}</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            {weightOptions.map((priceOption) => (
+              <Button
+                key={priceOption.id}
+                onClick={() => handleAddToCart(priceOption.weight_type, priceOption.price)}
+                variant="outline"
+                className="flex flex-col h-auto p-4"
+              >
+                <span className="text-lg font-medium">
+                  {priceOption.weight_type.replace('_', ' ')}
+                </span>
+                <span className="text-tea-brown font-semibold">
+                  {priceOption.price} €
+                </span>
+              </Button>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

@@ -110,28 +110,35 @@ serve(async (req) => {
 
     // Получаем цены для чаев через новую структуру product_sku_prices
     const teaIds = teas?.map(tea => tea.id) || [];
-    const { data: productSkuPrices, error: pricesError } = await supabase
-      .from('product_sku_prices')
-      .select(`
-        id,
-        price_index,
-        skus (
+    
+    let productSkuPrices = [];
+    if (teaIds.length > 0) {
+      const { data: pricesData, error: pricesError } = await supabase
+        .from('product_sku_prices')
+        .select(`
           id,
-          weight_type,
-          weight_value,
-          weight_unit
-        ),
-        prices (
-          id,
-          price,
-          currency
-        )
-      `)
-      .eq('product_type', 'tea')
-      .in('product_id', teaIds);
+          product_id,
+          price_index,
+          skus (
+            id,
+            weight_type,
+            weight_value,
+            weight_unit
+          ),
+          prices (
+            id,
+            price,
+            currency
+          )
+        `)
+        .eq('product_type', 'tea')
+        .in('product_id', teaIds);
 
-    if (pricesError) {
-      console.error('Error fetching prices:', pricesError);
+      if (pricesError) {
+        console.error('Error fetching prices:', pricesError);
+      } else {
+        productSkuPrices = pricesData || [];
+      }
     }
 
     // Добавляем цены к чаям
@@ -140,8 +147,8 @@ serve(async (req) => {
         ?.filter(psp => psp.product_id === tea.id)
         ?.map(psp => ({
           id: psp.id,
-          weight_type: psp.skus.weight_type,
-          price: psp.prices.price,
+          weight_type: psp.skus?.weight_type || '',
+          price: psp.prices?.price || 0,
           price_index: psp.price_index,
           tea_id: tea.id,
           created_at: new Date().toISOString(),
@@ -173,7 +180,8 @@ serve(async (req) => {
       itemsCount: teasWithPrices.length, 
       total: count, 
       page, 
-      totalPages 
+      totalPages,
+      samplePrices: teasWithPrices[0]?.prices || 'no prices'
     });
 
     return new Response(JSON.stringify(response), {
