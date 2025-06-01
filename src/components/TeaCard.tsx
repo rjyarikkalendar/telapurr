@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -88,7 +87,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
 
   // Определяем, нужно ли показывать модальное окно - для всех чаев показываем выбор веса
   const shouldShowModal = () => {
-    return tea.category === 'tea' || (tea.prices && tea.prices.length > 0);
+    return tea.prices && tea.prices.length > 0;
   };
 
   const handleAddToCart = (weightType?: string, price?: number) => {
