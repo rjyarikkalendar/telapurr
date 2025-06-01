@@ -88,11 +88,14 @@ serve(async (req) => {
       query = query.lte('price', parseFloat(priceMax));
     }
 
-    // Применение сортировки
+    // Применение сортировки - исправлено имя поля
     if (sort) {
       const [field, direction] = sort.split('_');
       const ascending = direction === 'asc';
-      query = query.order(field, { ascending });
+      
+      // Исправляем сортировку по created на created_at
+      const sortField = field === 'created' ? 'created_at' : field;
+      query = query.order(sortField, { ascending });
     }
 
     // Применение пагинации
