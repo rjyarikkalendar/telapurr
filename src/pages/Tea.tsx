@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useApiData } from '@/hooks/useApiData';
 import { teaService, TeaFilters, TeaWithPrices } from '@/services/teaService';
 import { TeaCard } from '@/components/TeaCard';
@@ -10,11 +9,15 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useLanguage } from '@/hooks/use-language';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Tea = () => {
   const [filters, setFilters] = useState<TeaFilters>({});
   const [activeTab, setActiveTab] = useState('all');
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const {
     data: teas,
@@ -40,6 +43,20 @@ const Tea = () => {
   const handleFilterChange = (newFilters: TeaFilters) => {
     setFilters(newFilters);
     updateFilters(newFilters);
+  };
+
+  const scrollTabs = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 200;
+      const newScrollLeft = direction === 'left' 
+        ? scrollRef.current.scrollLeft - scrollAmount
+        : scrollRef.current.scrollLeft + scrollAmount;
+      
+      scrollRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const teaTypes = [
@@ -112,6 +129,65 @@ const Tea = () => {
     </div>
   );
 
+  const renderMobileTabsList = () => (
+    <div className="relative">
+      {/* Левая стрелка */}
+      <button
+        onClick={() => scrollTabs('left')}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-sm border border-tea-brown/20 flex items-center justify-center"
+        style={{ left: '4px' }}
+      >
+        <ChevronLeft className="h-4 w-4 text-tea-brown" />
+      </button>
+
+      {/* Правая стрелка */}
+      <button
+        onClick={() => scrollTabs('right')}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-sm border border-tea-brown/20 flex items-center justify-center"
+        style={{ right: '4px' }}
+      >
+        <ChevronRight className="h-4 w-4 text-tea-brown" />
+      </button>
+
+      {/* Прокручиваемые табы */}
+      <div 
+        ref={scrollRef}
+        className="flex overflow-x-auto scrollbar-hide px-10 py-2"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        <div className="flex space-x-2 min-w-max">
+          {teaTypes.map((type) => (
+            <TabsTrigger
+              key={type.value}
+              value={type.value}
+              className="whitespace-nowrap px-4 py-2 text-sm font-medium data-[state=active]:bg-tea-brown data-[state=active]:text-white transition-all duration-200 rounded-lg bg-white/80 backdrop-blur-sm border border-tea-brown/20 hover:bg-tea-brown/10"
+            >
+              {type.label}
+            </TabsTrigger>
+          ))}
+        </div>
+      </div>
+
+      {/* Градиентные индикаторы по краям */}
+      <div className="absolute left-8 top-0 bottom-0 w-4 bg-gradient-to-r from-[#D3E4E0]/80 to-transparent pointer-events-none" />
+      <div className="absolute right-8 top-0 bottom-0 w-4 bg-gradient-to-l from-[#D3E4E0]/80 to-transparent pointer-events-none" />
+    </div>
+  );
+
+  const renderDesktopTabsList = () => (
+    <TabsList className="grid w-full grid-cols-7 h-12 p-1 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
+      {teaTypes.map((type) => (
+        <TabsTrigger
+          key={type.value}
+          value={type.value}
+          className="text-sm font-medium data-[state=active]:bg-tea-brown data-[state=active]:text-white transition-all duration-200 rounded-lg"
+        >
+          {type.label}
+        </TabsTrigger>
+      ))}
+    </TabsList>
+  );
+
   return (
     <main className="relative min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm pt-20 pb-40">
       <BackButton />
@@ -122,17 +198,7 @@ const Tea = () => {
         
         <div className="space-y-6">
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-            <TabsList className="grid w-full grid-cols-7 h-12 p-1 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
-              {teaTypes.map((type) => (
-                <TabsTrigger
-                  key={type.value}
-                  value={type.value}
-                  className="text-sm font-medium data-[state=active]:bg-tea-brown data-[state=active]:text-white transition-all duration-200 rounded-lg"
-                >
-                  {type.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+            {isMobile ? renderMobileTabsList() : renderDesktopTabsList()}
 
             {teaTypes.map((type) => (
               <TabsContent key={type.value} value={type.value} className="space-y-6 mt-6">
