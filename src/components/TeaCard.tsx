@@ -32,7 +32,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
           name: langData.name || tea.title,
           subname: langData.subname || '',
           subtitle: langData.subtitle || '',
-          description: langData.description || tea.description,
+          description: langData.description || tea.description || '',
           effect: langData.effect || '',
           flavour: langData.flavour || '',
           aroma: langData.aroma || ''

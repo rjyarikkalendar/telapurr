@@ -1,9 +1,7 @@
-
 import { PaginationParams, FilterParams, ApiResponse } from './api';
 import { Tables } from '@/integrations/supabase/types';
 
 export type Tea = Tables<'teas'>;
-export type TeaPrice = Tables<'tea_prices'>;
 export type TeaCreate = Omit<Tea, 'id' | 'created_at' | 'updated_at'>;
 export type TeaUpdate = Partial<TeaCreate>;
 
@@ -33,6 +31,7 @@ export interface TeaPriceWithSku {
 export interface TeaWithPrices extends Omit<Tea, 'image_url'> {
   prices?: TeaPriceWithSku[];
   image_url?: string[] | null;
+  description?: string; // Добавляем description как опциональное поле
 }
 
 export class TeaService {
