@@ -10,8 +10,8 @@ interface CartStore {
   items: CartItem[];
   lastUpdated: number;
   addItem: (item: Product, size?: number) => void;
-  removeItem: (itemId: string, size?: number) => void;
-  updateQuantity: (itemId: string, quantity: number, size?: number) => void;
+  removeItem: (itemId: string, size?: number, weight?: string) => void;
+  updateQuantity: (itemId: string, quantity: number, size?: number, weight?: string) => void;
   clearCart: () => void;
   itemCount: number;
 }
@@ -67,10 +67,16 @@ export const useCart = create<CartStore>()(
           };
         });
       },
-      removeItem: (itemId, size) => {
+      removeItem: (itemId, size, weight) => {
         set((state) => {
           const newItems = state.items.filter(
-            (item) => !(item.id === itemId && (item.selectedSize === size || item.selectedWeight))
+            (item) => {
+              if (item.category === 'tea') {
+                return !(item.id === itemId && item.selectedWeight === weight);
+              } else {
+                return !(item.id === itemId && item.selectedSize === size);
+              }
+            }
           );
           return {
             items: newItems,
@@ -79,11 +85,17 @@ export const useCart = create<CartStore>()(
           };
         });
       },
-      updateQuantity: (itemId, quantity, size) => {
+      updateQuantity: (itemId, quantity, size, weight) => {
         set((state) => {
           const newItems = state.items.map((item) => {
-            if (item.id === itemId && (item.selectedSize === size || item.selectedWeight)) {
-              return { ...item, quantity };
+            if (item.category === 'tea') {
+              if (item.id === itemId && item.selectedWeight === weight) {
+                return { ...item, quantity };
+              }
+            } else {
+              if (item.id === itemId && item.selectedSize === size) {
+                return { ...item, quantity };
+              }
             }
             return item;
           });

@@ -8,11 +8,11 @@ const Cart = () => {
   const navigate = useNavigate();
   const { items, updateQuantity, removeItem } = useCart();
 
-  const handleQuantityChange = (itemId: string, quantity: number, size?: number) => {
+  const handleQuantityChange = (itemId: string, quantity: number, size?: number, weight?: string) => {
     if (quantity < 1) {
-      removeItem(itemId, size);
+      removeItem(itemId, size, weight);
     } else {
-      updateQuantity(itemId, quantity, size);
+      updateQuantity(itemId, quantity, size, weight);
     }
   };
 
@@ -49,8 +49,8 @@ const Cart = () => {
         ) : (
           <>
             <div className="space-y-4">
-              {items.map((item) => (
-                <div key={`${item.id}-${item.selectedSize}`} className="bg-white p-4 rounded-lg shadow-sm flex items-center gap-4">
+              {items.map((item, index) => (
+                <div key={`${item.id}-${item.selectedSize || item.selectedWeight}-${index}`} className="bg-white p-4 rounded-lg shadow-sm flex items-center gap-4">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -67,7 +67,7 @@ const Cart = () => {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleQuantityChange(item.id, item.quantity - 1, item.selectedSize)}
+                      onClick={() => handleQuantityChange(item.id, item.quantity - 1, item.selectedSize, item.selectedWeight)}
                     >
                       <Minus className="h-4 w-4" />
                     </Button>
@@ -75,7 +75,7 @@ const Cart = () => {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleQuantityChange(item.id, item.quantity + 1, item.selectedSize)}
+                      onClick={() => handleQuantityChange(item.id, item.quantity + 1, item.selectedSize, item.selectedWeight)}
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
@@ -83,7 +83,7 @@ const Cart = () => {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => removeItem(item.id, item.selectedSize)}
+                    onClick={() => removeItem(item.id, item.selectedSize, item.selectedWeight)}
                     className="text-red-500 hover:text-red-600"
                   >
                     <Trash2 className="h-4 w-4" />
