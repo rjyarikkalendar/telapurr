@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -156,7 +155,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
           />
           {tea.age && (
             <Badge className="absolute top-2 right-2 bg-tea-brown text-white text-xs">
-              {tea.age} {t.checkout?.yearsOld || 'лет'}
+              {tea.age} {t.cart.yearsOld}
             </Badge>
           )}
         </div>

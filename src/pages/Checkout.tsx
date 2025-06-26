@@ -152,7 +152,7 @@ const CheckoutForm = () => {
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t.checkout?.firstName || 'Имя'}</FormLabel>
+                <FormLabel>{t.checkout.firstName}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -165,7 +165,7 @@ const CheckoutForm = () => {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t.checkout?.lastName || 'Фамилия'}</FormLabel>
+                <FormLabel>{t.checkout.lastName}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -180,7 +180,7 @@ const CheckoutForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t.checkout?.email || 'Email'}</FormLabel>
+              <FormLabel>{t.checkout.email}</FormLabel>
               <FormControl>
                 <Input type="email" {...field} />
               </FormControl>
@@ -194,7 +194,7 @@ const CheckoutForm = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t.checkout?.phone || 'Телефон'}</FormLabel>
+              <FormLabel>{t.checkout.phone}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -208,7 +208,7 @@ const CheckoutForm = () => {
           name="country"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t.checkout?.country || 'Страна'}</FormLabel>
+              <FormLabel>{t.checkout.country}</FormLabel>
               <Select 
                 onValueChange={(value) => {
                   field.onChange(value);
@@ -219,7 +219,7 @@ const CheckoutForm = () => {
               >
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={t.checkout?.selectCountry || 'Выберите страну'} />
+                    <SelectValue placeholder={t.checkout.selectCountry} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -242,7 +242,7 @@ const CheckoutForm = () => {
           name="city"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t.checkout?.city || 'Город'}</FormLabel>
+              <FormLabel>{t.checkout.city}</FormLabel>
               <Select
                 onValueChange={field.onChange}
                 value={field.value}
@@ -250,7 +250,7 @@ const CheckoutForm = () => {
               >
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={t.checkout?.selectCity || 'Выберите город'} />
+                    <SelectValue placeholder={t.checkout.selectCity} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -277,9 +277,9 @@ const CheckoutForm = () => {
           name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t.checkout?.address || 'Адрес'}</FormLabel>
+              <FormLabel>{t.checkout.address}</FormLabel>
               <FormControl>
-                <Input placeholder={t.checkout?.addressPlaceholder || 'Улица, дом, квартира'} {...field} />
+                <Input placeholder={t.checkout.addressPlaceholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -291,7 +291,7 @@ const CheckoutForm = () => {
           name="postalCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t.checkout?.postalCode || 'Почтовый индекс'}</FormLabel>
+              <FormLabel>{t.checkout.postalCode}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -320,7 +320,7 @@ const CheckoutForm = () => {
           className="w-full bg-tea-brown hover:bg-tea-brown/90 mt-8"
           disabled={isLoading || !stripe || !elements || !isElementMounted}
         >
-          {isLoading ? "Обработка..." : `${t.checkout?.pay || 'Оплатить'} ${totalAmount} €`}
+          {isLoading ? "Обработка..." : `${t.checkout.pay} ${totalAmount} €`}
         </Button>
       </form>
     </Form>
@@ -391,11 +391,11 @@ const Checkout = () => {
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
       <BackButton />
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-playfair text-tea-text mb-8">{t.checkout?.title || 'Оформление заказа'}</h1>
+        <h1 className="text-3xl font-playfair text-tea-text mb-8">{t.checkout.title}</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-medium mb-6">{t.checkout?.recipientInfo || 'Информация о получателе'}</h2>
+            <h2 className="text-xl font-medium mb-6">{t.checkout.recipientInfo}</h2>
             {clientSecret ? (
               <Elements 
                 stripe={stripePromise} 
@@ -420,7 +420,7 @@ const Checkout = () => {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-medium mb-6">{t.checkout?.yourOrder || 'Ваш заказ'}</h2>
+            <h2 className="text-xl font-medium mb-6">{t.checkout.yourOrder}</h2>
             <div className="space-y-4">
               {items.map((item) => (
                 <div 
@@ -437,7 +437,7 @@ const Checkout = () => {
                     {item.category === 'tea' && item.selectedSize && (
                       <p className="text-sm text-gray-500">{item.selectedSize} г</p>
                     )}
-                    <p className="text-sm text-gray-500">{t.checkout?.quantity || 'Количество'}: {item.quantity}</p>
+                    <p className="text-sm text-gray-500">{t.checkout.quantity}: {item.quantity}</p>
                   </div>
                   <p className="text-tea-brown">{item.price * item.quantity} €</p>
                 </div>
@@ -445,7 +445,7 @@ const Checkout = () => {
               
               <div className="pt-4 border-t">
                 <div className="flex justify-between items-center font-medium">
-                  <span>{t.checkout?.orderTotal || 'Итого'}:</span>
+                  <span>{t.checkout.orderTotal}:</span>
                   <span className="text-tea-brown text-lg">
                     {items.reduce((sum, item) => sum + item.price * item.quantity, 0)} €
                   </span>

@@ -92,8 +92,6 @@ export type Database = {
           avatar_url: string | null
           created_at: string | null
           email: string | null
-          email_verification_token: string | null
-          email_verified: boolean | null
           first_name: string | null
           id: string
           last_name: string | null
@@ -107,8 +105,6 @@ export type Database = {
           avatar_url?: string | null
           created_at?: string | null
           email?: string | null
-          email_verification_token?: string | null
-          email_verified?: boolean | null
           first_name?: string | null
           id: string
           last_name?: string | null
@@ -122,8 +118,6 @@ export type Database = {
           avatar_url?: string | null
           created_at?: string | null
           email?: string | null
-          email_verification_token?: string | null
-          email_verified?: boolean | null
           first_name?: string | null
           id?: string
           last_name?: string | null
@@ -363,10 +357,6 @@ export type Database = {
     Functions: {
       get_profile_completion_status: {
         Args: { user_uuid: string }
-        Returns: Json
-      }
-      verify_email: {
-        Args: { token: string }
         Returns: Json
       }
     }

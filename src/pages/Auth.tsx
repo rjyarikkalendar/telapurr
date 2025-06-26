@@ -8,18 +8,15 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BackButton } from "@/components/BackButton";
 import { ReferralCodeInput } from "@/components/ReferralCodeInput";
-import { useLanguage } from "@/hooks/use-language";
 
 const Auth = () => {
-  const { user, isEmailVerified, signIn, signUp, verifyEmail } = useAuth();
+  const { user, signIn, signUp } = useAuth();
   const { referralCode, clearReferralCode } = useReferral();
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const { t } = useLanguage();
   
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -29,18 +26,10 @@ const Auth = () => {
   const [inputReferralCode, setInputReferralCode] = useState("");
 
   useEffect(() => {
-    // Проверяем наличие токена верификации в URL
-    const verifyToken = searchParams.get('verify_email');
-    if (verifyToken) {
-      handleEmailVerification(verifyToken);
-    }
-  }, [searchParams]);
-
-  useEffect(() => {
-    if (user && isEmailVerified) {
+    if (user) {
       navigate("/");
     }
-  }, [user, isEmailVerified, navigate]);
+  }, [user, navigate]);
 
   useEffect(() => {
     if (referralCode) {
@@ -48,60 +37,22 @@ const Auth = () => {
     }
   }, [referralCode]);
 
-  const handleEmailVerification = async (token: string) => {
-    try {
-      const result = await verifyEmail(token);
-      
-      if (result.success) {
-        toast({
-          title: t.auth.emailVerified,
-          description: t.auth.emailVerificationSuccess,
-        });
-        // Удаляем токен из URL
-        navigate('/auth', { replace: true });
-      } else {
-        toast({
-          title: t.auth.emailVerificationError,
-          description: t.auth.invalidToken,
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: t.auth.emailVerificationError,
-        description: t.auth.invalidToken,
-        variant: "destructive",
-      });
-    }
-  };
-
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       await signIn(email, password);
-      
-      // Проверяем верификацию email после входа
-      if (isEmailVerified === false) {
-        toast({
-          title: t.auth.emailNotVerified,
-          description: t.auth.checkEmailMessage,
-          variant: "destructive",
-        });
-        return;
-      }
-      
       clearReferralCode();
       toast({
-        title: t.auth.welcome,
-        description: t.auth.successLogin,
+        title: "Добро пожаловать!",
+        description: "Вы успешно вошли в систему",
       });
     } catch (error: any) {
       console.error('Sign in error:', error);
       toast({
-        title: t.auth.loginError,
-        description: error.message || t.auth.invalidCredentials,
+        title: "Ошибка входа",
+        description: error.message || "Неверный email или пароль",
         variant: "destructive",
       });
     } finally {
@@ -121,14 +72,14 @@ const Auth = () => {
       });
       clearReferralCode();
       toast({
-        title: t.auth.registrationSuccess,
-        description: t.auth.checkEmailMessage,
+        title: "Регистрация успешна!",
+        description: "Проверьте email для подтверждения аккаунта",
       });
     } catch (error: any) {
       console.error('Sign up error:', error);
       toast({
-        title: t.auth.registrationError,
-        description: error.message || t.auth.registrationErrorGeneric,
+        title: "Ошибка регистрации",
+        description: error.message || "Произошла ошибка при регистрации",
         variant: "destructive",
       });
     } finally {
