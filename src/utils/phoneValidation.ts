@@ -3,29 +3,41 @@
 export const validatePhone = (phone: string): boolean => {
   if (!phone) return true; // Телефон не обязательный
   
-  // Удаляем все символы кроме цифр
-  const digits = phone.replace(/\D/g, '');
+  // Удаляем все символы кроме цифр и плюса
+  const cleaned = phone.replace(/[^\d+]/g, '');
   
-  // Проверяем российский номер: должен начинаться с 7 и содержать 11 цифр
-  return digits.length === 11 && digits.startsWith('7');
+  // Проверяем что номер начинается с + и содержит от 8 до 15 цифр
+  const phoneRegex = /^\+\d{7,14}$/;
+  return phoneRegex.test(cleaned);
 };
 
 export const formatPhoneForStorage = (phone: string): string => {
-  // Очищаем телефон от маски для хранения
-  const digits = phone.replace(/\D/g, '');
-  return digits.length === 11 ? `+${digits}` : phone;
+  if (!phone) return '';
+  
+  // Очищаем телефон от всех символов кроме цифр и плюса
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  
+  // Если номер не начинается с +, добавляем его
+  if (cleaned && !cleaned.startsWith('+')) {
+    return `+${cleaned}`;
+  }
+  
+  return cleaned;
 };
 
 export const formatPhoneForDisplay = (phone: string): string => {
   if (!phone) return '';
   
-  // Если телефон уже отформатирован, возвращаем как есть
-  if (phone.includes('(')) return phone;
+  // Если телефон уже отформатирован (содержит пробелы), возвращаем как есть
+  if (phone.includes(' ') && phone.startsWith('+')) return phone;
   
-  // Форматируем для отображения
-  const digits = phone.replace(/\D/g, '');
-  if (digits.length === 11 && digits.startsWith('7')) {
-    return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+  const cleaned = formatPhoneForStorage(phone);
+  
+  // Разбиваем на код страны и номер
+  const match = cleaned.match(/^(\+\d{1,4})(\d+)$/);
+  if (match) {
+    const [, dialCode, number] = match;
+    return `${dialCode} ${number}`;
   }
   
   return phone;
@@ -35,5 +47,15 @@ export const getPhoneValidationMessage = (phone: string): string | null => {
   if (!phone) return null;
   
   const isValid = validatePhone(phone);
-  return isValid ? null : 'Введите корректный российский номер телефона';
+  if (!isValid) {
+    return 'Введите корректный номер телефона в международном формате';
+  }
+  
+  return null;
+};
+
+// Проверка на российский номер (для специфичной валидации если нужно)
+export const isRussianPhone = (phone: string): boolean => {
+  const cleaned = phone.replace(/\D/g, '');
+  return cleaned.length === 11 && cleaned.startsWith('7');
 };
