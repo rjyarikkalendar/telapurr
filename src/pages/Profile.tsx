@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -163,6 +164,7 @@ const Profile = () => {
           first_name: profile.first_name,
           last_name: profile.last_name,
           middle_name: profile.middle_name,
+          phone: profile.phone,
         })
         .eq('id', user.id);
 
