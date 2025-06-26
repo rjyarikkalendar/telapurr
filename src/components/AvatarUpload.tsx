@@ -12,9 +12,10 @@ interface AvatarUploadProps {
   currentAvatarUrl?: string;
   onAvatarUpdate: (url: string) => void;
   initials?: string;
+  changePhotoText: string;
 }
 
-export const AvatarUpload = ({ userId, currentAvatarUrl, onAvatarUpdate, initials }: AvatarUploadProps) => {
+export const AvatarUpload = ({ userId, currentAvatarUrl, onAvatarUpdate, initials, changePhotoText }: AvatarUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const { toast } = useToast();
 
@@ -106,7 +107,7 @@ export const AvatarUpload = ({ userId, currentAvatarUrl, onAvatarUpdate, initial
           ) : (
             <Upload className="w-4 h-4 mr-2" />
           )}
-          {uploading ? "Загрузка..." : "Изменить фото"}
+          {uploading ? "Загрузка..." : changePhotoText}
         </Button>
       </div>
     </div>
