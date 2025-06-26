@@ -233,20 +233,11 @@ const Profile = () => {
     }
   };
 
-  const copyReferralLink = () => {
-    const link = `${window.location.origin}?ref=${referralCode}`;
-    navigator.clipboard.writeText(link);
-    toast({
-      title: "Скопировано",
-      description: "Реферальная ссылка скопирована в буфер обмена",
-    });
-  };
-
   const copyReferralCode = () => {
     navigator.clipboard.writeText(referralCode);
     toast({
-      title: "Скопировано",
-      description: "Реферальный код скопирован в буфер обмена",
+      title: t.profile.referral.copied,
+      description: t.profile.referral.codeDescription,
     });
   };
 
@@ -290,10 +281,10 @@ const Profile = () => {
   // Determine what's needed for Pearl level
   const needsForPearl = [];
   if (completionStatus?.missing_for_pearl.profile_complete) {
-    needsForPearl.push("Заполнить профиль");
+    needsForPearl.push(t.profile.loyalty.completeProfile);
   }
   if (completionStatus?.missing_for_pearl.need_referrals > 0) {
-    needsForPearl.push(`Пригласить ${completionStatus.missing_for_pearl.need_referrals} друга`);
+    needsForPearl.push(t.profile.loyalty.inviteFriend.replace('{count}', completionStatus.missing_for_pearl.need_referrals.toString()));
   }
 
   return (
@@ -464,7 +455,7 @@ const Profile = () => {
                 {currentLevelIndex === 0 && needsForPearl.length > 0 && (
                   <div className="p-3 bg-purple-50 rounded border border-purple-200">
                     <p className="text-sm font-medium text-purple-700 mb-1">
-                      Для Жемчужного уровня (3%) необходимо:
+                      {t.profile.loyalty.pearlRequired}
                     </p>
                     <ul className="text-sm text-purple-600 space-y-1">
                       {needsForPearl.map((need, index) => (
@@ -535,7 +526,7 @@ const Profile = () => {
                 </div>
 
                 <div>
-                  <Label>Реферальный код для друга</Label>
+                  <Label>{t.profile.referral.code}</Label>
                   <div className="flex gap-2 mt-1">
                     <Input
                       value={referralCode}
@@ -547,7 +538,7 @@ const Profile = () => {
                     </Button>
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
-                    Ваш друг может ввести этот код при регистрации
+                    {t.profile.referral.codeHint}
                   </p>
                 </div>
 
@@ -561,15 +552,15 @@ const Profile = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>Поделитесь своим реферальным кодом с друзьями</span>
+                      <span>{t.profile.referral.step1}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>Ваш друг использует код при регистрации</span>
+                      <span>{t.profile.referral.step2}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>Вы получаете бонус и повышается ваш уровень лояльности</span>
+                      <span>{t.profile.referral.step3}</span>
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,3 @@
-
 export type Language = 'ru' | 'en' | 'es' | 'zh';
 
 export const languages: Record<Language, string> = {
@@ -170,6 +169,9 @@ export const translations = {
         nextLevel: 'До следующего уровня',
         need: 'Нужно еще',
         levels: 'Уровни лояльности',
+        pearlRequired: 'Для Жемчужного уровня (3%) необходимо:',
+        completeProfile: 'Заполнить профиль',
+        inviteFriend: 'Пригласить {count} друга',
         levelDescriptions: {
           silver: 'Регистрация',
           pearl: 'Полный профиль + 1 друг',
@@ -184,13 +186,16 @@ export const translations = {
         title: 'Реферальная программа',
         bonus: '20€ за друга!',
         description: 'Приглашайте друзей и получайте по 20€',
-        link: 'Ваша реферальная ссылка:',
+        code: 'Реферальный код для друга',
+        codeHint: 'Ваш друг может ввести этот код при регистрации',
         copy: 'Копировать',
+        copied: 'Скопировано',
+        codeDescription: 'Реферальный код скопирован в буфер обмена',
         invited: 'Приглашено друзей:',
         howItWorks: 'Как это работает:',
-        step1: '1. Друг регистрируется по вашей ссылке и получает 20€ для первого заказа',
-        step2: '2. После первого заказа друга вы получаете 20€ на свой счет',
-        step3: '3. Бонусы можно использовать для будущих покупок'
+        step1: 'Поделитесь своим реферальным кодом с друзьями',
+        step2: 'Ваш друг использует код при регистрации',
+        step3: 'Вы получаете бонус и повышается ваш уровень лояльности'
       },
       coupons: {
         title: 'Мои купоны',
@@ -442,6 +447,9 @@ export const translations = {
         nextLevel: 'To next level',
         need: 'Need',
         levels: 'Loyalty levels',
+        pearlRequired: 'For Pearl level (3%) required:',
+        completeProfile: 'Complete profile',
+        inviteFriend: 'Invite {count} friend',
         levelDescriptions: {
           silver: 'Registration',
           pearl: 'Complete profile + 1 friend',
@@ -456,13 +464,16 @@ export const translations = {
         title: 'Referral Program',
         bonus: '€20 per friend!',
         description: 'Invite friends and earn €20 each',
-        link: 'Your referral link:',
+        code: 'Referral code for friend',
+        codeHint: 'Your friend can enter this code during registration',
         copy: 'Copy',
+        copied: 'Copied',
+        codeDescription: 'Referral code copied to clipboard',
         invited: 'Friends invited:',
         howItWorks: 'How it works:',
-        step1: '1. Friend registers via your link and gets €20 for first order',
-        step2: '2. After friend\'s first order, you get €20 to your account',
-        step3: '3. Bonuses can be used for future purchases'
+        step1: 'Share your referral code with friends',
+        step2: 'Your friend uses code during registration',
+        step3: 'You get bonus and your loyalty level increases'
       },
       coupons: {
         title: 'My Coupons',
@@ -714,6 +725,9 @@ export const translations = {
         nextLevel: 'Al siguiente nivel',
         need: 'Necesitas',
         levels: 'Niveles de lealtad',
+        pearlRequired: 'Para nivel Perla (3%) requerido:',
+        completeProfile: 'Completar perfil',
+        inviteFriend: 'Invitar {count} amigo',
         levelDescriptions: {
           silver: 'Registro',
           pearl: 'Perfil completo + 1 amigo',
@@ -728,13 +742,16 @@ export const translations = {
         title: 'Programa de Referencias',
         bonus: '¡€20 por amigo!',
         description: 'Invita amigos y gana €20 cada uno',
-        link: 'Tu enlace de referencia:',
+        code: 'Código de referencia para amigo',
+        codeHint: 'Tu amigo puede ingresar este código durante el registro',
         copy: 'Copiar',
+        copied: 'Copiado',
+        codeDescription: 'Código de referencia copiado al portapapeles',
         invited: 'Amigos invitados:',
         howItWorks: 'Cómo funciona:',
-        step1: '1. El amigo se registra a través de tu enlace y obtiene €20 para el primer pedido',
-        step2: '2. Después del primer pedido del amigo, obtienes €20 en tu cuenta',
-        step3: '3. Los bonos se pueden usar para compras futuras'
+        step1: 'Comparte tu código de referencia con amigos',
+        step2: 'Tu amigo usa el código durante el registro',
+        step3: 'Obtienes bonificación y aumenta tu nivel de lealtad'
       },
       coupons: {
         title: 'Mis Cupones',
@@ -986,6 +1003,9 @@ export const translations = {
         nextLevel: '到下一级',
         need: '需要',
         levels: '忠诚等级',
+        pearlRequired: '珍珠级别（3%）需要：',
+        completeProfile: '完善资料',
+        inviteFriend: '邀请{count}位朋友',
         levelDescriptions: {
           silver: '注册',
           pearl: '完整资料 + 1位朋友',
@@ -1000,13 +1020,16 @@ export const translations = {
         title: '推荐计划',
         bonus: '每位朋友€20！',
         description: '邀请朋友，每人获得€20',
-        link: '您的推荐链接：',
+        code: '朋友推荐码',
+        codeHint: '您的朋友可以在注册时输入此代码',
         copy: '复制',
+        copied: '已复制',
+        codeDescription: '推荐码已复制到剪贴板',
         invited: '已邀请朋友：',
         howItWorks: '工作原理：',
-        step1: '1. 朋友通过您的链接注册并获得首次订单€20',
-        step2: '2. 朋友首次订单后，您的账户获得€20',
-        step3: '3. 奖金可用于未来购买'
+        step1: '与朋友分享您的推荐码',
+        step2: '您的朋友在注册时使用代码',
+        step3: '您获得奖金并提升忠诚度等级'
       },
       coupons: {
         title: '我的优惠券',
