@@ -1,6 +1,6 @@
-
 import { apiService, PaginationParams, FilterParams, ApiResponse } from './api';
 import { Tables } from '@/integrations/supabase/types';
+import { supabase } from '@/integrations/supabase';
 
 export type Profile = Tables<'profiles'>;
 export type ProfileCreate = Omit<Profile, 'created_at' | 'updated_at'>;
@@ -39,6 +39,24 @@ export class ProfileService {
 
   async delete(id: string): Promise<void> {
     return apiService.delete('profiles', id);
+  }
+
+  async validatePhone(phone: string): Promise<{ isValid: boolean; message?: string; formattedPhone?: string }> {
+    try {
+      const { data, error } = await supabase.functions.invoke('validate-phone', {
+        body: { phone }
+      });
+
+      if (error) {
+        console.error('Phone validation error:', error);
+        return { isValid: false, message: 'Ошибка валидации номера' };
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Phone validation error:', error);
+      return { isValid: false, message: 'Ошибка валидации номера' };
+    }
   }
 }
 

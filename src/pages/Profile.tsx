@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,6 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Gift, Users, ShoppingBag, Crown, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { PhoneInput } from "@/components/PhoneInput";
+import { validatePhone, formatPhoneForStorage, formatPhoneForDisplay, getPhoneValidationMessage } from "@/utils/phoneValidation";
 
 interface Profile {
   id: string;
@@ -51,6 +52,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [referralCode, setReferralCode] = useState("");
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -152,19 +154,43 @@ const Profile = () => {
     }
   };
 
+  const handlePhoneChange = (newPhone: string) => {
+    setProfile(prev => prev ? {...prev, phone: newPhone} : null);
+    
+    // Валидация при изменении
+    const error = getPhoneValidationMessage(newPhone);
+    setPhoneError(error);
+  };
+
   const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!profile || !user) return;
 
+    // Проверяем валидность телефона перед сохранением
+    if (profile.phone) {
+      const phoneError = getPhoneValidationMessage(profile.phone);
+      if (phoneError) {
+        setPhoneError(phoneError);
+        toast({
+          title: t.profile.error,
+          description: phoneError,
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+
     setSaving(true);
     try {
+      const phoneForStorage = profile.phone ? formatPhoneForStorage(profile.phone) : null;
+      
       const { error } = await supabase
         .from('profiles')
         .update({
           first_name: profile.first_name,
           last_name: profile.last_name,
           middle_name: profile.middle_name,
-          phone: profile.phone,
+          phone: phoneForStorage,
         })
         .eq('id', user.id);
 
@@ -293,21 +319,25 @@ const Profile = () => {
                         className="bg-gray-100"
                       />
                     </div>
-                     <div>
+                    <div>
                       <Label htmlFor="phone">{t.profile.phone}</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={profile?.phone || ''}
-                        onChange={(e) => setProfile(prev => prev ? {...prev, phone: e.target.value} : null)}
+                      <PhoneInput
+                        value={formatPhoneForDisplay(profile?.phone || '')}
+                        onChange={handlePhoneChange}
+                        className={phoneError ? "border-red-500" : ""}
                       />
-                      {!profile?.phone && (
+                      {phoneError && (
+                        <p className="text-sm text-red-600 mt-1">
+                          {phoneError}
+                        </p>
+                      )}
+                      {!profile?.phone && !phoneError && (
                         <p className="text-sm text-green-600 mt-1">
                           {t.profile.phoneBonus}
                         </p>
                       )}
                     </div>
-                    <Button type="submit" disabled={saving} className="bg-tea-brown hover:bg-tea-brown/90">
+                    <Button type="submit" disabled={saving || !!phoneError} className="bg-tea-brown hover:bg-tea-brown/90">
                       {saving ? t.profile.saving : t.profile.save}
                     </Button>
                   </form>
