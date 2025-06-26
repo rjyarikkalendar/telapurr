@@ -9,7 +9,7 @@ import { AvatarUpload } from "@/components/AvatarUpload";
 import { BackButton } from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { Gift, Users, ShoppingBag, Crown, CheckCircle } from "lucide-react";
+import { Gift, Users, ShoppingBag, Crown, CheckCircle, Edit } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { PhoneInput } from "@/components/PhoneInput";
 import { validatePhone, formatPhoneForStorage, formatPhoneForDisplay, getPhoneValidationMessage } from "@/utils/phoneValidation";
@@ -53,6 +53,7 @@ const Profile = () => {
   const [saving, setSaving] = useState(false);
   const [referralCode, setReferralCode] = useState("");
   const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -201,6 +202,9 @@ const Profile = () => {
         description: t.profile.success,
       });
 
+      // Переключаемся в режим просмотра после сохранения
+      setIsEditing(false);
+
       // Reload loyalty stats
       fetchLoyaltyStats();
     } catch (error) {
@@ -242,6 +246,16 @@ const Profile = () => {
     return `${profile?.first_name?.[0] || ''}${profile?.last_name?.[0] || ''}`;
   };
 
+  // Проверяем, заполнен ли профиль
+  const isProfileComplete = profile?.first_name && profile?.last_name;
+
+  // Определяем, нужно ли показывать режим редактирования по умолчанию
+  useEffect(() => {
+    if (profile && !isProfileComplete) {
+      setIsEditing(true);
+    }
+  }, [profile, isProfileComplete]);
+
   if (loading) {
     return <div className="flex justify-center items-center h-64">Загрузка...</div>;
   }
@@ -264,8 +278,19 @@ const Profile = () => {
             {/* Personal information */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  {t.profile.personalInfo}
+                <CardTitle className="flex items-center justify-between">
+                  <span>{t.profile.personalInfo}</span>
+                  {isProfileComplete && !isEditing && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setIsEditing(true)}
+                      className="flex items-center gap-2"
+                    >
+                      <Edit className="w-4 h-4" />
+                      Изменить
+                    </Button>
+                  )}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -284,62 +309,103 @@ const Profile = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="first_name">{t.profile.firstName} *</Label>
-                        <Input
-                          id="first_name"
-                          value={profile?.first_name || ''}
-                          onChange={(e) => setProfile(prev => prev ? {...prev, first_name: e.target.value} : null)}
-                          required
-                        />
+                        {isEditing ? (
+                          <Input
+                            id="first_name"
+                            value={profile?.first_name || ''}
+                            onChange={(e) => setProfile(prev => prev ? {...prev, first_name: e.target.value} : null)}
+                            required
+                          />
+                        ) : (
+                          <div className="p-2 bg-gray-50 rounded border min-h-[40px] flex items-center">
+                            {profile?.first_name || '-'}
+                          </div>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="last_name">{t.profile.lastName} *</Label>
-                        <Input
-                          id="last_name"
-                          value={profile?.last_name || ''}
-                          onChange={(e) => setProfile(prev => prev ? {...prev, last_name: e.target.value} : null)}
-                          required
-                        />
+                        {isEditing ? (
+                          <Input
+                            id="last_name"
+                            value={profile?.last_name || ''}
+                            onChange={(e) => setProfile(prev => prev ? {...prev, last_name: e.target.value} : null)}
+                            required
+                          />
+                        ) : (
+                          <div className="p-2 bg-gray-50 rounded border min-h-[40px] flex items-center">
+                            {profile?.last_name || '-'}
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div>
                       <Label htmlFor="middle_name">{t.profile.middleName}</Label>
-                      <Input
-                        id="middle_name"
-                        value={profile?.middle_name || ''}
-                        onChange={(e) => setProfile(prev => prev ? {...prev, middle_name: e.target.value} : null)}
-                      />
+                      {isEditing ? (
+                        <Input
+                          id="middle_name"
+                          value={profile?.middle_name || ''}
+                          onChange={(e) => setProfile(prev => prev ? {...prev, middle_name: e.target.value} : null)}
+                        />
+                      ) : (
+                        <div className="p-2 bg-gray-50 rounded border min-h-[40px] flex items-center">
+                          {profile?.middle_name || '-'}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="email">{t.profile.email} *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={profile?.email || ''}
-                        disabled
-                        className="bg-gray-100"
-                      />
+                      <div className="p-2 bg-gray-100 rounded border min-h-[40px] flex items-center text-gray-600">
+                        {profile?.email || ''}
+                      </div>
                     </div>
                     <div>
                       <Label htmlFor="phone">{t.profile.phone}</Label>
-                      <PhoneInput
-                        value={formatPhoneForDisplay(profile?.phone || '')}
-                        onChange={handlePhoneChange}
-                        className={phoneError ? "border-red-500" : ""}
-                      />
-                      {phoneError && (
-                        <p className="text-sm text-red-600 mt-1">
-                          {phoneError}
-                        </p>
-                      )}
-                      {!profile?.phone && !phoneError && (
-                        <p className="text-sm text-green-600 mt-1">
-                          {t.profile.phoneBonus}
-                        </p>
+                      {isEditing ? (
+                        <>
+                          <PhoneInput
+                            value={formatPhoneForDisplay(profile?.phone || '')}
+                            onChange={handlePhoneChange}
+                            className={phoneError ? "border-red-500" : ""}
+                          />
+                          {phoneError && (
+                            <p className="text-sm text-red-600 mt-1">
+                              {phoneError}
+                            </p>
+                          )}
+                          {!profile?.phone && !phoneError && (
+                            <p className="text-sm text-green-600 mt-1">
+                              {t.profile.phoneBonus}
+                            </p>
+                          )}
+                        </>
+                      ) : (
+                        <div className="p-2 bg-gray-50 rounded border min-h-[40px] flex items-center">
+                          {formatPhoneForDisplay(profile?.phone || '') || '-'}
+                        </div>
                       )}
                     </div>
-                    <Button type="submit" disabled={saving || !!phoneError} className="bg-tea-brown hover:bg-tea-brown/90">
-                      {saving ? t.profile.saving : t.profile.save}
-                    </Button>
+                    
+                    {isEditing && (
+                      <div className="flex gap-2">
+                        <Button type="submit" disabled={saving || !!phoneError} className="bg-tea-brown hover:bg-tea-brown/90">
+                          {saving ? t.profile.saving : t.profile.save}
+                        </Button>
+                        {isProfileComplete && (
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            onClick={() => {
+                              setIsEditing(false);
+                              setPhoneError(null);
+                              // Сбрасываем изменения при отмене
+                              fetchProfile();
+                            }}
+                          >
+                            Отмена
+                          </Button>
+                        )}
+                      </div>
+                    )}
                   </form>
                 </div>
               </CardContent>
