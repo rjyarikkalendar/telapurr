@@ -1,11 +1,11 @@
 
 import { useEffect, useState, createContext, useContext, ReactNode } from 'react';
-import { Language, translations } from '@/lib/i18n';
+import { Language, resources } from '@/lib/i18n';
 
 interface LanguageContextType {
   currentLang: Language;
   setLanguage: (lang: Language) => void;
-  t: typeof translations[Language];
+  t: typeof resources[Language];
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -16,12 +16,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const detectLanguage = () => {
       const storedLang = localStorage.getItem('preferred-language') as Language;
-      if (storedLang && Object.keys(translations).includes(storedLang)) {
+      if (storedLang && Object.keys(resources).includes(storedLang)) {
         return storedLang;
       }
 
       const browserLang = navigator.language.split('-')[0] as Language;
-      return Object.keys(translations).includes(browserLang) ? browserLang : 'en';
+      return Object.keys(resources).includes(browserLang) ? browserLang : 'en';
     };
 
     setCurrentLang(detectLanguage());
@@ -35,7 +35,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const value = {
     currentLang,
     setLanguage,
-    t: translations[currentLang]
+    t: resources[currentLang]
   };
 
   return (
