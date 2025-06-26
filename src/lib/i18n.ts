@@ -197,14 +197,35 @@ export const resources = {
         "email": "Email: partners@teatime.ru"
       }
     },
+    "sets": {
+      "filters": {
+        "title": "Фильтры",
+        "people": "Людей",
+        "anyAmount": "Все",
+        "giftPackaging": "Подарочная упаковка",
+        "inStock": "В наличии"
+      }
+    },
     "tea": {
+      "categories": {
+        "all": "Все чаи",
+        "shen": "Шен Пуэр",
+        "shu": "Шу Пуэр",
+        "white": "Белый",
+        "gabba": "Габба",
+        "red": "Красные улуны",
+        "green": "Зеленые улуны"
+      },
       "filters": {
         "search": "Поиск по названию...",
+        "age": "Возраст",
+        "from": "От",
+        "to": "До",
         "sortBy": {
           "newest": "Новые первыми",
           "oldest": "Старые первыми",
-          "priceAsc": "Цена по возрастанию",
-          "priceDesc": "Цена по убыванию",
+          "priceAsc": "Цена ↑",
+          "priceDesc": "Цена ↓",
           "alphabetical": "По алфавиту"
         },
         "inStock": "В наличии",
@@ -443,14 +464,35 @@ export const resources = {
         "email": "Email: partners@teatime.com"
       }
     },
+    "sets": {
+      "filters": {
+        "title": "Filters",
+        "people": "People",
+        "anyAmount": "All",
+        "giftPackaging": "Gift packaging",
+        "inStock": "In stock"
+      }
+    },
     "tea": {
+      "categories": {
+        "all": "All teas",
+        "shen": "Shen Puer",
+        "shu": "Shu Puer",
+        "white": "White",
+        "gabba": "Gabba",
+        "red": "Red oolongs",
+        "green": "Green oolongs"
+      },
       "filters": {
         "search": "Search by title...",
+        "age": "Age",
+        "from": "From",
+        "to": "To",
         "sortBy": {
           "newest": "Newest first",
           "oldest": "Oldest first",
-          "priceAsc": "Price ascending",
-          "priceDesc": "Price descending",
+          "priceAsc": "Price ↑",
+          "priceDesc": "Price ↓",
           "alphabetical": "Alphabetical"
         },
         "inStock": "In stock",
@@ -689,14 +731,35 @@ export const resources = {
         "email": "Email: partners@teatime.es"
       }
     },
+    "sets": {
+      "filters": {
+        "title": "Filtros",
+        "people": "Personas",
+        "anyAmount": "Todos",
+        "giftPackaging": "Embalaje de regalo",
+        "inStock": "En stock"
+      }
+    },
     "tea": {
+      "categories": {
+        "all": "Todos los tés",
+        "shen": "Shen Puer",
+        "shu": "Shu Puer",
+        "white": "Blanco",
+        "gabba": "Gabba",
+        "red": "Oolongs rojos",
+        "green": "Oolongs verdes"
+      },
       "filters": {
         "search": "Buscar por título...",
+        "age": "Edad",
+        "from": "Desde",
+        "to": "Hasta",
         "sortBy": {
           "newest": "Más nuevos primero",
           "oldest": "Más antiguos primero",
-          "priceAsc": "Precio ascendente",
-          "priceDesc": "Precio descendente",
+          "priceAsc": "Precio ↑",
+          "priceDesc": "Precio ↓",
           "alphabetical": "Alfabético"
         },
         "inStock": "En stock",
@@ -935,14 +998,35 @@ export const resources = {
         "email": "电子邮件：partners@teatime.cn"
       }
     },
+    "sets": {
+      "filters": {
+        "title": "筛选器",
+        "people": "人",
+        "anyAmount": "全部",
+        "giftPackaging": "礼品包装",
+        "inStock": "有库存"
+      }
+    },
     "tea": {
+      "categories": {
+        "all": "所有茶叶",
+        "shen": "生普洱",
+        "shu": "熟普洱",
+        "white": "白茶",
+        "gabba": "加巴",
+        "red": "红乌龙",
+        "green": "绿乌龙"
+      },
       "filters": {
         "search": "按标题搜索...",
+        "age": "年龄",
+        "from": "从",
+        "to": "到",
         "sortBy": {
           "newest": "最新优先",
           "oldest": "最旧优先",
-          "priceAsc": "价格升序",
-          "priceDesc": "价格降序",
+          "priceAsc": "价格 ↑",
+          "priceDesc": "价格 ↓",
           "alphabetical": "按字母顺序"
         },
         "inStock": "有库存",
