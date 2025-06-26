@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,10 +9,11 @@ import { AvatarUpload } from "@/components/AvatarUpload";
 import { BackButton } from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { Gift, Users, ShoppingBag, Crown, CheckCircle, Edit } from "lucide-react";
+import { Gift, Users, ShoppingBag, Crown, CheckCircle, Edit, Copy } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { PhoneInput } from "@/components/PhoneInput";
 import { validatePhone, formatPhoneForStorage, formatPhoneForDisplay, getPhoneValidationMessage } from "@/utils/phoneValidation";
+import { loyaltyService, ProfileCompletionStatus } from "@/services/loyaltyService";
 
 interface Profile {
   id: string;
@@ -56,14 +55,23 @@ const Profile = () => {
   const [referralCode, setReferralCode] = useState("");
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [completionStatus, setCompletionStatus] = useState<ProfileCompletionStatus | null>(null);
 
   useEffect(() => {
     if (user) {
       fetchProfile();
       fetchLoyaltyStats();
       generateReferralCode();
+      fetchCompletionStatus();
     }
   }, [user]);
+
+  const fetchCompletionStatus = async () => {
+    if (!user?.id) return;
+    
+    const status = await loyaltyService.getProfileCompletionStatus(user.id);
+    setCompletionStatus(status);
+  };
 
   const fetchProfile = async () => {
     try {
@@ -98,41 +106,43 @@ const Profile = () => {
 
   const fetchLoyaltyStats = async () => {
     try {
-      // Placeholder data since loyalty tables don't exist yet
-      const totalPurchases = 0;
-      const pointsBalance = 0;
-      const referralsCount = 0;
-      const couponsCount = 0;
+      const status = await loyaltyService.getProfileCompletionStatus(user?.id || '');
       
-      let cashbackPercentage = 1; // Default silver level
-      
-      // Determine loyalty level based on purchases
-      if (totalPurchases >= 10000) {
-        cashbackPercentage = 15;
-      } else if (totalPurchases >= 6000) {
-        cashbackPercentage = 12.5;
-      } else if (totalPurchases >= 3000) {
-        cashbackPercentage = 10;
-      } else if (totalPurchases >= 1000) {
-        cashbackPercentage = 7;
-      } else if (totalPurchases >= 500) {
-        cashbackPercentage = 5;
-      } else if (profile?.first_name && profile?.last_name && referralsCount >= 1) {
-        cashbackPercentage = 3; // Pearl level
+      if (status) {
+        const totalPurchases = status.total_purchases;
+        const referralsCount = status.referrals_count;
+        const isProfileComplete = status.is_profile_complete;
+        
+        let cashbackPercentage = 1; // Default silver level
+        
+        // Determine loyalty level based on purchases
+        if (totalPurchases >= 10000) {
+          cashbackPercentage = 15;
+        } else if (totalPurchases >= 6000) {
+          cashbackPercentage = 12.5;
+        } else if (totalPurchases >= 3000) {
+          cashbackPercentage = 10;
+        } else if (totalPurchases >= 1000) {
+          cashbackPercentage = 7;
+        } else if (totalPurchases >= 500) {
+          cashbackPercentage = 5;
+        } else if (isProfileComplete && referralsCount >= 1) {
+          cashbackPercentage = 3; // Pearl level
+        }
+
+        const currentLevel = loyaltyLevels.find(level => 
+          level.percentage === cashbackPercentage
+        ) || loyaltyLevels[0];
+
+        setLoyaltyStats({
+          level: currentLevel.name,
+          cashback_percentage: cashbackPercentage,
+          total_purchases: totalPurchases,
+          points_balance: 0,
+          referrals_count: referralsCount,
+          coupons_count: 0,
+        });
       }
-
-      const currentLevel = loyaltyLevels.find(level => 
-        level.percentage === cashbackPercentage
-      ) || loyaltyLevels[0];
-
-      setLoyaltyStats({
-        level: currentLevel.name,
-        cashback_percentage: cashbackPercentage,
-        total_purchases: totalPurchases,
-        points_balance: pointsBalance,
-        referrals_count: referralsCount,
-        coupons_count: couponsCount,
-      });
     } catch (error) {
       console.error('Error fetching loyalty stats:', error);
       setLoyaltyStats({
@@ -224,11 +234,19 @@ const Profile = () => {
   };
 
   const copyReferralLink = () => {
-    const link = `https://tepurrfect.com?ref=${referralCode}`;
+    const link = `${window.location.origin}?ref=${referralCode}`;
     navigator.clipboard.writeText(link);
     toast({
       title: "Скопировано",
       description: "Реферальная ссылка скопирована в буфер обмена",
+    });
+  };
+
+  const copyReferralCode = () => {
+    navigator.clipboard.writeText(referralCode);
+    toast({
+      title: "Скопировано",
+      description: "Реферальный код скопирован в буфер обмена",
     });
   };
 
@@ -268,6 +286,15 @@ const Profile = () => {
     level.name === loyaltyStats?.level
   );
   const nextLevel = loyaltyLevels[currentLevelIndex + 1];
+
+  // Determine what's needed for Pearl level
+  const needsForPearl = [];
+  if (completionStatus?.missing_for_pearl.profile_complete) {
+    needsForPearl.push("Заполнить профиль");
+  }
+  if (completionStatus?.missing_for_pearl.need_referrals > 0) {
+    needsForPearl.push(`Пригласить ${completionStatus.missing_for_pearl.need_referrals} друга`);
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm">
@@ -434,6 +461,23 @@ const Profile = () => {
                   </p>
                 </div>
 
+                {/* What's needed for Pearl level */}
+                {currentLevelIndex === 0 && needsForPearl.length > 0 && (
+                  <div className="p-3 bg-purple-50 rounded border border-purple-200">
+                    <p className="text-sm font-medium text-purple-700 mb-1">
+                      Для Жемчужного уровня (3%) необходимо:
+                    </p>
+                    <ul className="text-sm text-purple-600 space-y-1">
+                      {needsForPearl.map((need, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                          {need}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div className="p-3 bg-gray-50 rounded">
                     <ShoppingBag className="w-6 h-6 mx-auto mb-1 text-tea-brown" />
@@ -495,7 +539,7 @@ const Profile = () => {
                   <Label>{t.profile.referral.link}</Label>
                   <div className="flex gap-2 mt-1">
                     <Input
-                      value={`https://tepurrfect.com?ref=${referralCode}`}
+                      value={`${window.location.origin}?ref=${referralCode}`}
                       readOnly
                       className="bg-gray-50"
                     />
@@ -503,6 +547,23 @@ const Profile = () => {
                       {t.profile.referral.copy}
                     </Button>
                   </div>
+                </div>
+
+                <div>
+                  <Label>Реферальный код для друга</Label>
+                  <div className="flex gap-2 mt-1">
+                    <Input
+                      value={referralCode}
+                      readOnly
+                      className="bg-gray-50 font-mono"
+                    />
+                    <Button onClick={copyReferralCode} variant="outline" size="sm">
+                      <Copy className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Ваш друг может ввести этот код при регистрации
+                  </p>
                 </div>
 
                 <div className="text-center">

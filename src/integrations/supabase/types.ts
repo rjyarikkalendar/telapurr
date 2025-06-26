@@ -97,6 +97,8 @@ export type Database = {
           last_name: string | null
           middle_name: string | null
           phone: string | null
+          referral_code: string | null
+          referred_by: string | null
           updated_at: string | null
         }
         Insert: {
@@ -108,6 +110,8 @@ export type Database = {
           last_name?: string | null
           middle_name?: string | null
           phone?: string | null
+          referral_code?: string | null
+          referred_by?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -119,9 +123,64 @@ export type Database = {
           last_name?: string | null
           middle_name?: string | null
           phone?: string | null
+          referral_code?: string | null
+          referred_by?: string | null
           updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      referrals: {
+        Row: {
+          created_at: string
+          id: string
+          is_completed: boolean | null
+          referral_code: string
+          referred_id: string
+          referrer_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_completed?: boolean | null
+          referral_code: string
+          referred_id: string
+          referrer_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_completed?: boolean | null
+          referral_code?: string
+          referred_id?: string
+          referrer_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referrals_referred_id_fkey"
+            columns: ["referred_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       skus: {
         Row: {
@@ -296,7 +355,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_profile_completion_status: {
+        Args: { user_uuid: string }
+        Returns: Json
+      }
     }
     Enums: {
       product_category: "tea" | "teaware" | "sets" | "ceremony"
