@@ -28,7 +28,12 @@ export const AuthButton = () => {
   return (
     <div className="absolute top-4 right-[100px] z-50">
       {user ? (
-        <Button onClick={handleSignOut}>{t.nav.logout}</Button>
+        <div className="flex gap-2">
+          <Button onClick={() => navigate('/profile')} variant="outline">
+            Профиль
+          </Button>
+          <Button onClick={handleSignOut}>{t.nav.logout}</Button>
+        </div>
       ) : (
         <Button onClick={() => navigate('/auth')}>{t.nav.login}</Button>
       )}
