@@ -1,13 +1,16 @@
+
 import { HeroSection } from "@/components/HeroSection";
 import { CategorySection } from "@/components/CategorySection";
 import { CartWidget } from "@/components/CartWidget";
 import { useLanguage } from "@/hooks/use-language";
 import { PartnershipButton } from "@/components/PartnershipButton";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardContent, Button } from "@radix-ui/react-card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const { user, isEmailVerified, verifyEmail } = useAuth();

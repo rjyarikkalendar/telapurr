@@ -31,7 +31,7 @@ export const LanguageSelector = ({ currentLang, onLanguageChange }: LanguageSele
               onClick={() => onLanguageChange(code as Language)}
               className="cursor-pointer"
             >
-              {name}
+              {String(name)}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

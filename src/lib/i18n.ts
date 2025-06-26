@@ -1,8 +1,18 @@
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 export const defaultNS = 'common';
+
+export type Language = 'ru' | 'en' | 'es' | 'zh';
+
+export const languages: Record<Language, string> = {
+  ru: 'Русский',
+  en: 'English', 
+  es: 'Español',
+  zh: '中文'
+};
 
 export const resources = {
   ru: {
