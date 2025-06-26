@@ -123,7 +123,79 @@ export const resources = {
       "benefits": "Преимущества партнерства",
       "benefit1": "Высокие комиссионные",
       "benefit2": "Маркетинговая поддержка",
-      "benefit3": "Обучение и поддержка"
+      "benefit3": "Обучение и поддержка",
+      "intro": "Мы приглашаем вас стать частью нашей команды и развивать культуру чаепития вместе с нами.",
+      "team": {
+        "title": "Наша команда",
+        "person1": {
+          "name": "Анна Иванова",
+          "description": "Основатель компании, эксперт по чаю с 15-летним опытом"
+        },
+        "person2": {
+          "name": "Михаил Петров",
+          "description": "Директор по развитию, специалист по партнерским программам"
+        }
+      },
+      "products": {
+        "title": "Наша продукция",
+        "description": "Мы предлагаем широкий ассортимент высококачественных чаев и аксессуаров:",
+        "product1": {
+          "name": "Элитные чаи",
+          "description": "Коллекция редких и эксклюзивных сортов чая"
+        },
+        "product2": {
+          "name": "Чайная посуда",
+          "description": "Традиционная и современная посуда для чаепития"
+        },
+        "product3": {
+          "name": "Подарочные наборы",
+          "description": "Готовые наборы для идеального подарка"
+        },
+        "product4": {
+          "name": "Аксессуары",
+          "description": "Все необходимое для правильного заваривания чая"
+        }
+      },
+      "integration": {
+        "title": "Этапы интеграции",
+        "step1": {
+          "title": "Знакомство",
+          "description": "Изучаем ваши потребности и возможности"
+        },
+        "step2": {
+          "title": "Обучение",
+          "description": "Предоставляем полную информацию о продукции"
+        },
+        "step3": {
+          "title": "Запуск",
+          "description": "Начинаем совместную работу с поддержкой"
+        },
+        "step4": {
+          "title": "Развитие",
+          "description": "Постоянно развиваем партнерские отношения"
+        }
+      },
+      "agreement": {
+        "title": "Соглашение о партнерстве",
+        "description": "Мы предлагаем выгодные условия сотрудничества с гибкой системой комиссий и полной поддержкой наших партнеров."
+      },
+      "sales": {
+        "title": "Продажи и маркетинг",
+        "description": "Мы предоставляем все необходимые материалы для успешных продаж:",
+        "marketingPoints": [
+          "Рекламные материалы и каталоги",
+          "Обучающие программы для продавцов",
+          "Маркетинговая поддержка в социальных сетях",
+          "Участие в выставках и мероприятиях",
+          "Система скидок и бонусов"
+        ]
+      },
+      "contacts": {
+        "title": "Контакты для партнеров",
+        "phone": "Телефон: +7 (495) 123-45-67",
+        "instagram": "Instagram: @teapartnership",
+        "email": "Email: partners@teatime.ru"
+      }
     },
     "tea": {
       "filters": {
@@ -297,7 +369,79 @@ export const resources = {
       "benefits": "Partnership Benefits",
       "benefit1": "High commissions",
       "benefit2": "Marketing support",
-      "benefit3": "Training and support"
+      "benefit3": "Training and support",
+      "intro": "We invite you to become part of our team and develop tea culture together with us.",
+      "team": {
+        "title": "Our Team",
+        "person1": {
+          "name": "Anna Ivanova",
+          "description": "Company founder, tea expert with 15 years of experience"
+        },
+        "person2": {
+          "name": "Mikhail Petrov",
+          "description": "Development Director, partnership program specialist"
+        }
+      },
+      "products": {
+        "title": "Our Products",
+        "description": "We offer a wide range of high-quality teas and accessories:",
+        "product1": {
+          "name": "Elite Teas",
+          "description": "Collection of rare and exclusive tea varieties"
+        },
+        "product2": {
+          "name": "Tea Ware",
+          "description": "Traditional and modern tea accessories"
+        },
+        "product3": {
+          "name": "Gift Sets",
+          "description": "Ready-made sets for the perfect gift"
+        },
+        "product4": {
+          "name": "Accessories",
+          "description": "Everything needed for proper tea brewing"
+        }
+      },
+      "integration": {
+        "title": "Integration Steps",
+        "step1": {
+          "title": "Getting Acquainted",
+          "description": "We study your needs and capabilities"
+        },
+        "step2": {
+          "title": "Training",
+          "description": "We provide complete information about our products"
+        },
+        "step3": {
+          "title": "Launch",
+          "description": "We start working together with full support"
+        },
+        "step4": {
+          "title": "Development",
+          "description": "We continuously develop our partnership"
+        }
+      },
+      "agreement": {
+        "title": "Partnership Agreement",
+        "description": "We offer favorable cooperation terms with a flexible commission system and full support for our partners."
+      },
+      "sales": {
+        "title": "Sales and Marketing",
+        "description": "We provide all necessary materials for successful sales:",
+        "marketingPoints": [
+          "Advertising materials and catalogs",
+          "Training programs for sales staff",
+          "Social media marketing support",
+          "Participation in exhibitions and events",
+          "Discount and bonus system"
+        ]
+      },
+      "contacts": {
+        "title": "Partner Contacts",
+        "phone": "Phone: +7 (495) 123-45-67",
+        "instagram": "Instagram: @teapartnership",
+        "email": "Email: partners@teatime.com"
+      }
     },
     "tea": {
       "filters": {
@@ -471,7 +615,79 @@ export const resources = {
       "benefits": "Beneficios de la Sociedad",
       "benefit1": "Altas comisiones",
       "benefit2": "Apoyo de marketing",
-      "benefit3": "Entrenamiento y apoyo"
+      "benefit3": "Entrenamiento y apoyo",
+      "intro": "Te invitamos a formar parte de nuestro equipo y desarrollar la cultura del té junto con nosotros.",
+      "team": {
+        "title": "Nuestro Equipo",
+        "person1": {
+          "name": "Anna Ivanova",
+          "description": "Fundadora de la empresa, experta en té con 15 años de experiencia"
+        },
+        "person2": {
+          "name": "Mikhail Petrov",
+          "description": "Director de Desarrollo, especialista en programas de socios"
+        }
+      },
+      "products": {
+        "title": "Nuestros Productos",
+        "description": "Ofrecemos una amplia gama de tés y accesorios de alta calidad:",
+        "product1": {
+          "name": "Tés Elite",
+          "description": "Colección de variedades de té raras y exclusivas"
+        },
+        "product2": {
+          "name": "Utensilios de Té",
+          "description": "Accesorios tradicionales y modernos para el té"
+        },
+        "product3": {
+          "name": "Conjuntos de Regalo",
+          "description": "Conjuntos listos para el regalo perfecto"
+        },
+        "product4": {
+          "name": "Accesorios",
+          "description": "Todo lo necesario para preparar té correctamente"
+        }
+      },
+      "integration": {
+        "title": "Pasos de Integración",
+        "step1": {
+          "title": "Conocerse",
+          "description": "Estudiamos sus necesidades y capacidades"
+        },
+        "step2": {
+          "title": "Entrenamiento",
+          "description": "Proporcionamos información completa sobre nuestros productos"
+        },
+        "step3": {
+          "title": "Lanzamiento",
+          "description": "Comenzamos a trabajar juntos con apoyo completo"
+        },
+        "step4": {
+          "title": "Desarrollo",
+          "description": "Desarrollamos continuamente nuestra asociación"
+        }
+      },
+      "agreement": {
+        "title": "Acuerdo de Sociedad",
+        "description": "Ofrecemos términos de cooperación favorables con un sistema de comisiones flexible y apoyo completo para nuestros socios."
+      },
+      "sales": {
+        "title": "Ventas y Marketing",
+        "description": "Proporcionamos todos los materiales necesarios para ventas exitosas:",
+        "marketingPoints": [
+          "Materiales publicitarios y catálogos",
+          "Programas de entrenamiento para personal de ventas",
+          "Apoyo de marketing en redes sociales",
+          "Participación en exposiciones y eventos",
+          "Sistema de descuentos y bonificaciones"
+        ]
+      },
+      "contacts": {
+        "title": "Contactos de Socios",
+        "phone": "Teléfono: +7 (495) 123-45-67",
+        "instagram": "Instagram: @teapartnership",
+        "email": "Email: partners@teatime.es"
+      }
     },
     "tea": {
       "filters": {
@@ -645,7 +861,79 @@ export const resources = {
       "benefits": "合作伙伴优势",
       "benefit1": "高佣金",
       "benefit2": "营销支持",
-      "benefit3": "培训和支持"
+      "benefit3": "培训和支持",
+      "intro": "我们邀请您成为我们团队的一部分，与我们一起发展茶文化。",
+      "team": {
+        "title": "我们的团队",
+        "person1": {
+          "name": "安娜·伊万诺娃",
+          "description": "公司创始人，拥有15年经验的茶叶专家"
+        },
+        "person2": {
+          "name": "米哈伊尔·彼得罗夫",
+          "description": "发展总监，合作伙伴计划专家"
+        }
+      },
+      "products": {
+        "title": "我们的产品",
+        "description": "我们提供广泛的高品质茶叶和配件：",
+        "product1": {
+          "name": "精英茶叶",
+          "description": "稀有和独家茶叶品种的收藏"
+        },
+        "product2": {
+          "name": "茶具",
+          "description": "传统和现代茶具配件"
+        },
+        "product3": {
+          "name": "礼品套装",
+          "description": "完美礼品的现成套装"
+        },
+        "product4": {
+          "name": "配件",
+          "description": "正确泡茶所需的一切"
+        }
+      },
+      "integration": {
+        "title": "整合步骤",
+        "step1": {
+          "title": "相互了解",
+          "description": "我们研究您的需求和能力"
+        },
+        "step2": {
+          "title": "培训",
+          "description": "我们提供有关我们产品的完整信息"
+        },
+        "step3": {
+          "title": "启动",
+          "description": "我们开始合作并提供全面支持"
+        },
+        "step4": {
+          "title": "发展",
+          "description": "我们持续发展我们的合作伙伴关系"
+        }
+      },
+      "agreement": {
+        "title": "合作伙伴协议",
+        "description": "我们提供有利的合作条件，灵活的佣金制度和对我们合作伙伴的全面支持。"
+      },
+      "sales": {
+        "title": "销售和营销",
+        "description": "我们提供成功销售所需的所有材料：",
+        "marketingPoints": [
+          "广告材料和目录",
+          "销售人员培训计划",
+          "社交媒体营销支持",
+          "参加展览和活动",
+          "折扣和奖金制度"
+        ]
+      },
+      "contacts": {
+        "title": "合作伙伴联系方式",
+        "phone": "电话：+7 (495) 123-45-67",
+        "instagram": "Instagram: @teapartnership",
+        "email": "电子邮件：partners@teatime.cn"
+      }
     },
     "tea": {
       "filters": {
