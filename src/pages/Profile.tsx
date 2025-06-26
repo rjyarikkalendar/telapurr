@@ -443,7 +443,6 @@ const Profile = () => {
               </CardContent>
             </Card>
 
-            {/* Система лояльности */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -536,20 +535,6 @@ const Profile = () => {
                 </div>
 
                 <div>
-                  <Label>{t.profile.referral.link}</Label>
-                  <div className="flex gap-2 mt-1">
-                    <Input
-                      value={`${window.location.origin}?ref=${referralCode}`}
-                      readOnly
-                      className="bg-gray-50"
-                    />
-                    <Button onClick={copyReferralLink} variant="outline">
-                      {t.profile.referral.copy}
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
                   <Label>Реферальный код для друга</Label>
                   <div className="flex gap-2 mt-1">
                     <Input
@@ -576,15 +561,15 @@ const Profile = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>{t.profile.referral.step1}</span>
+                      <span>Поделитесь своим реферальным кодом с друзьями</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>{t.profile.referral.step2}</span>
+                      <span>Ваш друг использует код при регистрации</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>{t.profile.referral.step3}</span>
+                      <span>Вы получаете бонус и повышается ваш уровень лояльности</span>
                     </div>
                   </div>
                 </div>

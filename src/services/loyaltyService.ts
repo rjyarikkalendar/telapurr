@@ -23,7 +23,8 @@ export const loyaltyService = {
         return null;
       }
 
-      return data;
+      // Приводим данные к нужному типу
+      return data as ProfileCompletionStatus;
     } catch (error) {
       console.error('Error getting profile completion status:', error);
       return null;
