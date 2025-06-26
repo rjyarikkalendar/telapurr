@@ -107,7 +107,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     addItem(product);
     setOpen(false);
     toast({
-      title: t.cart.addedToCart,
+      title: t.common.cart.addedToCart,
       description: `${localizedData.name} ${weightType ? `(${weightType})` : ''}`,
       duration: 2000,
       className: "max-w-xs"
@@ -155,7 +155,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
           />
           {tea.age && (
             <Badge className="absolute top-2 right-2 bg-tea-brown text-white text-xs">
-              {tea.age} {t.cart.yearsOld}
+              {tea.age} {t.checkout?.yearsOld || 'лет'}
             </Badge>
           )}
         </div>
@@ -182,7 +182,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             className="bg-tea-brown hover:bg-tea-brown/90 text-xs px-2 py-1 h-auto"
             disabled={!tea.in_stock}
           >
-            {tea.in_stock ? t.cart.addToCart : t.cart.outOfStock}
+            {tea.in_stock ? t.common.cart.addToCart : t.common.cart.outOfStock}
           </Button>
         </CardFooter>
       </Card>
@@ -190,7 +190,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t.cart.selectSize}</DialogTitle>
+            <DialogTitle>{t.common.cart.selectSize}</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 mt-4">
             {weightOptions.map((priceOption) => (
