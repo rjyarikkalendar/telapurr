@@ -70,7 +70,16 @@ const Profile = () => {
         .single();
 
       if (error) throw error;
-      setProfile(data);
+      setProfile({
+        id: data.id,
+        email: data.email || '',
+        full_name: data.full_name || '',
+        first_name: data.first_name || '',
+        last_name: data.last_name || '',
+        middle_name: data.middle_name || '',
+        phone: data.phone || '',
+        avatar_url: data.avatar_url || '',
+      });
     } catch (error) {
       console.error('Error fetching profile:', error);
       toast({
@@ -83,55 +92,52 @@ const Profile = () => {
 
   const fetchLoyaltyStats = async () => {
     try {
-      // Получаем статистику покупок
-      const { data: purchases, error: purchasesError } = await supabase
-        .from('purchase_history')
-        .select('order_total')
-        .eq('user_id', user?.id);
+      // Получаем статистику через прямые запросы к базе
+      const [purchasesResult, loyaltyResult, referralsResult, couponsResult, cashbackResult] = await Promise.all([
+        supabase.rpc('exec_sql', { 
+          sql: `SELECT COALESCE(SUM(order_total), 0) as total FROM purchase_history WHERE user_id = '${user?.id}'` 
+        }),
+        supabase.rpc('exec_sql', { 
+          sql: `SELECT COALESCE(points_balance, 0) as balance FROM loyalty_points WHERE user_id = '${user?.id}' LIMIT 1` 
+        }),
+        supabase.rpc('exec_sql', { 
+          sql: `SELECT COUNT(*) as count FROM referrals WHERE referrer_id = '${user?.id}' AND is_completed = true` 
+        }),
+        supabase.rpc('exec_sql', { 
+          sql: `SELECT COUNT(*) as count FROM coupons WHERE user_id = '${user?.id}' AND is_active = true` 
+        }),
+        supabase.rpc('calculate_cashback_percentage', { user_uuid: user?.id })
+      ]);
 
-      if (purchasesError) throw purchasesError;
-
-      const totalPurchases = purchases?.reduce((sum, p) => sum + Number(p.order_total), 0) || 0;
-
-      // Получаем баланс лояльности
-      const { data: loyalty, error: loyaltyError } = await supabase
-        .from('loyalty_points')
-        .select('points_balance')
-        .eq('user_id', user?.id)
-        .single();
-
-      // Получаем количество рефералов
-      const { data: referrals, error: referralsError } = await supabase
-        .from('referrals')
-        .select('id')
-        .eq('referrer_id', user?.id)
-        .eq('is_completed', true);
-
-      // Получаем количество купонов
-      const { data: coupons, error: couponsError } = await supabase
-        .from('coupons')
-        .select('id')
-        .eq('user_id', user?.id)
-        .eq('is_active', true);
-
-      // Рассчитываем текущий процент кешбека
-      const { data: cashbackData, error: cashbackError } = await supabase
-        .rpc('calculate_cashback_percentage', { user_uuid: user?.id });
+      const totalPurchases = purchasesResult.data?.[0]?.total || 0;
+      const pointsBalance = loyaltyResult.data?.[0]?.balance || 0;
+      const referralsCount = referralsResult.data?.[0]?.count || 0;
+      const couponsCount = couponsResult.data?.[0]?.count || 0;
+      const cashbackPercentage = cashbackResult.data || 1;
 
       const currentLevel = loyaltyLevels.find(level => 
-        level.percentage === (cashbackData || 1)
+        level.percentage === cashbackPercentage
       ) || loyaltyLevels[0];
 
       setLoyaltyStats({
         level: currentLevel.name,
-        cashback_percentage: cashbackData || 1,
+        cashback_percentage: cashbackPercentage,
         total_purchases: totalPurchases,
-        points_balance: loyalty?.points_balance || 0,
-        referrals_count: referrals?.length || 0,
-        coupons_count: coupons?.length || 0,
+        points_balance: pointsBalance,
+        referrals_count: referralsCount,
+        coupons_count: couponsCount,
       });
     } catch (error) {
       console.error('Error fetching loyalty stats:', error);
+      // Устанавливаем значения по умолчанию в случае ошибки
+      setLoyaltyStats({
+        level: "Серебряный",
+        cashback_percentage: 1,
+        total_purchases: 0,
+        points_balance: 0,
+        referrals_count: 0,
+        coupons_count: 0,
+      });
     } finally {
       setLoading(false);
     }
@@ -139,12 +145,9 @@ const Profile = () => {
 
   const generateReferralCode = async () => {
     try {
-      // Проверяем, есть ли уже реферальный код
-      const { data: existing, error } = await supabase
-        .from('referrals')
-        .select('referral_code')
-        .eq('referrer_id', user?.id)
-        .limit(1);
+      const { data: existing } = await supabase.rpc('exec_sql', { 
+        sql: `SELECT referral_code FROM referrals WHERE referrer_id = '${user?.id}' LIMIT 1` 
+      });
 
       if (existing && existing.length > 0) {
         setReferralCode(existing[0].referral_code);
@@ -155,6 +158,8 @@ const Profile = () => {
       }
     } catch (error) {
       console.error('Error generating referral code:', error);
+      const code = `REF${user?.id.slice(0, 8).toUpperCase()}`;
+      setReferralCode(code);
     }
   };
 
