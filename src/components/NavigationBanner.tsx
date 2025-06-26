@@ -36,11 +36,11 @@ export const NavigationBanner = () => {
   const getTitleByPath = (path: string) => {
     switch (path) {
       case '/tea':
-        return t.categories.tea.title;
+        return t.common.categories.tea.title;
       case '/teaware':
-        return t.categories.teaware.title;
+        return t.common.categories.teaware.title;
       case '/sets':
-        return t.categories.sets.title;
+        return t.common.categories.sets.title;
       default:
         return '';
     }

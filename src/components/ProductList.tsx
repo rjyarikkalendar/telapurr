@@ -62,11 +62,11 @@ export function ProductList<T extends BaseProduct>({
   };
 
   const sortOptions = [
-    { value: 'created_at_desc', label: t.tea?.filters?.sortBy?.newest || 'Новые первыми' },
-    { value: 'created_at_asc', label: t.tea?.filters?.sortBy?.oldest || 'Старые первыми' },
-    { value: 'price_asc', label: t.tea?.filters?.sortBy?.priceAsc || 'Цена по возрастанию' },
-    { value: 'price_desc', label: t.tea?.filters?.sortBy?.priceDesc || 'Цена по убыванию' },
-    { value: 'title_asc', label: t.tea?.filters?.sortBy?.alphabetical || 'По алфавиту' }
+    { value: 'created_at_desc', label: t.common.tea?.filters?.sortBy?.newest || 'Новые первыми' },
+    { value: 'created_at_asc', label: t.common.tea?.filters?.sortBy?.oldest || 'Старые первыми' },
+    { value: 'price_asc', label: t.common.tea?.filters?.sortBy?.priceAsc || 'Цена по возрастанию' },
+    { value: 'price_desc', label: t.common.tea?.filters?.sortBy?.priceDesc || 'Цена по убыванию' },
+    { value: 'title_asc', label: t.common.tea?.filters?.sortBy?.alphabetical || 'По алфавиту' }
   ];
 
   if (loading) {
@@ -80,7 +80,7 @@ export function ProductList<T extends BaseProduct>({
   if (error) {
     return (
       <div className="text-center text-red-600 p-8">
-        <p>{t.tea?.error || 'Ошибка загрузки данных'}: {error.message}</p>
+        <p>{t.common.tea?.error || 'Ошибка загрузки данных'}: {error.message}</p>
       </div>
     );
   }
@@ -93,7 +93,7 @@ export function ProductList<T extends BaseProduct>({
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <Input
-                placeholder={t.tea?.filters?.search || 'Поиск по названию...'}
+                placeholder={t.common.tea?.filters?.search || 'Поиск по названию...'}
                 value={searchTerm}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="rounded-full"
@@ -138,7 +138,7 @@ export function ProductList<T extends BaseProduct>({
               <div className="flex justify-between items-start">
                 <CardTitle className="text-lg">{item.title}</CardTitle>
                 <Badge variant={item.in_stock ? "default" : "secondary"}>
-                  {item.in_stock ? (t.tea?.filters?.inStock || 'В наличии') : (t.tea?.filters?.outOfStock || 'Нет в наличии')}
+                  {item.in_stock ? (t.common.tea?.filters?.inStock || 'В наличии') : (t.common.tea?.filters?.outOfStock || 'Нет в наличии')}
                 </Badge>
               </div>
             </CardHeader>
@@ -150,7 +150,7 @@ export function ProductList<T extends BaseProduct>({
                 <span className="text-2xl font-bold text-tea-brown">
                   {item.price.toLocaleString('ru-RU')} ₽
                 </span>
-                <Button size="sm">{t.tea?.details || 'Подробнее'}</Button>
+                <Button size="sm">{t.common.tea?.details || 'Подробнее'}</Button>
               </div>
             </CardContent>
           </Card>
@@ -167,15 +167,15 @@ export function ProductList<T extends BaseProduct>({
             disabled={!pagination.hasPrev}
           >
             <ChevronLeft className="h-4 w-4 mr-2" />
-            {t.tea?.pagination?.prev || 'Предыдущая'}
+            {t.common.tea?.pagination?.prev || 'Предыдущая'}
           </Button>
           
           <div className="flex items-center space-x-2">
             <span className="text-sm text-gray-600">
-              {t.tea?.pagination?.page || 'Страница'} {pagination.page} {t.tea?.pagination?.of || 'из'} {pagination.totalPages}
+              {t.common.tea?.pagination?.page || 'Страница'} {pagination.page} {t.common.tea?.pagination?.of || 'из'} {pagination.totalPages}
             </span>
             <span className="text-xs text-gray-500">
-              ({t.tea?.pagination?.total || 'всего'} {pagination.total} {t.tea?.pagination?.records || 'записей'})
+              ({t.common.tea?.pagination?.total || 'всего'} {pagination.total} {t.common.tea?.pagination?.records || 'записей'})
             </span>
           </div>
 
@@ -185,7 +185,7 @@ export function ProductList<T extends BaseProduct>({
             onClick={() => onPageChange(pagination.page + 1)}
             disabled={!pagination.hasNext}
           >
-            {t.tea?.pagination?.next || 'Следующая'}
+            {t.common.tea?.pagination?.next || 'Следующая'}
             <ChevronRight className="h-4 w-4 ml-2" />
           </Button>
         </div>
