@@ -11,7 +11,7 @@ interface Country {
 
 const countries: Country[] = [
   { code: 'RU', name: 'Россия', dialCode: '+7', flag: '🇷🇺' },
-  { code: 'KZ', name: 'Казахстан', dialCode: '+7', flag: '🇰🇿' },
+  { code: 'KZ', name: 'Казахстан', dialCode: '+77', flag: '🇰🇿' },
   { code: 'US', name: 'США', dialCode: '+1', flag: '🇺🇸' },
   { code: 'GB', name: 'Великобритания', dialCode: '+44', flag: '🇬🇧' },
   { code: 'DE', name: 'Германия', dialCode: '+49', flag: '🇩🇪' },

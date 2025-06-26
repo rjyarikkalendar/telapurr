@@ -25,7 +25,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   // Разбираем входящее значение на код страны и номер
   useEffect(() => {
     if (value) {
-      // Пытаемся найти код страны в начале номера
+      // Ищем код страны в начале номера (может быть от 1 до 4 цифр после +)
       const match = value.match(/^(\+\d{1,4})\s*(.*)$/);
       if (match) {
         setDialCode(match[1]);
@@ -62,8 +62,20 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
     if (!number) return '';
     
     const cleaned = number.replace(/\D/g, '');
-    const formatted = cleaned.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4');
-    return formatted;
+    
+    // Для российских номеров (10 цифр)
+    if (cleaned.length === 10) {
+      return cleaned.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4');
+    }
+    
+    // Для других номеров - группируем по 3-4 цифры
+    if (cleaned.length > 6) {
+      return cleaned.replace(/(\d{3})(\d{3})(.*)/, '$1 $2 $3');
+    } else if (cleaned.length > 3) {
+      return cleaned.replace(/(\d{3})(.*)/, '$1 $2');
+    }
+    
+    return cleaned;
   };
 
   return (
