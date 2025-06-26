@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -291,7 +292,7 @@ const Profile = () => {
                       className="flex items-center gap-2"
                     >
                       <Edit className="w-4 h-4" />
-                      Изменить
+                      {t.profile.edit}
                     </Button>
                   )}
                 </CardTitle>
@@ -305,6 +306,7 @@ const Profile = () => {
                       currentAvatarUrl={profile?.avatar_url}
                       onAvatarUpdate={handleAvatarUpdate}
                       initials={getInitials()}
+                      changePhotoText={t.profile.changePhoto}
                     />
                   </div>
 
@@ -404,7 +406,7 @@ const Profile = () => {
                               fetchProfile();
                             }}
                           >
-                            Отмена
+                            {t.profile.cancel}
                           </Button>
                         )}
                       </div>

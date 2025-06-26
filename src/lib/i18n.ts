@@ -1,3 +1,4 @@
+
 export type Language = 'ru' | 'en' | 'es' | 'zh';
 
 export const languages: Record<Language, string> = {
@@ -158,6 +159,9 @@ export const translations = {
       phoneBonus: '💡 При добавлении телефона вы получите скидку 15% на следующий заказ!',
       save: 'Сохранить',
       saving: 'Сохранение...',
+      edit: 'Изменить',
+      cancel: 'Отмена',
+      changePhoto: 'Изменить фото',
       loyalty: {
         title: 'Программа лояльности',
         currentCashback: 'Текущий кешбек',
@@ -427,6 +431,9 @@ export const translations = {
       phoneBonus: '💡 Adding a phone number gives you 15% off your next order!',
       save: 'Save',
       saving: 'Saving...',
+      edit: 'Edit',
+      cancel: 'Cancel',
+      changePhoto: 'Change Photo',
       loyalty: {
         title: 'Loyalty Program',
         currentCashback: 'Current cashback',
@@ -696,6 +703,9 @@ export const translations = {
       phoneBonus: '💡 ¡Agregar un teléfono te da 15% de descuento en tu próximo pedido!',
       save: 'Guardar',
       saving: 'Guardando...',
+      edit: 'Editar',
+      cancel: 'Cancelar',
+      changePhoto: 'Cambiar Foto',
       loyalty: {
         title: 'Programa de Lealtad',
         currentCashback: 'Cashback actual',
@@ -965,6 +975,9 @@ export const translations = {
       phoneBonus: '💡 添加电话号码可获得下次订单15%折扣！',
       save: '保存',
       saving: '保存中...',
+      edit: '编辑',
+      cancel: '取消',
+      changePhoto: '更换照片',
       loyalty: {
         title: '忠诚计划',
         currentCashback: '当前返现',
