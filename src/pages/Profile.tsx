@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AvatarUpload } from "@/components/AvatarUpload";
 import { BackButton } from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
@@ -205,6 +205,15 @@ const Profile = () => {
     }
   };
 
+  const handleAvatarUpdate = (newAvatarUrl: string) => {
+    setProfile(prev => prev ? {...prev, avatar_url: newAvatarUrl} : null);
+  };
+
+  const getInitials = () => {
+    if (!profile?.first_name && !profile?.last_name) return "?";
+    return `${profile?.first_name?.[0] || ''}${profile?.last_name?.[0] || ''}`;
+  };
+
   if (loading) {
     return <div className="flex justify-center items-center h-64">Загрузка...</div>;
   }
@@ -228,73 +237,79 @@ const Profile = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Avatar className="w-10 h-10">
-                    <AvatarImage src={profile?.avatar_url} />
-                    <AvatarFallback>
-                      {profile?.first_name?.[0]}{profile?.last_name?.[0]}
-                    </AvatarFallback>
-                  </Avatar>
                   {t.profile.personalInfo}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSaveProfile} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-6">
+                  {/* Avatar Upload Section */}
+                  <div className="flex justify-center">
+                    <AvatarUpload
+                      userId={user?.id || ''}
+                      currentAvatarUrl={profile?.avatar_url}
+                      onAvatarUpdate={handleAvatarUpdate}
+                      initials={getInitials()}
+                    />
+                  </div>
+
+                  <form onSubmit={handleSaveProfile} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="first_name">{t.profile.firstName} *</Label>
+                        <Input
+                          id="first_name"
+                          value={profile?.first_name || ''}
+                          onChange={(e) => setProfile(prev => prev ? {...prev, first_name: e.target.value} : null)}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="last_name">{t.profile.lastName} *</Label>
+                        <Input
+                          id="last_name"
+                          value={profile?.last_name || ''}
+                          onChange={(e) => setProfile(prev => prev ? {...prev, last_name: e.target.value} : null)}
+                          required
+                        />
+                      </div>
+                    </div>
                     <div>
-                      <Label htmlFor="first_name">{t.profile.firstName} *</Label>
+                      <Label htmlFor="middle_name">{t.profile.middleName}</Label>
                       <Input
-                        id="first_name"
-                        value={profile?.first_name || ''}
-                        onChange={(e) => setProfile(prev => prev ? {...prev, first_name: e.target.value} : null)}
-                        required
+                        id="middle_name"
+                        value={profile?.middle_name || ''}
+                        onChange={(e) => setProfile(prev => prev ? {...prev, middle_name: e.target.value} : null)}
                       />
                     </div>
                     <div>
-                      <Label htmlFor="last_name">{t.profile.lastName} *</Label>
+                      <Label htmlFor="email">{t.profile.email} *</Label>
                       <Input
-                        id="last_name"
-                        value={profile?.last_name || ''}
-                        onChange={(e) => setProfile(prev => prev ? {...prev, last_name: e.target.value} : null)}
-                        required
+                        id="email"
+                        type="email"
+                        value={profile?.email || ''}
+                        disabled
+                        className="bg-gray-100"
                       />
                     </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="middle_name">{t.profile.middleName}</Label>
-                    <Input
-                      id="middle_name"
-                      value={profile?.middle_name || ''}
-                      onChange={(e) => setProfile(prev => prev ? {...prev, middle_name: e.target.value} : null)}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">{t.profile.email} *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={profile?.email || ''}
-                      disabled
-                      className="bg-gray-100"
-                    />
-                  </div>
-                   <div>
-                    <Label htmlFor="phone">{t.profile.phone}</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={profile?.phone || ''}
-                      onChange={(e) => setProfile(prev => prev ? {...prev, phone: e.target.value} : null)}
-                    />
-                    {!profile?.phone && (
-                      <p className="text-sm text-green-600 mt-1">
-                        {t.profile.phoneBonus}
-                      </p>
-                    )}
-                  </div>
-                  <Button type="submit" disabled={saving} className="bg-tea-brown hover:bg-tea-brown/90">
-                    {saving ? t.profile.saving : t.profile.save}
-                  </Button>
-                </form>
+                     <div>
+                      <Label htmlFor="phone">{t.profile.phone}</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        value={profile?.phone || ''}
+                        onChange={(e) => setProfile(prev => prev ? {...prev, phone: e.target.value} : null)}
+                      />
+                      {!profile?.phone && (
+                        <p className="text-sm text-green-600 mt-1">
+                          {t.profile.phoneBonus}
+                        </p>
+                      )}
+                    </div>
+                    <Button type="submit" disabled={saving} className="bg-tea-brown hover:bg-tea-brown/90">
+                      {saving ? t.profile.saving : t.profile.save}
+                    </Button>
+                  </form>
+                </div>
               </CardContent>
             </Card>
 
