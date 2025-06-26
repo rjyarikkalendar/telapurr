@@ -276,7 +276,6 @@ const Profile = () => {
   const currentLevelIndex = loyaltyLevels.findIndex(level => 
     level.name === loyaltyStats?.level
   );
-  const nextLevel = loyaltyLevels[currentLevelIndex + 1];
 
   // Determine what's needed for Pearl level
   const needsForPearl = [];
@@ -480,16 +479,6 @@ const Profile = () => {
                     <p className="font-semibold">{loyaltyStats?.points_balance}</p>
                   </div>
                 </div>
-
-                {nextLevel && (
-                  <div className="p-3 bg-blue-50 rounded">
-                    <p className="text-sm text-blue-600 mb-1">{t.profile.loyalty.nextLevel}:</p>
-                    <p className="font-medium">{getLevelName(nextLevel)} ({nextLevel.percentage}%)</p>
-                    <p className="text-xs text-gray-600">
-                      {t.profile.loyalty.need} {nextLevel.threshold - (loyaltyStats?.total_purchases || 0)}€
-                    </p>
-                  </div>
-                )}
 
                 <div className="space-y-2">
                   <h4 className="font-medium">{t.profile.loyalty.levels}:</h4>
