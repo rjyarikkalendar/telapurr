@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BackButton } from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { Gift, Users, ShoppingBag, Crown } from "lucide-react";
+import { Gift, Users, ShoppingBag, Crown, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 
 interface Profile {
@@ -34,19 +34,19 @@ interface LoyaltyStats {
 }
 
 const loyaltyLevels = [
-  { name: "Серебряный", percentage: 1, threshold: 0, color: "bg-gray-400", icon: "🥈" },
-  { name: "Жемчужный", percentage: 3, threshold: 0, color: "bg-purple-400", icon: "🦪", requirements: "Заполнить профиль + 1 друг" },
-  { name: "Сапфировый", percentage: 5, threshold: 500, color: "bg-blue-400", icon: "💎" },
-  { name: "Изумрудный", percentage: 7, threshold: 1000, color: "bg-green-400", icon: "💚" },
-  { name: "Золотой", percentage: 10, threshold: 3000, color: "bg-yellow-400", icon: "👑" },
-  { name: "Платиновый", percentage: 12.5, threshold: 6000, color: "bg-indigo-400", icon: "⭐" },
-  { name: "Бриллиантовый", percentage: 15, threshold: 10000, color: "bg-pink-400", icon: "💠" },
+  { name: "Серебряный", nameEn: "Silver", nameEs: "Plateado", nameZh: "银级", percentage: 1, threshold: 0, color: "bg-gray-400", icon: "🥈", key: "silver" },
+  { name: "Жемчужный", nameEn: "Pearl", nameEs: "Perla", nameZh: "珍珠", percentage: 3, threshold: 0, color: "bg-purple-400", icon: "🦪", key: "pearl" },
+  { name: "Сапфировый", nameEn: "Sapphire", nameEs: "Zafiro", nameZh: "蓝宝石", percentage: 5, threshold: 500, color: "bg-blue-400", icon: "💎", key: "sapphire" },
+  { name: "Изумрудный", nameEn: "Emerald", nameEs: "Esmeralda", nameZh: "翡翠", percentage: 7, threshold: 1000, color: "bg-green-400", icon: "💚", key: "emerald" },
+  { name: "Золотой", nameEn: "Gold", nameEs: "Oro", nameZh: "金级", percentage: 10, threshold: 3000, color: "bg-yellow-400", icon: "👑", key: "gold" },
+  { name: "Платиновый", nameEn: "Platinum", nameEs: "Platino", nameZh: "铂金", percentage: 12.5, threshold: 6000, color: "bg-indigo-400", icon: "⭐", key: "platinum" },
+  { name: "Бриллиантовый", nameEn: "Diamond", nameEs: "Diamante", nameZh: "钻石", percentage: 15, threshold: 10000, color: "bg-pink-400", icon: "💠", key: "diamond" },
 ];
 
 const Profile = () => {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { t } = useLanguage();
+  const { t, currentLang } = useLanguage();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loyaltyStats, setLoyaltyStats] = useState<LoyaltyStats | null>(null);
   const [loading, setLoading] = useState(true);
@@ -85,8 +85,8 @@ const Profile = () => {
     } catch (error) {
       console.error('Error fetching profile:', error);
       toast({
-        title: "Ошибка",
-        description: "Не удалось загрузить профиль",
+        title: t.profile.error,
+        description: t.profile.error,
         variant: "destructive",
       });
     }
@@ -178,8 +178,8 @@ const Profile = () => {
       if (error) throw error;
 
       toast({
-        title: "Успешно",
-        description: "Профиль обновлен",
+        title: t.profile.success,
+        description: t.profile.success,
       });
 
       // Перезагружаем статистику лояльности
@@ -187,8 +187,8 @@ const Profile = () => {
     } catch (error) {
       console.error('Error updating profile:', error);
       toast({
-        title: "Ошибка",
-        description: "Не удалось обновить профиль",
+        title: t.profile.error,
+        description: t.profile.error,
         variant: "destructive",
       });
     } finally {
@@ -197,12 +197,21 @@ const Profile = () => {
   };
 
   const copyReferralLink = () => {
-    const link = `${window.location.origin}?ref=${referralCode}`;
+    const link = `https://tepurrfect.com?ref=${referralCode}`;
     navigator.clipboard.writeText(link);
     toast({
       title: "Скопировано",
       description: "Реферальная ссылка скопирована в буфер обмена",
     });
+  };
+
+  const getLevelName = (level: any) => {
+    switch (currentLang) {
+      case 'en': return level.nameEn;
+      case 'es': return level.nameEs;
+      case 'zh': return level.nameZh;
+      default: return level.name;
+    }
   };
 
   if (loading) {
@@ -220,7 +229,7 @@ const Profile = () => {
       <main className="flex-grow pt-20 px-4">
         <div className="container mx-auto max-w-4xl">
           <h1 className="text-4xl font-light text-tea-text mb-8 text-center">
-            Профиль
+            {t.profile.title}
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -234,14 +243,14 @@ const Profile = () => {
                       {profile?.first_name?.[0]}{profile?.last_name?.[0]}
                     </AvatarFallback>
                   </Avatar>
-                  Личные данные
+                  {t.profile.personalInfo}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSaveProfile} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="first_name">Имя *</Label>
+                      <Label htmlFor="first_name">{t.profile.firstName} *</Label>
                       <Input
                         id="first_name"
                         value={profile?.first_name || ''}
@@ -250,7 +259,7 @@ const Profile = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="last_name">Фамилия *</Label>
+                      <Label htmlFor="last_name">{t.profile.lastName} *</Label>
                       <Input
                         id="last_name"
                         value={profile?.last_name || ''}
@@ -260,7 +269,7 @@ const Profile = () => {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="middle_name">Отчество</Label>
+                    <Label htmlFor="middle_name">{t.profile.middleName}</Label>
                     <Input
                       id="middle_name"
                       value={profile?.middle_name || ''}
@@ -268,7 +277,7 @@ const Profile = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email *</Label>
+                    <Label htmlFor="email">{t.profile.email} *</Label>
                     <Input
                       id="email"
                       type="email"
@@ -278,7 +287,7 @@ const Profile = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Телефон</Label>
+                    <Label htmlFor="phone">{t.profile.phone}</Label>
                     <Input
                       id="phone"
                       type="tel"
@@ -287,12 +296,12 @@ const Profile = () => {
                     />
                     {!profile?.phone && (
                       <p className="text-sm text-green-600 mt-1">
-                        💡 При добавлении телефона вы получите скидку 15% на следующий заказ!
+                        {t.profile.phoneBonus}
                       </p>
                     )}
                   </div>
                   <Button type="submit" disabled={saving} className="bg-tea-brown hover:bg-tea-brown/90">
-                    {saving ? 'Сохранение...' : 'Сохранить'}
+                    {saving ? t.profile.saving : t.profile.save}
                   </Button>
                 </form>
               </CardContent>
@@ -303,51 +312,54 @@ const Profile = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Crown className="w-5 h-5 text-yellow-500" />
-                  Программа лояльности
+                  {t.profile.loyalty.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center">
                   <Badge className={`${loyaltyLevels.find(l => l.name === loyaltyStats?.level)?.color} text-white text-lg px-4 py-2`}>
-                    {loyaltyLevels.find(l => l.name === loyaltyStats?.level)?.icon} {loyaltyStats?.level}
+                    {loyaltyLevels.find(l => l.name === loyaltyStats?.level)?.icon} {getLevelName(loyaltyLevels.find(l => l.name === loyaltyStats?.level)!)}
                   </Badge>
                   <p className="text-sm text-gray-600 mt-2">
-                    Текущий кешбек: {loyaltyStats?.cashback_percentage}%
+                    {t.profile.loyalty.currentCashback}: {loyaltyStats?.cashback_percentage}%
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div className="p-3 bg-gray-50 rounded">
                     <ShoppingBag className="w-6 h-6 mx-auto mb-1 text-tea-brown" />
-                    <p className="text-sm text-gray-600">Общие покупки</p>
+                    <p className="text-sm text-gray-600">{t.profile.loyalty.totalPurchases}</p>
                     <p className="font-semibold">{loyaltyStats?.total_purchases}€</p>
                   </div>
                   <div className="p-3 bg-gray-50 rounded">
                     <Gift className="w-6 h-6 mx-auto mb-1 text-green-600" />
-                    <p className="text-sm text-gray-600">Баланс баллов</p>
+                    <p className="text-sm text-gray-600">{t.profile.loyalty.pointsBalance}</p>
                     <p className="font-semibold">{loyaltyStats?.points_balance}</p>
                   </div>
                 </div>
 
                 {nextLevel && (
                   <div className="p-3 bg-blue-50 rounded">
-                    <p className="text-sm text-blue-600 mb-1">До следующего уровня:</p>
-                    <p className="font-medium">{nextLevel.name} ({nextLevel.percentage}%)</p>
+                    <p className="text-sm text-blue-600 mb-1">{t.profile.loyalty.nextLevel}:</p>
+                    <p className="font-medium">{getLevelName(nextLevel)} ({nextLevel.percentage}%)</p>
                     <p className="text-xs text-gray-600">
-                      Нужно еще {nextLevel.threshold - (loyaltyStats?.total_purchases || 0)}€
+                      {t.profile.loyalty.need} {nextLevel.threshold - (loyaltyStats?.total_purchases || 0)}€
                     </p>
                   </div>
                 )}
 
                 <div className="space-y-2">
-                  <h4 className="font-medium">Уровни лояльности:</h4>
+                  <h4 className="font-medium">{t.profile.loyalty.levels}:</h4>
                   {loyaltyLevels.map((level, index) => (
-                    <div key={index} className="flex items-center justify-between text-sm">
+                    <div key={index} className="flex items-center justify-between text-sm p-2 rounded bg-gray-50">
                       <span className="flex items-center gap-2">
                         <span>{level.icon}</span>
-                        <span>{level.name}</span>
+                        <span className="font-medium">{getLevelName(level)}</span>
+                        <span className="text-gray-600">({level.percentage}%)</span>
                       </span>
-                      <span className="text-gray-600">{level.percentage}%</span>
+                      <span className="text-xs text-gray-500">
+                        {t.profile.loyalty.levelDescriptions[level.key as keyof typeof t.profile.loyalty.levelDescriptions]}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -359,34 +371,52 @@ const Profile = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-blue-500" />
-                  Реферальная программа
+                  {t.profile.referral.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center p-4 bg-green-50 rounded">
-                  <p className="text-lg font-semibold text-green-600">20€ за друга!</p>
+                  <p className="text-lg font-semibold text-green-600">{t.profile.referral.bonus}</p>
                   <p className="text-sm text-gray-600">
-                    Приглашайте друзей и получайте 20€ на каждого
+                    {t.profile.referral.description}
                   </p>
                 </div>
 
                 <div>
-                  <Label>Ваша реферальная ссылка:</Label>
+                  <Label>{t.profile.referral.link}</Label>
                   <div className="flex gap-2 mt-1">
                     <Input
-                      value={`${window.location.origin}?ref=${referralCode}`}
+                      value={`https://tepurrfect.com?ref=${referralCode}`}
                       readOnly
                       className="bg-gray-50"
                     />
                     <Button onClick={copyReferralLink} variant="outline">
-                      Копировать
+                      {t.profile.referral.copy}
                     </Button>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <p className="text-sm text-gray-600">Приглашено друзей:</p>
+                  <p className="text-sm text-gray-600">{t.profile.referral.invited}</p>
                   <p className="text-2xl font-bold text-blue-600">{loyaltyStats?.referrals_count}</p>
+                </div>
+
+                <div className="bg-blue-50 p-4 rounded">
+                  <h4 className="font-medium mb-2">{t.profile.referral.howItWorks}</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{t.profile.referral.step1}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{t.profile.referral.step2}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{t.profile.referral.step3}</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -396,17 +426,17 @@ const Profile = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Gift className="w-5 h-5 text-purple-500" />
-                  Мои купоны
+                  {t.profile.coupons.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <p className="text-sm text-gray-600">Активных купонов:</p>
+                  <p className="text-sm text-gray-600">{t.profile.coupons.active}</p>
                   <p className="text-2xl font-bold text-purple-600">{loyaltyStats?.coupons_count}</p>
                 </div>
                 {loyaltyStats?.coupons_count === 0 && (
                   <p className="text-sm text-gray-500 text-center mt-2">
-                    У вас пока нет активных купонов
+                    {t.profile.coupons.none}
                   </p>
                 )}
               </CardContent>

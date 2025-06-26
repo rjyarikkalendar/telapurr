@@ -1,4 +1,3 @@
-
 export type Language = 'ru' | 'en' | 'es' | 'zh';
 
 export const languages: Record<Language, string> = {
@@ -147,6 +146,55 @@ export const translations = {
       orderTotal: 'Итого',
       yourOrder: 'Ваш заказ',
       quantity: 'Количество'
+    },
+    profile: {
+      title: 'Профиль',
+      personalInfo: 'Личные данные',
+      firstName: 'Имя',
+      lastName: 'Фамилия',
+      middleName: 'Отчество',
+      email: 'Email',
+      phone: 'Телефон',
+      phoneBonus: '💡 При добавлении телефона вы получите скидку 15% на следующий заказ!',
+      save: 'Сохранить',
+      saving: 'Сохранение...',
+      loyalty: {
+        title: 'Программа лояльности',
+        currentCashback: 'Текущий кешбек',
+        totalPurchases: 'Общие покупки',
+        pointsBalance: 'Баланс баллов',
+        nextLevel: 'До следующего уровня',
+        need: 'Нужно еще',
+        levels: 'Уровни лояльности',
+        levelDescriptions: {
+          silver: 'Регистрация',
+          pearl: 'Полный профиль + 1 друг',
+          sapphire: 'Покупки на 500€',
+          emerald: 'Покупки на 1000€',
+          gold: 'Покупки на 3000€',
+          platinum: 'Покупки на 6000€',
+          diamond: 'Покупки на 10000€'
+        }
+      },
+      referral: {
+        title: 'Реферальная программа',
+        bonus: '20€ за друга!',
+        description: 'Приглашайте друзей и получайте по 20€',
+        link: 'Ваша реферальная ссылка:',
+        copy: 'Копировать',
+        invited: 'Приглашено друзей:',
+        howItWorks: 'Как это работает:',
+        step1: '1. Друг регистрируется по вашей ссылке и получает 20€ для первого заказа',
+        step2: '2. После первого заказа друга вы получаете 20€ на свой счет',
+        step3: '3. Бонусы можно использовать для будущих покупок'
+      },
+      coupons: {
+        title: 'Мои купоны',
+        active: 'Активных купонов:',
+        none: 'У вас пока нет активных купонов'
+      },
+      success: 'Профиль обновлен',
+      error: 'Не удалось обновить профиль'
     },
     partnership: {
       title: 'Партнерство с нами',
@@ -368,6 +416,55 @@ export const translations = {
       yourOrder: 'Your Order',
       quantity: 'Quantity'
     },
+    profile: {
+      title: 'Profile',
+      personalInfo: 'Personal Information',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      middleName: 'Middle Name',
+      email: 'Email',
+      phone: 'Phone',
+      phoneBonus: '💡 Adding a phone number gives you 15% off your next order!',
+      save: 'Save',
+      saving: 'Saving...',
+      loyalty: {
+        title: 'Loyalty Program',
+        currentCashback: 'Current cashback',
+        totalPurchases: 'Total purchases',
+        pointsBalance: 'Points balance',
+        nextLevel: 'To next level',
+        need: 'Need',
+        levels: 'Loyalty levels',
+        levelDescriptions: {
+          silver: 'Registration',
+          pearl: 'Complete profile + 1 friend',
+          sapphire: '€500 in purchases',
+          emerald: '€1000 in purchases',
+          gold: '€3000 in purchases',
+          platinum: '€6000 in purchases',
+          diamond: '€10000 in purchases'
+        }
+      },
+      referral: {
+        title: 'Referral Program',
+        bonus: '€20 per friend!',
+        description: 'Invite friends and earn €20 each',
+        link: 'Your referral link:',
+        copy: 'Copy',
+        invited: 'Friends invited:',
+        howItWorks: 'How it works:',
+        step1: '1. Friend registers via your link and gets €20 for first order',
+        step2: '2. After friend\'s first order, you get €20 to your account',
+        step3: '3. Bonuses can be used for future purchases'
+      },
+      coupons: {
+        title: 'My Coupons',
+        active: 'Active coupons:',
+        none: 'You don\'t have any active coupons yet'
+      },
+      success: 'Profile updated successfully',
+      error: 'Failed to update profile'
+    },
     partnership: {
       title: 'Partnership with us',
       subtitle: 'We offer the opportunity to create an additional source of income',
@@ -588,6 +685,55 @@ export const translations = {
       yourOrder: 'Tu Pedido',
       quantity: 'Cantidad'
     },
+    profile: {
+      title: 'Perfil',
+      personalInfo: 'Información Personal',
+      firstName: 'Nombre',
+      lastName: 'Apellido',
+      middleName: 'Segundo Nombre',
+      email: 'Email',
+      phone: 'Teléfono',
+      phoneBonus: '💡 ¡Agregar un teléfono te da 15% de descuento en tu próximo pedido!',
+      save: 'Guardar',
+      saving: 'Guardando...',
+      loyalty: {
+        title: 'Programa de Lealtad',
+        currentCashback: 'Cashback actual',
+        totalPurchases: 'Compras totales',
+        pointsBalance: 'Balance de puntos',
+        nextLevel: 'Al siguiente nivel',
+        need: 'Necesitas',
+        levels: 'Niveles de lealtad',
+        levelDescriptions: {
+          silver: 'Registro',
+          pearl: 'Perfil completo + 1 amigo',
+          sapphire: '€500 en compras',
+          emerald: '€1000 en compras',
+          gold: '€3000 en compras',
+          platinum: '€6000 en compras',
+          diamond: '€10000 en compras'
+        }
+      },
+      referral: {
+        title: 'Programa de Referencias',
+        bonus: '¡€20 por amigo!',
+        description: 'Invita amigos y gana €20 cada uno',
+        link: 'Tu enlace de referencia:',
+        copy: 'Copiar',
+        invited: 'Amigos invitados:',
+        howItWorks: 'Cómo funciona:',
+        step1: '1. El amigo se registra a través de tu enlace y obtiene €20 para el primer pedido',
+        step2: '2. Después del primer pedido del amigo, obtienes €20 en tu cuenta',
+        step3: '3. Los bonos se pueden usar para compras futuras'
+      },
+      coupons: {
+        title: 'Mis Cupones',
+        active: 'Cupones activos:',
+        none: 'Aún no tienes cupones activos'
+      },
+      success: 'Perfil actualizado exitosamente',
+      error: 'Error al actualizar perfil'
+    },
     partnership: {
       title: 'Asociación con nosotros',
       subtitle: 'Ofrecemos la oportunidad de crear una fuente adicional de ingresos',
@@ -807,6 +953,55 @@ export const translations = {
       orderTotal: '总价',
       yourOrder: '您的订单',
       quantity: '数量'
+    },
+    profile: {
+      title: '个人资料',
+      personalInfo: '个人信息',
+      firstName: '名字',
+      lastName: '姓氏',
+      middleName: '中间名',
+      email: '邮箱',
+      phone: '电话',
+      phoneBonus: '💡 添加电话号码可获得下次订单15%折扣！',
+      save: '保存',
+      saving: '保存中...',
+      loyalty: {
+        title: '忠诚计划',
+        currentCashback: '当前返现',
+        totalPurchases: '总购买额',
+        pointsBalance: '积分余额',
+        nextLevel: '到下一级',
+        need: '需要',
+        levels: '忠诚等级',
+        levelDescriptions: {
+          silver: '注册',
+          pearl: '完整资料 + 1位朋友',
+          sapphire: '购买€500',
+          emerald: '购买€1000',
+          gold: '购买€3000',
+          platinum: '购买€6000',
+          diamond: '购买€10000'
+        }
+      },
+      referral: {
+        title: '推荐计划',
+        bonus: '每位朋友€20！',
+        description: '邀请朋友，每人获得€20',
+        link: '您的推荐链接：',
+        copy: '复制',
+        invited: '已邀请朋友：',
+        howItWorks: '工作原理：',
+        step1: '1. 朋友通过您的链接注册并获得首次订单€20',
+        step2: '2. 朋友首次订单后，您的账户获得€20',
+        step3: '3. 奖金可用于未来购买'
+      },
+      coupons: {
+        title: '我的优惠券',
+        active: '活跃优惠券：',
+        none: '您还没有活跃的优惠券'
+      },
+      success: '资料更新成功',
+      error: '更新资料失败'
     },
     partnership: {
       title: '与我们合作',
