@@ -14,7 +14,7 @@ export const PartnershipButton = () => {
         onClick={() => navigate("/partnership")}
         className="bg-tea-brown hover:bg-tea-brown/80 text-white"
       >
-        {t.common.partnership.buttonText}
+        {t.partnership.buttonText}
       </Button>
     </div>
   );

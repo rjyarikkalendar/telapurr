@@ -30,12 +30,12 @@ export const AuthButton = () => {
       {user ? (
         <div className="flex gap-2">
           <Button onClick={() => navigate('/profile')} variant="outline">
-            {t.common.profile.title}
+            {t.profile.title}
           </Button>
-          <Button onClick={handleSignOut}>{t.common.nav.logout}</Button>
+          <Button onClick={handleSignOut}>{t.nav.logout}</Button>
         </div>
       ) : (
-        <Button onClick={() => navigate('/auth')}>{t.common.nav.login}</Button>
+        <Button onClick={() => navigate('/auth')}>{t.nav.login}</Button>
       )}
     </div>
   );

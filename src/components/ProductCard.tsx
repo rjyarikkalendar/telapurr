@@ -27,7 +27,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     addItem(product, size);
     setOpen(false);
     toast({
-      title: t.common.cart.addedToCart,
+      title: t.cart.addedToCart,
       description: (
         <div className="flex flex-col gap-2">
           <p>{product.title}</p>
@@ -35,7 +35,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             variant="destructive" 
             onClick={() => removeItem(product.id, size)}
           >
-            {t.common.cart.cancel}
+            {t.cart.cancel}
           </Button>
         </div>
       ),
@@ -65,7 +65,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             onClick={() => sizes ? setOpen(true) : handleAddToCart()}
             className="bg-tea-brown hover:bg-tea-brown/90"
           >
-            {t.common.cart.addToCart}
+            {t.cart.addToCart}
           </Button>
         </CardFooter>
       </Card>
@@ -74,7 +74,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{t.common.cart.selectSize}</DialogTitle>
+              <DialogTitle>{t.cart.selectSize}</DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-4 mt-4">
               {sizes.map((size) => (

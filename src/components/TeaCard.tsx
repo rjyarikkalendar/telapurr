@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -107,7 +108,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
     addItem(product);
     setOpen(false);
     toast({
-      title: t.common.cart.addedToCart,
+      title: t.cart.addedToCart,
       description: `${localizedData.name} ${weightType ? `(${weightType})` : ''}`,
       duration: 2000,
       className: "max-w-xs"
@@ -182,7 +183,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
             className="bg-tea-brown hover:bg-tea-brown/90 text-xs px-2 py-1 h-auto"
             disabled={!tea.in_stock}
           >
-            {tea.in_stock ? t.common.cart.addToCart : t.common.cart.outOfStock}
+            {tea.in_stock ? t.cart.addToCart : t.cart.outOfStock}
           </Button>
         </CardFooter>
       </Card>
@@ -190,7 +191,7 @@ export const TeaCard = ({ tea }: TeaCardProps) => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t.common.cart.selectSize}</DialogTitle>
+            <DialogTitle>{t.cart.selectSize}</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 mt-4">
             {weightOptions.map((priceOption) => (
