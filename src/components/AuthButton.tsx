@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/hooks/use-language";
 
 export const AuthButton = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -26,9 +28,9 @@ export const AuthButton = () => {
   return (
     <div className="absolute top-4 right-[100px] z-50">
       {user ? (
-        <Button onClick={handleSignOut}>Выйти</Button>
+        <Button onClick={handleSignOut}>{t.nav.logout}</Button>
       ) : (
-        <Button onClick={() => navigate('/auth')}>Войти</Button>
+        <Button onClick={() => navigate('/auth')}>{t.nav.login}</Button>
       )}
     </div>
   );

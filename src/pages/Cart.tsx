@@ -1,12 +1,13 @@
-
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/hooks/use-cart";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 const Cart = () => {
   const navigate = useNavigate();
   const { items, updateQuantity, removeItem } = useCart();
+  const { t } = useLanguage();
 
   const handleQuantityChange = (itemId: string, quantity: number, size?: number, weight?: string) => {
     if (quantity < 1) {
@@ -34,7 +35,9 @@ const Cart = () => {
   return (
     <div className="min-h-screen bg-[#D3E4E0]/50 backdrop-blur-sm py-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-playfair text-tea-text mb-8 text-center">Корзина</h1>
+        <h1 className="text-3xl font-playfair text-tea-text mb-8 text-center">
+          {t.checkout?.yourOrder || 'Корзина'}
+        </h1>
         
         {items.length === 0 ? (
           <div className="text-center py-8">
@@ -96,7 +99,7 @@ const Cart = () => {
                 onClick={() => navigate('/checkout')}
                 className="bg-tea-brown hover:bg-tea-brown/90"
               >
-                Перейти к оформлению
+                {t.checkout?.title || 'Перейти к оформлению'}
               </Button>
             </div>
           </>
