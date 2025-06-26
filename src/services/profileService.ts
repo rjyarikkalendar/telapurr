@@ -1,6 +1,7 @@
+
 import { apiService, PaginationParams, FilterParams, ApiResponse } from './api';
 import { Tables } from '@/integrations/supabase/types';
-import { supabase } from '@/integrations/supabase';
+import { supabase } from '@/integrations/supabase/client';
 
 export type Profile = Tables<'profiles'>;
 export type ProfileCreate = Omit<Profile, 'created_at' | 'updated_at'>;
