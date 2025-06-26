@@ -94,24 +94,36 @@ export const resources = {
         },
       },
       "categories": {
+        "discover": "Откройте для себя наши категории",
         "tea": {
-          "title": "Чай"
+          "title": "Чай",
+          "description": "Высококачественные чаи со всего мира"
         },
         "teaware": {
-          "title": "Посуда для чая"
+          "title": "Посуда для чая",
+          "description": "Традиционная и современная посуда для чаепития"
         },
         "sets": {
-          "title": "Наборы"
+          "title": "Наборы",
+          "description": "Готовые наборы для идеального чаепития"
         }
       },
       "cart": {
         "addToCart": "Добавить в корзину",
         "addedToCart": "Добавлено в корзину",
         "cancel": "Отменить",
-        "selectSize": "Выберите размер"
+        "selectSize": "Выберите размер",
+        "outOfStock": "Нет в наличии"
       },
       "partnership": {
-        "buttonText": "Партнерство"
+        "buttonText": "Партнерство",
+        "title": "Партнерская программа",
+        "subtitle": "Присоединяйтесь к нашей партнерской программе",
+        "description": "Станьте нашим партнером и получайте прибыль от продаж качественного чая",
+        "benefits": "Преимущества партнерства",
+        "benefit1": "Высокие комиссионные",
+        "benefit2": "Маркетинговая поддержка",
+        "benefit3": "Обучение и поддержка"
       },
       "tea": {
         "filters": {
@@ -137,6 +149,10 @@ export const resources = {
           "records": "записей"
         }
       }
+    },
+    hero: {
+      "title": "Добро пожаловать в мир чая",
+      "subtitle": "Откройте для себя лучшие сорта чая со всего мира"
     },
     checkout: {
       title: "Оформление заказа",
@@ -254,24 +270,36 @@ export const resources = {
         },
       },
       "categories": {
+        "discover": "Discover our categories",
         "tea": {
-          "title": "Tea"
+          "title": "Tea",
+          "description": "High-quality teas from around the world"
         },
         "teaware": {
-          "title": "Teaware"
+          "title": "Teaware",
+          "description": "Traditional and modern tea accessories"
         },
         "sets": {
-          "title": "Sets"
+          "title": "Sets",
+          "description": "Curated sets for the perfect tea experience"
         }
       },
       "cart": {
         "addToCart": "Add to cart",
         "addedToCart": "Added to cart",
         "cancel": "Cancel",
-        "selectSize": "Select size"
+        "selectSize": "Select size",
+        "outOfStock": "Out of stock"
       },
       "partnership": {
-        "buttonText": "Partnership"
+        "buttonText": "Partnership",
+        "title": "Partnership Program",
+        "subtitle": "Join our partnership program",
+        "description": "Become our partner and earn profits from selling quality tea",
+        "benefits": "Partnership Benefits",
+        "benefit1": "High commissions",
+        "benefit2": "Marketing support",
+        "benefit3": "Training and support"
       },
       "tea": {
         "filters": {
@@ -297,6 +325,10 @@ export const resources = {
           "records": "records"
         }
       }
+    },
+    hero: {
+      "title": "Welcome to the World of Tea",
+      "subtitle": "Discover the finest teas from around the globe"
     },
     checkout: {
       title: "Checkout",
@@ -414,24 +446,36 @@ export const resources = {
         },
       },
       "categories": {
+        "discover": "Descubra nuestras categorías",
         "tea": {
-          "title": "Té"
+          "title": "Té",
+          "description": "Tés de alta calidad de todo el mundo"
         },
         "teaware": {
-          "title": "Utensilios para té"
+          "title": "Utensilios para té",
+          "description": "Accesorios tradicionales y modernos para el té"
         },
         "sets": {
-          "title": "Conjuntos"
+          "title": "Conjuntos",
+          "description": "Conjuntos curados para la experiencia perfecta del té"
         }
       },
       "cart": {
         "addToCart": "Añadir al carrito",
         "addedToCart": "Añadido al carrito",
         "cancel": "Cancelar",
-        "selectSize": "Seleccionar tamaño"
+        "selectSize": "Seleccionar tamaño",
+        "outOfStock": "Agotado"
       },
       "partnership": {
-        "buttonText": "Sociedad"
+        "buttonText": "Sociedad",
+        "title": "Programa de Socios",
+        "subtitle": "Únase a nuestro programa de socios",
+        "description": "Conviértase en nuestro socio y gane ganancias vendiendo té de calidad",
+        "benefits": "Beneficios de la Sociedad",
+        "benefit1": "Altas comisiones",
+        "benefit2": "Apoyo de marketing",
+        "benefit3": "Entrenamiento y apoyo"
       },
       "tea": {
         "filters": {
@@ -457,6 +501,10 @@ export const resources = {
           "records": "registros"
         }
       }
+    },
+    hero: {
+      "title": "Bienvenido al Mundo del Té",
+      "subtitle": "Descubre los mejores tés de todo el mundo"
     },
     checkout: {
       title: "Finalizar Compra",
@@ -574,24 +622,36 @@ export const resources = {
         },
       },
       "categories": {
+        "discover": "发现我们的分类",
         "tea": {
-          "title": "茶"
+          "title": "茶",
+          "description": "来自世界各地的高品质茶叶"
         },
         "teaware": {
-          "title": "茶具"
+          "title": "茶具",
+          "description": "传统和现代茶具配件"
         },
         "sets": {
-          "title": "套装"
+          "title": "套装",
+          "description": "为完美茶体验精心策划的套装"
         }
       },
       "cart": {
         "addToCart": "添加到购物车",
         "addedToCart": "已添加到购物车",
         "cancel": "取消",
-        "selectSize": "选择尺寸"
+        "selectSize": "选择尺寸",
+        "outOfStock": "缺货"
       },
       "partnership": {
-        "buttonText": "合作伙伴"
+        "buttonText": "合作伙伴",
+        "title": "合作伙伴计划",
+        "subtitle": "加入我们的合作伙伴计划",
+        "description": "成为我们的合作伙伴，通过销售优质茶叶获得利润",
+        "benefits": "合作伙伴优势",
+        "benefit1": "高佣金",
+        "benefit2": "营销支持",
+        "benefit3": "培训和支持"
       },
       "tea": {
         "filters": {
@@ -617,6 +677,10 @@ export const resources = {
           "records": "记录"
         }
       }
+    },
+    hero: {
+      "title": "欢迎来到茶的世界",
+      "subtitle": "发现来自全球的顶级茶叶"
     },
     checkout: {
       title: "结账",
@@ -751,24 +815,36 @@ export const translations = {
         },
       },
       "categories": {
+        "discover": "Откройте для себя наши категории",
         "tea": {
-          "title": "Чай"
+          "title": "Чай",
+          "description": "Высококачественные чаи со всего мира"
         },
         "teaware": {
-          "title": "Посуда для чая"
+          "title": "Посуда для чая",
+          "description": "Традиционная и современная посуда для чаепития"
         },
         "sets": {
-          "title": "Наборы"
+          "title": "Наборы",
+          "description": "Готовые наборы для идеального чаепития"
         }
       },
       "cart": {
         "addToCart": "Добавить в корзину",
         "addedToCart": "Добавлено в корзину",
         "cancel": "Отменить",
-        "selectSize": "Выберите размер"
+        "selectSize": "Выберите размер",
+        "outOfStock": "Нет в наличии"
       },
       "partnership": {
-        "buttonText": "Партнерство"
+        "buttonText": "Партнерство",
+        "title": "Партнерская программа",
+        "subtitle": "Присоединяйтесь к нашей партнерской программе",
+        "description": "Станьте нашим партнером и получайте прибыль от продаж качественного чая",
+        "benefits": "Преимущества партнерства",
+        "benefit1": "Высокие комиссионные",
+        "benefit2": "Маркетинговая поддержка",
+        "benefit3": "Обучение и поддержка"
       },
       "tea": {
         "filters": {
@@ -794,6 +870,10 @@ export const translations = {
           "records": "записей"
         }
       }
+    },
+    hero: {
+      "title": "Добро пожаловать в мир чая",
+      "subtitle": "Откройте для себя лучшие сорта чая со всего мира"
     },
     checkout: {
       title: "Оформление заказа",
@@ -911,24 +991,36 @@ export const translations = {
         },
       },
       "categories": {
+        "discover": "Discover our categories",
         "tea": {
-          "title": "Tea"
+          "title": "Tea",
+          "description": "High-quality teas from around the world"
         },
         "teaware": {
-          "title": "Teaware"
+          "title": "Teaware",
+          "description": "Traditional and modern tea accessories"
         },
         "sets": {
-          "title": "Sets"
+          "title": "Sets",
+          "description": "Curated sets for the perfect tea experience"
         }
       },
       "cart": {
         "addToCart": "Add to cart",
         "addedToCart": "Added to cart",
         "cancel": "Cancel",
-        "selectSize": "Select size"
+        "selectSize": "Select size",
+        "outOfStock": "Out of stock"
       },
       "partnership": {
-        "buttonText": "Partnership"
+        "buttonText": "Partnership",
+        "title": "Partnership Program",
+        "subtitle": "Join our partnership program",
+        "description": "Become our partner and earn profits from selling quality tea",
+        "benefits": "Partnership Benefits",
+        "benefit1": "High commissions",
+        "benefit2": "Marketing support",
+        "benefit3": "Training and support"
       },
       "tea": {
         "filters": {
@@ -954,6 +1046,10 @@ export const translations = {
           "records": "records"
         }
       }
+    },
+    hero: {
+      "title": "Welcome to the World of Tea",
+      "subtitle": "Discover the finest teas from around the globe"
     },
     checkout: {
       title: "Checkout",
@@ -1071,24 +1167,36 @@ export const translations = {
         },
       },
       "categories": {
+        "discover": "Descubra nuestras categorías",
         "tea": {
-          "title": "Té"
+          "title": "Té",
+          "description": "Tés de alta calidad de todo el mundo"
         },
         "teaware": {
-          "title": "Utensilios para té"
+          "title": "Utensilios para té",
+          "description": "Accesorios tradicionales y modernos para el té"
         },
         "sets": {
-          "title": "Conjuntos"
+          "title": "Conjuntos",
+          "description": "Conjuntos curados para la experiencia perfecta del té"
         }
       },
       "cart": {
         "addToCart": "Añadir al carrito",
         "addedToCart": "Añadido al carrito",
         "cancel": "Cancelar",
-        "selectSize": "Seleccionar tamaño"
+        "selectSize": "Seleccionar tamaño",
+        "outOfStock": "Agotado"
       },
       "partnership": {
-        "buttonText": "Sociedad"
+        "buttonText": "Sociedad",
+        "title": "Programa de Socios",
+        "subtitle": "Únase a nuestro programa de socios",
+        "description": "Conviértase en nuestro socio y gane ganancias vendiendo té de calidad",
+        "benefits": "Beneficios de la Sociedad",
+        "benefit1": "Altas comisiones",
+        "benefit2": "Apoyo de marketing",
+        "benefit3": "Entrenamiento y apoyo"
       },
       "tea": {
         "filters": {
@@ -1114,6 +1222,10 @@ export const translations = {
           "records": "registros"
         }
       }
+    },
+    hero: {
+      "title": "Bienvenido al Mundo del Té",
+      "subtitle": "Descubre los mejores tés de todo el mundo"
     },
     checkout: {
       title: "Finalizar Compra",
@@ -1231,24 +1343,36 @@ export const translations = {
         },
       },
       "categories": {
+        "discover": "发现我们的分类",
         "tea": {
-          "title": "茶"
+          "title": "茶",
+          "description": "来自世界各地的高品质茶叶"
         },
         "teaware": {
-          "title": "茶具"
+          "title": "茶具",
+          "description": "传统和现代茶具配件"
         },
         "sets": {
-          "title": "套装"
+          "title": "套装",
+          "description": "为完美茶体验精心策划的套装"
         }
       },
       "cart": {
         "addToCart": "添加到购物车",
         "addedToCart": "已添加到购物车",
         "cancel": "取消",
-        "selectSize": "选择尺寸"
+        "selectSize": "选择尺寸",
+        "outOfStock": "缺货"
       },
       "partnership": {
-        "buttonText": "合作伙伴"
+        "buttonText": "合作伙伴",
+        "title": "合作伙伴计划",
+        "subtitle": "加入我们的合作伙伴计划",
+        "description": "成为我们的合作伙伴，通过销售优质茶叶获得利润",
+        "benefits": "合作伙伴优势",
+        "benefit1": "高佣金",
+        "benefit2": "营销支持",
+        "benefit3": "培训和支持"
       },
       "tea": {
         "filters": {
@@ -1274,6 +1398,10 @@ export const translations = {
           "records": "记录"
         }
       }
+    },
+    hero: {
+      "title": "欢迎来到茶的世界",
+      "subtitle": "发现来自全球的顶级茶叶"
     },
     checkout: {
       title: "结账",
