@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -73,13 +74,15 @@ const Profile = () => {
 
       if (error) throw error;
       
+      console.log('Fetched profile data:', data);
+      
       setProfile({
         id: data.id,
         email: data.email || '',
         first_name: data.first_name || '',
         last_name: data.last_name || '',
         middle_name: data.middle_name || '',
-        phone: '', // This field doesn't exist in the table yet
+        phone: data.phone || '', // Теперь правильно загружаем телефон из базы данных
         avatar_url: data.avatar_url || '',
       });
     } catch (error) {
