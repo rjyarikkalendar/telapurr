@@ -11,7 +11,7 @@ interface Country {
 
 const countries: Country[] = [
   { code: 'RU', name: 'Россия', dialCode: '+7', flag: '🇷🇺' },
-  { code: 'KZ', name: 'Казахстан', dialCode: '+77', flag: '🇰🇿' },
+  { code: 'KZ', name: 'Казахстан', dialCode: '+7', flag: '🇰🇿' },
   { code: 'US', name: 'США', dialCode: '+1', flag: '🇺🇸' },
   { code: 'GB', name: 'Великобритания', dialCode: '+44', flag: '🇬🇧' },
   { code: 'DE', name: 'Германия', dialCode: '+49', flag: '🇩🇪' },
@@ -52,7 +52,7 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
       </SelectTrigger>
       <SelectContent>
         {countries.map((country) => (
-          <SelectItem key={country.code} value={country.dialCode}>
+          <SelectItem key={`${country.code}-${country.dialCode}`} value={country.dialCode}>
             <span className="flex items-center gap-2">
               <span>{country.flag}</span>
               <span>{country.dialCode}</span>

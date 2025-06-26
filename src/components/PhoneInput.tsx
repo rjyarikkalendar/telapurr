@@ -21,11 +21,12 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 }) => {
   const [dialCode, setDialCode] = useState('+7');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  // Разбираем входящее значение на код страны и номер
+  // Разбираем входящее значение на код страны и номер только при инициализации
   useEffect(() => {
-    if (value) {
-      // Ищем код страны в начале номера (может быть от 1 до 4 цифр после +)
+    if (value && !isInitialized) {
+      // Ищем код страны в начале номера
       const match = value.match(/^(\+\d{1,4})\s*(.*)$/);
       if (match) {
         setDialCode(match[1]);
@@ -34,10 +35,11 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
         // Если не найден код страны, считаем что это только номер
         setPhoneNumber(value.replace(/\D/g, ''));
       }
-    } else {
-      setPhoneNumber('');
+      setIsInitialized(true);
+    } else if (!value && !isInitialized) {
+      setIsInitialized(true);
     }
-  }, [value]);
+  }, [value, isInitialized]);
 
   const handleDialCodeChange = (newDialCode: string) => {
     setDialCode(newDialCode);
