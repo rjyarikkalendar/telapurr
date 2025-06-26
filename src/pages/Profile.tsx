@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -16,7 +15,6 @@ import { useLanguage } from "@/hooks/use-language";
 interface Profile {
   id: string;
   email: string;
-  full_name: string;
   first_name: string;
   last_name: string;
   middle_name: string;
@@ -71,15 +69,13 @@ const Profile = () => {
 
       if (error) throw error;
       
-      // Обрабатываем данные и устанавливаем значения по умолчанию для новых полей
       setProfile({
         id: data.id,
         email: data.email || '',
-        full_name: data.full_name || '',
-        first_name: (data as any).first_name || '',
-        last_name: (data as any).last_name || '',
-        middle_name: (data as any).middle_name || '',
-        phone: (data as any).phone || '',
+        first_name: data.first_name || '',
+        last_name: data.last_name || '',
+        middle_name: data.middle_name || '',
+        phone: '', // This field doesn't exist in the table yet
         avatar_url: data.avatar_url || '',
       });
     } catch (error) {
@@ -94,16 +90,15 @@ const Profile = () => {
 
   const fetchLoyaltyStats = async () => {
     try {
-      // Поскольку новые таблицы могут не существовать, используем заглушки
-      const totalPurchases = 0; // Здесь должен быть запрос к purchase_history
-      const pointsBalance = 0; // Здесь должен быть запрос к loyalty_points
-      const referralsCount = 0; // Здесь должен быть запрос к referrals
-      const couponsCount = 0; // Здесь должен быть запрос к coupons
+      // Placeholder data since loyalty tables don't exist yet
+      const totalPurchases = 0;
+      const pointsBalance = 0;
+      const referralsCount = 0;
+      const couponsCount = 0;
       
-      // Определяем уровень лояльности на основе суммы покупок
-      let cashbackPercentage = 1; // По умолчанию серебряный уровень
+      let cashbackPercentage = 1; // Default silver level
       
-      // Логика определения уровня лояльности
+      // Determine loyalty level based on purchases
       if (totalPurchases >= 10000) {
         cashbackPercentage = 15;
       } else if (totalPurchases >= 6000) {
@@ -115,7 +110,7 @@ const Profile = () => {
       } else if (totalPurchases >= 500) {
         cashbackPercentage = 5;
       } else if (profile?.first_name && profile?.last_name && referralsCount >= 1) {
-        cashbackPercentage = 3; // Жемчужный уровень
+        cashbackPercentage = 3; // Pearl level
       }
 
       const currentLevel = loyaltyLevels.find(level => 
@@ -132,7 +127,6 @@ const Profile = () => {
       });
     } catch (error) {
       console.error('Error fetching loyalty stats:', error);
-      // Устанавливаем значения по умолчанию в случае ошибки
       setLoyaltyStats({
         level: "Серебряный",
         cashback_percentage: 1,
@@ -148,7 +142,6 @@ const Profile = () => {
 
   const generateReferralCode = async () => {
     try {
-      // Генерируем код на основе ID пользователя
       const code = `REF${user?.id.slice(0, 8).toUpperCase()}`;
       setReferralCode(code);
     } catch (error) {
@@ -170,8 +163,6 @@ const Profile = () => {
           first_name: profile.first_name,
           last_name: profile.last_name,
           middle_name: profile.middle_name,
-          phone: profile.phone,
-          full_name: `${profile.first_name || ''} ${profile.last_name || ''}`.trim(),
         })
         .eq('id', user.id);
 
@@ -182,7 +173,7 @@ const Profile = () => {
         description: t.profile.success,
       });
 
-      // Перезагружаем статистику лояльности
+      // Reload loyalty stats
       fetchLoyaltyStats();
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -233,7 +224,7 @@ const Profile = () => {
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Основная информация профиля */}
+            {/* Personal information */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -286,7 +277,7 @@ const Profile = () => {
                       className="bg-gray-100"
                     />
                   </div>
-                  <div>
+                   <div>
                     <Label htmlFor="phone">{t.profile.phone}</Label>
                     <Input
                       id="phone"

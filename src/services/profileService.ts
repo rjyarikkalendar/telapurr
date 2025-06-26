@@ -8,7 +8,8 @@ export type ProfileUpdate = Partial<ProfileCreate>;
 
 export interface ProfileFilters extends FilterParams {
   email?: string;
-  full_name?: string;
+  first_name?: string;
+  last_name?: string;
   created_at_min?: string;
   created_at_max?: string;
   updated_at_min?: string;

@@ -31,12 +31,17 @@ const Profiles = () => {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    updateFilters({ full_name: value.trim() || undefined });
+    updateFilters({ first_name: value.trim() || undefined });
   };
 
   const handleSortChange = (value: string) => {
     setSortBy(value);
     updateSort(value);
+  };
+
+  const getFullName = (profile: Profile) => {
+    const parts = [profile.first_name, profile.last_name].filter(Boolean);
+    return parts.length > 0 ? parts.join(' ') : 'Без имени';
   };
 
   if (loading) {
@@ -82,8 +87,8 @@ const Profiles = () => {
                   <SelectContent>
                     <SelectItem value="created_at_desc">Новые первыми</SelectItem>
                     <SelectItem value="created_at_asc">Старые первыми</SelectItem>
-                    <SelectItem value="full_name_asc">По имени А-Я</SelectItem>
-                    <SelectItem value="full_name_desc">По имени Я-А</SelectItem>
+                    <SelectItem value="first_name_asc">По имени А-Я</SelectItem>
+                    <SelectItem value="first_name_desc">По имени Я-А</SelectItem>
                     <SelectItem value="email_asc">По email А-Я</SelectItem>
                     <SelectItem value="updated_at_desc">Недавно обновленные</SelectItem>
                   </SelectContent>
@@ -97,7 +102,7 @@ const Profiles = () => {
                 <Card key={profile.id} className="overflow-hidden">
                   <CardHeader>
                     <CardTitle className="text-lg">
-                      {profile.full_name || 'Без имени'}
+                      {getFullName(profile)}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
