@@ -1,4 +1,3 @@
-
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -240,6 +239,37 @@ export const resources = {
         "of": "из",
         "total": "всего",
         "records": "записей"
+      }
+    },
+    "teaware": {
+      "filters": {
+        "title": "Фильтры",
+        "type": "Тип",
+        "material": "Материал",
+        "inStock": "В наличии"
+      },
+      "types": {
+        "all": "Все",
+        "chabu": "Чабань",
+        "set": "Набор посуды",
+        "cups": "Пиалы",
+        "teapots": "Типоды и чайники",
+        "gaiwan": "Гайвань",
+        "pets": "Питомцы и чайные игрушки",
+        "siphon": "Сифон",
+        "fairnessCups": "Чаши справедливости",
+        "thermos": "Термосы",
+        "other": "Другое"
+      },
+      "materials": {
+        "all": "Все",
+        "ceramic": "Керамика",
+        "porcelain": "Фарфор",
+        "glass": "Стекло",
+        "clay": "Глина",
+        "wood": "Дерево",
+        "bamboo": "Бамбук",
+        "metal": "Металл"
       }
     },
     "hero": {
@@ -509,6 +539,37 @@ export const resources = {
         "records": "records"
       }
     },
+    "teaware": {
+      "filters": {
+        "title": "Filters",
+        "type": "Type",
+        "material": "Material",
+        "inStock": "In stock"
+      },
+      "types": {
+        "all": "All",
+        "chabu": "Chabu",
+        "set": "Tea set",
+        "cups": "Cups",
+        "teapots": "Teapots",
+        "gaiwan": "Gaiwan",
+        "pets": "Tea pets",
+        "siphon": "Siphon",
+        "fairnessCups": "Fairness cups",
+        "thermos": "Thermos",
+        "other": "Other"
+      },
+      "materials": {
+        "all": "All",
+        "ceramic": "Ceramic",
+        "porcelain": "Porcelain",
+        "glass": "Glass",
+        "clay": "Clay",
+        "wood": "Wood",
+        "bamboo": "Bamboo",
+        "metal": "Metal"
+      }
+    },
     "hero": {
       "title": "Welcome to the World of Tea",
       "subtitle": "Discover the finest teas from around the globe"
@@ -776,6 +837,37 @@ export const resources = {
         "records": "registros"
       }
     },
+    "teaware": {
+      "filters": {
+        "title": "Filtros",
+        "type": "Tipo",
+        "material": "Material",
+        "inStock": "En stock"
+      },
+      "types": {
+        "all": "Todos",
+        "chabu": "Chabu",
+        "set": "Juego de té",
+        "cups": "Tazas",
+        "teapots": "Teteras",
+        "gaiwan": "Gaiwan",
+        "pets": "Mascotas de té",
+        "siphon": "Sifón",
+        "fairnessCups": "Tazas de equidad",
+        "thermos": "Termos",
+        "other": "Otros"
+      },
+      "materials": {
+        "all": "Todos",
+        "ceramic": "Cerámica",
+        "porcelain": "Porcelana",
+        "glass": "Vidrio",
+        "clay": "Arcilla",
+        "wood": "Madera",
+        "bamboo": "Bambú",
+        "metal": "Metal"
+      }
+    },
     "hero": {
       "title": "Bienvenido al Mundo del Té",
       "subtitle": "Descubre los mejores tés de todo el mundo"
@@ -1041,6 +1133,37 @@ export const resources = {
         "of": "的",
         "total": "总计",
         "records": "记录"
+      }
+    },
+    "teaware": {
+      "filters": {
+        "title": "筛选器",
+        "type": "类型",
+        "material": "材料",
+        "inStock": "有库存"
+      },
+      "types": {
+        "all": "全部",
+        "chabu": "茶盘",
+        "set": "茶具套装",
+        "cups": "茶杯",
+        "teapots": "茶壶",
+        "gaiwan": "盖碗",
+        "pets": "茶宠",
+        "siphon": "虹吸壶",
+        "fairnessCups": "公道杯",
+        "thermos": "保温杯",
+        "other": "其他"
+      },
+      "materials": {
+        "all": "全部",
+        "ceramic": "陶瓷",
+        "porcelain": "瓷器",
+        "glass": "玻璃",
+        "clay": "粘土",
+        "wood": "木材",
+        "bamboo": "竹子",
+        "metal": "金属"
       }
     },
     "hero": {
