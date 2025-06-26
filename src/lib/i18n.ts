@@ -1,3 +1,4 @@
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -15,146 +16,144 @@ export const languages: Record<Language, string> = {
 
 export const resources = {
   ru: {
-    common: {
-      "home": "Главная",
-      "about": "О нас",
-      "products": "Продукты",
-      "contact": "Контакты",
-      "welcome": "Добро пожаловать",
-      "nav": {
-        "login": "Войти",
-        "logout": "Выйти",
-        "profile": "Профиль",
-      },
-      "product": {
-        "addToCart": "Добавить в корзину",
-        "description": "Описание",
-        "details": "Детали",
-        "kind": "Вид",
-        "type": "Тип",
-        "age": "Возраст",
-        "yearbirth": "Год рождения",
-        "weight": "Вес",
-        "price": "Цена",
-        "inStock": "В наличии",
-      },
-      "profile": {
-        "title": "Профиль",
-        "personalInfo": "Личная информация",
-        "firstName": "Имя",
-        "lastName": "Фамилия",
-        "middleName": "Отчество",
-        "email": "Email",
-        "phone": "Телефон",
-        "changePhoto": "Изменить фото",
-        "save": "Сохранить",
-        "saving": "Сохранение...",
-        "success": "Профиль успешно обновлен!",
-        "error": "Ошибка обновления профиля",
-        "edit": "Редактировать",
-        "cancel": "Отменить",
-        "phoneBonus": "Укажите номер телефона и получите +3% кэшбека на первый заказ!",
-        "loyalty": {
-          "title": "Программа лояльности",
-          "currentCashback": "Ваш текущий кэшбек",
-          "totalPurchases": "Сумма покупок",
-          "pointsBalance": "Баланс баллов",
-          "levels": "Уровни лояльности",
-          "levelDescriptions": {
-            "silver": "Начальный уровень для всех новых пользователей",
-            "pearl": "Пригласите друга и получите этот уровень",
-            "sapphire": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
-            "emerald": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
-            "gold": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
-            "platinum": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
-            "diamond": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
-          },
-          "pearlRequired": "Для получения жемчужного уровня необходимо:",
-          "completeProfile": "Заполнить профиль",
-          "inviteFriend": "Пригласить {count} друга",
+    "home": "Главная",
+    "about": "О нас",
+    "products": "Продукты",
+    "contact": "Контакты",
+    "welcome": "Добро пожаловать",
+    "nav": {
+      "login": "Войти",
+      "logout": "Выйти",
+      "profile": "Профиль",
+    },
+    "product": {
+      "addToCart": "Добавить в корзину",
+      "description": "Описание",
+      "details": "Детали",
+      "kind": "Вид",
+      "type": "Тип",
+      "age": "Возраст",
+      "yearbirth": "Год рождения",
+      "weight": "Вес",
+      "price": "Цена",
+      "inStock": "В наличии",
+    },
+    "profile": {
+      "title": "Профиль",
+      "personalInfo": "Личная информация",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "middleName": "Отчество",
+      "email": "Email",
+      "phone": "Телефон",
+      "changePhoto": "Изменить фото",
+      "save": "Сохранить",
+      "saving": "Сохранение...",
+      "success": "Профиль успешно обновлен!",
+      "error": "Ошибка обновления профиля",
+      "edit": "Редактировать",
+      "cancel": "Отменить",
+      "phoneBonus": "Укажите номер телефона и получите +3% кэшбека на первый заказ!",
+      "loyalty": {
+        "title": "Программа лояльности",
+        "currentCashback": "Ваш текущий кэшбек",
+        "totalPurchases": "Сумма покупок",
+        "pointsBalance": "Баланс баллов",
+        "levels": "Уровни лояльности",
+        "levelDescriptions": {
+          "silver": "Начальный уровень для всех новых пользователей",
+          "pearl": "Пригласите друга и получите этот уровень",
+          "sapphire": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
+          "emerald": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
+          "gold": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
+          "platinum": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
+          "diamond": "Достигните этой отметки по сумме покупок, чтобы получить этот уровень",
         },
-        "referral": {
-          "title": "Реферальная программа",
-          "bonus": "+5% кэшбека за каждого друга!",
-          "description": "Поделитесь своим реферальным кодом с друзьями и получайте бонусы!",
-          "code": "Реферальный код",
-          "codeHint": "Поделитесь этим кодом с друзьями",
-          "copied": "Код скопирован!",
-          "codeDescription": "Теперь поделитесь им с друзьями",
-          "invited": "Приглашено друзей",
-          "howItWorks": "Как это работает?",
-          "step1": "Поделитесь своим реферальным кодом с другом.",
-          "step2": "Друг регистрируется, используя ваш код.",
-          "step3": "Вы оба получаете +5% кэшбека на следующие покупки!",
-        },
-        "coupons": {
-          "title": "Купоны и скидки",
-          "active": "Активных купонов",
-          "none": "У вас пока нет активных купонов.",
-        },
+        "pearlRequired": "Для получения жемчужного уровня необходимо:",
+        "completeProfile": "Заполнить профиль",
+        "inviteFriend": "Пригласить {count} друга",
       },
-      "categories": {
-        "discover": "Откройте для себя наши категории",
-        "tea": {
-          "title": "Чай",
-          "description": "Высококачественные чаи со всего мира"
-        },
-        "teaware": {
-          "title": "Посуда для чая",
-          "description": "Традиционная и современная посуда для чаепития"
-        },
-        "sets": {
-          "title": "Наборы",
-          "description": "Готовые наборы для идеального чаепития"
-        }
+      "referral": {
+        "title": "Реферальная программа",
+        "bonus": "+5% кэшбека за каждого друга!",
+        "description": "Поделитесь своим реферальным кодом с друзьями и получайте бонусы!",
+        "code": "Реферальный код",
+        "codeHint": "Поделитесь этим кодом с друзьями",
+        "copied": "Код скопирован!",
+        "codeDescription": "Теперь поделитесь им с друзьями",
+        "invited": "Приглашено друзей",
+        "howItWorks": "Как это работает?",
+        "step1": "Поделитесь своим реферальным кодом с другом.",
+        "step2": "Друг регистрируется, используя ваш код.",
+        "step3": "Вы оба получаете +5% кэшбека на следующие покупки!",
       },
-      "cart": {
-        "addToCart": "Добавить в корзину",
-        "addedToCart": "Добавлено в корзину",
-        "cancel": "Отменить",
-        "selectSize": "Выберите размер",
-        "outOfStock": "Нет в наличии"
+      "coupons": {
+        "title": "Купоны и скидки",
+        "active": "Активных купонов",
+        "none": "У вас пока нет активных купонов.",
       },
-      "partnership": {
-        "buttonText": "Партнерство",
-        "title": "Партнерская программа",
-        "subtitle": "Присоединяйтесь к нашей партнерской программе",
-        "description": "Станьте нашим партнером и получайте прибыль от продаж качественного чая",
-        "benefits": "Преимущества партнерства",
-        "benefit1": "Высокие комиссионные",
-        "benefit2": "Маркетинговая поддержка",
-        "benefit3": "Обучение и поддержка"
-      },
+    },
+    "categories": {
+      "discover": "Откройте для себя наши категории",
       "tea": {
-        "filters": {
-          "search": "Поиск по названию...",
-          "sortBy": {
-            "newest": "Новые первыми",
-            "oldest": "Старые первыми",
-            "priceAsc": "Цена по возрастанию",
-            "priceDesc": "Цена по убыванию",
-            "alphabetical": "По алфавиту"
-          },
-          "inStock": "В наличии",
-          "outOfStock": "Нет в наличии"
-        },
-        "details": "Подробнее",
-        "error": "Ошибка загрузки данных",
-        "pagination": {
-          "prev": "Предыдущая",
-          "next": "Следующая",
-          "page": "Страница",
-          "of": "из",
-          "total": "всего",
-          "records": "записей"
-        }
+        "title": "Чай",
+        "description": "Высококачественные чаи со всего мира"
+      },
+      "teaware": {
+        "title": "Посуда для чая",
+        "description": "Традиционная и современная посуда для чаепития"
+      },
+      "sets": {
+        "title": "Наборы",
+        "description": "Готовые наборы для идеального чаепития"
       }
     },
-    hero: {
+    "cart": {
+      "addToCart": "Добавить в корзину",
+      "addedToCart": "Добавлено в корзину",
+      "cancel": "Отменить",
+      "selectSize": "Выберите размер",
+      "outOfStock": "Нет в наличии"
+    },
+    "partnership": {
+      "buttonText": "Партнерство",
+      "title": "Партнерская программа",
+      "subtitle": "Присоединяйтесь к нашей партнерской программе",
+      "description": "Станьте нашим партнером и получайте прибыль от продаж качественного чая",
+      "benefits": "Преимущества партнерства",
+      "benefit1": "Высокие комиссионные",
+      "benefit2": "Маркетинговая поддержка",
+      "benefit3": "Обучение и поддержка"
+    },
+    "tea": {
+      "filters": {
+        "search": "Поиск по названию...",
+        "sortBy": {
+          "newest": "Новые первыми",
+          "oldest": "Старые первыми",
+          "priceAsc": "Цена по возрастанию",
+          "priceDesc": "Цена по убыванию",
+          "alphabetical": "По алфавиту"
+        },
+        "inStock": "В наличии",
+        "outOfStock": "Нет в наличии"
+      },
+      "details": "Подробнее",
+      "error": "Ошибка загрузки данных",
+      "pagination": {
+        "prev": "Предыдущая",
+        "next": "Следующая",
+        "page": "Страница",
+        "of": "из",
+        "total": "всего",
+        "records": "записей"
+      }
+    },
+    "hero": {
       "title": "Добро пожаловать в мир чая",
       "subtitle": "Откройте для себя лучшие сорта чая со всего мира"
     },
-    checkout: {
+    "checkout": {
       title: "Оформление заказа",
       yourOrder: "Ваш заказ",
       recipientInfo: "Информация о получателе",
@@ -174,83 +173,7 @@ export const resources = {
       pay: "Оплатить",
       yearsOld: "лет"
     },
-    partnership: {
-      title: "Партнерская программа",
-      subtitle: "Присоединяйтесь к нашей партнерской программе и развивайте бизнес вместе с нами",
-      intro: "Мы предлагаем уникальную возможность стать частью нашей команды и получать стабильный доход от продажи премиального чая и чайных аксессуаров.",
-      team: {
-        title: "Наша команда",
-        person1: {
-          name: "Анна Петрова",
-          description: "Основатель и директор компании. Более 15 лет опыта в чайной индустрии, эксперт по китайским и индийским чаям."
-        },
-        person2: {
-          name: "Михаил Сидоров",
-          description: "Технический директор и специалист по закупкам. Отвечает за качество продукции и развитие партнерских отношений."
-        }
-      },
-      products: {
-        title: "Наша продукция",
-        description: "Мы предлагаем широкий ассортимент высококачественных чаев и аксессуаров:",
-        product1: {
-          name: "Премиальные чаи",
-          description: "Элитные сорта чая из лучших плантаций мира"
-        },
-        product2: {
-          name: "Чайные наборы",
-          description: "Готовые подарочные наборы для истинных ценителей чая"
-        },
-        product3: {
-          name: "Чайная посуда",
-          description: "Традиционная и современная посуда для чайных церемоний"
-        },
-        product4: {
-          name: "Аксессуары",
-          description: "Все необходимое для идеального чаепития"
-        }
-      },
-      integration: {
-        title: "Интеграция и сотрудничество",
-        step1: {
-          title: "Шаг 1: Регистрация",
-          description: "Подайте заявку на партнерство и пройдите простой процесс регистрации."
-        },
-        step2: {
-          title: "Шаг 2: Обучение",
-          description: "Получите полное обучение по нашей продукции и методам продаж."
-        },
-        step3: {
-          title: "Шаг 3: Запуск",
-          description: "Начните продажи с полной поддержкой нашей команды."
-        },
-        step4: {
-          title: "Шаг 4: Развитие",
-          description: "Развивайте свой бизнес с нашими маркетинговыми материалами и поддержкой."
-        }
-      },
-      agreement: {
-        title: "Партнерское соглашение",
-        description: "Мы предлагаем гибкие условия сотрудничества, адаптированные под ваши потребности и возможности."
-      },
-      sales: {
-        title: "Продажи и маркетинг",
-        description: "Мы предоставляем полную маркетинговую поддержку:",
-        marketingPoints: [
-          "Профессиональные фотографии продукции",
-          "Описания товаров и технические характеристики",
-          "Обучающие материалы для клиентов",
-          "Рекламные баннеры и материалы для социальных сетей",
-          "Поддержка в организации дегустаций и мероприятий"
-        ]
-      },
-      contacts: {
-        title: "Контакты",
-        phone: "Телефон: +7 (495) 123-45-67",
-        instagram: "Instagram: @tea_premium_russia",
-        email: "Email: partnership@teapremium.ru"
-      }
-    },
-    auth: {
+    "auth": {
       "welcome": "Добро пожаловать!",
       "successLogin": "Вы успешно вошли в систему",
       "loginError": "Ошибка входа",
@@ -267,146 +190,144 @@ export const resources = {
     },
   },
   en: {
-    common: {
-      "home": "Home",
-      "about": "About",
-      "products": "Products",
-      "contact": "Contact",
-      "welcome": "Welcome",
-      "nav": {
-        "login": "Login",
-        "logout": "Logout",
-        "profile": "Profile",
-      },
-      "product": {
-        "addToCart": "Add to cart",
-        "description": "Description",
-        "details": "Details",
-        "kind": "Kind",
-        "type": "Type",
-        "age": "Age",
-        "yearbirth": "Year of birth",
-        "weight": "Weight",
-        "price": "Price",
-        "inStock": "In stock",
-      },
-      "profile": {
-        "title": "Profile",
-        "personalInfo": "Personal Information",
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "middleName": "Middle Name",
-        "email": "Email",
-        "phone": "Phone",
-        "changePhoto": "Change photo",
-        "save": "Save",
-        "saving": "Saving...",
-        "success": "Profile updated successfully!",
-        "error": "Error updating profile",
-        "edit": "Edit",
-        "cancel": "Cancel",
-        "phoneBonus": "Enter your phone number and get +3% cashback on your first order!",
-        "loyalty": {
-          "title": "Loyalty Program",
-          "currentCashback": "Your current cashback",
-          "totalPurchases": "Total purchases",
-          "pointsBalance": "Points balance",
-          "levels": "Loyalty Levels",
-          "levelDescriptions": {
-            "silver": "Starting level for all new users",
-            "pearl": "Invite a friend and get this level",
-            "sapphire": "Reach this mark on the amount of purchases to get this level",
-            "emerald": "Reach this mark on the amount of purchases to get this level",
-            "gold": "Reach this mark on the amount of purchases to get this level",
-            "platinum": "Reach this mark on the amount of purchases to get this level",
-            "diamond": "Reach this mark on the amount of purchases to get this level",
-          },
-          "pearlRequired": "To get the pearl level you need:",
-          "completeProfile": "Complete profile",
-          "inviteFriend": "Invite {count} friend",
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "contact": "Contact",
+    "welcome": "Welcome",
+    "nav": {
+      "login": "Login",
+      "logout": "Logout",
+      "profile": "Profile",
+    },
+    "product": {
+      "addToCart": "Add to cart",
+      "description": "Description",
+      "details": "Details",
+      "kind": "Kind",
+      "type": "Type",
+      "age": "Age",
+      "yearbirth": "Year of birth",
+      "weight": "Weight",
+      "price": "Price",
+      "inStock": "In stock",
+    },
+    "profile": {
+      "title": "Profile",
+      "personalInfo": "Personal Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "middleName": "Middle Name",
+      "email": "Email",
+      "phone": "Phone",
+      "changePhoto": "Change photo",
+      "save": "Save",
+      "saving": "Saving...",
+      "success": "Profile updated successfully!",
+      "error": "Error updating profile",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "phoneBonus": "Enter your phone number and get +3% cashback on your first order!",
+      "loyalty": {
+        "title": "Loyalty Program",
+        "currentCashback": "Your current cashback",
+        "totalPurchases": "Total purchases",
+        "pointsBalance": "Points balance",
+        "levels": "Loyalty Levels",
+        "levelDescriptions": {
+          "silver": "Starting level for all new users",
+          "pearl": "Invite a friend and get this level",
+          "sapphire": "Reach this mark on the amount of purchases to get this level",
+          "emerald": "Reach this mark on the amount of purchases to get this level",
+          "gold": "Reach this mark on the amount of purchases to get this level",
+          "platinum": "Reach this mark on the amount of purchases to get this level",
+          "diamond": "Reach this mark on the amount of purchases to get this level",
         },
-        "referral": {
-          "title": "Referral Program",
-          "bonus": "+5% cashback for every friend!",
-          "description": "Share your referral code with friends and get bonuses!",
-          "code": "Referral code",
-          "codeHint": "Share this code with friends",
-          "copied": "Code copied!",
-          "codeDescription": "Now share it with your friends",
-          "invited": "Invited friends",
-          "howItWorks": "How it works?",
-          "step1": "Share your referral code with a friend.",
-          "step2": "A friend signs up using your code.",
-          "step3": "You both get +5% cashback on your next purchases!",
-        },
-        "coupons": {
-          "title": "Coupons and discounts",
-          "active": "Active coupons",
-          "none": "You don't have any active coupons yet.",
-        },
+        "pearlRequired": "To get the pearl level you need:",
+        "completeProfile": "Complete profile",
+        "inviteFriend": "Invite {count} friend",
       },
-      "categories": {
-        "discover": "Discover our categories",
-        "tea": {
-          "title": "Tea",
-          "description": "High-quality teas from around the world"
-        },
-        "teaware": {
-          "title": "Teaware",
-          "description": "Traditional and modern tea accessories"
-        },
-        "sets": {
-          "title": "Sets",
-          "description": "Curated sets for the perfect tea experience"
-        }
+      "referral": {
+        "title": "Referral Program",
+        "bonus": "+5% cashback for every friend!",
+        "description": "Share your referral code with friends and get bonuses!",
+        "code": "Referral code",
+        "codeHint": "Share this code with friends",
+        "copied": "Code copied!",
+        "codeDescription": "Now share it with your friends",
+        "invited": "Invited friends",
+        "howItWorks": "How it works?",
+        "step1": "Share your referral code with a friend.",
+        "step2": "A friend signs up using your code.",
+        "step3": "You both get +5% cashback on your next purchases!",
       },
-      "cart": {
-        "addToCart": "Add to cart",
-        "addedToCart": "Added to cart",
-        "cancel": "Cancel",
-        "selectSize": "Select size",
-        "outOfStock": "Out of stock"
+      "coupons": {
+        "title": "Coupons and discounts",
+        "active": "Active coupons",
+        "none": "You don't have any active coupons yet.",
       },
-      "partnership": {
-        "buttonText": "Partnership",
-        "title": "Partnership Program",
-        "subtitle": "Join our partnership program",
-        "description": "Become our partner and earn profits from selling quality tea",
-        "benefits": "Partnership Benefits",
-        "benefit1": "High commissions",
-        "benefit2": "Marketing support",
-        "benefit3": "Training and support"
-      },
+    },
+    "categories": {
+      "discover": "Discover our categories",
       "tea": {
-        "filters": {
-          "search": "Search by title...",
-          "sortBy": {
-            "newest": "Newest first",
-            "oldest": "Oldest first",
-            "priceAsc": "Price ascending",
-            "priceDesc": "Price descending",
-            "alphabetical": "Alphabetical"
-          },
-          "inStock": "In stock",
-          "outOfStock": "Out of stock"
-        },
-        "details": "Details",
-        "error": "Error loading data",
-        "pagination": {
-          "prev": "Previous",
-          "next": "Next",
-          "page": "Page",
-          "of": "of",
-          "total": "total",
-          "records": "records"
-        }
+        "title": "Tea",
+        "description": "High-quality teas from around the world"
+      },
+      "teaware": {
+        "title": "Teaware",
+        "description": "Traditional and modern tea accessories"
+      },
+      "sets": {
+        "title": "Sets",
+        "description": "Curated sets for the perfect tea experience"
       }
     },
-    hero: {
+    "cart": {
+      "addToCart": "Add to cart",
+      "addedToCart": "Added to cart",
+      "cancel": "Cancel",
+      "selectSize": "Select size",
+      "outOfStock": "Out of stock"
+    },
+    "partnership": {
+      "buttonText": "Partnership",
+      "title": "Partnership Program",
+      "subtitle": "Join our partnership program",
+      "description": "Become our partner and earn profits from selling quality tea",
+      "benefits": "Partnership Benefits",
+      "benefit1": "High commissions",
+      "benefit2": "Marketing support",
+      "benefit3": "Training and support"
+    },
+    "tea": {
+      "filters": {
+        "search": "Search by title...",
+        "sortBy": {
+          "newest": "Newest first",
+          "oldest": "Oldest first",
+          "priceAsc": "Price ascending",
+          "priceDesc": "Price descending",
+          "alphabetical": "Alphabetical"
+        },
+        "inStock": "In stock",
+        "outOfStock": "Out of stock"
+      },
+      "details": "Details",
+      "error": "Error loading data",
+      "pagination": {
+        "prev": "Previous",
+        "next": "Next",
+        "page": "Page",
+        "of": "of",
+        "total": "total",
+        "records": "records"
+      }
+    },
+    "hero": {
       "title": "Welcome to the World of Tea",
       "subtitle": "Discover the finest teas from around the globe"
     },
-    checkout: {
+    "checkout": {
       title: "Checkout",
       yourOrder: "Your Order",
       recipientInfo: "Recipient Information",
@@ -426,83 +347,7 @@ export const resources = {
       pay: "Pay",
       yearsOld: "years old"
     },
-    partnership: {
-      title: "Partnership Program",
-      subtitle: "Join our partnership program and grow your business with us",
-      intro: "We offer a unique opportunity to become part of our team and earn stable income from selling premium teas and tea accessories.",
-      team: {
-        title: "Our Team",
-        person1: {
-          name: "Anna Petrova",
-          description: "Founder and company director. Over 15 years of experience in the tea industry, expert in Chinese and Indian teas."
-        },
-        person2: {
-          name: "Mikhail Sidorov",
-          description: "Technical director and procurement specialist. Responsible for product quality and partnership development."
-        }
-      },
-      products: {
-        title: "Our Products",
-        description: "We offer a wide range of high-quality teas and accessories:",
-        product1: {
-          name: "Premium Teas",
-          description: "Elite tea varieties from the best plantations worldwide"
-        },
-        product2: {
-          name: "Tea Sets",
-          description: "Ready-made gift sets for true tea connoisseurs"
-        },
-        product3: {
-          name: "Tea Ware",
-          description: "Traditional and modern tea ceremony accessories"
-        },
-        product4: {
-          name: "Accessories",
-          description: "Everything needed for the perfect tea experience"
-        }
-      },
-      integration: {
-        title: "Integration and Cooperation",
-        step1: {
-          title: "Step 1: Registration",
-          description: "Apply for partnership and complete a simple registration process."
-        },
-        step2: {
-          title: "Step 2: Training",
-          description: "Receive comprehensive training on our products and sales methods."
-        },
-        step3: {
-          title: "Step 3: Launch",
-          description: "Start selling with full support from our team."
-        },
-        step4: {
-          title: "Step 4: Development",
-          description: "Grow your business with our marketing materials and support."
-        }
-      },
-      agreement: {
-        title: "Partnership Agreement",
-        description: "We offer flexible cooperation terms tailored to your needs and capabilities."
-      },
-      sales: {
-        title: "Sales and Marketing",
-        description: "We provide full marketing support:",
-        marketingPoints: [
-          "Professional product photography",
-          "Product descriptions and technical specifications",
-          "Customer training materials",
-          "Advertising banners and social media materials",
-          "Support in organizing tastings and events"
-        ]
-      },
-      contacts: {
-        title: "Contacts",
-        phone: "Phone: +7 (495) 123-45-67",
-        instagram: "Instagram: @tea_premium_russia",
-        email: "Email: partnership@teapremium.ru"
-      }
-    },
-    auth: {
+    "auth": {
       "welcome": "Welcome!",
       "successLogin": "Successfully logged in",
       "loginError": "Login error",
@@ -519,146 +364,144 @@ export const resources = {
     },
   },
   es: {
-    common: {
-      "home": "Inicio",
-      "about": "Acerca de",
-      "products": "Productos",
-      "contact": "Contacto",
-      "welcome": "Bienvenido",
-      "nav": {
-        "login": "Acceder",
-        "logout": "Cerrar sesión",
-        "profile": "Perfil",
-      },
-      "product": {
-        "addToCart": "Añadir al carrito",
-        "description": "Descripción",
-        "details": "Detalles",
-        "kind": "Tipo",
-        "type": "Categoría",
-        "age": "Años",
-        "yearbirth": "Año de nacimiento",
-        "weight": "Peso",
-        "price": "Precio",
-        "inStock": "En stock",
-      },
-      "profile": {
-        "title": "Perfil",
-        "personalInfo": "Información personal",
-        "firstName": "Nombre",
-        "lastName": "Apellido",
-        "middleName": "Segundo Nombre",
-        "email": "Email",
-        "phone": "Teléfono",
-        "changePhoto": "Cambiar foto",
-        "save": "Guardar",
-        "saving": "Guardando...",
-        "success": "¡Perfil actualizado exitosamente!",
-        "error": "Error al actualizar el perfil",
-        "edit": "Editar",
-        "cancel": "Cancelar",
-        "phoneBonus": "¡Ingrese su número de teléfono y obtenga +3% de reembolso en su primer pedido!",
-        "loyalty": {
-          "title": "Programa de Lealtad",
-          "currentCashback": "Su reembolso actual",
-          "totalPurchases": "Compras totales",
-          "pointsBalance": "Balance de puntos",
-          "levels": "Niveles de Lealtad",
-          "levelDescriptions": {
-            "silver": "Nivel de inicio para todos los usuarios nuevos",
-            "pearl": "Invita a un amigo y obtén este nivel",
-            "sapphire": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
-            "emerald": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
-            "gold": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
-            "platinum": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
-            "diamond": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
-          },
-          "pearlRequired": "Para obtener el nivel perla necesitas:",
-          "completeProfile": "Completar perfil",
-          "inviteFriend": "Invitar a {count} amigo",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "products": "Productos",
+    "contact": "Contacto",
+    "welcome": "Bienvenido",
+    "nav": {
+      "login": "Acceder",
+      "logout": "Cerrar sesión",
+      "profile": "Perfil",
+    },
+    "product": {
+      "addToCart": "Añadir al carrito",
+      "description": "Descripción",
+      "details": "Detalles",
+      "kind": "Tipo",
+      "type": "Categoría",
+      "age": "Años",
+      "yearbirth": "Año de nacimiento",
+      "weight": "Peso",
+      "price": "Precio",
+      "inStock": "En stock",
+    },
+    "profile": {
+      "title": "Perfil",
+      "personalInfo": "Información personal",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "middleName": "Segundo Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "changePhoto": "Cambiar foto",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "success": "¡Perfil actualizado exitosamente!",
+      "error": "Error al actualizar el perfil",
+      "edit": "Editar",
+      "cancel": "Cancelar",
+      "phoneBonus": "¡Ingrese su número de teléfono y obtenga +3% de reembolso en su primer pedido!",
+      "loyalty": {
+        "title": "Programa de Lealtad",
+        "currentCashback": "Su reembolso actual",
+        "totalPurchases": "Compras totales",
+        "pointsBalance": "Balance de puntos",
+        "levels": "Niveles de Lealtad",
+        "levelDescriptions": {
+          "silver": "Nivel de inicio para todos los usuarios nuevos",
+          "pearl": "Invita a un amigo y obtén este nivel",
+          "sapphire": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
+          "emerald": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
+          "gold": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
+          "platinum": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
+          "diamond": "Alcanza esta marca en la cantidad de compras para obtener este nivel",
         },
-        "referral": {
-          "title": "Programa de Referidos",
-          "bonus": "¡+5% de reembolso por cada amigo!",
-          "description": "¡Comparte tu código de referido con amigos y obtén bonificaciones!",
-          "code": "Código de referido",
-          "codeHint": "Comparte este código con amigos",
-          "copied": "¡Código copiado!",
-          "codeDescription": "Ahora compártelo con tus amigos",
-          "invited": "Amigos invitados",
-          "howItWorks": "¿Cómo funciona?",
-          "step1": "Comparte tu código de referido con un amigo.",
-          "step2": "Un amigo se registra usando tu código.",
-          "step3": "¡Ambos obtienen +5% de reembolso en sus próximas compras!",
-        },
-        "coupons": {
-          "title": "Cupones y descuentos",
-          "active": "Cupones activos",
-          "none": "Aún no tienes cupones activos.",
-        },
+        "pearlRequired": "Para obtener el nivel perla necesitas:",
+        "completeProfile": "Completar perfil",
+        "inviteFriend": "Invitar a {count} amigo",
       },
-      "categories": {
-        "discover": "Descubra nuestras categorías",
-        "tea": {
-          "title": "Té",
-          "description": "Tés de alta calidad de todo el mundo"
-        },
-        "teaware": {
-          "title": "Utensilios para té",
-          "description": "Accesorios tradicionales y modernos para el té"
-        },
-        "sets": {
-          "title": "Conjuntos",
-          "description": "Conjuntos curados para la experiencia perfecta del té"
-        }
+      "referral": {
+        "title": "Programa de Referidos",
+        "bonus": "¡+5% de reembolso por cada amigo!",
+        "description": "¡Comparte tu código de referido con amigos y obtén bonificaciones!",
+        "code": "Código de referido",
+        "codeHint": "Comparte este código con amigos",
+        "copied": "¡Código copiado!",
+        "codeDescription": "Ahora compártelo con tus amigos",
+        "invited": "Amigos invitados",
+        "howItWorks": "¿Cómo funciona?",
+        "step1": "Comparte tu código de referido con un amigo.",
+        "step2": "Un amigo se registra usando tu código.",
+        "step3": "¡Ambos obtienen +5% de reembolso en sus próximas compras!",
       },
-      "cart": {
-        "addToCart": "Añadir al carrito",
-        "addedToCart": "Añadido al carrito",
-        "cancel": "Cancelar",
-        "selectSize": "Seleccionar tamaño",
-        "outOfStock": "Agotado"
+      "coupons": {
+        "title": "Cupones y descuentos",
+        "active": "Cupones activos",
+        "none": "Aún no tienes cupones activos.",
       },
-      "partnership": {
-        "buttonText": "Sociedad",
-        "title": "Programa de Socios",
-        "subtitle": "Únase a nuestro programa de socios",
-        "description": "Conviértase en nuestro socio y gane ganancias vendiendo té de calidad",
-        "benefits": "Beneficios de la Sociedad",
-        "benefit1": "Altas comisiones",
-        "benefit2": "Apoyo de marketing",
-        "benefit3": "Entrenamiento y apoyo"
-      },
+    },
+    "categories": {
+      "discover": "Descubra nuestras categorías",
       "tea": {
-        "filters": {
-          "search": "Buscar por título...",
-          "sortBy": {
-            "newest": "Más nuevos primero",
-            "oldest": "Más antiguos primero",
-            "priceAsc": "Precio ascendente",
-            "priceDesc": "Precio descendente",
-            "alphabetical": "Alfabético"
-          },
-          "inStock": "En stock",
-          "outOfStock": "Agotado"
-        },
-        "details": "Detalles",
-        "error": "Error al cargar datos",
-        "pagination": {
-          "prev": "Anterior",
-          "next": "Siguiente",
-          "page": "Página",
-          "of": "de",
-          "total": "total",
-          "records": "registros"
-        }
+        "title": "Té",
+        "description": "Tés de alta calidad de todo el mundo"
+      },
+      "teaware": {
+        "title": "Utensilios para té",
+        "description": "Accesorios tradicionales y modernos para el té"
+      },
+      "sets": {
+        "title": "Conjuntos",
+        "description": "Conjuntos curados para la experiencia perfecta del té"
       }
     },
-    hero: {
+    "cart": {
+      "addToCart": "Añadir al carrito",
+      "addedToCart": "Añadido al carrito",
+      "cancel": "Cancelar",
+      "selectSize": "Seleccionar tamaño",
+      "outOfStock": "Agotado"
+    },
+    "partnership": {
+      "buttonText": "Sociedad",
+      "title": "Programa de Socios",
+      "subtitle": "Únase a nuestro programa de socios",
+      "description": "Conviértase en nuestro socio y gane ganancias vendiendo té de calidad",
+      "benefits": "Beneficios de la Sociedad",
+      "benefit1": "Altas comisiones",
+      "benefit2": "Apoyo de marketing",
+      "benefit3": "Entrenamiento y apoyo"
+    },
+    "tea": {
+      "filters": {
+        "search": "Buscar por título...",
+        "sortBy": {
+          "newest": "Más nuevos primero",
+          "oldest": "Más antiguos primero",
+          "priceAsc": "Precio ascendente",
+          "priceDesc": "Precio descendente",
+          "alphabetical": "Alfabético"
+        },
+        "inStock": "En stock",
+        "outOfStock": "Agotado"
+      },
+      "details": "Detalles",
+      "error": "Error al cargar datos",
+      "pagination": {
+        "prev": "Anterior",
+        "next": "Siguiente",
+        "page": "Página",
+        "of": "de",
+        "total": "total",
+        "records": "registros"
+      }
+    },
+    "hero": {
       "title": "Bienvenido al Mundo del Té",
       "subtitle": "Descubre los mejores tés de todo el mundo"
     },
-    checkout: {
+    "checkout": {
       title: "Finalizar Compra",
       yourOrder: "Su Pedido",
       recipientInfo: "Información del Destinatario",
@@ -678,83 +521,7 @@ export const resources = {
       pay: "Pagar",
       yearsOld: "años"
     },
-    partnership: {
-      title: "Programa de Socios",
-      subtitle: "Únase a nuestro programa de socios y desarrolle su negocio con nosotros",
-      intro: "Ofrecemos una oportunidad única para formar parte de nuestro equipo y obtener ingresos estables vendiendo tés premium y accesorios para té.",
-      team: {
-        title: "Nuestro Equipo",
-        person1: {
-          name: "Anna Petrova",
-          description: "Fundadora y directora de la empresa. Más de 15 años de experiencia en la industria del té, experta en tés chinos e indios."
-        },
-        person2: {
-          name: "Mikhail Sidorov",
-          description: "Director técnico y especialista en compras. Responsable de la calidad del producto y el desarrollo de asociaciones."
-        }
-      },
-      products: {
-        title: "Nuestros Productos",
-        description: "Ofrecemos una amplia gama de tés y accesorios de alta calidad:",
-        product1: {
-          name: "Tés Premium",
-          description: "Variedades de té élite de las mejores plantaciones del mundo"
-        },
-        product2: {
-          name: "Sets de Té",
-          description: "Sets de regalo listos para verdaderos conocedores del té"
-        },
-        product3: {
-          name: "Utensilios para Té",
-          description: "Accesorios tradicionales y modernos para ceremonias de té"
-        },
-        product4: {
-          name: "Accesorios",
-          description: "Todo lo necesario para la experiencia perfecta del té"
-        }
-      },
-      integration: {
-        title: "Integración y Cooperación",
-        step1: {
-          title: "Paso 1: Registro",
-          description: "Solicite la asociación y complete un proceso de registro sencillo."
-        },
-        step2: {
-          title: "Paso 2: Capacitación",
-          description: "Reciba capacitación completa sobre nuestros productos y métodos de venta."
-        },
-        step3: {
-          title: "Paso 3: Lanzamiento",
-          description: "Comience a vender con el apoyo completo de nuestro equipo."
-        },
-        step4: {
-          title: "Paso 4: Desarrollo",
-          description: "Haga crecer su negocio con nuestros materiales de marketing y soporte."
-        }
-      },
-      agreement: {
-        title: "Acuerdo de Asociación",
-        description: "Ofrecemos términos de cooperación flexibles adaptados a sus necesidades y capacidades."
-      },
-      sales: {
-        title: "Ventas y Marketing",
-        description: "Proporcionamos soporte completo de marketing:",
-        marketingPoints: [
-          "Fotografía profesional de productos",
-          "Descripciones de productos y especificaciones técnicas",
-          "Materiales de capacitación para clientes",
-          "Banners publicitarios y materiales para redes sociales",
-          "Apoyo en la organización de degustaciones y eventos"
-        ]
-      },
-      contacts: {
-        title: "Contactos",
-        phone: "Teléfono: +7 (495) 123-45-67",
-        instagram: "Instagram: @tea_premium_russia",
-        email: "Email: partnership@teapremium.ru"
-      }
-    },
-    auth: {
+    "auth": {
       "welcome": "¡Bienvenido!",
       "successLogin": "Sesión iniciada exitosamente",
       "loginError": "Error de inicio de sesión",
@@ -771,146 +538,144 @@ export const resources = {
     },
   },
   zh: {
-    common: {
-      "home": "主页",
-      "about": "关于我们",
-      "products": "产品",
-      "contact": "联系方式",
-      "welcome": "欢迎",
-      "nav": {
-        "login": "登录",
-        "logout": "登出",
-        "profile": "个人资料",
-      },
-      "product": {
-        "addToCart": "添加到购物车",
-        "description": "描述",
-        "details": "详情",
-        "kind": "种类",
-        "type": "类型",
-        "age": "年份",
-        "yearbirth": "出生年份",
-        "weight": "重量",
-        "price": "价格",
-        "inStock": "有库存",
-      },
-      "profile": {
-        "title": "个人资料",
-        "personalInfo": "个人信息",
-        "firstName": "名字",
-        "lastName": "姓氏",
-        "middleName": "中间名",
-        "email": "电子邮件",
-        "phone": "电话",
-        "changePhoto": "更改照片",
-        "save": "保存",
-        "saving": "保存中...",
-        "success": "个人资料更新成功！",
-        "error": "更新个人资料出错",
-        "edit": "编辑",
-        "cancel": "取消",
-        "phoneBonus": "输入您的电话号码，首次订购可获得 +3% 的返现！",
-        "loyalty": {
-          "title": "忠诚度计划",
-          "currentCashback": "您当前的返现",
-          "totalPurchases": "总购买金额",
-          "pointsBalance": "积分余额",
-          "levels": "忠诚度等级",
-          "levelDescriptions": {
-            "silver": "所有新用户的起始等级",
-            "pearl": "邀请一位朋友并获得此等级",
-            "sapphire": "在此购买金额上达到此标记即可获得此等级",
-            "emerald": "在此购买金额上达到此标记即可获得此等级",
-            "gold": "在此购买金额上达到此标记即可获得此等级",
-            "platinum": "在此购买金额上达到此标记即可获得此等级",
-            "diamond": "在此购买金额上达到此标记即可获得此等级",
-          },
-          "pearlRequired": "要获得珍珠等级，您需要：",
-          "completeProfile": "完善个人资料",
-          "inviteFriend": "邀请 {count} 位朋友",
+    "home": "主页",
+    "about": "关于我们",
+    "products": "产品",
+    "contact": "联系方式",
+    "welcome": "欢迎",
+    "nav": {
+      "login": "登录",
+      "logout": "登出",
+      "profile": "个人资料",
+    },
+    "product": {
+      "addToCart": "添加到购物车",
+      "description": "描述",
+      "details": "详情",
+      "kind": "种类",
+      "type": "类型",
+      "age": "年份",
+      "yearbirth": "出生年份",
+      "weight": "重量",
+      "price": "价格",
+      "inStock": "有库存",
+    },
+    "profile": {
+      "title": "个人资料",
+      "personalInfo": "个人信息",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "middleName": "中间名",
+      "email": "电子邮件",
+      "phone": "电话",
+      "changePhoto": "更改照片",
+      "save": "保存",
+      "saving": "保存中...",
+      "success": "个人资料更新成功！",
+      "error": "更新个人资料出错",
+      "edit": "编辑",
+      "cancel": "取消",
+      "phoneBonus": "输入您的电话号码，首次订购可获得 +3% 的返现！",
+      "loyalty": {
+        "title": "忠诚度计划",
+        "currentCashback": "您当前的返现",
+        "totalPurchases": "总购买金额",
+        "pointsBalance": "积分余额",
+        "levels": "忠诚度等级",
+        "levelDescriptions": {
+          "silver": "所有新用户的起始等级",
+          "pearl": "邀请一位朋友并获得此等级",
+          "sapphire": "在此购买金额上达到此标记即可获得此等级",
+          "emerald": "在此购买金额上达到此标记即可获得此等级",
+          "gold": "在此购买金额上达到此标记即可获得此等级",
+          "platinum": "在此购买金额上达到此标记即可获得此等级",
+          "diamond": "在此购买金额上达到此标记即可获得此等级",
         },
-        "referral": {
-          "title": "推荐计划",
-          "bonus": "每位朋友 +5% 返现！",
-          "description": "与朋友分享您的推荐代码并获得奖励！",
-          "code": "推荐代码",
-          "codeHint": "与朋友分享此代码",
-          "copied": "代码已复制！",
-          "codeDescription": "现在与您的朋友分享",
-          "invited": "邀请的朋友",
-          "howItWorks": "这个怎么运作？",
-          "step1": "与朋友分享您的推荐代码。",
-          "step2": "朋友使用您的代码注册。",
-          "step3": "您都可以在下次购买时获得 +5% 的返现！",
-        },
-        "coupons": {
-          "title": "优惠券和折扣",
-          "active": "活动优惠券",
-          "none": "您还没有任何有效的优惠券。",
-        },
+        "pearlRequired": "要获得珍珠等级，您需要：",
+        "completeProfile": "完善个人资料",
+        "inviteFriend": "邀请 {count} 位朋友",
       },
-      "categories": {
-        "discover": "发现我们的分类",
-        "tea": {
-          "title": "茶",
-          "description": "来自世界各地的高品质茶叶"
-        },
-        "teaware": {
-          "title": "茶具",
-          "description": "传统和现代茶具配件"
-        },
-        "sets": {
-          "title": "套装",
-          "description": "为完美茶体验精心策划的套装"
-        }
+      "referral": {
+        "title": "推荐计划",
+        "bonus": "每位朋友 +5% 返现！",
+        "description": "与朋友分享您的推荐代码并获得奖励！",
+        "code": "推荐代码",
+        "codeHint": "与朋友分享此代码",
+        "copied": "代码已复制！",
+        "codeDescription": "现在与您的朋友分享",
+        "invited": "邀请的朋友",
+        "howItWorks": "这个怎么运作？",
+        "step1": "与朋友分享您的推荐代码。",
+        "step2": "朋友使用您的代码注册。",
+        "step3": "您都可以在下次购买时获得 +5% 的返现！",
       },
-      "cart": {
-        "addToCart": "添加到购物车",
-        "addedToCart": "已添加到购物车",
-        "cancel": "取消",
-        "selectSize": "选择尺寸",
-        "outOfStock": "缺货"
+      "coupons": {
+        "title": "优惠券和折扣",
+        "active": "活动优惠券",
+        "none": "您还没有任何有效的优惠券。",
       },
-      "partnership": {
-        "buttonText": "合作伙伴",
-        "title": "合作伙伴计划",
-        "subtitle": "加入我们的合作伙伴计划",
-        "description": "成为我们的合作伙伴，通过销售优质茶叶获得利润",
-        "benefits": "合作伙伴优势",
-        "benefit1": "高佣金",
-        "benefit2": "营销支持",
-        "benefit3": "培训和支持"
-      },
+    },
+    "categories": {
+      "discover": "发现我们的分类",
       "tea": {
-        "filters": {
-          "search": "按标题搜索...",
-          "sortBy": {
-            "newest": "最新优先",
-            "oldest": "最旧优先",
-            "priceAsc": "价格升序",
-            "priceDesc": "价格降序",
-            "alphabetical": "按字母顺序"
-          },
-          "inStock": "有库存",
-          "outOfStock": "缺货"
-        },
-        "details": "详情",
-        "error": "加载数据错误",
-        "pagination": {
-          "prev": "上一页",
-          "next": "下一页",
-          "page": "页面",
-          "of": "的",
-          "total": "总计",
-          "records": "记录"
-        }
+        "title": "茶",
+        "description": "来自世界各地的高品质茶叶"
+      },
+      "teaware": {
+        "title": "茶具",
+        "description": "传统和现代茶具配件"
+      },
+      "sets": {
+        "title": "套装",
+        "description": "为完美茶体验精心策划的套装"
       }
     },
-    hero: {
+    "cart": {
+      "addToCart": "添加到购物车",
+      "addedToCart": "已添加到购物车",
+      "cancel": "取消",
+      "selectSize": "选择尺寸",
+      "outOfStock": "缺货"
+    },
+    "partnership": {
+      "buttonText": "合作伙伴",
+      "title": "合作伙伴计划",
+      "subtitle": "加入我们的合作伙伴计划",
+      "description": "成为我们的合作伙伴，通过销售优质茶叶获得利润",
+      "benefits": "合作伙伴优势",
+      "benefit1": "高佣金",
+      "benefit2": "营销支持",
+      "benefit3": "培训和支持"
+    },
+    "tea": {
+      "filters": {
+        "search": "按标题搜索...",
+        "sortBy": {
+          "newest": "最新优先",
+          "oldest": "最旧优先",
+          "priceAsc": "价格升序",
+          "priceDesc": "价格降序",
+          "alphabetical": "按字母顺序"
+        },
+        "inStock": "有库存",
+        "outOfStock": "缺货"
+      },
+      "details": "详情",
+      "error": "加载数据错误",
+      "pagination": {
+        "prev": "上一页",
+        "next": "下一页",
+        "page": "页面",
+        "of": "的",
+        "total": "总计",
+        "records": "记录"
+      }
+    },
+    "hero": {
       "title": "欢迎来到茶的世界",
       "subtitle": "发现来自全球的顶级茶叶"
     },
-    checkout: {
+    "checkout": {
       title: "结账",
       yourOrder: "您的订单",
       recipientInfo: "收件人信息",
@@ -930,83 +695,7 @@ export const resources = {
       pay: "支付",
       yearsOld: "岁"
     },
-    partnership: {
-      title: "合作伙伴计划",
-      subtitle: "加入我们的合作伙伴计划，与我们共同发展业务",
-      intro: "我们提供独特的机会，成为我们团队的一员，通过销售优质茶叶和茶具获得稳定收入。",
-      team: {
-        title: "我们的团队",
-        person1: {
-          name: "安娜·彼得罗娃",
-          description: "公司创始人兼董事。拥有超过15年的茶叶行业经验，是中国和印度茶叶专家。"
-        },
-        person2: {
-          name: "米哈伊尔·西多罗夫",
-          description: "技术总监和采购专家。负责产品质量和合作伙伴关系发展。"
-        }
-      },
-      products: {
-        title: "我们的产品",
-        description: "我们提供各种高品质的茶叶和配件：",
-        product1: {
-          name: "优质茶叶",
-          description: "来自世界顶级茶园的精致茶叶品种"
-        },
-        product2: {
-          name: "茶具套装",
-          description: "为真正的茶叶爱好者准备的礼品套装"
-        },
-        product3: {
-          name: "茶具",
-          description: "传统和现代的茶道配件"
-        },
-        product4: {
-          name: "配件",
-          description: "完美茶饮所需的一切"
-        }
-      },
-      integration: {
-        title: "整合与合作",
-        step1: {
-          title: "步骤1：注册",
-          description: "申请合作并完成简单的注册流程。"
-        },
-        step2: {
-          title: "步骤2：培训",
-          description: "接受关于我们产品和销售方法的全面培训。"
-        },
-        step3: {
-          title: "步骤3：启动",
-          description: "在我们团队的全力支持下开始销售。"
-        },
-        step4: {
-          title: "步骤4：发展",
-          description: "利用我们的营销材料和支持发展您的业务。"
-        }
-      },
-      agreement: {
-        title: "合作协议",
-        description: "我们提供灵活的合作条款，适应您的需求和能力。"
-      },
-      sales: {
-        title: "销售与营销",
-        description: "我们提供全面的营销支持：",
-        marketingPoints: [
-          "专业的产品摄影",
-          "产品描述和技术规格",
-          "客户培训材料",
-          "广告横幅和社交媒体材料",
-          "支持组织品鉴会和活动"
-        ]
-      },
-      contacts: {
-        title: "联系方式",
-        phone: "电话：+7 (495) 123-45-67",
-        instagram: "Instagram: @tea_premium_russia",
-        email: "电子邮件: partnership@teapremium.ru"
-      }
-    },
-    auth: {
+    "auth": {
       "welcome": "欢迎！",
       "successLogin": "登录成功",
       "loginError": "登录错误",
