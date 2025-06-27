@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -40,11 +41,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    console.log('Attempting sign in for:', email);
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    if (error) throw error;
+    if (error) {
+      console.error('Sign in error:', error);
+      throw error;
+    }
+    console.log('Sign in successful');
   };
 
   const signUp = async (
@@ -52,7 +58,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     password: string, 
     userData?: { first_name: string; last_name: string; referral_code?: string }
   ) => {
-    const { error } = await supabase.auth.signUp({
+    console.log('Attempting sign up for:', email, 'with data:', userData);
+    
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -60,12 +68,39 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         data: userData || {},
       },
     });
-    if (error) throw error;
+    
+    console.log('Sign up response:', { data, error });
+    
+    if (error) {
+      console.error('Sign up error:', error);
+      throw error;
+    }
+    
+    // Добавляем небольшую задержку и проверяем, создался ли профиль
+    setTimeout(async () => {
+      if (data.user) {
+        console.log('Checking if profile was created for user:', data.user.id);
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', data.user.id)
+          .single();
+        
+        console.log('Profile check result:', { profile, profileError });
+      }
+    }, 2000);
+    
+    console.log('Sign up completed successfully');
   };
 
   const signOut = async () => {
+    console.log('Attempting sign out');
     const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    if (error) {
+      console.error('Sign out error:', error);
+      throw error;
+    }
+    console.log('Sign out successful');
   };
 
   const value = {
