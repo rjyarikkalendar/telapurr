@@ -61,8 +61,6 @@ const Profile = () => {
     if (user) {
       fetchProfile();
       fetchLoyaltyStats();
-      generateReferralCode();
-      fetchCompletionStatus();
     }
   }, [user]);
 
@@ -71,6 +69,11 @@ const Profile = () => {
     
     const status = await loyaltyService.getProfileCompletionStatus(user.id);
     setCompletionStatus(status);
+    
+    // Устанавливаем реферальный код из базы данных
+    if (status?.referral_code) {
+      setReferralCode(status.referral_code);
+    }
   };
 
   const fetchProfile = async () => {
@@ -91,7 +94,7 @@ const Profile = () => {
         first_name: data.first_name || '',
         last_name: data.last_name || '',
         middle_name: data.middle_name || '',
-        phone: data.phone || '', // Теперь правильно загружаем телефон из базы данных
+        phone: data.phone || '',
         avatar_url: data.avatar_url || '',
       });
     } catch (error) {
@@ -112,6 +115,11 @@ const Profile = () => {
         const totalPurchases = status.total_purchases;
         const referralsCount = status.referrals_count;
         const isProfileComplete = status.is_profile_complete;
+        
+        // Устанавливаем реферальный код из ответа
+        if (status.referral_code) {
+          setReferralCode(status.referral_code);
+        }
         
         let cashbackPercentage = 1; // Default silver level
         
@@ -142,6 +150,8 @@ const Profile = () => {
           referrals_count: referralsCount,
           coupons_count: 0,
         });
+        
+        setCompletionStatus(status);
       }
     } catch (error) {
       console.error('Error fetching loyalty stats:', error);
@@ -155,17 +165,6 @@ const Profile = () => {
       });
     } finally {
       setLoading(false);
-    }
-  };
-
-  const generateReferralCode = async () => {
-    try {
-      const code = `REF${user?.id.slice(0, 8).toUpperCase()}`;
-      setReferralCode(code);
-    } catch (error) {
-      console.error('Error generating referral code:', error);
-      const code = `REF${user?.id.slice(0, 8).toUpperCase()}`;
-      setReferralCode(code);
     }
   };
 

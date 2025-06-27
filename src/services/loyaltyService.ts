@@ -5,6 +5,7 @@ export interface ProfileCompletionStatus {
   is_profile_complete: boolean;
   referrals_count: number;
   total_purchases: number;
+  referral_code: string;
   missing_for_pearl: {
     profile_complete: boolean;
     need_referrals: number;
@@ -23,7 +24,6 @@ export const loyaltyService = {
         return null;
       }
 
-      // Приводим данные к нужному типу через unknown
       return data as unknown as ProfileCompletionStatus;
     } catch (error) {
       console.error('Error getting profile completion status:', error);
