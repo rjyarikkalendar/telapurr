@@ -1,3 +1,4 @@
+
 import { useLanguage } from "@/hooks/use-language";
 import { BackButton } from "@/components/BackButton";
 
@@ -16,9 +17,9 @@ const RefundPolicy = () => {
           
           <div className="prose prose-lg max-w-none text-tea-text space-y-6">
             <section>
-              <h2 className="text-xl font-semibold mb-4">1. EU Consumer Rights</h2>
+              <h2 className="text-xl font-semibold mb-4">1. Consumer Rights</h2>
               <p>
-                In accordance with EU Consumer Rights Directive, you have the right to cancel your order within 14 days 
+                We are committed to protecting your consumer rights. You have the right to cancel your order within 14 days 
                 of receiving your goods without giving any reason. This applies to all products except those specifically 
                 excluded below.
               </p>
@@ -112,7 +113,7 @@ const RefundPolicy = () => {
               <p>
                 If you receive a damaged or defective product, please contact us immediately. We will arrange for 
                 collection and provide a full refund or replacement. You have up to 2 years to report defects 
-                under EU warranty laws.
+                under warranty laws.
               </p>
             </section>
 
