@@ -1,4 +1,3 @@
-
 import { useLanguage } from "@/hooks/use-language";
 import { BackButton } from "@/components/BackButton";
 
@@ -43,9 +42,8 @@ const RefundPolicy = () => {
                 To exercise your right of withdrawal, you must inform us of your decision by sending a clear statement to:
               </p>
               <p>
-                Email: returns@teaceremony.com<br/>
-                Phone: [Your Phone Number]<br/>
-                Address: [Your Business Address]
+                Email: manager@tepurrfect.com<br/>
+                Phone: +34641959330
               </p>
               <p>
                 You may use the withdrawal form template below, but it is not obligatory.
@@ -139,8 +137,8 @@ const RefundPolicy = () => {
                 For any questions about returns or refunds, please contact us at:
               </p>
               <p>
-                Email: returns@teaceremony.com<br/>
-                Phone: [Your Phone Number]<br/>
+                Email: manager@tepurrfect.com<br/>
+                Phone: +34641959330<br/>
                 Business hours: Monday-Friday 9:00-17:00 CET
               </p>
             </section>

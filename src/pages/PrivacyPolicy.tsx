@@ -1,4 +1,3 @@
-
 import { useLanguage } from "@/hooks/use-language";
 import { BackButton } from "@/components/BackButton";
 
@@ -119,8 +118,8 @@ const PrivacyPolicy = () => {
                 For any privacy-related questions or to exercise your rights, please contact our Data Protection Officer at:
               </p>
               <p>
-                Email: privacy@teaceremony.com<br/>
-                Address: [Your Business Address]
+                Email: manager@tepurrfect.com<br/>
+                Phone: +34641959330
               </p>
             </section>
 
