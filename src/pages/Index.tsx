@@ -10,13 +10,15 @@ const Index = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col min-h-screen bg-tea-bg">
-      <CartWidget />
-      <main className="flex-grow">
-        <HeroSection t={t} />
-        <CategorySection t={t} />
-        <PartnershipButton />
-      </main>
+    <>
+      <div className="flex flex-col min-h-screen bg-tea-bg">
+        <CartWidget />
+        <main className="flex-grow">
+          <HeroSection t={t} />
+          <CategorySection t={t} />
+          <PartnershipButton />
+        </main>
+      </div>
       
       {/* Legal Links Section - now truly at the bottom after NavigationBanner */}
       <footer className="bg-gray-50 py-8">
@@ -46,7 +48,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
