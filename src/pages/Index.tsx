@@ -18,8 +18,8 @@ const Index = () => {
         <PartnershipButton />
       </main>
       
-      {/* Legal Links Section moved to bottom */}
-      <section className="bg-gray-50 py-8">
+      {/* Legal Links Section - now truly at the bottom after NavigationBanner */}
+      <footer className="bg-gray-50 py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-8 text-sm">
             <Link 
@@ -42,10 +42,10 @@ const Index = () => {
             </Link>
           </div>
           <div className="text-center mt-4 text-xs text-gray-600">
-            © 2024 Tea Ceremony. All rights reserved.
+            © 2025 TEPURRFECT. All rights reserved.
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };
