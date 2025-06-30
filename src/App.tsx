@@ -11,6 +11,7 @@ import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { useLanguage, LanguageProvider } from "@/hooks/use-language";
 import { AuthButton } from "@/components/AuthButton";
 import { AuthProvider } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
 import Index from "./pages/Index";
 import Tea from "./pages/Tea";
 import Teaware from "./pages/Teaware";
@@ -62,6 +63,37 @@ const AppContent = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isCartOrCheckout && !isAuth && <NavigationBanner />}
+      
+      {/* Legal Links Footer - now truly at the bottom */}
+      {!isAuth && (
+        <footer className="bg-gray-50 py-8">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center gap-8 text-sm">
+              <Link 
+                to="/terms-of-service" 
+                className="text-tea-text hover:text-tea-brown transition-colors underline"
+              >
+                Terms of Service
+              </Link>
+              <Link 
+                to="/privacy-policy" 
+                className="text-tea-text hover:text-tea-brown transition-colors underline"
+              >
+                Privacy Policy
+              </Link>
+              <Link 
+                to="/refund-policy" 
+                className="text-tea-text hover:text-tea-brown transition-colors underline"
+              >
+                Refund Policy
+              </Link>
+            </div>
+            <div className="text-center mt-4 text-xs text-gray-600">
+              © 2025 TEPURRFECT. All rights reserved.
+            </div>
+          </div>
+        </footer>
+      )}
     </>
   );
 };
