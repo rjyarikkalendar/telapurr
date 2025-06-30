@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,6 +22,9 @@ import Auth from "./pages/Auth";
 import Partnership from "./pages/Partnership";
 import Profile from "./pages/Profile";
 import Profiles from "./pages/Profiles";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +56,9 @@ const AppContent = () => {
         <Route path="/partnership" element={<Partnership />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profiles" element={<Profiles />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isCartOrCheckout && !isAuth && <NavigationBanner />}
