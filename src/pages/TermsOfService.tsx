@@ -84,7 +84,7 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-xl font-semibold mb-4">8. Contact Information</h2>
               <p>
-                If you have any questions about these Terms of Service, please contact us at support@teaceremony.com
+                If you have any questions about these Terms of Service, please contact us at manager@tepurrfect.com
               </p>
             </section>
 
