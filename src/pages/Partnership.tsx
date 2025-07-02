@@ -230,9 +230,9 @@ const Partnership = () => {
             {t.partnership.contacts.title}
           </h2>
           <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-            <p className="mb-2 text-tea-text/90">{t.partnership.contacts.phone}</p>
-            <p className="mb-2 text-tea-text/90">{t.partnership.contacts.instagram}</p>
-            <p className="text-tea-text/90">{t.partnership.contacts.email}</p>
+            <p className="mb-2 text-tea-text/90">Phone: +34641959330</p>
+            <p className="mb-2 text-tea-text/90">Instagram: @tepurrfect</p>
+            <p className="text-tea-text/90">Email: manager@tepurrfect.com</p>
           </div>
         </section>
       </main>
