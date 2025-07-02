@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
@@ -230,7 +229,8 @@ const Partnership = () => {
             {t.partnership.contacts.title}
           </h2>
           <div className="bg-white/50 p-6 rounded-lg shadow-sm">
-            <p className="mb-2 text-tea-text/90">Phone: +34641959330</p>
+            <p className="mb-2 text-tea-text/90">Phone: +34641959330 (WhatsApp)</p>
+            <p className="mb-2 text-tea-text/90">Phone: +7 707 903 3663 (WhatsApp)</p>
             <p className="mb-2 text-tea-text/90">Instagram: @tepurrfect</p>
             <p className="text-tea-text/90">Email: manager@tepurrfect.com</p>
           </div>
